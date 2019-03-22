@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "574700125.0191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "+getWithURL:params:isToken:errorDomain:errorString:success:failure:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[HttpEngine getWithURL:params:isToken:errorDomain:errorString:success:failure:]"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/Expand(%E6%89%A9%E5%B1%95)/Tools(%E5%B7%A5%E5%85%B7)/HttpEngine/HttpEngine.m"
+                  timestampString = "574692004.094502"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "648">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__80+[HttpEngine getWithURL:params:isToken:errorDomain:errorString:success:failure:]_block_invoke"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/Expand(%E6%89%A9%E5%B1%95)/Tools(%E5%B7%A5%E5%85%B7)/HttpEngine/HttpEngine.m"
+                  timestampString = "574692004.096845"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "135">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.49"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/Expand(%E6%89%A9%E5%B1%95)/Tools(%E5%B7%A5%E5%85%B7)/HttpEngine/HttpEngine.m"
+                  timestampString = "574692004.101887"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__80+[HttpEngine getWithURL:params:isToken:errorDomain:errorString:success:failure:]_block_invoke.53"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/Expand(%E6%89%A9%E5%B1%95)/Tools(%E5%B7%A5%E5%85%B7)/HttpEngine/HttpEngine.m"
+                  timestampString = "574692004.10508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.55"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/Expand(%E6%89%A9%E5%B1%95)/Tools(%E5%B7%A5%E5%85%B7)/HttpEngine/HttpEngine.m"
+                  timestampString = "574692004.10858"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "574700125.019196"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "+getWithURL:params:isToken:errorDomain:errorString:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Widget/Buttons/TimeOfcCodeButton.m"
+            timestampString = "574138531.8037699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-loadNewCodeWithIphone:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/LoginMe(&#x767b;&#x5f55;)/loginVC/AFRegisterAccountViewController.m"
+            timestampString = "574700125.0193419"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "-fingPassWordWithIpone"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/UNmanagerController.m"
+            timestampString = "574700125.019417"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "-getSubImage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/UNmanagerController.m"
+            timestampString = "574700125.019501"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
+            landmarkName = "-UpdateBabyInformationKey:value:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "574700125.019577"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "+requestPatchWithURL:params:isToken:errorDomain:errorString:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/UNmanagerController.m"
+            timestampString = "574700125.019645"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "575"
+            endingLineNumber = "575"
+            landmarkName = "-UpdateBabyInformationKey:value:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/LoginMe(&#x767b;&#x5f55;)/loginVC/LogInmainViewController.m"
+            timestampString = "574700125.019701"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-EnterLogin:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Vendors(&#x7b2c;&#x4e09;&#x65b9;)/ChooseLocation/Tool/CitiesDataTool.m"
+            timestampString = "574396815.609207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-requestGetData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Vendors(&#x7b2c;&#x4e09;&#x65b9;)/ChooseLocation/ChooseLocation/View/ChooseLocationView.m"
+            timestampString = "574700125.019801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
+            landmarkName = "-setAreaCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/LoginMe(&#x767b;&#x5f55;)/loginVC/LogInmainViewController.m"
+            timestampString = "574700125.019846"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-EnterLogin:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/LoginMe(&#x767b;&#x5f55;)/loginVC/LogInmainViewController.m"
+            timestampString = "574700125.019902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-EnterLogin:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/DCNewAdressViewController.m"
+            timestampString = "574700125.019949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "-saveNewAdress:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/DCNewAdressViewController.m"
+            timestampString = "574700125.02002"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "-saveNewAdress:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/UNmanagerController.m"
+            timestampString = "574700125.020089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-loadNewDate"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "574700125.020136"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "+postWithURL:params:isToken:errorDomain:errorString:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Classify(&#x5206;&#x7c7b;)/Controller/Main/DCCommodityViewController.m"
+            timestampString = "574700125.0201859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "-addGooditemArray:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Classify(&#x5206;&#x7c7b;)/Controller/Main/DCCommodityViewController.m"
+            timestampString = "574700125.020233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/DCNewAdressViewController.m"
+            timestampString = "574700125.020276"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "-saveNewAdress:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DCNewAdressViewController saveNewAdress:]"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCNewAdressViewController.m"
+                  timestampString = "574692004.306335"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
+                  offsetFromSymbolStart = "417">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[DCNewAdressViewController saveNewAdress:]_block_invoke"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCNewAdressViewController.m"
+                  timestampString = "574692004.309809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.264"
+                  moduleName = "UNIGOStore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhiqiangmeng/Desktop/ios%20%E9%A1%B9%E7%9B%AE/UNIGO_shop/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCNewAdressViewController.m"
+                  timestampString = "574692004.312525"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -1,0 +1,79 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - CDDPagerController (1.1.5)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - IQKeyboardManager (6.2.0)
+  - Masonry (1.1.0)
+  - MJExtension (3.0.15.1)
+  - MJRefresh (3.1.15.7)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SVProgressHUD (2.2.5)
+  - TZImagePickerController (3.1.9)
+  - ZYCornerRadius (1.0.2)
+
+DEPENDENCIES:
+  - AFNetworking
+  - CDDPagerController
+  - FMDB
+  - IQKeyboardManager
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - SDCycleScrollView
+  - SDWebImage (= 3.8.2)
+  - SVProgressHUD
+  - TZImagePickerController
+  - ZYCornerRadius
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - CDDPagerController
+    - FMDB
+    - IQKeyboardManager
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - SDCycleScrollView
+    - SDWebImage
+    - SVProgressHUD
+    - TZImagePickerController
+    - ZYCornerRadius
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  CDDPagerController: ed05951429a860c56cfdffbeba1a8af5132a28ae
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TZImagePickerController: c3f7c505d23281e21e98df6dbeae372946caa28f
+  ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
+
+PODFILE CHECKSUM: ed93151d8d2fcec316ba951cfa85a5e27a692828
+
+COCOAPODS: 1.6.1

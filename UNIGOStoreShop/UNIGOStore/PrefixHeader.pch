@@ -1,0 +1,33 @@
+//
+//  PrefixHeader.pch
+//  HaoLeMaFix_ Master
+//
+//  Created by Insect on 2017/5/12.
+//  Copyright © 2017年 Insect. All rights reserved.
+//
+#import <Availability.h>
+#import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Headers.h"
+#import "UIColor+For16.h"
+#import <MobileCoreServices/MobileCoreServices.h> 
+#import "Define.h"
+
+#import "NSDate+zh_Format.h"
+#import "UIImageView+WebCache.h"
+#import "AFProgressHUD.h"
+
+#import "NSData+zh_JSON.h"
+#import "NSDate+Extension.h"
+#import "NSString+Extension.h"
+#import "UIColor+For16.h"
+#import "UIView+Addition.h"
+#import "NSString+Regular.h"
+#import "AFAlertViewHelper.h"
+#import "UIHelper.h"
+#import "HttpEngine.h"
+#import "AFApi.h"
+#import "AFConstantKey.h"
+#import "MJExtension.h"
+#import "ExtendClass.h"
