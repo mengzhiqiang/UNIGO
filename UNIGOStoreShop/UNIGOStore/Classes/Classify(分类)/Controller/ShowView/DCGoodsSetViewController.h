@@ -13,5 +13,7 @@
 /* plist数据 */
 @property (strong , nonatomic)NSString *goodPlisName;
 
+@property (strong , nonatomic)NSString *goodsCateID;  ///商品分类id
+
 
 @end

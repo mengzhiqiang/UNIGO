@@ -34,6 +34,8 @@
     [super awakeFromNib];
     
     [self setUpBase];
+    
+
 }
 
 - (void)setUpBase

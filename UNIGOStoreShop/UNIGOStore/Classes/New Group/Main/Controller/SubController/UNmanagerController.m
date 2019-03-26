@@ -39,7 +39,7 @@
     UIImagePickerController     *  imagePicker;
     AFdatePickerView            *   datePickView ;
     AFFixIconView               *  fixIconView;
-    AFAccount                   *  accountInfo ;
+    UNClient                   *  accountInfo ;
 }
 @property (strong, nonatomic) NSString * imageSuffix;     //图片后缀
 
@@ -77,12 +77,12 @@
 -(void)loadOldDate{
 
     
-        accountInfo =  [AFAccountEngine  getAccount];
-        _userNickName  = (accountInfo.nickName?accountInfo.nickName:@"未设置");
-        _userSex       = (accountInfo.sex?accountInfo.sex:@"未设置");
-        _userOld       = accountInfo.old;
-        _userTrueName  = (accountInfo.tureName?accountInfo.tureName :@"未设置");
-        _userPhone     = accountInfo.mobile;
+        accountInfo =  [AFAccountEngine  getAccount].client;
+        _userNickName  = (accountInfo.nickname?accountInfo.nickname:@"未设置");
+        _userSex       = ((accountInfo.sex==1)?@"1":@"2");
+        _userOld       = accountInfo.birthday;
+        _userTrueName  = (accountInfo.truename?accountInfo.truename :@"未设置");
+        _userPhone     = accountInfo.phone;
         _userUrl       = (accountInfo.avatar.large?accountInfo.avatar.large:nil);
 
         NSDictionary * babyDIC = [accountInfo mj_JSONObject];
@@ -122,7 +122,6 @@
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
             [self.navigationController popToRootViewControllerAnimated:YES];return ;
         }
-        
         [self promtNavHidden:@"请求失败"];
         
     }];
@@ -260,11 +259,11 @@
 #pragma mark 上传头像图片
 -(void)updateBackGroundImage:(UIImage *)image {
     
-    NSString *pathUrl = [API_HOST stringByAppendingString:[NSString stringWithFormat:@"%@policy?policy=babyAvatar:%d",jett_Sign_policy,(int)accountInfo.identifier]];
+//    NSString *pathUrl = [API_HOST stringByAppendingString:[NSString stringWithFormat:@"%@policy?policy=babyAvatar:%d",jett_Sign_policy,(int)accountInfo.identifier]];
     
     __weak typeof (self) myself = self;
     [UIHelper addLoadingViewTo:self.view withFrame:0];
-    [HttpEngine requestGetWithURL:pathUrl headImage:image params:nil isToken:YES imageSuffix:_imageSuffix errorDomain:nil errorString:nil success:^(CGFloat progress) {
+    [HttpEngine requestGetWithURL:nil headImage:image params:nil isToken:YES imageSuffix:_imageSuffix errorDomain:nil errorString:nil success:^(CGFloat progress) {
     } success:^(id responseObject) {
         [UIHelper hiddenAlertWith:self.view];
         
@@ -384,7 +383,7 @@
                 break;
             case 4:
             {
-                if ([_userSex isEqualToString:@"male"]) {
+                if ([_userSex isEqualToString:@"1"]) {
                 cell.pushNextLabel.text=@"男孩";
                 
             }else if ([_userSex isEqualToString:@"未设置"]) {
@@ -483,11 +482,13 @@
     
     //   [UIHelper alertWithTitle:@"确定要退出登录吗" andMSG:nil delegate:self andTag:102];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_PASS_WORD];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_PASS_WORD];
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceUseInfornKey];
     
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
 //    [[CommonVariable shareCommonVariable]setUserInfoo:nil];
 //    //退出网易云信
 //    [[AFNIMEngine sharedInstance] logoutNIMSDK];

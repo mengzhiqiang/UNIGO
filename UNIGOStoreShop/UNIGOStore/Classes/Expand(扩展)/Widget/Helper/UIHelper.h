@@ -77,6 +77,8 @@
 
 +(BOOL)TitleMessage:(NSDictionary *)Dic_data ;
 
++(void)pushLoinViewContrlller;  ///跳转登录页
+
 
 //+(void)hiddenAlert;
 +(void)hiddenAlertWith:(UIView*)targetV;
@@ -95,5 +97,7 @@
  ** 返回:     无
  **************************************************************/
 +(void)ClearViewOFView:(UIView*)view;
+
+
 
 @end

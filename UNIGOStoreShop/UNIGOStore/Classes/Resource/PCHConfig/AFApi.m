@@ -67,58 +67,23 @@ NSString * const login_appsecret = @"unigo";     //登录secret
 NSString * const register_code     = @"sms/send";                     //发送验证码  POST
 NSString * const user_reg          = @"user/reg";                     //创建帐号 POST
 NSString * const user_login        = @"user/login";                   //登录鉴权 POST
+NSString * const user_refreshToken        = @"user/refresh";              //刷新token
+
 NSString * const user_update       = @"user/updateUserInfo";           //基本信息 修改
 NSString * const user_info         = @"user/getuserinfo";              //获取个人信息
 NSString * const user_findPassword = @"user/findBackPassword";         //重置密码  address/set
 
-
 NSString * const address_set = @"address/set";             // 地址增改
 NSString * const address_get = @"address/get";             // 地址获取
-NSString * const goodsCate_get = @"goodsCate/get";         //  商品获取
+NSString * const address_del = @"address/del";             // 地址删除
 
-NSString * const siteInfo_get = @"/site/info";         //  店铺信息
+NSString * const home_banner = @"slider/sliderList";         //  首页banner
+NSString * const goodsCate_get = @"goodsCate/get";           //  商品分类
+NSString * const goodsList_get = @"goods/goodsList";         //  商品列表
+NSString * const siteInfo_get = @"/site/info";               //  店铺信息
+NSString * const goodDetail_get = @"/goods/details";         //  商品信息
 
 
-
-NSString * const jett_password_code = @"/m/password/code"; //验证码GET(发送) POST(验证)
-NSString * const jett_user  = @"/m/user";               //基本信息 GET 、修改 PATCH
-
-NSString * const jett_user_password  = @"/m/user/password";    ///修改密码 PATCH
-NSString * const jett_user_passwordOtt  = @"/m/user/password/ott";  ///修改密码获取ott
-
-NSString * const jett_babies = @"/m/babies";            //创建宝贝 POST
-NSString * const jett_connect = @"/m/connect";             //绑定设备 POST
-NSString * const jett_connect_ott2sn = @"/m/connect/ott2sn";             //绑定设备 验证码oot
-
-NSString * const jett_Sign_policy = @"/m/sign/";             //表单上传策略 GET
-NSString * const jett_image_Upload = @"/m/upload/";            //图片上传  POST
-NSString * const URLjettAccountCache  = @"/m/cache/user";   //聚合信息 GET
-
-//宝贝机器人列表
-NSString * const URLjettBabiesRobots = @"/m/babies/%@/robots";
 //NIM Token 刷新网易云信Token
 NSString * const URLjettNIMUserToken = @"/m/user/nim";
 
-NSString * const jett_helpMe_corpusOtt = @"/m/corpus/tts";  //自定义TTS语料 GET
-
-#pragma mark steam
-NSString * const jett_steam_babies = @"/m/babies/%@/steam";  //steam Get Post
-NSString * const jett_steam_babies_uuid = @"/m/babies/%@/steam/%@";  //steam GET  PATCH DELETE
-
-/*
- 影音资源api
- */
-NSString * const jett_media_Meta = @"/m/media/meta";     //首页推荐分类
-
-NSString * const jett_media_Home = @"/m/columns";     //首页推荐分类
-
-NSString * const jett_media_items = @"/3rd/media/items";     //影音列表
-NSString * const jett_media_albums = @"/3rd/media/albums";     //专辑列表
-NSString * const jett_media_albums_id = @"/3rd/media/albums/%@";     //单个专辑详情
-/*
- 广告
- */
-NSString * const jett_AD_splash    = @"/m/ads/splash";     //启动广告
-
-/* 微聊 */
-NSString * const SRA_feed_list     = @"/m/babies/%@/feedlist";                   //

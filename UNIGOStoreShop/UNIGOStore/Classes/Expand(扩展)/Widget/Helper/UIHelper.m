@@ -19,8 +19,8 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
-
-
+#import "LogInmainViewController.h"
+#import "UIViewController+Extension.h"
 @implementation UIHelper
 
 /**
@@ -213,42 +213,28 @@
     
     int code=[[Dic_data objectForKey:@"status_code"] intValue];
     
-    if ([[Dic_data objectForKey:@"message"] isEqualToString:@"token_invalid"] ||[[Dic_data objectForKey:@"message"] isEqualToString:@"token_expired"] ) {
+    NSString * msg=[Dic_data objectForKey:@"msg"];
+
+    if ([msg  isEqualToString:@"token_invalid"] ) {
         ////token已失效 需要重新登录
         NSLog(@"=token已失效=Dic_data=%@==",Dic_data) ;
         [HttpEngine refreshTokenWihtSuccess:^(id responseObject) {
-//            [UIHelper showUpMessage:@"网络请求失败，请重试！"];
-//            [UManalyticsEngine UMAnalyticsCountEven:@"tokenRefresh"];
 
         } failure:^(NSError *error) {
             
         }];
-//        [UIHelper showUpMessage:@"登录已失效，请重新登录！"];
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
-//        [AppDelegate postSwitchRootViewControllerNotificationWithIsLogin:YES];
         return NO;
     }
-     if (code==404  &&[[Dic_data objectForKey:@"message"] isEqualToString:@"user_not_found"] ){
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
-         NSLog(@"=登录跳转=Dic_data=%@==",Dic_data) ;
-//        [AppDelegate postSwitchRootViewControllerNotificationWithIsLogin:YES];
-
+     if (msg.length>0){
+         [self showUpMessage:msg];
          return NO ;
     }
     
-        if (code == 422) {
-        NSString *str_error = [[[Dic_data objectForKey:@"errors"] allKeys] objectAtIndex:0] ;
-        NSLog(@"code==%@",[[[Dic_data objectForKey:@"errors"] objectForKey:str_error] objectAtIndex:0]);
-        NSString* message = [[[Dic_data objectForKey:@"errors"] objectForKey:str_error] objectAtIndex:0];
-        [self showUpMessage:message];
-        return NO;
-    }
     else if (code == 100) {
         
         [AFAlertViewHelper alertViewWithTitle:nil message:@"当前网络不可用，请检查手机的网络设置" delegate:nil cancelTitle:@"我知道了" otherTitle:nil clickBlock:^(NSInteger buttonIndex) {
 //
             }];
-    
         return NO;
     }
   
@@ -256,6 +242,13 @@
     return YES;
 }
 
++(void)pushLoinViewContrlller{
+    
+    
+    LogInmainViewController * loginVC = [[LogInmainViewController alloc]init];
+    [[UIViewController getCurrentController] presentViewController:loginVC animated:YES completion:nil];
+    
+}
 
 
 +(void)hiddenAlertWith:(UIView*)targetV{

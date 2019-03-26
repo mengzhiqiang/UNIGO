@@ -155,14 +155,18 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
-            [weakSelf.view makeToast:@"删除成功" duration:0.5 position:CSToastPositionCenter];
-            [[DCAdressDateBase sharedDataBase] deleteAdress:weakSelf.adItem[indexPath.row]];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                //处理数据
-                [weakSelf.adItem removeObjectAtIndex:indexPath.row];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                
-            });
+//            [weakSelf.view makeToast:@"删除成功" duration:0.5 position:CSToastPositionCenter];
+//            [[DCAdressDateBase sharedDataBase] deleteAdress:weakSelf.adItem[indexPath.row]];
+            
+            [weakSelf delAdress:weakSelf.adItem[indexPath.row]];
+
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                //处理数据
+//                [weakSelf.adItem removeObjectAtIndex:indexPath.row];
+//                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//
+//            });
+            
         });
         
     };
@@ -180,11 +184,19 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
         NSInteger index = indexPath.row;
         for (NSInteger i = 0; i < weakSelf.adItem.count; i++) {
             DCAdressItem *adressItem = weakSelf.adItem[i];
-            adressItem.is_default = (i == index && isSelected) ? @"2" : @"1";
-            [[DCAdressDateBase sharedDataBase]updateAdress:adressItem];
+            adressItem.is_default = (i == index && isSelected) ? @"1" : @"0";
+            if  (i == index && isSelected) {
+                adressItem.is_default = @"1";
+                [weakSelf saveNewAdress:[adressItem mj_keyValues]];
+            }else{
+                adressItem.is_default = @"0";
+
+            }
+//            [[DCAdressDateBase sharedDataBase]updateAdress:adressItem];
+            [weakSelf.adItem replaceObjectAtIndex:i withObject:adressItem];
         }
         
-        weakSelf.adItem = [[DCAdressDateBase sharedDataBase] getAllAdressItem];
+//        weakSelf.adItem = [[DCAdressDateBase sharedDataBase] getAllAdressItem];
         [weakSelf.tableView reloadData];
     };
     
@@ -243,13 +255,79 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
     }];
     
 }
+/* 更新地址*/
+-(void)saveNewAdress:(NSDictionary*)diction{
+    
+    NSString *path = [API_HOST stringByAppendingString:address_set];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    
+    NSString * string = [NSData zh_JSONStringWithObject:diction];
+    NSDictionary * dic = @{@"data":[NSString stringWithFormat:@"%@",string]};
+
+    [HttpEngine requestPostWithURL:path params:dic isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+ 
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [UIHelper hiddenAlertWith:self.view];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        
+        int code=[[Dic_data objectForKey:@"status"] intValue];
+        NSLog(@"code==%d",code);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+        [UIHelper  alertWithTitle:[Dic_data objectForKey:@"msg"] ];
+        
+        
+    }];
+    
+}
+
+/* 删除地址*/
+-(void)delAdress:(DCAdressItem*)adressItem{
+    
+    NSString *path = [API_HOST stringByAppendingString:address_del];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSDictionary * dic = @{@"id": adressItem.identifier};
+    [HttpEngine requestPostWithURL:path params:dic isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        //        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        [UIHelper  alertWithTitle:@"删除成功"];
+        [self.adItem removeObject:adressItem];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [UIHelper hiddenAlertWith:self.view];
+        NSDictionary *Dic_data = error.userInfo;
+        int code=[[Dic_data objectForKey:@"status"] intValue];
+        NSLog(@"code==%d",code);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+        [UIHelper  alertWithTitle:[Dic_data objectForKey:@"msg"] ];
+        
+    }];
+    
+}
 
 -(void)addItenAndressArray:(NSArray*)array{
     
+    if (self.adItem.count>0) {
+        [self.adItem removeAllObjects];
+    }
+    
     for (NSDictionary *diction in  array) {
-        DCAdressItem * item = [diction mj_JSONObject];
+        DCAdressItem * item = [DCAdressItem mj_objectWithKeyValues:diction];
+        [item setAddressArea];
         [self.adItem addObject:item];
     }
+    [self.tableView reloadData];
 }
 
 @end

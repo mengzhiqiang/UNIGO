@@ -106,6 +106,35 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 }
 
 #pragma mark - initialize
+
+-(void)setGoodsInfomation:(NSDictionary *)goodsInfomation{
+    _goodsInfomation = goodsInfomation;
+    
+    self.goodsSpecValue = [goodsInfomation objectForKey:@"goodsSpecValue"];
+}
+-(void)setGoodsSpecValue:(NSDictionary *)goodsSpecValue{
+    _goodsSpecValue = goodsSpecValue;
+    
+    if (_featureAttr.count>0) {
+        [_featureAttr removeAllObjects];
+        _featureAttr = nil;
+    }
+    if (!_featureAttr) {
+        _featureAttr = [NSMutableArray array];
+    }
+    
+    NSArray * keys_array = [goodsSpecValue allKeys];
+    for (NSString *title in keys_array) {
+        DCFeatureItem * item = [[DCFeatureItem alloc ]init];
+        NSDictionary * d = [goodsSpecValue objectForKey:title];
+        item.title = title;
+        item.listKeys = [d allKeys];
+        item.listValue = [d allValues];
+        [_featureAttr addObject:item];
+    }
+    
+}
+
 - (void)setUpBase
 {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -120,9 +149,11 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     if (_lastSeleArray.count == 0) return;
     for (NSString *str in _lastSeleArray) {//反向遍历（赋值）
         for (NSInteger i = 0; i < _featureAttr.count; i++) {
-            for (NSInteger j = 0; j < _featureAttr[i].list.count; j++) {
-                if ([_featureAttr[i].list[j].infoname isEqualToString:str]) {
-                    _featureAttr[i].list[j].isSelect = YES;
+            DCFeatureItem * item  = _featureAttr[i];
+            for (NSInteger j = 0; j < item.listKeys.count; j++) {
+                if ([ item.listValue[j] isEqualToString:str]) {
+//                    _featureAttr[i].list[j].isSelect = YES;
+                    _featureAttr[i].index = j;
                     [self.collectionView reloadData];
                 }
             }
@@ -279,7 +310,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     
     if ([kind  isEqualToString:UICollectionElementKindSectionHeader]) {
         DCFeatureHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCFeatureHeaderViewID forIndexPath:indexPath];
-        headerView.headTitle = _featureAttr[indexPath.section].attr;
+        headerView.headTitle = _featureAttr[indexPath.section].title;
         return headerView;
     }else {
 
@@ -304,16 +335,17 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     //section，item 循环讲选中的所有Item加入数组中 ，数组mutableCopy初始化
     _seleArray = [@[] mutableCopy];
     for (NSInteger i = 0; i < _featureAttr.count; i++) {
-        for (NSInteger j = 0; j < _featureAttr[i].list.count; j++) {
-            if (_featureAttr[i].list[j].isSelect == YES) {
-                [_seleArray addObject:_featureAttr[i].list[j].infoname];
+        
+        DCFeatureItem * item = _featureAttr[i] ;
+        for (NSInteger j = 0; j < item.listKeys.count; j++) {
+            if (item.index == j) {
+                [_seleArray addObject: [item.listKeys objectAtIndex:j]];
             }else{
-                [_seleArray removeObject:_featureAttr[i].list[j].infoname];
+                [_seleArray removeObject:[item.listKeys objectAtIndex:j]];
                 [_lastSeleArray removeAllObjects];
             }
         }
     }
-    
     //刷新tableView和collectionView
     [self.collectionView reloadData];
     [self.tableView reloadData];
@@ -323,7 +355,9 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 #pragma mark - <HorizontalCollectionLayoutDelegate>
 #pragma mark - 自定义layout必须实现的方法
 - (NSString *)collectionViewItemSizeWithIndexPath:(NSIndexPath *)indexPath {
-    return _featureAttr[indexPath.section].list[indexPath.row].infoname;
+    
+    return _featureAttr[indexPath.section].listKeys[indexPath.row];
+//    return _featureAttr[indexPath.section].list[indexPath.row].infoname;
 }
 
 

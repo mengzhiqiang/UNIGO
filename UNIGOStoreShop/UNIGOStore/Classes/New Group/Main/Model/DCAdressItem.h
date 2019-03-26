@@ -10,7 +10,7 @@
 
 @interface DCAdressItem : NSObject
 
-@property(nonatomic,strong) NSNumber *ID;
+@property (nonatomic, copy) NSString * identifier;
 
 /* 用户名 */
 @property (nonatomic, copy) NSString *consignee;
@@ -23,7 +23,9 @@
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *district;
 
-/* 用户地址 */
+/* 地区地址 */
+@property (nonatomic, copy) NSString *address_area;
+/* 详细地址 */
 @property (nonatomic, copy) NSString *address;
 
 /* 默认地址 1为正常 2为默认 */
@@ -33,4 +35,6 @@
 /* 行高 */
 @property (assign , nonatomic)CGFloat cellHeight;
 
+
+-(void )setAddressArea ;
 @end

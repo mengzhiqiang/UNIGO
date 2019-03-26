@@ -44,9 +44,9 @@
     
     self.perNameLabel.text = adItem.consignee;
     self.perPhoneLabel.text = [DCSpeedy dc_encryptionDisplayMessageWith:adItem.mobile WithFirstIndex:3];
-    self.perDetailLabel.text = [NSString stringWithFormat:@"%@ %@",adItem.district,adItem.address];
+    self.perDetailLabel.text = [NSString stringWithFormat:@"%@ %@",adItem.address_area,adItem.address];
     
-    if ([adItem.is_default isEqualToString:@"2"]) {//判断是否是默认选择
+    if ([adItem.is_default isEqualToString:@"1"]) {//判断是否是默认选择
         self.chooseButton.selected = YES;
     } else {
         self.chooseButton.selected = NO;

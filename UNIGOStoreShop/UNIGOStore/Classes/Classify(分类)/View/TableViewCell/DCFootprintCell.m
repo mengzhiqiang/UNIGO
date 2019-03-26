@@ -93,9 +93,9 @@
 - (void)setFootprintItem:(DCRecommendItem *)footprintItem
 {
     _footprintItem = footprintItem;
-    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:footprintItem.image_url]];
+    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:footprintItem.image]];
     _priceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[footprintItem.price floatValue]];
-    _goodName.text = footprintItem.main_title;
+    _goodName.text = footprintItem.name;
 }
 
 @end

@@ -25,4 +25,14 @@
 /* 商品轮播图 */
 @property (copy , nonatomic)NSArray *shufflingArray;
 
+/* 商品规格 */
+@property (copy , nonatomic)NSArray *goodsSpecValue;
+
+/* 商品规格价格 */
+@property (copy , nonatomic)NSArray *goodsSpecResult;
+
+/* 商品全部属性 */
+@property (strong , nonatomic)NSDictionary *goodsInfomation;
+
+
 @end

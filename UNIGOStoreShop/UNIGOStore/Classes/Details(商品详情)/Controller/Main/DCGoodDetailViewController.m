@@ -15,6 +15,7 @@
 #import "DCMyTrolleyViewController.h"
 #import "DCToolsViewController.h"
 // Models
+#import "UNHomeData.h"
 
 // Views
 
@@ -27,7 +28,9 @@
 // Others
 
 @interface DCGoodDetailViewController ()<UIScrollViewDelegate>
-
+{
+    DCGoodBaseViewController *goodBaseVc ;
+}
 @property (strong, nonatomic) UIScrollView *scrollerView;
 @property (strong, nonatomic) UIView *bgView;
 /** 记录上一次选中的Button */
@@ -62,6 +65,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self getGoodDetail ];
+    
     [self setUpChildViewControllers];
     
     [self setUpInit];
@@ -168,7 +173,7 @@
 -(void)setUpChildViewControllers
 {
     WEAKSELF
-    DCGoodBaseViewController *goodBaseVc = [[DCGoodBaseViewController alloc] init];
+    goodBaseVc = [[DCGoodBaseViewController alloc] init];
     goodBaseVc.goodTitle = _goodTitle;
     goodBaseVc.goodPrice = _goodPrice;
     goodBaseVc.goodSubtitle = _goodSubtitle;
@@ -316,8 +321,6 @@
     }
 }
 
-
-
 #pragma mark - 转场动画弹出控制器
 - (void)setUpAlterViewControllerWith:(UIViewController *)vc WithDistance:(CGFloat)distance WithDirection:(XWDrawerAnimatorDirection)vcDirection WithParallaxEnable:(BOOL)parallaxEnable WithFlipEnable:(BOOL)flipEnable
 {
@@ -349,6 +352,32 @@
     
     UINavigationBar *bar = [UINavigationBar appearance];
     [bar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+}
+
+-(void)getGoodDetail{
+    
+    [UNHomeData getGoodDetailWithID:@"" success:^(id  _Nonnull responseObject) {
+        
+        NSLog(@"==success%@",responseObject);
+        [self  addGoodInformation:responseObject];
+    } error:^(NSDictionary * _Nonnull error) {
+        NSLog(@"==fail=%@",error);
+
+    }];
+
+}
+
+-(void)addGoodInformation:(NSDictionary*)diction{
+    
+    /*轮播图 shufflingArray */
+
+    NSString * sliderImage = [diction objectForKey:@"slider_image"];
+    NSArray * array = [sliderImage  componentsSeparatedByString:@";"];
+    _shufflingArray = [NSArray arrayWithArray:array];
+    
+    goodBaseVc.shufflingArray = _shufflingArray;
+    goodBaseVc.goodsInfomation = diction;
+    
 }
 
 

@@ -16,6 +16,8 @@
 @property (strong , nonatomic)DCAdressItem *adressItem;
 
 
+@property (strong , nonatomic)NSArray *adressList;
+
 /**
  DataBase数据
 

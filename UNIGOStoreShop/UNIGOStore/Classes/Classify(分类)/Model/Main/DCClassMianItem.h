@@ -26,6 +26,6 @@
 
 @property (nonatomic, copy ,readonly) NSString *pid;
 
-@property (nonatomic, copy ,readonly) NSString *id;
+@property (nonatomic, copy ,readonly) NSString *identifier;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MOFSAddressPickerView.h"
-
+#import "DCAdressDateBase.h"
 #define UISCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -292,13 +292,13 @@
     
     
     
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"json"];
-    NSData *data=[NSData dataWithContentsOfFile:jsonPath];
-    NSError *error;
-    NSArray * jsonObjectArray =[NSJSONSerialization JSONObjectWithData:data
-                                                               options:kNilOptions
-                                                                 error:&error];
-    _rootArray = [NSArray arrayWithArray:jsonObjectArray ];
+//    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"json"];
+//    NSData *data=[NSData dataWithContentsOfFile:jsonPath];
+//    NSError *error;
+//    NSArray * jsonObjectArray =[NSJSONSerialization JSONObjectWithData:data
+//                                                               options:kNilOptions
+//                                                                 error:&error];
+    _rootArray = [NSArray arrayWithArray:[DCAdressDateBase sharedDataBase].adressList ];
     
     self.selectedIndex_province = 0;
     self.selectedIndex_city = 0;

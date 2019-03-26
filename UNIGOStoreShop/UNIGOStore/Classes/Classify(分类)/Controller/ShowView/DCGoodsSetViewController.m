@@ -28,6 +28,7 @@
 // Categories
 
 // Others
+#import "GoodsRequestTool.h"
 
 @interface DCGoodsSetViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 /* scrollerVew */
@@ -123,7 +124,9 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 #pragma mark - 加载数据
 - (void)setUpData
 {
-    _setItem = [DCRecommendItem mj_objectArrayWithFilename:_goodPlisName];
+//    _setItem = [DCRecommendItem mj_objectArrayWithFilename:_goodPlisName];
+    
+    [self getGoodListwithID];
 }
 #pragma mark - 导航栏
 - (void)setUpNav
@@ -257,11 +260,11 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     
     
     DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
-    dcVc.goodTitle = _setItem[indexPath.row].main_title;
+    dcVc.goodTitle = _setItem[indexPath.row].name;
     dcVc.goodPrice = _setItem[indexPath.row].price;
-    dcVc.goodSubtitle = _setItem[indexPath.row].goods_title;
+    dcVc.goodSubtitle = _setItem[indexPath.row].info;
     dcVc.shufflingArray = _setItem[indexPath.row].images;
-    dcVc.goodImageView = _setItem[indexPath.row].image_url;
+    dcVc.goodImageView = _setItem[indexPath.row].image;
     
     [self.navigationController pushViewController:dcVc animated:YES];
     
@@ -383,5 +386,19 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 }
 
 
+#pragma mark - 请求网络数据
+
+-(void)getGoodListwithID{
+    
+    NSDictionary * diction = @{@"cateId":@"5"};
+    [GoodsRequestTool getGoodsCateWithPram:diction success:^(id  _Nonnull responseObject) {
+        self.setItem = [DCRecommendItem mj_objectArrayWithKeyValuesArray:responseObject];
+        [self.collectionView reloadData];
+        
+    } fail:^(NSDictionary * _Nonnull error) {
+        
+    }];
+    
+}
 
 @end

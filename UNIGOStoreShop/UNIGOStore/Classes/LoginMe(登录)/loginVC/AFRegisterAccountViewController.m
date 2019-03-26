@@ -251,7 +251,7 @@
         [HttpRequestToken saveToken:JSONDic[@"access_token"]];
         
         [UIHelper  hiddenAlertWith:self.view];
-        [AFAccountEngine saveAccountInformationWithUserInfo:[JSONDic objectForKey:@"clent"] ];
+        [AFAccountEngine saveAccountAndTokenWithUserInfo:JSONDic ];
 
         NSLog(@"=responseObject===%@",responseObject);
 
@@ -289,13 +289,12 @@
     
     [HttpEngine requestPutWithURL:path params:dic_register isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
         [UIHelper  hiddenAlertWith:self.view];
-        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"];
+
         [[NSUserDefaults standardUserDefaults] setValue:_phoneTextField.text forKey:KEY_USER_NAME];
-        [[NSUserDefaults standardUserDefaults] setValue:_passWordTextFied.text  forKey:KEY_PASS_WORD];
+        [[NSUserDefaults standardUserDefaults] setValue:@""  forKey:KEY_PASS_WORD];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSmartDeviceLoginNotification object:nil];
-        
-        [HttpRequestToken saveToken:JSONDic[@"access_token"]];
+
+        [self backBtnClicked];
         
         
     } failure:^(NSError *error) {

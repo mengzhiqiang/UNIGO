@@ -367,11 +367,11 @@
 		9975A3DC223A4F6A004BF485 /* 2X001.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A1223A4F69004BF485 /* 2X001.png */; };
 		99DB644A2237979700E72F05 /* AFManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB64472237979700E72F05 /* AFManageTableViewCell.m */; };
 		99DB644B2237979700E72F05 /* AFManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB64482237979700E72F05 /* AFManageTableViewCell.xib */; };
-		99DB644F223797C400E72F05 /* AFEditeNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB644D223797C300E72F05 /* AFEditeNickNameViewController.m */; };
-		99DB6450223797C400E72F05 /* AFEditeNickNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB644E223797C400E72F05 /* AFEditeNickNameViewController.xib */; };
 		99DB6454223797F100E72F05 /* AmendPWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB6451223797F000E72F05 /* AmendPWViewController.xib */; };
 		99DB6455223797F100E72F05 /* AmendPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB6452223797F000E72F05 /* AmendPWViewController.m */; };
 		99DB645922379D6B00E72F05 /* next_table_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 99DB645822379D6A00E72F05 /* next_table_image.png */; };
+		99EDDEE02247D1CF00C5B529 /* GoodsRequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDDEDF2247D1CF00C5B529 /* GoodsRequestTool.m */; };
+		99F8A25522451FA300F808C5 /* UNHomeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F8A25422451FA300F808C5 /* UNHomeData.m */; };
 		9C0D22F22041A5A600BD3714 /* CommentBadData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D22F12041A5A600BD3714 /* CommentBadData.plist */; };
 		9C13F4C920072F6300CCE89F /* GQGesVCTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C13F4C820072F6300CCE89F /* GQGesVCTransition.m */; };
 		9C147D441FE0EE2E00CA3BB4 /* DCCenterTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C147D431FE0EE2E00CA3BB4 /* DCCenterTopToolView.m */; };
@@ -1104,14 +1104,15 @@
 		99DB64472237979700E72F05 /* AFManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFManageTableViewCell.m; sourceTree = "<group>"; };
 		99DB64482237979700E72F05 /* AFManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AFManageTableViewCell.xib; sourceTree = "<group>"; };
 		99DB64492237979700E72F05 /* AFManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFManageTableViewCell.h; sourceTree = "<group>"; };
-		99DB644C223797C300E72F05 /* AFEditeNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFEditeNickNameViewController.h; sourceTree = "<group>"; };
-		99DB644D223797C300E72F05 /* AFEditeNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFEditeNickNameViewController.m; sourceTree = "<group>"; };
-		99DB644E223797C400E72F05 /* AFEditeNickNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AFEditeNickNameViewController.xib; sourceTree = "<group>"; };
 		99DB6451223797F000E72F05 /* AmendPWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmendPWViewController.xib; sourceTree = "<group>"; };
 		99DB6452223797F000E72F05 /* AmendPWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmendPWViewController.m; sourceTree = "<group>"; };
 		99DB6453223797F100E72F05 /* AmendPWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmendPWViewController.h; sourceTree = "<group>"; };
 		99DB6456223799CA00E72F05 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		99DB645822379D6A00E72F05 /* next_table_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next_table_image.png; sourceTree = "<group>"; };
+		99EDDEDE2247D1CF00C5B529 /* GoodsRequestTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsRequestTool.h; sourceTree = "<group>"; };
+		99EDDEDF2247D1CF00C5B529 /* GoodsRequestTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsRequestTool.m; sourceTree = "<group>"; };
+		99F8A25322451FA300F808C5 /* UNHomeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNHomeData.h; sourceTree = "<group>"; };
+		99F8A25422451FA300F808C5 /* UNHomeData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNHomeData.m; sourceTree = "<group>"; };
 		9C0D22F12041A5A600BD3714 /* CommentBadData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommentBadData.plist; sourceTree = "<group>"; };
 		9C13F4C720072F6300CCE89F /* GQGesVCTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQGesVCTransition.h; sourceTree = "<group>"; };
 		9C13F4C820072F6300CCE89F /* GQGesVCTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQGesVCTransition.m; sourceTree = "<group>"; };
@@ -1487,6 +1488,7 @@
 		18DCA13F1F1F4186008BF67E /* Classify(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				99EDDEDD2247D18800C5B529 /* tools */,
 				18DCA1401F1F4186008BF67E /* Controller */,
 				18DCA14B1F1F4186008BF67E /* Model */,
 				18DCA1561F1F4186008BF67E /* View */,
@@ -2213,6 +2215,8 @@
 			children = (
 				18DCA2871F1F4186008BF67E /* DCGridItem.h */,
 				18DCA2881F1F4186008BF67E /* DCGridItem.m */,
+				99F8A25322451FA300F808C5 /* UNHomeData.h */,
+				99F8A25422451FA300F808C5 /* UNHomeData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2747,9 +2751,9 @@
 		9938840622355A5600444EF4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				9938840922355A5600444EF4 /* ExtendClass.h */,
 				9938840722355A5600444EF4 /* ExtendClass.m */,
 				9938840822355A5600444EF4 /* UIHelper.h */,
-				9938840922355A5600444EF4 /* ExtendClass.h */,
 				9938840A22355A5600444EF4 /* UIHelper.m */,
 			);
 			path = Helper;
@@ -2896,12 +2900,12 @@
 		993884E722355AB500444EF4 /* HttpEngine */ = {
 			isa = PBXGroup;
 			children = (
-				993884E822355AB500444EF4 /* CheckNetwordStatus.m */,
-				993884E922355AB500444EF4 /* HttpRequestToken.h */,
-				993884EA22355AB500444EF4 /* HttpEngine.m */,
-				993884EC22355AB500444EF4 /* HttpEngine.h */,
-				993884ED22355AB500444EF4 /* HttpRequestToken.m */,
 				993884EE22355AB500444EF4 /* CheckNetwordStatus.h */,
+				993884E822355AB500444EF4 /* CheckNetwordStatus.m */,
+				993884EC22355AB500444EF4 /* HttpEngine.h */,
+				993884EA22355AB500444EF4 /* HttpEngine.m */,
+				993884E922355AB500444EF4 /* HttpRequestToken.h */,
+				993884ED22355AB500444EF4 /* HttpRequestToken.m */,
 			);
 			path = HttpEngine;
 			sourceTree = "<group>";
@@ -3095,6 +3099,15 @@
 				9975A39F223A4F69004BF485 /* 2X0059.png */,
 			);
 			path = loadingPng;
+			sourceTree = "<group>";
+		};
+		99EDDEDD2247D18800C5B529 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				99EDDEDE2247D1CF00C5B529 /* GoodsRequestTool.h */,
+				99EDDEDF2247D1CF00C5B529 /* GoodsRequestTool.m */,
+			);
+			path = tools;
 			sourceTree = "<group>";
 		};
 		9C13F4C620072F6300CCE89F /* GQGesVCTransition */ = {
@@ -3292,9 +3305,6 @@
 				9CE9CB691FE8D9280033322E /* DCNewAdressViewController.h */,
 				9CE9CB6A1FE8D9280033322E /* DCNewAdressViewController.m */,
 				9CE9CB6B1FE8D9280033322E /* DCNewAdressViewController.xib */,
-				99DB644C223797C300E72F05 /* AFEditeNickNameViewController.h */,
-				99DB644D223797C300E72F05 /* AFEditeNickNameViewController.m */,
-				99DB644E223797C400E72F05 /* AFEditeNickNameViewController.xib */,
 				99DB6453223797F100E72F05 /* AmendPWViewController.h */,
 				99DB6452223797F000E72F05 /* AmendPWViewController.m */,
 				99DB6451223797F000E72F05 /* AmendPWViewController.xib */,
@@ -3867,7 +3877,6 @@
 				9975A3A8223A4F69004BF485 /* 2X0055.png in Resources */,
 				18DCA3C31F1F4187008BF67E /* CountDownShop.plist in Resources */,
 				9975A3A2223A4F69004BF485 /* 2X0057.png in Resources */,
-				99DB6450223797C400E72F05 /* AFEditeNickNameViewController.xib in Resources */,
 				9C8CC8682004A25E00515926 /* flash_select@2x.png in Resources */,
 				9975A361223A4D1E004BF485 /* btn_activation_pressed@3x.png in Resources */,
 				9975A3C5223A4F69004BF485 /* 2X0030.png in Resources */,
@@ -4026,6 +4035,7 @@
 				927DD43C1FD51E9500D19889 /* DCMVViewController.m in Sources */,
 				9938840F22355A5600444EF4 /* CycleScrollView.m in Sources */,
 				9C215E861FDA75CA002152F1 /* DCGroupImageCell.m in Sources */,
+				99F8A25522451FA300F808C5 /* UNHomeData.m in Sources */,
 				18DCA32A1F1F4187008BF67E /* DCFeatureTitleItem.m in Sources */,
 				9C8CC8702004B19B00515926 /* DCCameraTopView.m in Sources */,
 				18DCA36C1F1F4187008BF67E /* UIViewController+XWTransition.m in Sources */,
@@ -4042,7 +4052,6 @@
 				18DCA38D1F1F4187008BF67E /* DCExceedApplianceCell.m in Sources */,
 				18DCA3321F1F4187008BF67E /* DCDetailGoodReferralCell.m in Sources */,
 				18DCA33B1F1F4187008BF67E /* DCCommentHeaderCell.m in Sources */,
-				99DB644F223797C400E72F05 /* AFEditeNickNameViewController.m in Sources */,
 				9C58D4251FEA3C7D00639225 /* DCAppVersionTool.m in Sources */,
 				9CEB3B761FEB44AD00B636F9 /* DCTabBadgeView.m in Sources */,
 				925B5F021FCD529B00053A16 /* UIView+DCRolling.m in Sources */,
@@ -4103,6 +4112,7 @@
 				9C7A1E33202AC66E0051DB5D /* DCVerificationView.m in Sources */,
 				18DCA31C1F1F4187008BF67E /* DCClassCategoryCell.m in Sources */,
 				9C95E969204004C70084CB37 /* DCCommentsItem.m in Sources */,
+				99EDDEE02247D1CF00C5B529 /* GoodsRequestTool.m in Sources */,
 				9C7A1E2B202AC6570051DB5D /* DCRegisteredViewController.m in Sources */,
 				18DCA34C1F1F4187008BF67E /* DCSelPhotos.m in Sources */,
 				993885272235636300444EF4 /* Unification.m in Sources */,

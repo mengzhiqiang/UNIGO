@@ -23,10 +23,11 @@
 #import "DCBrandsSortHeadView.h"
 // Vendors
 #import <MJExtension.h>
+#import "GoodsRequestTool.h"
+
 // Categories
 #import "UIBarButtonItem+DCBarButtonItem.h"
 // Others
-
 @interface DCCommodityViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 /* tableView */
@@ -278,6 +279,7 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
     NSLog(@"点击了个第%zd分组第%zd几个Item",indexPath.section,indexPath.row);
     DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init];
     goodSetVc.goodPlisName = @"ClasiftyGoods.plist";
+    goodSetVc.goodsCateID = [_mainItem objectAtIndex:indexPath.row].identifier ;
     [self.navigationController pushViewController:goodSetVc animated:YES];
 }
 
@@ -301,29 +303,11 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 }
 
 
+#pragma mark - 请求分类
 -(void)getGoodsCate{
-    
-    NSString *path = [API_HOST stringByAppendingString:goodsCate_get];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    [HttpEngine requestPostWithURL:path params:nil isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
-        [self addGooditemArray:JSONDic];
-        NSLog(@"===%@",responseObject );
-    } failure:^(NSError *error) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        
-        NSDictionary *Dic_data = error.userInfo;
-        
-        int code=[[Dic_data objectForKey:@"status"] intValue];
-        NSLog(@"code==%d",Dic_data);
-        if (![UIHelper TitleMessage:Dic_data]) {
-            return;
-        }
-        
+        [GoodsRequestTool getGoodsCate:^(id  _Nonnull responseObject) {
+        [self addGooditemArray:responseObject];
     }];
-    
 }
 
 -(NSArray*)cateGoodS{

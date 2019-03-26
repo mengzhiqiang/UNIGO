@@ -116,7 +116,6 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     if ([HttpRequestToken getToken].length<1) {
-        
         LogInmainViewController *dcLoginVc = [LogInmainViewController new];
         [self presentViewController:dcLoginVc animated:YES completion:nil];
 

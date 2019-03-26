@@ -14,13 +14,30 @@ MJCodingImplementation
 
 + (void)load
 {
-    [AFAccount mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+//    [AFAccount mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+//        return @{@"identifier" : @"id"};
+//    }];
+    
+    [AFAccount mj_setupObjectClassInArray:^NSDictionary *{
+        return @{ @"client" : @"UNClient"};
+    }];
+}
+
+@end
+
+@implementation UNClient
+
+MJCodingImplementation
++ (void)load
+{
+    [UNClient mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{@"identifier" : @"id"};
     }];
     
-    [AFAccount mj_setupObjectClassInArray:^NSDictionary *{
-        return @{@"nim" : @"AFAccountNim", @"avatar" : @"AFAccountAvatar", @"config" : @"AFAccountConfig"};
+    [UNClient mj_setupObjectClassInArray:^NSDictionary *{
+        return @{ @"nim" : @"AFAccountNim", @"avatar" : @"AFAccountAvatar", @"config" : @"AFAccountConfig"};
     }];
+    
 }
 
 @end

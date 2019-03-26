@@ -158,8 +158,8 @@
 -(void)verificationPassWord{
     
     [UIHelper addLoadingViewTo:self.view withFrame:0];
-    AFAccount *account = [AFAccountEngine sharedInstance].currentAccount;
-    [AFCommonEngine requestedAccountLoginWithUsername:account.mobile password:_PassWTestField.text success:^(NSDictionary *responseObject) {
+    UNClient *account = [AFAccountEngine getAccount].client;
+    [AFCommonEngine requestedAccountLoginWithUsername:account.phone password:_PassWTestField.text success:^(NSDictionary *responseObject) {
         [UIHelper hiddenAlertWith:self.view];
         AmendPWViewController * amendVC =[[AmendPWViewController alloc]init];
         amendVC.settingPW=10;

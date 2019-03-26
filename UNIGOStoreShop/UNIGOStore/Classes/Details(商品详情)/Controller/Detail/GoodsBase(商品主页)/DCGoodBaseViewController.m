@@ -232,7 +232,11 @@ static NSArray *lastSeleArray_;
         
     }];
 }
-
+-(void)setShufflingArray:(NSArray *)shufflingArray{
+    _shufflingArray = shufflingArray ;
+    
+    [self.collectionView reloadData];
+}
 #pragma mark - 悬浮按钮
 - (void)setUpSuspendView
 {
@@ -267,7 +271,7 @@ static NSArray *lastSeleArray_;
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 6;
+    return 4;  /// 5评论  6推荐
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -405,6 +409,7 @@ static NSArray *lastSeleArray_;
     }else if (indexPath.section == 1){ //属性选择
         DCFeatureSelectionViewController *dcFeaVc = [DCFeatureSelectionViewController new];
         dcFeaVc.lastNum = lastNum_;
+        dcFeaVc.goodsInfomation = self.goodsInfomation ;
         dcFeaVc.lastSeleArray = [NSMutableArray arrayWithArray:lastSeleArray_];
         dcFeaVc.goodImageView = _goodImageView;
         [self setUpAlterViewControllerWith:dcFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];

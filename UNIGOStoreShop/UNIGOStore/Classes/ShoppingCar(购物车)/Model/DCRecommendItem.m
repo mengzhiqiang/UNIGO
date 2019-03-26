@@ -10,5 +10,11 @@
 
 @implementation DCRecommendItem
 
-
++(void )load
+{
+    [DCRecommendItem mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"identifier" : @"id"};
+    }];
+    
+}
 @end

@@ -318,10 +318,20 @@
 {
     id object = userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
     NSDictionary *errorDic = [NSData zh_JSONFromData:object];
+    
+    ///
     if (errorDic) {
+        
+        if ([[errorDic objectForKey:@"msg"] isEqualToString:@"token不存在或已过期"]) {
+//            [UIHelper alertWithTitle:@"登录过期，请重新登录！"];
+            [UIHelper pushLoinViewContrlller];
+            return ;
+        }
+        
         NSString *errorDomainValue = [NSString stringWithFormat:@"状态码为,%@",errorDic[@"status_code"]];
         NSError *error = [NSError errorWithDomain:errorDomainValue code:[errorDic[@"status_code"] integerValue] userInfo:errorDic];
         !failure ? :failure(error);
+        
     }
     else {
         NSMutableDictionary *userInfo = @{@"message" : @"当前网络不可用，请检查手机的网络设置", @"status_code" : @"100"}.mutableCopy;
@@ -372,7 +382,7 @@
     
  
     if (isToken) {
-       AFAccount* account = [AFAccountEngine  getAccount];
+       UNClient* account = [AFAccountEngine  getAccount].client;
         NSString * string =[NSString stringWithFormat:@"%@:%@:%d",login_appID ,token,account.identifier];
         NSString * stringBase = [NSString base64EncodeString:string];
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%d %@",account.identifier ,stringBase] forHTTPHeaderField:@"authentication"];
@@ -392,25 +402,31 @@ static int refreshTokening = 0 ;
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kSmartDeviceLoginTokenKey];
     
     if (token==nil) {
-        [AppDelegate postSwitchRootViewControllerNotificationWithIsLogin:YES]; return nil;
+        [UIHelper pushLoinViewContrlller];
+
+        return nil;
 
     }
-    NSString *path = [API_HOST stringByAppendingString:@"/m/token"];
+    NSString *path = [API_HOST stringByAppendingString:user_refreshToken];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"token"] = token == nil ? @"" : token;
     
+    AFAccount * account = [AFAccountEngine getAccount];
+    param[@"token"] =  account.refresh_token;
+    param[@"appid"] =  login_appID;
+
     AFHTTPSessionManager *manager = [self httpSessionManagerWithIsToken:YES];
     manager.requestSerializer.timeoutInterval = 20.0f;
     
     refreshTokening = 1 ;
     NSURLSessionDataTask *sessionDataTask = [manager PUT:path parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *JSONDic = (NSDictionary *)responseObject;
+        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"];
         //            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         //            [userDefaults setObject:[JSONDic objectForKey:@"token"] forKey:kSmartDeviceLoginTokenKey];
         //            [userDefaults synchronize];
         refreshTokening = 0 ;
 
-        [HttpRequestToken saveToken:JSONDic[@"token"]];
+        [HttpRequestToken saveToken:JSONDic[@"access_token"]];
+        [AFAccountEngine saveTokens:JSONDic];
         !success ?  : success(JSONDic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         refreshTokening = 0 ;
@@ -433,12 +449,9 @@ static int refreshTokening = 0 ;
         if ([message isEqualToString:@"token_expired"] ||  [message isEqualToString:@"token_invalid"]) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
             NSLog(@"==刷新token失败==%@===errorDic==%@",token,errorDic);
-
-            [AppDelegate postSwitchRootViewControllerNotificationWithIsLogin:YES]; return ;
+            [UIHelper pushLoinViewContrlller];
         }
-   
-        
-        [self handleErrorUserInfo:error.userInfo errorDomain:nil errorString:nil failure:failure];
+           [self handleErrorUserInfo:error.userInfo errorDomain:nil errorString:nil failure:failure];
     }];
     return sessionDataTask;
 }

@@ -143,7 +143,6 @@
         
 
         if ([HttpRequestToken getToken].length<1) {
-
             LogInmainViewController *dcLoginVc = [LogInmainViewController new];
             [self presentViewController:dcLoginVc animated:YES completion:nil];
             return NO;

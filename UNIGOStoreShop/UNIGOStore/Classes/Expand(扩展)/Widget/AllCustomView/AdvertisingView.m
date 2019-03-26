@@ -76,12 +76,7 @@ static int imageTime ;
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [_imangeView addGestureRecognizer:tapGestureRecognizer];
-    
-//    UIButton * btn =[UIButton buttonWithType:UIButtonTypeCustom];
-//    btn.frame = _imangeView.bounds;
-//    [btn addTarget:self action:@selector(pushWebPageVC:) forControlEvents:UIControlEventTouchUpInside];
-//    [_imangeView addSubview:btn];
-    
+
     
     _TimeButton =[UIButton buttonWithType:UIButtonTypeCustom];
     _TimeButton.frame = CGRectMake(SCREEN_WIDTH-58-17,(iPhoneX?50:25), 58, 20);
@@ -120,9 +115,6 @@ static int imageTime ;
     [self hidden:nil];
     [_imangeView removeGestureRecognizer:gesture];
     
-//    WKwebViewController* findVC = [[WKwebViewController alloc]init];
-//    findVC.webUrl = url;
-//    [[UIViewController getCurrentController].navigationController pushViewController:findVC animated:YES];
 }
 
 -(void)hidden:(UIButton*)sender{
@@ -202,32 +194,10 @@ static int imageTime ;
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     return [path stringByAppendingPathComponent:@"adVertisingImage"];
 }
+
+#pragma  mark -请求数据
 -(void)updateAdvertisingInformation{
     
-    NSString *pathUrl = [NSString stringWithFormat:@"%@",[API_HOST stringByAppendingString:jett_AD_splash]];
-//    __weak typeof (self)  weakSelf = self;
-    
-    [HttpEngine requestGetWithURL:pathUrl params:@{@"platform":@"ios"} isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
-        NSArray * array = [(NSDictionary*)responseObject objectForKey:@"data"];
-        if (array.count<1) {
-            return ;
-        }
-        int x = arc4random() % array.count;
-        
-        NSDictionary* diction = [array objectAtIndex:x];
-        NSLog(@"responseObject广告==");
-        NSString * imageString = [[diction objectForKey:@"image_url"] objectForKey:@"medium"];
-        if (iPhoneX) {
-            imageString = [[diction objectForKey:@"image_url"] objectForKey:@"large"];
-        }
-        [AdvertisingView downloadAdImageWithUrl:imageString imageName:@"" imgLinkUrl:[diction objectForKey:@"link"] imgDeadline:diction];
-        NSLog(@"responseObject广告==%@",responseObject);
-    } failure:^(NSError *error) {
-        
-        NSDictionary *userInfo = error.userInfo;
-        NSLog(@"error广告==%@",error);
-
-    }];
     
 }
 
@@ -244,14 +214,7 @@ static int imageTime ;
     if ([date_start earlierDate:[NSDate date]] == date_start) {
         
         if ([date_end laterDate:[NSDate date]] == date_end) {
-            
-//            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//            NSString* string = [ dateFormatter stringFromDate:[NSDate date]];
-//           NSString* date = [[NSUserDefaults standardUserDefaults] objectForKey:@"showDate"];
-//            if (![date isEqualToString:string]) {
-//                [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"showDate"];
-//                return YES ;
-//            }
+
             return YES ;
 
         } else {
@@ -262,16 +225,6 @@ static int imageTime ;
     }
     return NO;
 
-    
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

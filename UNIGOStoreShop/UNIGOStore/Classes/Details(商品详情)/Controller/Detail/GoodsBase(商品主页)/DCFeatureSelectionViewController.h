@@ -18,6 +18,11 @@
 /* 上一次选择的数量 */
 @property (assign , nonatomic)NSString *lastNum;
 
+/* 规格参数 */
+@property (strong , nonatomic)NSDictionary *goodsSpecValue;
+
+@property (strong , nonatomic)NSDictionary *goodsInfomation;
+
 ///** 选择的属性和数量 */
 //@property (nonatomic , copy) void(^userChooseBlock)(NSMutableArray *seleArray,NSInteger num,NSInteger tag);
 

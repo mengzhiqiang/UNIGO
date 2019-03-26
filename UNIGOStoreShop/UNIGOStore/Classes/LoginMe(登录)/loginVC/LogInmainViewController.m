@@ -99,6 +99,8 @@
 
     }
     
+    self.headLeftButton.hidden = YES ;
+    
 }
 
 - (void) textFieldDidChange:(UITextField *) TextField{
@@ -205,7 +207,7 @@
        [HttpRequestToken saveToken:JSONDic[@"access_token"]];
         
         [UIHelper  hiddenAlertWith:self.view];
-        [AFAccountEngine saveAccountInformationWithUserInfo:[JSONDic objectForKey:@"client"] ];
+        [AFAccountEngine saveAccountAndTokenWithUserInfo:JSONDic  ];
         
 //            //登录云信318686
 //            [[AFNIMEngine sharedInstance] loginNIMSDKWithNIMInfo:responseObject[@"nim"]];

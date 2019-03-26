@@ -106,7 +106,7 @@
 {
     _recommendItem = recommendItem;
     
-    [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:recommendItem.image_url]];
+    [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:recommendItem.image]];
     
     _priceLabel.text = ([recommendItem.price integerValue] >= 10000) ? [NSString stringWithFormat:@"¥ %.2f万",[recommendItem.price floatValue] / 10000.0] : [NSString stringWithFormat:@"¥ %.2f",[recommendItem.price floatValue]];
     

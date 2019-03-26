@@ -46,6 +46,7 @@
 // Others
 #import "CDDTopTip.h"
 #import "NetworkUnit.h"
+#import "UNHomeData.h"
 
 @interface DCHandPickViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -59,6 +60,11 @@
 @property (nonatomic, strong) DCHomeTopToolView *topToolView;
 /* 滚回顶部按钮 */
 @property (strong , nonatomic)UIButton *backTopButton;
+
+/* banner 数据*/
+@property (strong , nonatomic)NSArray *bannerArray;
+@property (strong , nonatomic)NSMutableArray *bannerImagesArray;
+
 
 @end
 /* cell */
@@ -113,6 +119,8 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 #pragma mark - LifeCyle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self getbanner];
     
     [self setUpBase];
     
@@ -280,7 +288,8 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     if (kind == UICollectionElementKindSectionHeader){
         if (indexPath.section == 0) {
             DCSlideshowHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCSlideshowHeadViewID forIndexPath:indexPath];
-            headerView.imageGroupArray = GoodsHomeSilderImagesArray;   ///banner 轮播图
+            
+            headerView.imageGroupArray = [self bannerImages];   ///banner 轮播图
             reusableview = headerView;
         }else if (indexPath.section == 2){
             DCCountDownHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCCountDownHeadViewID forIndexPath:indexPath];
@@ -399,11 +408,11 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         NSLog(@"点击了推荐的第%zd个商品",indexPath.row);
         
         DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
-        dcVc.goodTitle = _youLikeItem[indexPath.row].main_title;
+        dcVc.goodTitle = _youLikeItem[indexPath.row].name;
         dcVc.goodPrice = _youLikeItem[indexPath.row].price;
-        dcVc.goodSubtitle = _youLikeItem[indexPath.row].goods_title;
+        dcVc.goodSubtitle = _youLikeItem[indexPath.row].info;
         dcVc.shufflingArray = _youLikeItem[indexPath.row].images;
-        dcVc.goodImageView = _youLikeItem[indexPath.row].image_url;
+        dcVc.goodImageView = _youLikeItem[indexPath.row].image;
         
         [self.navigationController pushViewController:dcVc animated:YES];
     }else if (indexPath.section == 3){
@@ -438,4 +447,39 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 {
 
 }
+
+#pragma  mark  - 数据请求
+
+-(void)getbanner{
+    
+     __weak typeof(self) myself = self ;
+    [UNHomeData getBanner:^(id  _Nonnull responseObject) {
+        myself.bannerArray = (NSArray *)responseObject;
+        [myself.collectionView reloadData];
+    } error:^(NSDictionary * _Nonnull error) {
+        
+    }];
+}
+
+-(NSArray *)bannerImages{
+    
+    if (!_bannerImagesArray) {
+        _bannerImagesArray = [NSMutableArray array];
+    }
+    if (_bannerImagesArray.count) {
+        [_bannerImagesArray removeAllObjects];
+    }
+    
+    
+    for (int i=0; i<_bannerArray.count; i++) {
+        [_bannerImagesArray addObject:[[_bannerArray objectAtIndex:i] objectForKey:@"img"] ];
+    }
+    
+    if (_bannerImagesArray.count<1) {
+        return  GoodsHomeSilderImagesArray ;
+    }
+    
+    return _bannerImagesArray;
+}
+
 @end

@@ -121,17 +121,17 @@
     
     if (_saveType == DCSaveAdressChangeType) { //编辑
         _adressHeadView.rePersonField.text = _adressItem.consignee;
-        _adressHeadView.addressLabel.text = _adressItem.address;
+        _adressHeadView.addressLabel.text = _adressItem.address_area;
         _adressHeadView.rePhoneField.text = _adressItem.mobile;
         _adressHeadView.detailTextView.text = _adressItem.address;
         
     }else if (_saveType == DCSaveAdressNewType && [DCObjManager dc_readUserDataForKey:@"StoreAddress"] != nil){
         
         NSArray *storeAddress = [DCObjManager dc_readUserDataForKey:@"StoreAddress"];
-        _adressHeadView.rePersonField.text = storeAddress[0];
-        _adressHeadView.rePhoneField.text = storeAddress[1];
-        _adressHeadView.addressLabel.text = storeAddress[2];
-        _adressHeadView.detailTextView.text = storeAddress[3];
+        _adressHeadView.rePersonField.text = nil;
+        _adressHeadView.rePhoneField.text = nil;
+        _adressHeadView.addressLabel.text = nil;
+        _adressHeadView.detailTextView.text = nil;
     }
     
     WEAKSELF
@@ -240,6 +240,7 @@
     return _chooseLocationView;
 }
 
+#pragma mark - 选择地区
 - (void )selectPickerManager{
 
         __weak typeof (self) weakSelf = self;
@@ -287,6 +288,10 @@
     }
     NSDictionary * diction = [NSDictionary dictionaryWithObjectsAndKeys:_adressHeadView.rePersonField.text,@"consignee",_adressHeadView.detailTextView.text,@"address",_adressHeadView.rePhoneField.text,@"mobile",pro,@"province",city,@"city",distict,@"district",@"10",@"zipcode", nil];
     
+    if (_adressItem.identifier.length>0) {
+        diction = [NSDictionary dictionaryWithObjectsAndKeys:_adressHeadView.rePersonField.text,@"consignee",_adressHeadView.detailTextView.text,@"address",_adressHeadView.rePhoneField.text,@"mobile",pro,@"province",city,@"city",distict,@"district",@"10",@"zipcode",_adressItem.identifier,@"id", nil];
+    }
+    
     [self saveNewAdress:diction];
 
 }
@@ -297,7 +302,7 @@
     
     [UIHelper addLoadingViewTo:self.view withFrame:0];
 
-    
+    __weak typeof (self) weakSelf = self;
     NSString * string = [NSData zh_JSONStringWithObject:diction];
     NSDictionary * dic = @{@"data":[NSString stringWithFormat:@"%@",string]};
 //    NSDictionary * dic = @{@"data":diction};
@@ -306,6 +311,7 @@
         NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
         [UIHelper hiddenAlertWith:self.view];
         NSLog(@"===%@",[responseObject objectForKey:@"msg"]);
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [UIHelper hiddenAlertWith:self.view];

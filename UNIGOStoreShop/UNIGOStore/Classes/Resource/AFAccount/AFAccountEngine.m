@@ -95,11 +95,32 @@ static AFAccountEngine *sharedInstance = nil;
     [[AFAccountEngine sharedInstance] setCurrentAccount:nil];
 }
 
-
-+ (void)saveAccountInformationWithUserInfo:(NSDictionary *)userInfo
++ (void)saveAccountAndTokenWithUserInfo:(NSDictionary *)userInfo
 {
    NSMutableDictionary *accountInfo = [NSMutableDictionary dictionaryWithDictionary:userInfo];
     AFAccount *account = [AFAccount mj_objectWithKeyValues:accountInfo];
+    [[AFAccountEngine sharedInstance] setCurrentAccount:account];
+    
+}
+
++ (void)saveAccountInformationWithUserInfo:(NSDictionary *)userInfo
+{
+    NSMutableDictionary *accountInfo = [NSMutableDictionary dictionaryWithDictionary:userInfo];
+
+    UNClient *client = [UNClient mj_objectWithKeyValues:accountInfo];
+    AFAccount * account = [AFAccountEngine getAccount];
+    account.client = client ;
+    [[AFAccountEngine sharedInstance] setCurrentAccount:account];
+    
+}
+
++ (void)saveTokens:(NSDictionary *)userInfo
+{
+    AFAccount * account = [AFAccountEngine getAccount];
+    account.access_token = userInfo[@"access_token"];
+    account.expires_time = userInfo[@"expires_time"];
+    account.refresh_token = userInfo[@"refresh_token"];
+    account.refresh_expires_time = userInfo[@"refresh_expires_time"];
     [[AFAccountEngine sharedInstance] setCurrentAccount:account];
     
 }

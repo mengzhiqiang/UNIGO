@@ -12,4 +12,5 @@
 //获取当前屏幕显示的viewcontroller
 + (UIViewController *)getCurrentController;
 
+
 @end

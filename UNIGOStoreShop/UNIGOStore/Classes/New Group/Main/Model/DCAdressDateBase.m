@@ -29,9 +29,8 @@ static DCAdressDateBase *_DBCtl = nil;
     if (_DBCtl == nil) {
         
         _DBCtl = [[DCAdressDateBase alloc] init];
-        
         [_DBCtl initDataBase];
-        
+        [_DBCtl addresslist];
     }
     
     return _DBCtl;
@@ -112,8 +111,8 @@ static DCAdressDateBase *_DBCtl = nil;
     FMResultSet *res = [_db executeQuery:@"SELECT * FROM adress"];
     //获取数据库中最大的ID
     while ([res next]) {
-        if ([maxID integerValue] < [[res stringForColumn:@"adress_id"] integerValue]) {
-            maxID = @([[res stringForColumn:@"adress_id"] integerValue]) ;
+        if ([maxID integerValue] < [[res stringForColumn:@"identifier"] integerValue]) {
+            maxID = @([[res stringForColumn:@"identifier"] integerValue]) ;
         }
         
     }
@@ -130,7 +129,7 @@ static DCAdressDateBase *_DBCtl = nil;
 {
     [_db open];
     
-    [_db executeUpdate:@"DELETE FROM adress WHERE adress_id = ?",adress.ID];
+    [_db executeUpdate:@"DELETE FROM adress WHERE adress_id = ?",adress.identifier];
     
     [_db close];
 }
@@ -140,11 +139,11 @@ static DCAdressDateBase *_DBCtl = nil;
 {
     [_db open];
     
-    [_db executeUpdate:@"UPDATE 'adress' SET userName = ?  WHERE adress_id = ? ",adress.consignee,adress.ID];
-    [_db executeUpdate:@"UPDATE 'adress' SET userPhone = ?  WHERE adress_id = ? ",adress.mobile,adress.ID];
-    [_db executeUpdate:@"UPDATE 'adress' SET chooseAdress = ? WHERE adress_id = ? ",adress.district,adress.ID];
-    [_db executeUpdate:@"UPDATE 'adress' SET userAdress = ? WHERE adress_id = ? ",adress.address,adress.ID];
-    [_db executeUpdate:@"UPDATE 'adress' SET isDefault = ?  WHERE adress_id = ? ",adress.is_default,adress.ID];
+    [_db executeUpdate:@"UPDATE 'adress' SET userName = ?  WHERE adress_id = ? ",adress.consignee,adress.identifier];
+    [_db executeUpdate:@"UPDATE 'adress' SET userPhone = ?  WHERE adress_id = ? ",adress.mobile,adress.identifier];
+    [_db executeUpdate:@"UPDATE 'adress' SET chooseAdress = ? WHERE adress_id = ? ",adress.district,adress.identifier];
+    [_db executeUpdate:@"UPDATE 'adress' SET userAdress = ? WHERE adress_id = ? ",adress.address,adress.identifier];
+    [_db executeUpdate:@"UPDATE 'adress' SET isDefault = ?  WHERE adress_id = ? ",adress.is_default,adress.identifier];
 
     [_db close];
 }
@@ -160,7 +159,7 @@ static DCAdressDateBase *_DBCtl = nil;
     
     while ([res next]) {
         DCAdressItem *adressItem = [[DCAdressItem alloc] init];
-        adressItem.ID = @([[res stringForColumn:@"adress_id"] integerValue]);
+        adressItem.identifier = [res stringForColumn:@"identifier"];
         adressItem.consignee = [res stringForColumn:@"userName"];
         adressItem.mobile = [res stringForColumn:@"userPhone"];
         adressItem.district = [res stringForColumn:@"chooseAdress"];
@@ -175,5 +174,23 @@ static DCAdressDateBase *_DBCtl = nil;
 }
 
 
+-(void)addresslist{
+    
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"json"];
+    NSData *data=[NSData dataWithContentsOfFile:jsonPath];
+    NSError *error;
+    NSArray * jsonObjectArray =[NSJSONSerialization JSONObjectWithData:data
+                                                               options:kNilOptions
+                                                                 error:&error];
+    self.adressList = jsonObjectArray;
+}
+
+-(NSArray*)adressList{
+    
+    if (!_adressList) {
+        _adressList = [NSArray array];
+    }
+    return _adressList;
+}
 
 @end

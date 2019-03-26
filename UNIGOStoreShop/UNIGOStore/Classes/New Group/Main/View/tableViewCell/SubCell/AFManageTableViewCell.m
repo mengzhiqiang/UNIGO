@@ -48,13 +48,13 @@
 ////家长头像
 -(void)headImageWithPar:(NSDictionary*)dic
 {
-    AFAccount *account = [AFAccountEngine sharedInstance].currentAccount;
+    UNClient *account = [AFAccountEngine getAccount].client;
     
     AFAccountAvatar *avatar = account.avatar;
     _subTitleLabel.textAlignment =NSTextAlignmentLeft;
     
-    _subTitleLabel.text =account.mobile;
-    _titlelable.text   = account.nickName;
+    _subTitleLabel.text =account.phone;
+    _titlelable.text   = account.nickname;
 
     _headImageView.frame= CGRectMake(12, (88-64)/2, 64, 64);
     

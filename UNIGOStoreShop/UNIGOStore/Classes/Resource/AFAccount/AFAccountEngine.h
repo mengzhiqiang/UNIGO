@@ -27,7 +27,12 @@
 
 + (void)quitAccount;
 
-+ (void)saveAccountInformationWithUserInfo:(NSDictionary *)userInfo;
+/* 保存个人信息 带token 个人新*/
++ (void)saveAccountAndTokenWithUserInfo:(NSDictionary *)userInfo;
 
+/* 保存个人信息 不带token*/
++ (void)saveAccountInformationWithUserInfo:(NSDictionary *)userInfo ;
 
+/* 保存个人信息  单独token*/
++ (void)saveTokens:(NSDictionary *)userInfo ;
 @end

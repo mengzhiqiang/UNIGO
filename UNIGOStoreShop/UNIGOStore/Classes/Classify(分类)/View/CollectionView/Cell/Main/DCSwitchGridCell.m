@@ -63,7 +63,7 @@
     _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
     
     _gridImageView = [[UIImageView alloc] init];
-    _gridImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _gridImageView.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:_gridImageView];
     
     _gridLabel = [[UILabel alloc] init];
@@ -126,11 +126,11 @@
 - (void)setYouSelectItem:(DCRecommendItem *)youSelectItem
 {
     _youSelectItem = youSelectItem;
-    [_gridImageView sd_setImageWithURL:[NSURL URLWithString:youSelectItem.image_url]];
+    [_gridImageView sd_setImageWithURL:[NSURL URLWithString:youSelectItem.image]];
     _priceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[youSelectItem.price floatValue]];
-    _gridLabel.text = youSelectItem.main_title;
+    _gridLabel.text = youSelectItem.name;
     //首行缩进
-    [DCSpeedy dc_setUpLabel:_gridLabel Content:youSelectItem.main_title IndentationFortheFirstLineWith:_gridLabel.font.pointSize * 3.5];
+    [DCSpeedy dc_setUpLabel:_gridLabel Content:youSelectItem.name IndentationFortheFirstLineWith:_gridLabel.font.pointSize * 3.5];
 }
 
 
