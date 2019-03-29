@@ -29,13 +29,15 @@
 // Vendors
 #import <MJExtension.h>
 #import "HttpRequestToken.h"
-
+#import "AFAccountEngine.h"
 // Categories
 
 // Others
 
 @interface DCMyCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    AFAccount * accountInfo ;
+}
 /* headView */
 @property (strong , nonatomic)DCMyCenterHeaderView *headView;
 /* 头部背景图片 */
@@ -121,6 +123,10 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 
     }
     
+     accountInfo =  [AFAccountEngine  getAccount];
+    self.headView.useNameLabel.text = accountInfo.client.nickname;
+
+    
 }
 
 - (void)viewDidLoad {
@@ -200,6 +206,7 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     UITableViewCell *cusCell = [UITableViewCell new];
     if (indexPath.section == 0) {
         DCCenterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterItemCellID forIndexPath:indexPath];
+        
         cusCell = cell;
     }else if(indexPath.section == 1){
         DCCenterServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterServiceCellID forIndexPath:indexPath];

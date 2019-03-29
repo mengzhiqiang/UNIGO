@@ -23,5 +23,6 @@
 
 /** 查看会员点击 */
 @property (nonatomic, copy) dispatch_block_t seePriceClickBlock;
+@property (weak, nonatomic) IBOutlet UILabel *useNameLabel;
 
 @end

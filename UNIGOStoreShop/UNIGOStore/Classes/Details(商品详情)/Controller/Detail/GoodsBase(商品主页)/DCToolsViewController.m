@@ -54,8 +54,7 @@
         make.top.mas_equalTo(ScreenH - 120);
         make.size.mas_equalTo(CGSizeMake(35, 35));
     }];
-    
-    NSArray *images = @[@"ptgd_icon_home",@"ptgd_icon_fenlei",@"ptgd_icon_xiaoxi",@"ptgd_icon_share"];
+    NSArray *images = @[@"ptgd_icon_home",@"ptgd_icon_fenlei",@"tabBar_cart_normal",@"ptgd_icon_share"];
     CGFloat buttonW = ScreenW / 4;
     CGFloat buttonH = 40;
     CGFloat buttonY = ScreenH - 60;
@@ -73,7 +72,7 @@
 - (void)toolsButtonClick:(UIButton *)button
 {
     dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        [[NSNotificationCenter defaultCenter]postNotificationName:SHAREALTERVIEW object:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:SHAREALTERVIEW object:[NSString stringWithFormat:@"%ld",(long)button.tag]];
     });
 }
 - (void)refreshButtonClick

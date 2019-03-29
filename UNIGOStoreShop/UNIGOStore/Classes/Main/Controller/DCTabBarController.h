@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 typedef  NS_ENUM(NSInteger ,DCTabBarControllerType){
-    DCTabBarControllerMeiXin = 0,  //美信
-    DCTabBarControllerHome = 1, //首页
-    DCTabBarControllerMediaList = 2,  //美媚榜
-    DCTabBarControllerBeautyStore = 3, //美店
-    DCTabBarControllerPerson = 4, //个人中心
+//    DCTabBarControllerMeiXin = 0,  //美信
+    DCTabBarControllerHome = 0, //首页
+    DCTabBarControllerMediaList = 1,  //美媚榜
+    DCTabBarControllerBeautyStore = 2, //美店
+    DCTabBarControllerPerson = 3, //个人中心
 };
 
 @interface DCTabBarController : UITabBarController

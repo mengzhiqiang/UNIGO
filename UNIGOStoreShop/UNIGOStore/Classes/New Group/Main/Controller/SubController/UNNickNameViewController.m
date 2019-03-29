@@ -88,8 +88,8 @@
         return;
     }
     
-    if ([NSString CountOFNSString:strUrl]>8) {
-        [self promtNavHidden:@"昵称不能多于8位字符！"];
+    if ([NSString CountOFNSString:strUrl]>12) {
+        [self promtNavHidden:@"昵称不能多于12位字符！"];
         return;
     }
     [self saveBabyName];

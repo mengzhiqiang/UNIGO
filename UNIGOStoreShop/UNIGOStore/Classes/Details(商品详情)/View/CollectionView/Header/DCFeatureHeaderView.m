@@ -22,7 +22,7 @@
 
 @interface DCFeatureHeaderView ()
 /* 属性标题 */
-@property (strong , nonatomic)UILabel *headerLabel;
+//@property (strong , nonatomic)UILabel *headerLabel;
 /* 底部View */
 @property (strong , nonatomic)UIView *bottomView;
 

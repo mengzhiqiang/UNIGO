@@ -14,4 +14,9 @@
 /* 内容数据 */
 @property (nonatomic , copy) DCFeatureList *content;
 
+/* 属性 */
+@property (strong , nonatomic)UILabel *attLabel;
+
+
+-(void)isSelect:(BOOL)bol;
 @end

@@ -7,9 +7,12 @@
 //  Copyright © 2016年 ALPHA. All rights reserved.
 //
 
-#import "TitleOfHeardViewController.h"
+//#import "TitleOfHeardViewController.h"
 
-@interface UNmanagerController : TitleOfHeardViewController<UITextFieldDelegate>
+#import "DCBaseSetViewController.h"
+
+
+@interface UNmanagerController : UIViewController<UITextFieldDelegate>
 
 
 

@@ -87,10 +87,10 @@
 - (void)addDcChildViewContorller
 {
     NSArray *childArray = @[
-                            @{MallClassKey  : @"UNStoreViewController",
-                              MallTitleKey  : @"发现",
-                              MallImgKey    : @"tabBar_find_normal",
-                              MallSelImgKey : @"tabBar_find_press"},
+//                            @{MallClassKey  : @"UNStoreViewController",
+//                              MallTitleKey  : @"发现",
+//                              MallImgKey    : @"tabBar_find_normal",
+//                              MallSelImgKey : @"tabBar_find_press"},
                             
                             @{MallClassKey  : @"DCHandPickViewController",
                               MallTitleKey  : @"首页",
@@ -141,7 +141,6 @@
     
     if(viewController == [tabBarController.viewControllers objectAtIndex:DCTabBarControllerPerson]){
         
-
         if ([HttpRequestToken getToken].length<1) {
             LogInmainViewController *dcLoginVc = [LogInmainViewController new];
             [self presentViewController:dcLoginVc animated:YES completion:nil];

@@ -49,7 +49,7 @@
     
     _autotrophyImageView = [[UIImageView alloc] init];
     [self addSubview:_autotrophyImageView];
-    _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
+//    _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
     
     _goodTitleLabel = [[UILabel alloc] init];
     _goodTitleLabel.font = PFR16Font;
@@ -90,7 +90,7 @@
     }];
     
     [_goodTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.left.mas_equalTo(self)setOffset:DCMargin];
+         make.left.mas_equalTo(_autotrophyImageView.left-20);
         [make.top.mas_equalTo(_autotrophyImageView)setOffset:-3];
         [make.right.mas_equalTo(self)setOffset:-DCMargin * 5];
     }];

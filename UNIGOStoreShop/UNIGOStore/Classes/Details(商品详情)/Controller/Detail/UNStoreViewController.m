@@ -23,7 +23,7 @@
     
     self.headLabel.text = @"店铺信息";
     
-    [self getStroeInfo];
+//    [self getStroeInfo];
 }
 
 

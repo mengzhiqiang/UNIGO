@@ -40,24 +40,31 @@
 
 - (void)setUpData
 {
-    self.leftTitleLable.text = @"领券";
+    self.iconImageView.image = [UIImage imageNamed:@"MG_payVoucher"];
+    self.iconImageView.frame = CGRectMake(10, 10, 40, 40);
+    [self.iconImageView draCirlywithColor:nil andRadius:20.f];
     [self addSubview:self.iconImageView];
-    self.iconImageView.image = [UIImage imageNamed:@"biaoqian"];
+    
+    self.contentLabel.text = @"店铺名称";
+    [self addSubview:self.contentLabel];
+
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     //重写leftTitleLableFrame
-    [self.leftTitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.left.mas_equalTo(self)setOffset:DCMargin];
+//    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        [make.left.mas_equalTo(self)setOffset:DCMargin];
+//        make.centerY.mas_equalTo(self);
+//    }];
+    
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [make.left.mas_equalTo(self.iconImageView.mas_right)setOffset:DCMargin];
         make.centerY.mas_equalTo(self);
     }];
     
-    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.left.mas_equalTo(self.leftTitleLable.mas_right)setOffset:DCMargin];
-        make.centerY.mas_equalTo(self.leftTitleLable);
-    }];
+    
 }
 
 #pragma mark - Setter Getter Methods

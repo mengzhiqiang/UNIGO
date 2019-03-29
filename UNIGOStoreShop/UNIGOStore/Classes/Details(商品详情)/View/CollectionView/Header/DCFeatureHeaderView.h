@@ -13,5 +13,7 @@
 
 /** 标题数据 */
 @property (nonatomic, strong) DCFeatureTitleItem *headTitle;
+/* 属性标题 */
+@property (strong , nonatomic)UILabel *headerLabel;
 
 @end

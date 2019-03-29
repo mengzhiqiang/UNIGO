@@ -98,13 +98,18 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+    
     [self setUpFeatureAlterView];
     
     [self setUpBase];
     
     [self setUpBottonView];
 }
+- (void)viewWillLayoutSubviews {
+    self.view.frame = CGRectMake(self.view.frame.origin.x, ScreenH*0.2, ScreenW, ScreenH*0.8);
 
+}
 #pragma mark - initialize
 
 -(void)setGoodsInfomation:(NSDictionary *)goodsInfomation{
@@ -133,6 +138,8 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
         [_featureAttr addObject:item];
     }
     
+//    [self.collectionView reloadData];
+
 }
 
 - (void)setUpBase
@@ -140,7 +147,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     self.view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = self.view.backgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _featureAttr = [DCFeatureItem mj_objectArrayWithFilename:@"ShopItem.plist"]; //数据
+//    _featureAttr = [DCFeatureItem mj_objectArrayWithFilename:@"ShopItem.plist"]; //数据
     self.tableView.frame = CGRectMake(0, 0, ScreenW, 100);
     self.tableView.rowHeight = 100;
     self.collectionView.frame = CGRectMake(0, self.tableView.dc_bottom ,ScreenW , NowScreenH - 200);
@@ -153,7 +160,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
             for (NSInteger j = 0; j < item.listKeys.count; j++) {
                 if ([ item.listValue[j] isEqualToString:str]) {
 //                    _featureAttr[i].list[j].isSelect = YES;
-                    _featureAttr[i].index = j;
+                    _featureAttr[i].index = j + 10;
                     [self.collectionView reloadData];
                 }
             }
@@ -225,6 +232,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
         [weakSelf dismissViewControllerAnimated:YES completion:^{
             [weakSelf dismissFeatureViewControllerWithTag:100];
         }];
+   
     } edgeSpacing:0];
 }
 
@@ -238,16 +246,21 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 {
     DCFeatureChoseTopCell *cell = [tableView dequeueReusableCellWithIdentifier:DCFeatureChoseTopCellID forIndexPath:indexPath];
     _cell = cell;
+    
+    cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",[_goodsInfomation objectForKey:@"price"]];
+
     if (_seleArray.count != _featureAttr.count && _lastSeleArray.count != _featureAttr.count) {
         cell.chooseAttLabel.textColor = [UIColor redColor];
-        cell.chooseAttLabel.text = @"有货";
+        cell.chooseAttLabel.text = @"选择类型";
     }else {
+        NSDictionary * dic = [self priceOfNowSelect];
         cell.chooseAttLabel.textColor = [UIColor darkGrayColor];
-        NSString *attString = (_seleArray.count == _featureAttr.count) ? [_seleArray componentsJoinedByString:@"，"] : [_lastSeleArray componentsJoinedByString:@"，"];
-        cell.chooseAttLabel.text = [NSString stringWithFormat:@"已选属性：%@",attString];
-    }
+//        NSString *attString = (_seleArray.count == _featureAttr.count) ? [_seleArray componentsJoinedByString:@"，"] : [_lastSeleArray componentsJoinedByString:@"，"];
+        cell.chooseAttLabel.text = [NSString stringWithFormat:@"已选属性：%@",[dic objectForKey:@"spec_name"]];
+        cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",[dic objectForKey:@"price"]];
 
-    cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",@"12"];
+    }
+    
     [cell.goodImageView sd_setImageWithURL:[NSURL URLWithString:_goodImageView]];
     WEAKSELF
     cell.crossButtonClickBlock = ^{
@@ -256,13 +269,61 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     return cell;
 }
 
+-(NSDictionary* )priceOfNowSelect{
+    
+    NSArray *result = [_seleArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSLog(@"%@~%@",obj1,obj2); //3~4 2~1 3~1 3~2
+        return [obj1 compare:obj2]; //升序
+    }];
+    NSString * string ;
+    for (int i=0; i<result.count; i++) {
+        if (i==0) {
+            string = result[0];
+        }else{
+            string = [NSString stringWithFormat:@"%@_%@",string,result[i]];
+        }
+    }
+    NSLog(@"result=%@",string);
+    NSDictionary * dic = [[_goodsInfomation objectForKey:@"goodsSpecResult"] objectForKey:string];
+    return dic;
+}
+
 #pragma mark - 退出当前界面
 - (void)dismissFeatureViewControllerWithTag:(NSInteger)tag
 {
-
     WEAKSELF
+
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.top = ScreenH ;
+        
+        if (![weakSelf.cell.chooseAttLabel.text isEqualToString:@"选择类型"]) {//当选择全属性才传递出去
+            
+            dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+                if (weakSelf.seleArray.count == 0) {
+                    NSMutableArray *numArray = [NSMutableArray arrayWithArray:weakSelf.lastSeleArray];
+                    NSDictionary *paDict = @{
+                                             @"Tag" : [NSString stringWithFormat:@"%zd",tag],
+                                             @"Num" : [NSString stringWithFormat:@"%zd",num_],
+                                             @"Array" : numArray
+                                             };
+                    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:paDict];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:SHOPITEMSELECTBACK object:nil userInfo:dict];
+                }else{
+                    NSDictionary *paDict = @{
+                                             @"Tag" : [NSString stringWithFormat:@"%zd",tag],
+                                             @"Num" : [NSString stringWithFormat:@"%zd",num_],
+                                             @"Array" : weakSelf.seleArray
+                                             };
+                    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:paDict];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:SHOPITEMSELECTBACK object:nil userInfo:dict];
+                }
+            });
+        }
+    }];
+    
+    
     [weakSelf dismissViewControllerAnimated:YES completion:^{
-        if (![weakSelf.cell.chooseAttLabel.text isEqualToString:@"有货"]) {//当选择全属性才传递出去
+        if (![weakSelf.cell.chooseAttLabel.text isEqualToString:@"选择类型"]) {//当选择全属性才传递出去
             
             dispatch_sync(dispatch_get_global_queue(0, 0), ^{
                 if (weakSelf.seleArray.count == 0) {
@@ -296,13 +357,25 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _featureAttr[section].list.count;
+    return _featureAttr[section].listKeys.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     DCFeatureItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCFeatureItemCellID forIndexPath:indexPath];
-    cell.content = _featureAttr[indexPath.section].list[indexPath.row];
+    
+    DCFeatureItem * item = _featureAttr[indexPath.section] ;
+    
+    cell.attLabel.text = item.listKeys[indexPath.row] ;
+    
+    if (item.index == indexPath.row+10) {
+        [cell isSelect:YES];
+    }else{
+        [cell isSelect:NO];
+
+    }
+    
+//    cell.content = _featureAttr[indexPath.section].listKeys[indexPath.row];
     return cell;
 }
 
@@ -310,7 +383,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     
     if ([kind  isEqualToString:UICollectionElementKindSectionHeader]) {
         DCFeatureHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCFeatureHeaderViewID forIndexPath:indexPath];
-        headerView.headTitle = _featureAttr[indexPath.section].title;
+        headerView.headerLabel.text = _featureAttr[indexPath.section].title;
         return headerView;
     }else {
 
@@ -323,13 +396,17 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    NSLog(@"====%ld===%ld",indexPath.section ,indexPath.row);
     //限制每组内的Item只能选中一个(加入质数选择)
-    if (_featureAttr[indexPath.section].list[indexPath.row].isSelect == NO) {
-        for (NSInteger j = 0; j < _featureAttr[indexPath.section].list.count; j++) {
-            _featureAttr[indexPath.section].list[j].isSelect = NO;
-        }
+    if (_featureAttr[indexPath.section].index == indexPath.row) {
+        _featureAttr[indexPath.section].index= 0;
+        
+//        for (NSInteger j = 0; j < _featureAttr[indexPath.section].listKeys.count; j++) {
+//            _featureAttr[indexPath.section].list[j].isSelect = NO;
+//        }
     }
-    _featureAttr[indexPath.section].list[indexPath.row].isSelect = !_featureAttr[indexPath.section].list[indexPath.row].isSelect;
+//    _featureAttr[indexPath.section].list[indexPath.row].isSelect = !_featureAttr[indexPath.section].list[indexPath.row].isSelect;
+    _featureAttr[indexPath.section].index= indexPath.row+10;
 
     
     //section，item 循环讲选中的所有Item加入数组中 ，数组mutableCopy初始化
@@ -338,10 +415,10 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
         
         DCFeatureItem * item = _featureAttr[i] ;
         for (NSInteger j = 0; j < item.listKeys.count; j++) {
-            if (item.index == j) {
-                [_seleArray addObject: [item.listKeys objectAtIndex:j]];
+            if (item.index -10 == j) {
+                [_seleArray addObject: [item.listValue objectAtIndex:j]];
             }else{
-                [_seleArray removeObject:[item.listKeys objectAtIndex:j]];
+                [_seleArray removeObject:[item.listValue objectAtIndex:j]];
                 [_lastSeleArray removeAllObjects];
             }
         }

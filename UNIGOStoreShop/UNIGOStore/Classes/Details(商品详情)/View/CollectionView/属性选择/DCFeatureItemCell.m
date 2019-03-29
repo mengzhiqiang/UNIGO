@@ -23,8 +23,7 @@
 
 @interface DCFeatureItemCell ()
 
-/* 属性 */
-@property (strong , nonatomic)UILabel *attLabel;
+
 
 @end
 
@@ -77,4 +76,14 @@
     }
 }
 
+-(void)isSelect:(BOOL)bol{
+    
+    if (bol) {
+        _attLabel.textColor = [UIColor redColor];
+        [DCSpeedy dc_chageControlCircularWith:_attLabel AndSetCornerRadius:5 SetBorderWidth:1 SetBorderColor:[UIColor redColor] canMasksToBounds:YES];
+    }else{
+        _attLabel.textColor = [UIColor blackColor];
+        [DCSpeedy dc_chageControlCircularWith:_attLabel AndSetCornerRadius:5 SetBorderWidth:1 SetBorderColor:[[UIColor lightGrayColor]colorWithAlphaComponent:0.4] canMasksToBounds:YES];
+    }
+}
 @end

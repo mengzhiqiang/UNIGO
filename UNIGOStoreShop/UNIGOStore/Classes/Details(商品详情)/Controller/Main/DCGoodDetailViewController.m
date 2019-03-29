@@ -111,7 +111,9 @@
 #pragma mark - 头部View
 - (void)setUpTopButtonView
 {
-    NSArray *titles = @[@"商品",@"详情",@"评价"];
+//    NSArray *titles = @[@"商品",@"详情",@"评价"];
+    NSArray *titles = @[@"商品"];
+
     CGFloat margin = 5;
     _bgView = [[UIView alloc] init];
     _bgView.dc_centerX = ScreenW * 0.5;
@@ -298,6 +300,7 @@
 #pragma mark - 点击工具条
 - (void)toolItemClick
 {
+
     [self setUpAlterViewControllerWith:[DCToolsViewController new] WithDistance:150 WithDirection:XWDrawerAnimatorDirectionTop WithParallaxEnable:NO WithFlipEnable:NO];
 }
 

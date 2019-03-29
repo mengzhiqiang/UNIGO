@@ -39,7 +39,7 @@
     UIImagePickerController     *  imagePicker;
     AFdatePickerView            *   datePickView ;
     AFFixIconView               *  fixIconView;
-    UNClient                   *  accountInfo ;
+    UNClient                    *  accountInfo ;
 }
 @property (strong, nonatomic) NSString * imageSuffix;     //图片后缀
 
@@ -51,10 +51,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.headLabel.text =@"帐号";
+    self.title =@"帐号";
     
-    _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, self.HeadView.height, SCREEN_WIDTH, SCREEN_HEIGHT- self.HeadView.height) style:UITableViewStyleGrouped];
-    _rootTableView .frame = CGRectMake(0,  self.HeadView.height, SCREEN_WIDTH, SCREEN_HEIGHT- self.HeadView.height);
+    _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
+    _rootTableView .frame = CGRectMake(0,  64, SCREEN_WIDTH, SCREEN_HEIGHT- 64);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -65,18 +65,16 @@
 
     _userInfo=[[NSMutableDictionary alloc]init];
     [self.view addSubview:_rootTableView];
-
    
-        [self  loadNewDate];
-        _userNickName = @"游客";
-        _userSex = @"未设置";
-        _userOld = @"2015-01-01";
 
-        [_rootTableView reloadData];
+    _userNickName = @"游客";
+    _userSex = @"未设置";
+    _userOld = @"2015-01-01";
+    [self loadOldDate ];
+    [_rootTableView reloadData];
 }
 -(void)loadOldDate{
 
-    
         accountInfo =  [AFAccountEngine  getAccount].client;
         _userNickName  = (accountInfo.nickname?accountInfo.nickname:@"未设置");
         _userSex       = ((accountInfo.sex==1)?@"1":@"2");
@@ -93,8 +91,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadOldDate ];
-    
+    [self  loadNewDate];
+
 }
 
 -(void)loadNewDate{
@@ -136,65 +134,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)HeadImage:(UIButton *)sender {
-#pragma  mark 分享应用
-    
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"上传头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    NSArray *share_arry=[[NSArray alloc]initWithObjects:@"拍照",@"手机相册", nil];
-    
-    for (NSString *snsName in share_arry) {
-        [editActionSheet addButtonWithTitle:snsName];
-        
-    }
-    [editActionSheet addButtonWithTitle:@"取消"];
-    editActionSheet.tag = 101;
-    editActionSheet.cancelButtonIndex = editActionSheet.numberOfButtons - 1;
-    //    [editActionSheet showFromTabBar:self.tabBarController.tabBar];
-    [editActionSheet showInView:self.view];
-    editActionSheet.delegate = self;
-    //    [self.view addSubview:editActionSheet];
-    
-    
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (buttonIndex + 1 >= actionSheet.numberOfButtons ) {
-        return;
-    }
-    
-    NSLog(@"===%ld",(long)buttonIndex);
-    if (buttonIndex==1) {
-        [self invokingPhotos:201];
-        return;
-    }
-    if (buttonIndex==0) {
-        [self invokingPhotos:200];
-    }
-    
-}
-- (IBAction)invokingPhotos:(int)tag {
-    
-    if (tag==200) {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            picker.delegate = self;
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:picker animated:YES completion:NULL];
-        }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"NO CAMERA" message:@"Sorry, Your device haven't camera" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"使用设备相册", nil];
-            [alertView show];
-        }
-    }else{
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        picker.delegate = self;
-        [self presentViewController:picker animated:YES completion:NULL];
-    }
-    
-}
 #pragma mark - UIImagePickerController delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)aImage editingInfo:(NSDictionary *)editingInfo
 {
@@ -211,7 +150,7 @@
     }
     fixIconView = [[AFFixIconView alloc] initWithImage:info[UIImagePickerControllerOriginalImage] andImageSize:CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH)];
 
-    fixIconView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    fixIconView.frame = CGRectMake(SCREEN_WIDTH, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
     fixIconView.delegate = self;
     [fixIconView.backBtn addTarget:self action:@selector(backToImagePicker) forControlEvents:UIControlEventTouchUpInside];
     
@@ -245,11 +184,15 @@
 -(void)getSubImage:(UIImage *)image{
     [imagePicker dismissViewControllerAnimated:NO completion:NULL];
     [self backToImagePicker];
-    
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
     self.headImage=image;
     
     NSString * imagebast = [NSString imageToString:image];
 
+    [_rootTableView reloadData];
+
+    return ;
     [self UpdateBabyInformationKey:@"headimgurl" value:imagebast];
 //    [self updateBackGroundImage:image];
 }
@@ -261,6 +204,7 @@
     
 //    NSString *pathUrl = [API_HOST stringByAppendingString:[NSString stringWithFormat:@"%@policy?policy=babyAvatar:%d",jett_Sign_policy,(int)accountInfo.identifier]];
     
+    return ;
     __weak typeof (self) myself = self;
     [UIHelper addLoadingViewTo:self.view withFrame:0];
     [HttpEngine requestGetWithURL:nil headImage:image params:nil isToken:YES imageSuffix:_imageSuffix errorDomain:nil errorString:nil success:^(CGFloat progress) {
@@ -517,6 +461,7 @@
         } else if (index == 0) {
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
+        picker.navigationBar.translucent = NO;
         [self presentViewController:picker animated:YES completion:nil];
     }];
 }
@@ -579,7 +524,6 @@
             }
         }];
         return;
-    [_rootTableView reloadData];
     
 }
 
