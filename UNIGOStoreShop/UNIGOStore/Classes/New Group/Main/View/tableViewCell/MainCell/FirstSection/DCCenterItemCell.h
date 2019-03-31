@@ -10,4 +10,6 @@
 
 @interface DCCenterItemCell : UITableViewCell
 
+@property(copy,nonatomic) void (^backIndex)(int index);
+
 @end

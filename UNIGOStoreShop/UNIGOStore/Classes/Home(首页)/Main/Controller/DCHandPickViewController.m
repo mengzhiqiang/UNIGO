@@ -12,7 +12,7 @@
 #import "DCNavigationController.h"
 #import "DCGoodsSetViewController.h"
 #import "DCCommodityViewController.h"
-#import "DCMyTrolleyViewController.h"
+#import "DCshopCarViewController.h"
 #import "DCGoodDetailViewController.h"
 #import "DCGMScanViewController.h"
 // Models
@@ -204,7 +204,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     };
     _topToolView.rightRItemClickBlock = ^{
         NSLog(@"点击了首页购物车");
-        DCMyTrolleyViewController *shopCarVc = [DCMyTrolleyViewController new];
+        DCshopCarViewController *shopCarVc = [DCshopCarViewController new];
         shopCarVc.isTabBar = YES;
         shopCarVc.title = @"购物车";
         [weakSelf.navigationController pushViewController:shopCarVc animated:YES];

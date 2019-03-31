@@ -53,6 +53,7 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
         [_collectionView registerClass:[DCStateItemFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:DCStateItemFooterViewID];
         
         [self addSubview:_collectionView];
+        
     }
     return _collectionView;
 }
@@ -129,6 +130,14 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     return CGSizeMake(ScreenW, 0);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"====");
+    if (_backIndex) {
+        _backIndex((int)indexPath.row);
+    }
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "DCGMScanViewController.h"  //扫一扫
 #import "DCSettingViewController.h" //设置
 #import "LogInmainViewController.h"
+#import "DCOrderListViewController.h"
 // Models
 #import "DCGridItem.h"
 // Views
@@ -23,9 +24,10 @@
 #import "DCMyCenterHeaderView.h"
                                //四组Cell
 #import "DCCenterItemCell.h"
-#import "DCCenterServiceCell.h"
-#import "DCCenterBeaShopCell.h"
-#import "DCCenterBackCell.h"
+//#import "DCCenterServiceCell.h"
+//#import "DCCenterBeaShopCell.h"
+//#import "DCCenterBackCell.h"
+#import "DeviceTableViewCell.h"
 // Vendors
 #import <MJExtension.h>
 #import "HttpRequestToken.h"
@@ -56,6 +58,7 @@ static NSString *const DCCenterServiceCellID = @"DCCenterServiceCell";
 static NSString *const DCCenterBeaShopCellID = @"DCCenterBeaShopCell";
 static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 
+
 @implementation DCMyCenterViewController
 
 #pragma mark - LazyLoad
@@ -72,9 +75,11 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
         [self.view addSubview:_tableView];
         
         [_tableView registerClass:[DCCenterItemCell class] forCellReuseIdentifier:DCCenterItemCellID];
-        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterServiceCell class]) bundle:nil] forCellReuseIdentifier:DCCenterServiceCellID];
-        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterBeaShopCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBeaShopCellID];
-        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterBackCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBackCellID];
+//        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterServiceCell class]) bundle:nil] forCellReuseIdentifier:DCCenterServiceCellID];
+//        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterBeaShopCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBeaShopCellID];
+//        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterBackCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBackCellID];
+        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DeviceTableViewCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBackCellID];
+
         
     }
     return _tableView;
@@ -207,16 +212,22 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     if (indexPath.section == 0) {
         DCCenterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterItemCellID forIndexPath:indexPath];
         
-        cusCell = cell;
-    }else if(indexPath.section == 1){
-        DCCenterServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterServiceCellID forIndexPath:indexPath];
-        cell.serviceItemArray = [NSMutableArray arrayWithArray:_serviceItem];
-        cusCell = cell;
-    }
-    else if (indexPath.section == 2){
-        DCCenterBeaShopCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterBeaShopCellID forIndexPath:indexPath];
+        cell.backIndex = ^(int index) {
+            DCOrderListViewController * orderlist = [[DCOrderListViewController alloc]init];
+            [self.navigationController pushViewController:orderlist animated:YES];
+        };
         cusCell = cell;
     }
+//    else
+//        if(indexPath.section == 1){
+//        DCCenterServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterServiceCellID forIndexPath:indexPath];
+//        cell.serviceItemArray = [NSMutableArray arrayWithArray:_serviceItem];
+//        cusCell = cell;
+//    }
+//    else if (indexPath.section == 2){
+//        DCCenterBeaShopCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterBeaShopCellID forIndexPath:indexPath];
+//        cusCell = cell;
+//    }
 //    else if (indexPath.section == 3){
 //        DCCenterBackCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterBackCellID forIndexPath:indexPath];
 //        cusCell = cell;
@@ -228,6 +239,9 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 #pragma mark - <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"===%ld",(long)indexPath.row);
+    DCOrderListViewController * orderVC = [[DCOrderListViewController alloc]init];
+    [self.navigationController pushViewController:orderVC animated:YES];
     
 }
 

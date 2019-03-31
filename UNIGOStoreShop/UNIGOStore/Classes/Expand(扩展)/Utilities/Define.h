@@ -83,6 +83,7 @@
 #define SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
 #define SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+#define  tabHeight   self.navigationController.navigationBar.height+20
 
 /********************  userdefault中的信息key  ****************************/
 #define FIRST_lOAD            @"firstLoad"    ///第一次进入

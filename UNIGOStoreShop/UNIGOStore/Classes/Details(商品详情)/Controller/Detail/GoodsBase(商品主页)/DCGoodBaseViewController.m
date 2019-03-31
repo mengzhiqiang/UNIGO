@@ -442,8 +442,9 @@ static NSArray *lastSeleArray_;
         DCFeatureSelectionViewController *dcFeaVc = [DCFeatureSelectionViewController new];
         dcFeaVc.lastNum = lastNum_;
         dcFeaVc.goodsInfomation = self.goodsInfomation ;
-        dcFeaVc.lastSeleArray = [NSMutableArray arrayWithArray:lastSeleArray_];
         dcFeaVc.goodImageView = _goodImageView;
+        dcFeaVc.lastSeleArray = [NSMutableArray arrayWithArray:lastSeleArray_];
+
         [self setUpAlterViewControllerWith:dcFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];
         
     }else if(indexPath.section == 3){

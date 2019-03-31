@@ -211,20 +211,11 @@
 
 +(BOOL)TitleMessage:(NSDictionary *)Dic_data{
     
-    int code=[[Dic_data objectForKey:@"status_code"] intValue];
+    int code=[[Dic_data objectForKey:@"status"] intValue];
     
     NSString * msg=[Dic_data objectForKey:@"msg"];
 
-    if ([msg  isEqualToString:@"token_invalid"] ) {
-        ////token已失效 需要重新登录
-        NSLog(@"=token已失效=Dic_data=%@==",Dic_data) ;
-        [HttpEngine refreshTokenWihtSuccess:^(id responseObject) {
 
-        } failure:^(NSError *error) {
-            
-        }];
-        return NO;
-    }
      if (msg.length>0){
          [self showUpMessage:msg];
          return NO ;
@@ -238,7 +229,6 @@
         return NO;
     }
   
-    
     return YES;
 }
 

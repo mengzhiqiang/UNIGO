@@ -98,8 +98,6 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
-    
     [self setUpFeatureAlterView];
     
     [self setUpBase];
@@ -138,7 +136,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
         [_featureAttr addObject:item];
     }
     
-//    [self.collectionView reloadData];
+//    [self.tableView reloadData];
 
 }
 
@@ -271,7 +269,12 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 
 -(NSDictionary* )priceOfNowSelect{
     
-    NSArray *result = [_seleArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+    NSArray * array = _seleArray;
+    if (_seleArray.count>0) {
+    }else{
+        array = _lastSeleArray ;
+    }
+    NSArray *result = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         NSLog(@"%@~%@",obj1,obj2); //3~4 2~1 3~1 3~2
         return [obj1 compare:obj2]; //升序
     }];

@@ -252,8 +252,9 @@
         
         [UIHelper  hiddenAlertWith:self.view];
         [AFAccountEngine saveAccountAndTokenWithUserInfo:JSONDic ];
+        sender.enabled=YES;
 
-        NSLog(@"=responseObject===%@",responseObject);
+        [self backBtnClicked];
 
     } failure:^(NSError *error) {
         [UIHelper  hiddenAlertWith:self.view];
@@ -271,6 +272,9 @@
             [UIHelper showUpMessage:@"验证码已失效,请重试"];
         } else if(statusCode == 403 || [message isEqualToString:@"invalid_credentials"]){
             [UIHelper showUpMessage:@"验证码错误"];
+        }else{
+            [UIHelper showUpMessage:@"注册失败"];
+
         }
     
     }];

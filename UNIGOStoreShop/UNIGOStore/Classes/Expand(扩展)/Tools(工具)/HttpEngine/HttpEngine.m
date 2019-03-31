@@ -296,7 +296,15 @@
 + (void)handleResponse:(id)responseObject errorDomain:(NSString *)errorDomain errorString:(NSString *)errorString success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     NSDictionary *JSONDic = (NSDictionary *)responseObject;
-    !success ?  : success(JSONDic);
+    
+    if ([[JSONDic objectForKey:@"status"] intValue]==1) {
+        !success ?  : success(JSONDic);
+    }else{
+        NSString *errorDomainValue = [NSString stringWithFormat:@"状态码为,%@",JSONDic[@"status"]];
+        NSError *error = [NSError errorWithDomain:errorDomainValue code:[responseObject[@"status"] integerValue] userInfo:JSONDic];
+        !failure ? :failure(error);
+
+    }
     
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     //    if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -328,13 +336,13 @@
             return ;
         }
         
-        NSString *errorDomainValue = [NSString stringWithFormat:@"状态码为,%@",errorDic[@"status_code"]];
-        NSError *error = [NSError errorWithDomain:errorDomainValue code:[errorDic[@"status_code"] integerValue] userInfo:errorDic];
+        NSString *errorDomainValue = [NSString stringWithFormat:@"状态码为,%@",errorDic[@"status"]];
+        NSError *error = [NSError errorWithDomain:errorDomainValue code:[errorDic[@"status"] integerValue] userInfo:errorDic];
         !failure ? :failure(error);
         
     }
     else {
-        NSMutableDictionary *userInfo = @{@"message" : @"当前网络不可用，请检查手机的网络设置", @"status_code" : @"100"}.mutableCopy;
+        NSMutableDictionary *userInfo = @{@"msg" : @"当前网络不可用，请检查手机的网络设置", @"status" : @"100"}.mutableCopy;
         NSString *errorDomainValue = @"状态码不为200";
         if (errorDomain.length > 0) {
             errorDomainValue = errorDomain;

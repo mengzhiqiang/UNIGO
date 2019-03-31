@@ -162,13 +162,11 @@
 		18DCA3C31F1F4187008BF67E /* CountDownShop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DCA2F81F1F4187008BF67E /* CountDownShop.plist */; };
 		18DCA3C41F1F4187008BF67E /* GoodsGrid.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DCA2F91F1F4187008BF67E /* GoodsGrid.plist */; };
 		18DCA3C51F1F4187008BF67E /* HomeHighGoods.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DCA2FA1F1F4187008BF67E /* HomeHighGoods.plist */; };
-		18DCA3C61F1F4187008BF67E /* DCMyTrolleyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCA2FE1F1F4187008BF67E /* DCMyTrolleyViewController.m */; };
 		18DCA3C71F1F4187008BF67E /* DCRecommendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCA3011F1F4187008BF67E /* DCRecommendItem.m */; };
 		18DCA3C81F1F4187008BF67E /* DCEmptyCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCA3041F1F4187008BF67E /* DCEmptyCartView.m */; };
 		18DCA3C91F1F4187008BF67E /* DCRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCA3061F1F4187008BF67E /* DCRecommendCell.m */; };
 		18DCA3CA1F1F4187008BF67E /* DCRecommendReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCA3081F1F4187008BF67E /* DCRecommendReusableView.m */; };
 		18DD85C71F0650F400F47095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18DD85C61F0650F400F47095 /* Assets.xcassets */; };
-		18F64B1B1F0E03F500DB978C /* PingFang Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F64B1A1F0E03F500DB978C /* PingFang Medium.ttf */; };
 		92565C041FD7E42E00828060 /* DCObjManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92565C021FD7E42D00828060 /* DCObjManager.m */; };
 		92565C071FD7ECE500828060 /* DCNotificationCenterName.m in Sources */ = {isa = PBXBuildFile; fileRef = 92565C061FD7ECE500828060 /* DCNotificationCenterName.m */; };
 		925B5F011FCD529B00053A16 /* DCTitleRolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B5EFE1FCD529B00053A16 /* DCTitleRolling.m */; };
@@ -290,6 +288,21 @@
 		99388539223564B100444EF4 /* AFBabiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99388538223564B100444EF4 /* AFBabiesModel.m */; };
 		9938853E223565AF00444EF4 /* LCActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9938853C223565AF00444EF4 /* LCActionSheet.bundle */; };
 		9938853F223565AF00444EF4 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9938853D223565AF00444EF4 /* LCActionSheet.m */; };
+		993F4BA2224E5D75001260B9 /* DCShopCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BA0224E5D75001260B9 /* DCShopCarTableViewCell.m */; };
+		993F4BA3224E5D75001260B9 /* DCShopCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BA1224E5D75001260B9 /* DCShopCarTableViewCell.xib */; };
+		993F4BA6224E6307001260B9 /* DCShopCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BA5224E6307001260B9 /* DCShopCar.m */; };
+		993F4BA9224F1B1C001260B9 /* DCShopCarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BA8224F1B1B001260B9 /* DCShopCarModel.m */; };
+		993F4BAC224F6441001260B9 /* DCShopCarSumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BAB224F6441001260B9 /* DCShopCarSumView.m */; };
+		993F4BAE224F6454001260B9 /* DCShopCarSumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BAD224F6454001260B9 /* DCShopCarSumView.xib */; };
+		993F4BB4224F698E001260B9 /* DCshopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BB2224F698E001260B9 /* DCshopCarViewController.m */; };
+		993F4BB5224F698E001260B9 /* DCshopCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BB3224F698E001260B9 /* DCshopCarViewController.xib */; };
+		993F4BB7224FA301001260B9 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BB6224FA300001260B9 /* iconfont.ttf */; };
+		993F4BBE224FABB1001260B9 /* DCOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BBD224FABB1001260B9 /* DCOrderListViewController.m */; };
+		993F4BC4224FB433001260B9 /* JFJorderTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BC0224FB432001260B9 /* JFJorderTabelView.m */; };
+		993F4BC5224FB433001260B9 /* JFJOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BC2224FB432001260B9 /* JFJOrderTableViewCell.m */; };
+		993F4BC6224FB433001260B9 /* JFJOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BC3224FB432001260B9 /* JFJOrderTableViewCell.xib */; };
+		993F4BCA224FB61D001260B9 /* DCOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */; };
+		993F4BCB224FB61D001260B9 /* DCOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */; };
 		9967852722365F0800142ACB /* main_btn_back_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852522365F0800142ACB /* main_btn_back_normal@3x.png */; };
 		9967852822365F0800142ACB /* main_btn_back_normal2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852622365F0800142ACB /* main_btn_back_normal2x.png */; };
 		9967853422365F5D00142ACB /* icon_phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852B22365F5D00142ACB /* icon_phone@3x.png */; };
@@ -782,8 +795,6 @@
 		18DCA2F81F1F4187008BF67E /* CountDownShop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountDownShop.plist; sourceTree = "<group>"; };
 		18DCA2F91F1F4187008BF67E /* GoodsGrid.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GoodsGrid.plist; sourceTree = "<group>"; };
 		18DCA2FA1F1F4187008BF67E /* HomeHighGoods.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HomeHighGoods.plist; sourceTree = "<group>"; };
-		18DCA2FD1F1F4187008BF67E /* DCMyTrolleyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMyTrolleyViewController.h; sourceTree = "<group>"; };
-		18DCA2FE1F1F4187008BF67E /* DCMyTrolleyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMyTrolleyViewController.m; sourceTree = "<group>"; };
 		18DCA3001F1F4187008BF67E /* DCRecommendItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRecommendItem.h; sourceTree = "<group>"; };
 		18DCA3011F1F4187008BF67E /* DCRecommendItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRecommendItem.m; sourceTree = "<group>"; };
 		18DCA3031F1F4187008BF67E /* DCEmptyCartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCEmptyCartView.h; sourceTree = "<group>"; };
@@ -794,7 +805,6 @@
 		18DCA3081F1F4187008BF67E /* DCRecommendReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRecommendReusableView.m; sourceTree = "<group>"; };
 		18DD85C61F0650F400F47095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18DD85C81F06512100F47095 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		18F64B1A1F0E03F500DB978C /* PingFang Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Medium.ttf"; sourceTree = "<group>"; };
 		3B897AFB1205577A73D35BFB /* Pods-UNIGOStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UNIGOStore.release.xcconfig"; path = "Target Support Files/Pods-UNIGOStore/Pods-UNIGOStore.release.xcconfig"; sourceTree = "<group>"; };
 		92565C021FD7E42D00828060 /* DCObjManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCObjManager.m; sourceTree = "<group>"; };
 		92565C031FD7E42E00828060 /* DCObjManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCObjManager.h; sourceTree = "<group>"; };
@@ -1026,6 +1036,30 @@
 		9938853B223565AF00444EF4 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
 		9938853C223565AF00444EF4 /* LCActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCActionSheet.bundle; sourceTree = "<group>"; };
 		9938853D223565AF00444EF4 /* LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheet.m; sourceTree = "<group>"; };
+		993F4B9F224E5D75001260B9 /* DCShopCarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCShopCarTableViewCell.h; sourceTree = "<group>"; };
+		993F4BA0224E5D75001260B9 /* DCShopCarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCShopCarTableViewCell.m; sourceTree = "<group>"; };
+		993F4BA1224E5D75001260B9 /* DCShopCarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCShopCarTableViewCell.xib; sourceTree = "<group>"; };
+		993F4BA4224E6307001260B9 /* DCShopCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCShopCar.h; sourceTree = "<group>"; };
+		993F4BA5224E6307001260B9 /* DCShopCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCShopCar.m; sourceTree = "<group>"; };
+		993F4BA7224F1B1B001260B9 /* DCShopCarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCShopCarModel.h; sourceTree = "<group>"; };
+		993F4BA8224F1B1B001260B9 /* DCShopCarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCShopCarModel.m; sourceTree = "<group>"; };
+		993F4BAA224F6441001260B9 /* DCShopCarSumView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCShopCarSumView.h; sourceTree = "<group>"; };
+		993F4BAB224F6441001260B9 /* DCShopCarSumView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCShopCarSumView.m; sourceTree = "<group>"; };
+		993F4BAD224F6454001260B9 /* DCShopCarSumView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCShopCarSumView.xib; sourceTree = "<group>"; };
+		993F4BB1224F698E001260B9 /* DCshopCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCshopCarViewController.h; sourceTree = "<group>"; };
+		993F4BB2224F698E001260B9 /* DCshopCarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCshopCarViewController.m; sourceTree = "<group>"; };
+		993F4BB3224F698E001260B9 /* DCshopCarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCshopCarViewController.xib; sourceTree = "<group>"; };
+		993F4BB6224FA300001260B9 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		993F4BBC224FABB1001260B9 /* DCOrderListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCOrderListViewController.h; sourceTree = "<group>"; };
+		993F4BBD224FABB1001260B9 /* DCOrderListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCOrderListViewController.m; sourceTree = "<group>"; };
+		993F4BBF224FB432001260B9 /* JFJOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFJOrderTableViewCell.h; sourceTree = "<group>"; };
+		993F4BC0224FB432001260B9 /* JFJorderTabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFJorderTabelView.m; sourceTree = "<group>"; };
+		993F4BC1224FB432001260B9 /* JFJorderTabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFJorderTabelView.h; sourceTree = "<group>"; };
+		993F4BC2224FB432001260B9 /* JFJOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFJOrderTableViewCell.m; sourceTree = "<group>"; };
+		993F4BC3224FB432001260B9 /* JFJOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JFJOrderTableViewCell.xib; sourceTree = "<group>"; };
+		993F4BC7224FB61D001260B9 /* DCOrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCOrderDetailViewController.h; sourceTree = "<group>"; };
+		993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCOrderDetailViewController.m; sourceTree = "<group>"; };
+		993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCOrderDetailViewController.xib; sourceTree = "<group>"; };
 		9967852522365F0800142ACB /* main_btn_back_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@3x.png"; sourceTree = "<group>"; };
 		9967852622365F0800142ACB /* main_btn_back_normal2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_btn_back_normal2x.png; sourceTree = "<group>"; };
 		9967852B22365F5D00142ACB /* icon_phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_phone@3x.png"; sourceTree = "<group>"; };
@@ -1444,7 +1478,6 @@
 		187E67891E7D793100722607 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				18F64B1A1F0E03F500DB978C /* PingFang Medium.ttf */,
 				18DD85C81F06512100F47095 /* PrefixHeader.pch */,
 				18DD85C61F0650F400F47095 /* Assets.xcassets */,
 				187E67971E7D793100722607 /* LaunchScreen.storyboard */,
@@ -1457,6 +1490,7 @@
 		18DCA13A1F1F4186008BF67E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				993F4BB8224FAA76001260B9 /* order(订单) */,
 				993884F522355C8000444EF4 /* Base */,
 				9CEB3B771FEB555100B636F9 /* BeautyMessage(美信) */,
 				9C58D4261FEA50C800639225 /* NewFeature(新特性) */,
@@ -2329,6 +2363,7 @@
 		18DCA2E11F1F4187008BF67E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				993F4BB6224FA300001260B9 /* iconfont.ttf */,
 				9967852422365EFA00142ACB /* imageSource */,
 				9938852D223563F200444EF4 /* AFAccount */,
 				9938851F2235636300444EF4 /* GlobalData */,
@@ -2416,8 +2451,9 @@
 		18DCA2FC1F1F4187008BF67E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18DCA2FD1F1F4187008BF67E /* DCMyTrolleyViewController.h */,
-				18DCA2FE1F1F4187008BF67E /* DCMyTrolleyViewController.m */,
+				993F4BB1224F698E001260B9 /* DCshopCarViewController.h */,
+				993F4BB2224F698E001260B9 /* DCshopCarViewController.m */,
+				993F4BB3224F698E001260B9 /* DCshopCarViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2427,6 +2463,10 @@
 			children = (
 				18DCA3001F1F4187008BF67E /* DCRecommendItem.h */,
 				18DCA3011F1F4187008BF67E /* DCRecommendItem.m */,
+				993F4BA7224F1B1B001260B9 /* DCShopCarModel.h */,
+				993F4BA8224F1B1B001260B9 /* DCShopCarModel.m */,
+				993F4BA4224E6307001260B9 /* DCShopCar.h */,
+				993F4BA5224E6307001260B9 /* DCShopCar.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2436,6 +2476,12 @@
 			children = (
 				18DCA3031F1F4187008BF67E /* DCEmptyCartView.h */,
 				18DCA3041F1F4187008BF67E /* DCEmptyCartView.m */,
+				993F4BAA224F6441001260B9 /* DCShopCarSumView.h */,
+				993F4BAB224F6441001260B9 /* DCShopCarSumView.m */,
+				993F4BAD224F6454001260B9 /* DCShopCarSumView.xib */,
+				993F4B9F224E5D75001260B9 /* DCShopCarTableViewCell.h */,
+				993F4BA0224E5D75001260B9 /* DCShopCarTableViewCell.m */,
+				993F4BA1224E5D75001260B9 /* DCShopCarTableViewCell.xib */,
 				18DCA3051F1F4187008BF67E /* DCRecommendCell.h */,
 				18DCA3061F1F4187008BF67E /* DCRecommendCell.m */,
 				18DCA3071F1F4187008BF67E /* DCRecommendReusableView.h */,
@@ -3000,6 +3046,47 @@
 				9938853D223565AF00444EF4 /* LCActionSheet.m */,
 			);
 			path = LCActionSheet;
+			sourceTree = "<group>";
+		};
+		993F4BB8224FAA76001260B9 /* order(订单) */ = {
+			isa = PBXGroup;
+			children = (
+				993F4BB9224FAA76001260B9 /* controller */,
+				993F4BBA224FAA76001260B9 /* model */,
+				993F4BBB224FAA76001260B9 /* view */,
+			);
+			path = "order(订单)";
+			sourceTree = "<group>";
+		};
+		993F4BB9224FAA76001260B9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				993F4BBC224FABB1001260B9 /* DCOrderListViewController.h */,
+				993F4BBD224FABB1001260B9 /* DCOrderListViewController.m */,
+				993F4BC7224FB61D001260B9 /* DCOrderDetailViewController.h */,
+				993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */,
+				993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		993F4BBA224FAA76001260B9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		993F4BBB224FAA76001260B9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				993F4BC1224FB432001260B9 /* JFJorderTabelView.h */,
+				993F4BC0224FB432001260B9 /* JFJorderTabelView.m */,
+				993F4BBF224FB432001260B9 /* JFJOrderTableViewCell.h */,
+				993F4BC2224FB432001260B9 /* JFJOrderTableViewCell.m */,
+				993F4BC3224FB432001260B9 /* JFJOrderTableViewCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		9967852422365EFA00142ACB /* imageSource */ = {
@@ -3809,11 +3896,13 @@
 				9CE9CB651FE899610033322E /* DCUserAdressCell.xib in Resources */,
 				18DCA3B31F1F4187008BF67E /* ClassiftyGoods01.plist in Resources */,
 				9975A3C1223A4F69004BF485 /* 2X0025.png in Resources */,
+				993F4BAE224F6454001260B9 /* DCShopCarSumView.xib in Resources */,
 				993884D922355A8400444EF4 /* AFCustomImageAlertView.xib in Resources */,
 				9C0D22F22041A5A600BD3714 /* CommentBadData.plist in Resources */,
 				9C7A1E29202AC6570051DB5D /* DCLoginViewController.xib in Resources */,
 				9975A3A9223A4F69004BF485 /* 2X0041.png in Resources */,
 				9C5F52AD1FDF94DF0061728E /* DCMyCenterHeaderView.xib in Resources */,
+				993F4BB7224FA301001260B9 /* iconfont.ttf in Resources */,
 				9975A3BA223A4F69004BF485 /* 2X0036.png in Resources */,
 				92CE3CE21FD68D85005F0A11 /* DCHeaderReusableView.xib in Resources */,
 				9975A3C6223A4F69004BF485 /* 2X0029.png in Resources */,
@@ -3852,6 +3941,7 @@
 				9975A3C0223A4F69004BF485 /* 2X0031.png in Resources */,
 				9975A3CD223A4F69004BF485 /* 2X0012.png in Resources */,
 				9967853922365F5D00142ACB /* icon_verification-code@2x.png in Resources */,
+				993F4BCB224FB61D001260B9 /* DCOrderDetailViewController.xib in Resources */,
 				18DCA3C11F1F4187008BF67E /* YouLikeGoods.plist in Resources */,
 				9975A3CB223A4F69004BF485 /* 2X0017.png in Resources */,
 				9975A3D6223A4F6A004BF485 /* 2X0048.png in Resources */,
@@ -3865,7 +3955,6 @@
 				9975A3D1223A4F6A004BF485 /* 2X0011.png in Resources */,
 				9975A3A4223A4F69004BF485 /* 2X0042.png in Resources */,
 				9967853B22365F5D00142ACB /* icon_password@3x.png in Resources */,
-				18F64B1B1F0E03F500DB978C /* PingFang Medium.ttf in Resources */,
 				9975A35C223A4D0E004BF485 /* btn_activation_normal@3x.png in Resources */,
 				9975A3AA223A4F69004BF485 /* 2X0045.png in Resources */,
 				9975A3C9223A4F69004BF485 /* 2X0028.png in Resources */,
@@ -3885,6 +3974,7 @@
 				18DCA3B21F1F4187008BF67E /* ClasiftyGoods.plist in Resources */,
 				18DCA3B71F1F4187008BF67E /* DetailRecommend.plist in Resources */,
 				9975A364223A4D2B004BF485 /* Password_btn_hidden@2x.png in Resources */,
+				993F4BC6224FB433001260B9 /* JFJOrderTableViewCell.xib in Resources */,
 				9975A3AD223A4F69004BF485 /* 2X0044.png in Resources */,
 				9967853722365F5D00142ACB /* icon_phone@2x.png in Resources */,
 				18DCA3B51F1F4187008BF67E /* ClassiftyGoods03.plist in Resources */,
@@ -3902,7 +3992,9 @@
 				9975A3B0223A4F69004BF485 /* 2X0046.png in Resources */,
 				9975A3B1223A4F69004BF485 /* 2X0047.png in Resources */,
 				18DCA3BB1F1F4187008BF67E /* ShopItem.plist in Resources */,
+				993F4BA3224E5D75001260B9 /* DCShopCarTableViewCell.xib in Resources */,
 				9C7A1E34202AC66E0051DB5D /* DCVerificationView.xib in Resources */,
+				993F4BB5224F698E001260B9 /* DCshopCarViewController.xib in Resources */,
 				9975A3BB223A4F69004BF485 /* 2X0022.png in Resources */,
 				9975A3B8223A4F69004BF485 /* 2X0023.png in Resources */,
 				9975A35D223A4D0E004BF485 /* btn_activation_normal@2x.png in Resources */,
@@ -4003,6 +4095,7 @@
 				18DCA30C1F1F4187008BF67E /* DCFootprintGoodsViewController.m in Sources */,
 				9CCC207B202BEBC700B6CD44 /* UIView+Frame.m in Sources */,
 				18DCA3C71F1F4187008BF67E /* DCRecommendItem.m in Sources */,
+				993F4BAC224F6441001260B9 /* DCShopCarSumView.m in Sources */,
 				181AED811F4BC646003DB950 /* DCFeatureSelectionViewController.m in Sources */,
 				18DCA33E1F1F4187008BF67E /* DCPartCommentHeadView.m in Sources */,
 				18DCA3091F1F4187008BF67E /* AppDelegate.m in Sources */,
@@ -4049,6 +4142,7 @@
 				18DCA3941F1F4187008BF67E /* DCScrollAdFootView.m in Sources */,
 				993884B022355A8300444EF4 /* AFActionSheetController.m in Sources */,
 				92CE3CED1FD69489005F0A11 /* DCMyCenterViewController.m in Sources */,
+				993F4BC5224FB433001260B9 /* JFJOrderTableViewCell.m in Sources */,
 				18DCA38D1F1F4187008BF67E /* DCExceedApplianceCell.m in Sources */,
 				18DCA3321F1F4187008BF67E /* DCDetailGoodReferralCell.m in Sources */,
 				18DCA33B1F1F4187008BF67E /* DCCommentHeaderCell.m in Sources */,
@@ -4058,6 +4152,7 @@
 				993884DB22355A8400444EF4 /* UManalyticsEngine.m in Sources */,
 				9C2D841A2041495500C27E0E /* DCDetailPicCell.m in Sources */,
 				18DCA3431F1F4187008BF67E /* UIBarButtonItem+DCBarButtonItem.m in Sources */,
+				993F4BB4224F698E001260B9 /* DCshopCarViewController.m in Sources */,
 				99388534223563F200444EF4 /* AFCommonEngine.m in Sources */,
 				926CED2D1FCEA1AE00002DDF /* DCNewWelfareCell.m in Sources */,
 				9C7FE1EC1FD9287100D32EEA /* DCBeautyShopItem.m in Sources */,
@@ -4078,6 +4173,7 @@
 				993884DC22355A8400444EF4 /* UIBarButtonItem+Extension.m in Sources */,
 				186CFAB11F6156AD006A9A9A /* DCParticularsShowViewController.m in Sources */,
 				18DCA3381F1F4187008BF67E /* DCCommentCell.m in Sources */,
+				993F4BA9224F1B1C001260B9 /* DCShopCarModel.m in Sources */,
 				9C95E966203FF2570084CB37 /* DCCometItemCell.m in Sources */,
 				18DCA3141F1F4187008BF67E /* DCListGridCell.m in Sources */,
 				181AEDB01F4BC9A8003DB950 /* DCFooterReusableView.m in Sources */,
@@ -4194,6 +4290,7 @@
 				18DCA3471F1F4187008BF67E /* DCConsts.m in Sources */,
 				181AED981F4BC94D003DB950 /* DCContentItem.m in Sources */,
 				18DCA32D1F1F4187008BF67E /* DCDetailShufflingHeadView.m in Sources */,
+				993F4BBE224FABB1001260B9 /* DCOrderListViewController.m in Sources */,
 				99094E9E223B382900C97DBA /* UNmanagerController.m in Sources */,
 				9C67DC5D1FE7997900C04F25 /* DCManagementViewController.m in Sources */,
 				9CC5846120452D2B00F38F46 /* YBPopupMenu.m in Sources */,
@@ -4242,16 +4339,19 @@
 				18DCA3961F1F4187008BF67E /* DCCountDownHeadView.m in Sources */,
 				18DCA33A1F1F4187008BF67E /* DCCommentFooterCell.m in Sources */,
 				18DCA3741F1F4187008BF67E /* SDWaitingView.m in Sources */,
+				993F4BCA224FB61D001260B9 /* DCOrderDetailViewController.m in Sources */,
 				99094ECA223CB1C500C97DBA /* MOFSToolView.m in Sources */,
 				18DCA3281F1F4187008BF67E /* DCFeatureItem.m in Sources */,
 				9CCC2080202BEBC700B6CD44 /* ChooseLocationView.m in Sources */,
 				18DCA37B1F1F4187008BF67E /* XWCoolAnimator+XWPortal.m in Sources */,
+				993F4BA2224E5D75001260B9 /* DCShopCarTableViewCell.m in Sources */,
 				9C5F52AC1FDF94DF0061728E /* DCMyCenterHeaderView.m in Sources */,
 				18DCA37F1F1F4187008BF67E /* XWFilterAnimator+XWBarSwipe.m in Sources */,
 				99388536223563F200444EF4 /* AFAccount.m in Sources */,
 				18DCA38C1F1F4187008BF67E /* DCGridItem.m in Sources */,
 				9C147D551FE112DB00CA3BB4 /* DCCenterServiceCell.m in Sources */,
 				18DCA31D1F1F4187008BF67E /* DCFootprintCell.m in Sources */,
+				993F4BC4224FB433001260B9 /* JFJorderTabelView.m in Sources */,
 				9C5F52B01FDFAF5D0061728E /* DCCenterItemCell.m in Sources */,
 				18DCA3561F1F4187008BF67E /* PPNumberButton.m in Sources */,
 				18DCA30E1F1F4187008BF67E /* DCCalssSubItem.m in Sources */,
@@ -4273,7 +4373,6 @@
 				993884F022355AB500444EF4 /* CheckNetwordStatus.m in Sources */,
 				18DCA3391F1F4187008BF67E /* DCCommentContentCell.m in Sources */,
 				993884AF22355A8300444EF4 /* UIView+ZHRoundCorner.m in Sources */,
-				18DCA3C61F1F4187008BF67E /* DCMyTrolleyViewController.m in Sources */,
 				99094EA4223B393D00C97DBA /* AFdatePickerView.m in Sources */,
 				99094ED3223D2DB200C97DBA /* MOFSPickerManager.m in Sources */,
 				9CE9CB751FE8F3630033322E /* DCPlaceholderTextView.m in Sources */,
@@ -4288,6 +4387,7 @@
 				18DCA36D1F1F4187008BF67E /* XWInteractiveTransition.m in Sources */,
 				18DCA3441F1F4187008BF67E /* UIImage+DCCircle.m in Sources */,
 				9C7338DD2006022100D30900 /* DCBeautyMsgCell.m in Sources */,
+				993F4BA6224E6307001260B9 /* DCShopCar.m in Sources */,
 				9C58D42B1FEA511200639225 /* DCNewFeatureViewController.m in Sources */,
 				9938841222355A5600444EF4 /* AdvertisingView.m in Sources */,
 				9CE9CB641FE899610033322E /* DCUserAdressCell.m in Sources */,

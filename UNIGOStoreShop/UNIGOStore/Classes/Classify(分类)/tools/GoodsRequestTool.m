@@ -15,7 +15,7 @@
     NSString *path = [API_HOST stringByAppendingString:goodsCate_get];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [HttpEngine requestPostWithURL:path params:nil isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+    [HttpEngine requestPostWithURL:path params:nil isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
         NSLog(@"===%@",responseObject );
@@ -40,7 +40,7 @@
     NSString *path = [API_HOST stringByAppendingString:goodsList_get];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [HttpEngine requestPostWithURL:path params:pram isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+    [HttpEngine requestPostWithURL:path params:pram isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
         NSLog(@"===%@",responseObject );

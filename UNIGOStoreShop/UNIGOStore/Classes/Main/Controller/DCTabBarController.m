@@ -14,7 +14,7 @@
 #import "DCBeautyMessageViewController.h"
 #import "UNStoreViewController.h"
 
-#import "DCMyTrolleyViewController.h"   //购物车
+#import "DCshopCarViewController.h"   //购物车
 #import "DCCommodityViewController.h"  //分类
 // Models
 
@@ -102,7 +102,7 @@
                               MallImgKey    : @"tabBar_category_normal",
                               MallSelImgKey : @"tabBar_category_press"},
                             
-                            @{MallClassKey  : @"DCMyTrolleyViewController",
+                            @{MallClassKey  : @"DCshopCarViewController",
                               MallTitleKey  : @"购物车",
                               MallImgKey    : @"tabBar_cart_normal",
                               MallSelImgKey : @"tabBar_cart_press"},
@@ -115,7 +115,11 @@
                             ];
     [childArray enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        UIViewController *vc = [NSClassFromString(dict[MallClassKey]) new];
+        UIViewController * vc = [NSClassFromString(dict[MallClassKey]) new];
+        if ([dict[MallTitleKey] isEqualToString:@"购物车"]) {
+            vc = [[NSClassFromString(dict[MallClassKey]) alloc] initWithNibName:@"DCshopCarViewController" bundle:nil];
+        }
+     
         DCNavigationController *nav = [[DCNavigationController alloc] initWithRootViewController:vc];
         UITabBarItem *item = nav.tabBarItem;
         item.image = [UIImage imageNamed:dict[MallImgKey]];

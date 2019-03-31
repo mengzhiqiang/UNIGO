@@ -12,7 +12,7 @@
 #import "DCGoodBaseViewController.h"
 #import "DCGoodParticularsViewController.h"
 #import "DCGoodCommentViewController.h"
-#import "DCMyTrolleyViewController.h"
+#import "DCshopCarViewController.H"
 #import "DCToolsViewController.h"
 // Models
 #import "UNHomeData.h"
@@ -311,7 +311,7 @@
         button.selected = !button.selected;
     }else if(button.tag == 1){
         NSLog(@"购物车");
-        DCMyTrolleyViewController *shopCarVc = [[DCMyTrolleyViewController alloc] init];
+        DCshopCarViewController *shopCarVc = [[DCshopCarViewController alloc] init];
         shopCarVc.isTabBar = YES;
         shopCarVc.title = @"购物车";
         [self.navigationController pushViewController:shopCarVc animated:YES];

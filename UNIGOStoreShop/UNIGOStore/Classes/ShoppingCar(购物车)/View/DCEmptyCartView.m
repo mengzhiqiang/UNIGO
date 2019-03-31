@@ -68,10 +68,11 @@
     
     _buyingButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _buyingButton.titleLabel.font = PFR14Font;
-    [_buyingButton setTitle:@"立即抢购" forState:UIControlStateNormal];
+    [_buyingButton setTitle:@"快去抢购吧" forState:UIControlStateNormal];
     [_buyingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    _buyingButton.backgroundColor = [UIColor whiteColor];
-    [_buyingButton addTarget:self action:@selector(buyingButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    _buyingButton.userInteractionEnabled = NO;
+//    _buyingButton.backgroundColor = [UIColor whiteColor];
+//    [_buyingButton addTarget:self action:@selector(buyingButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_buyingButton];
 }
 
