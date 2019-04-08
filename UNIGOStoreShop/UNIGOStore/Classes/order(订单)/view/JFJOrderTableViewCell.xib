@@ -34,7 +34,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="【雅居乐怡华苑高端小区】附近大型超市商城，步行街" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcE-Nh-SzF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="苹果手机iPhonexmac 高配版全网通 4G 质保三年高端手机" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcE-Nh-SzF">
                                 <rect key="frame" x="110" y="5" width="220" height="48"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
@@ -67,15 +67,6 @@
                     </view>
                 </subviews>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="houseAddressLabel" destination="aaT-Cb-Rg8" id="cIT-fP-Nom"/>
-                <outlet property="houseDetailLabel" destination="mcE-Nh-SzF" id="1UC-NQ-j7G"/>
-                <outlet property="houseImageView" destination="Il6-3J-Aqh" id="IAb-Nd-XZf"/>
-                <outlet property="priceLabel" destination="mnH-Vh-Wk4" id="pJ8-Z9-zvz"/>
-                <outlet property="rootCellView" destination="cch-dP-Fkm" id="beT-SZ-yLo"/>
-                <outlet property="sleepCountLabel" destination="WKG-oP-GoE" id="R8U-uv-9iO"/>
-                <outlet property="stateLabel" destination="JLe-PH-EaK" id="CQa-P0-HME"/>
-            </connections>
             <point key="canvasLocation" x="136.80000000000001" y="169.11544227886057"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="bpT-25-opX" customClass="JFJOrderTableViewCell">
@@ -94,7 +85,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="【雅居乐怡华苑高端小区】附近大型超市商城，步行街" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zra-Hs-M7s">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="苹果手机iPhonexmac 高配版全网通 4G 质保三年高端手机" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zra-Hs-M7s">
                                 <rect key="frame" x="93" y="6" width="169" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
@@ -128,14 +119,14 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="houseDetailLabel" destination="Zra-Hs-M7s" id="6bT-ch-WIB"/>
-                <outlet property="houseImageView" destination="0FS-0g-Bws" id="SyQ-S9-hSV"/>
+                <outlet property="goodsDetailLabel" destination="Zra-Hs-M7s" id="0hd-hz-SgH"/>
+                <outlet property="goodsImageView" destination="0FS-0g-Bws" id="Ble-uX-M9i"/>
                 <outlet property="priceLabel" destination="z66-pz-ed0" id="Nan-e0-CGP"/>
                 <outlet property="rootCellView" destination="fBZ-ut-DOd" id="Tfw-z8-jFA"/>
                 <outlet property="sleepCountLabel" destination="hgO-rF-QUl" id="MgF-jI-iuy"/>
                 <outlet property="stateLabel" destination="SXu-Rl-6hM" id="4rR-Yo-Shh"/>
             </connections>
-            <point key="canvasLocation" x="120.8" y="335.08245877061472"/>
+            <point key="canvasLocation" x="120.8" y="334.63268365817095"/>
         </tableViewCell>
     </objects>
 </document>

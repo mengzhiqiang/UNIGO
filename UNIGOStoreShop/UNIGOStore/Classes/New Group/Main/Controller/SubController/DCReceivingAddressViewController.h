@@ -10,4 +10,6 @@
 
 @interface DCReceivingAddressViewController : UIViewController
 
+@property(nonatomic , assign) int  pushTag ; //1 正常   2地址选择
+
 @end

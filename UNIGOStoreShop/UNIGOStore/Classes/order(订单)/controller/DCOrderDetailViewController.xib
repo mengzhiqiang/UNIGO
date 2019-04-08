@@ -16,7 +16,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DCOrderDetailViewController">
             <connections>
+                <outlet property="addressDetailLabel" destination="MIT-68-fh0" id="k2F-7w-woH"/>
+                <outlet property="addressDetailView" destination="fZF-by-AFD" id="QNj-pd-Ga6"/>
+                <outlet property="addressNameLabel" destination="Z9v-FM-Nb5" id="wos-iA-Hnu"/>
                 <outlet property="addressView" destination="oMR-Z0-tfb" id="ide-Dn-C4k"/>
+                <outlet property="noAddressView" destination="8bw-aE-Yvt" id="91c-sF-2VI"/>
+                <outlet property="payButton" destination="9xt-5d-qfe" id="7pJ-ux-Vjk"/>
+                <outlet property="sumPayView" destination="lGp-fF-F4r" id="uSn-7l-T6t"/>
+                <outlet property="sumPriceLabel" destination="0LH-Ll-WsJ" id="fO4-3j-bhh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -98,6 +105,9 @@
                             <state key="normal">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="selectAddress:" destination="-1" eventType="touchUpInside" id="3RQ-gz-cUR"/>
+                            </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="配送方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLG-Rl-n5R">
                             <rect key="frame" x="21" y="13" width="87" height="15"/>
@@ -114,8 +124,41 @@
                     </subviews>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lGp-fF-F4r">
+                    <rect key="frame" x="0.0" y="606" width="375" height="60"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="实付：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFH-oL-nER">
+                            <rect key="frame" x="11" y="22" width="87" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="¥668.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LH-Ll-WsJ">
+                            <rect key="frame" x="55" y="23" width="87" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.96992389896373055" green="0.11606303672878465" blue="0.15518695118719805" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xt-5d-qfe">
+                            <rect key="frame" x="275" y="0.0" width="100" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.96992389896373055" green="0.53850374667113021" blue="0.20661630697882338" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <state key="normal" title="提交订单">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="sumbitPay:" destination="-1" eventType="touchUpInside" id="rYr-Uh-NlW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <point key="canvasLocation" x="138.40000000000001" y="127.28635682158921"/>
         </view>
     </objects>
 </document>

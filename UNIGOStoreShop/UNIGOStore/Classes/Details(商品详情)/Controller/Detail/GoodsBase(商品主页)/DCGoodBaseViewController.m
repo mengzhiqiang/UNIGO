@@ -571,8 +571,6 @@ static NSArray *lastSeleArray_;
         [self.navigationController popToRootViewControllerAnimated:YES];
 
     }else{
-        
-        
         self.navigationController.tabBarController.selectedIndex = [tag intValue];
         [self.navigationController popToRootViewControllerAnimated:NO];
 

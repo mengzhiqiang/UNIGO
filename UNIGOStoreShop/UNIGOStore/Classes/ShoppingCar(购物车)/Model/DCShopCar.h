@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong) NSMutableArray <DCShopCarModel*> *carList ;
 
+@property(nonatomic,strong) NSMutableArray <DCShopCarModel*> *buyList ;
+
 +(id) sharedDataBase ;
 
 @end

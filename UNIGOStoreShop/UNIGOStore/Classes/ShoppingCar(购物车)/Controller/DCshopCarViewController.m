@@ -7,7 +7,7 @@
 //
 
 #import "DCshopCarViewController.h"
-
+#import "DCOrderDetailViewController.h"
 // Models
 #import "DCRecommendItem.h"
 // Views
@@ -80,12 +80,13 @@
     shopCarModel = [DCShopCar sharedDataBase];
     DCShopCarModel * iten = [[DCShopCarModel alloc]init];
     
-    iten.name = @"雅居乐怡华庭高端公寓小区商圈重点娱乐悠闲靠近地铁 超级市场KTV购物街一条龙服务";
+    iten.name = @"苹果手机iPhonexmac 高配版全网通 4G 质保三年高端手机";
     iten.image = @"http://gfs14.gomein.net.cn/T177EvBgJb1RCvBVdK-800.png";
     iten.price = @"668";
     iten.count = @"2";
     iten.stock = @"20";
     iten.info = @"中华神鹰 3代机型 红色";
+    iten.isSelect = YES;
     [shopCarModel.carList addObject:iten];
     [_rootTableView reloadData];
     //
@@ -178,7 +179,7 @@
     float  sumPrice = 0 ;
     int  selctCount = 0;
     for (DCShopCarModel* shop in shopCarModel.carList) {
-        if (!shop.isSelect) {
+        if (shop.isSelect) {
             sumPrice = (float)[shop.price floatValue]*[shop.count intValue]+sumPrice;
             selctCount++;
         }
@@ -212,6 +213,26 @@
             [self setUpEmptyCartView];
         }
     }
+    
+}
+
+- (IBAction)buyNow:(UIButton *)sender {
+    
+    
+    if (shopCarModel.buyList.count>=1) {
+        [shopCarModel.buyList removeAllObjects];
+    }
+    for (DCShopCarModel * model in shopCarModel.carList) {
+        
+        if (model.isSelect) {
+            [shopCarModel.buyList addObject:model];
+        }
+        
+    }
+    
+    
+    DCOrderDetailViewController * orderVC = [[DCOrderDetailViewController alloc]init];
+    [self.navigationController pushViewController:orderVC animated:YES];
     
 }
 

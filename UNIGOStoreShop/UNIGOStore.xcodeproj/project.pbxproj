@@ -303,6 +303,7 @@
 		993F4BC6224FB433001260B9 /* JFJOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BC3224FB432001260B9 /* JFJOrderTableViewCell.xib */; };
 		993F4BCA224FB61D001260B9 /* DCOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */; };
 		993F4BCB224FB61D001260B9 /* DCOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */; };
+		994CCE55225A492F0046BD1B /* DCAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 994CCE54225A492F0046BD1B /* DCAddressModel.m */; };
 		9967852722365F0800142ACB /* main_btn_back_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852522365F0800142ACB /* main_btn_back_normal@3x.png */; };
 		9967852822365F0800142ACB /* main_btn_back_normal2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852622365F0800142ACB /* main_btn_back_normal2x.png */; };
 		9967853422365F5D00142ACB /* icon_phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852B22365F5D00142ACB /* icon_phone@3x.png */; };
@@ -1060,6 +1061,8 @@
 		993F4BC7224FB61D001260B9 /* DCOrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCOrderDetailViewController.h; sourceTree = "<group>"; };
 		993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCOrderDetailViewController.m; sourceTree = "<group>"; };
 		993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCOrderDetailViewController.xib; sourceTree = "<group>"; };
+		994CCE53225A492F0046BD1B /* DCAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCAddressModel.h; sourceTree = "<group>"; };
+		994CCE54225A492F0046BD1B /* DCAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCAddressModel.m; sourceTree = "<group>"; };
 		9967852522365F0800142ACB /* main_btn_back_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@3x.png"; sourceTree = "<group>"; };
 		9967852622365F0800142ACB /* main_btn_back_normal2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_btn_back_normal2x.png; sourceTree = "<group>"; };
 		9967852B22365F5D00142ACB /* icon_phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_phone@3x.png"; sourceTree = "<group>"; };
@@ -3343,6 +3346,8 @@
 				9C147D4C1FE0F28100CA3BB4 /* DCStateItem.m */,
 				9CE9CB661FE8B4700033322E /* DCAdressItem.h */,
 				9CE9CB671FE8B4700033322E /* DCAdressItem.m */,
+				994CCE53225A492F0046BD1B /* DCAddressModel.h */,
+				994CCE54225A492F0046BD1B /* DCAddressModel.m */,
 				9C7A1E3A202AE1C20051DB5D /* DCAdressDateBase.h */,
 				9C7A1E3B202AE1C20051DB5D /* DCAdressDateBase.m */,
 			);
@@ -4378,6 +4383,7 @@
 				9CE9CB751FE8F3630033322E /* DCPlaceholderTextView.m in Sources */,
 				18DCA3331F1F4187008BF67E /* DCDetailShowTypeCell.m in Sources */,
 				9C67DC6D1FE7B84300C04F25 /* DCReceivingAddressViewController.m in Sources */,
+				994CCE55225A492F0046BD1B /* DCAddressModel.m in Sources */,
 				99094EAD223B3C8200C97DBA /* UNNickNameViewController.m in Sources */,
 				9938840E22355A5600444EF4 /* JAScrollView.m in Sources */,
 				993884F322355AB500444EF4 /* HttpRequestToken.m in Sources */,

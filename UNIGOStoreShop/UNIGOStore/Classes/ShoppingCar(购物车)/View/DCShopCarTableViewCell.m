@@ -64,12 +64,13 @@
     _priceLabel.text = shopCar.price;
     _countTF.text = shopCar.count;
     
-    if (!_shopCar.isSelect) {
+    if (_shopCar.isSelect) {
+       
         [_selectButton setTitle:@"" forState:UIControlStateNormal];
         [_selectButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];;
 
     }else{
-        [_selectButton setTitle:@"" forState:UIControlStateNormal];;
+        [_selectButton setTitle:@"" forState:UIControlStateNormal];
         [_selectButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];;
 
     }

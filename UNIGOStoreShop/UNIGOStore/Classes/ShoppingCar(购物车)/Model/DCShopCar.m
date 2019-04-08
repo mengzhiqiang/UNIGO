@@ -20,6 +20,8 @@ static DCShopCar *shopcar = nil;
         {
             shopcar = [[DCShopCar alloc] init];
             shopcar.carList = [NSMutableArray array];
+            shopcar. buyList = [NSMutableArray array];
+
         }
     }
     return shopcar;

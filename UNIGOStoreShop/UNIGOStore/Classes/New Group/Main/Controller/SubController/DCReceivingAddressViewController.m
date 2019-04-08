@@ -19,6 +19,7 @@
 // Vendors
 #import <SVProgressHUD.h>
 #import "UIView+Toast.h"
+#import "DCAddressModel.h"
 // Categories
 
 // Others
@@ -100,13 +101,15 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
     [self setUpBase];
 
     [self setUpAccNote];
+    
+   
 }
 
 - (void)setUpAccNote
 {
     WEAKSELF
     [[NSNotificationCenter defaultCenter] addObserverForName:@"UpDateUI" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        weakSelf.adItem = [[DCAdressDateBase sharedDataBase] getAllAdressItem]; //本地数据库
+//        weakSelf.adItem = [[DCAdressDateBase sharedDataBase] getAllAdressItem]; //本地数据库
         [weakSelf.tableView reloadData];
     }];
 }
@@ -120,7 +123,7 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
     [self.view addSubview:self.bgTipButton];
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.tableFooterView = [UIView new];
-    self.adItem = [[DCAdressDateBase sharedDataBase] getAllAdressItem]; //本地数据库
+//    self.adItem = [[DCAdressDateBase sharedDataBase] getAllAdressItem]; //本地数据库
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -15;
@@ -133,6 +136,14 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+    
+    if (_pushTag == 2) {
+        self.navigationItem.rightBarButtonItems = nil;
+
+    }else{
+        self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+
+    }
 }
 
 // main_btn_back_normal
@@ -327,6 +338,8 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
         [item setAddressArea];
         [self.adItem addObject:item];
     }
+    
+    [DCAddressModel sharedDataBase].addressList = _adItem;
     [self.tableView reloadData];
 }
 

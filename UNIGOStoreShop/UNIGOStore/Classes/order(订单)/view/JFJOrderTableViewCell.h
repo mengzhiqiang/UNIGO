@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (weak, nonatomic) IBOutlet UIView *rootCellView;
-@property (weak, nonatomic) IBOutlet UIImageView *houseImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *houseAddressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *houseDetailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goodsAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goodsDetailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sleepCountLabel;
 
