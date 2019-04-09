@@ -195,6 +195,8 @@
 		92CE3CDD1FD67CAB005F0A11 /* DCUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE3CDB1FD67CAB005F0A11 /* DCUserInfo.m */; };
 		92CE3CE21FD68D85005F0A11 /* DCHeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CE3CE11FD68D85005F0A11 /* DCHeaderReusableView.xib */; };
 		92CE3CED1FD69489005F0A11 /* DCMyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE3CEC1FD69489005F0A11 /* DCMyCenterViewController.m */; };
+		99031D5B225B907C00D712FE /* DCorderDetailStatueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99031D59225B907C00D712FE /* DCorderDetailStatueViewController.m */; };
+		99031D5C225B907C00D712FE /* DCorderDetailStatueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99031D5A225B907C00D712FE /* DCorderDetailStatueViewController.xib */; };
 		99094E9E223B382900C97DBA /* UNmanagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99094E9B223B382800C97DBA /* UNmanagerController.m */; };
 		99094E9F223B382900C97DBA /* UNmanagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99094E9C223B382900C97DBA /* UNmanagerController.xib */; };
 		99094EA3223B393D00C97DBA /* AFdatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99094EA0223B393D00C97DBA /* AFdatePickerView.xib */; };
@@ -858,6 +860,9 @@
 		92CE3CE11FD68D85005F0A11 /* DCHeaderReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCHeaderReusableView.xib; sourceTree = "<group>"; };
 		92CE3CEB1FD69489005F0A11 /* DCMyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCMyCenterViewController.h; sourceTree = "<group>"; };
 		92CE3CEC1FD69489005F0A11 /* DCMyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCMyCenterViewController.m; sourceTree = "<group>"; };
+		99031D58225B907B00D712FE /* DCorderDetailStatueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCorderDetailStatueViewController.h; sourceTree = "<group>"; };
+		99031D59225B907C00D712FE /* DCorderDetailStatueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCorderDetailStatueViewController.m; sourceTree = "<group>"; };
+		99031D5A225B907C00D712FE /* DCorderDetailStatueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCorderDetailStatueViewController.xib; sourceTree = "<group>"; };
 		99094E9B223B382800C97DBA /* UNmanagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNmanagerController.m; sourceTree = "<group>"; };
 		99094E9C223B382900C97DBA /* UNmanagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UNmanagerController.xib; sourceTree = "<group>"; };
 		99094E9D223B382900C97DBA /* UNmanagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNmanagerController.h; sourceTree = "<group>"; };
@@ -3069,6 +3074,9 @@
 				993F4BC7224FB61D001260B9 /* DCOrderDetailViewController.h */,
 				993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */,
 				993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */,
+				99031D58225B907B00D712FE /* DCorderDetailStatueViewController.h */,
+				99031D59225B907C00D712FE /* DCorderDetailStatueViewController.m */,
+				99031D5A225B907C00D712FE /* DCorderDetailStatueViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3988,6 +3996,7 @@
 				9975A3D9223A4F6A004BF485 /* 2X002.png in Resources */,
 				99DB6454223797F100E72F05 /* AmendPWViewController.xib in Resources */,
 				9975A3A7223A4F69004BF485 /* 2X0054.png in Resources */,
+				99031D5C225B907C00D712FE /* DCorderDetailStatueViewController.xib in Resources */,
 				9C8CC86A2004A25E00515926 /* sqr_line@2x.png in Resources */,
 				9967852822365F0800142ACB /* main_btn_back_normal2x.png in Resources */,
 				92A761DD1FCD91FC00017DFE /* loading.gif in Resources */,
@@ -4383,6 +4392,7 @@
 				9CE9CB751FE8F3630033322E /* DCPlaceholderTextView.m in Sources */,
 				18DCA3331F1F4187008BF67E /* DCDetailShowTypeCell.m in Sources */,
 				9C67DC6D1FE7B84300C04F25 /* DCReceivingAddressViewController.m in Sources */,
+				99031D5B225B907C00D712FE /* DCorderDetailStatueViewController.m in Sources */,
 				994CCE55225A492F0046BD1B /* DCAddressModel.m in Sources */,
 				99094EAD223B3C8200C97DBA /* UNNickNameViewController.m in Sources */,
 				9938840E22355A5600444EF4 /* JAScrollView.m in Sources */,

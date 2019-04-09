@@ -9,6 +9,7 @@
 #import "JFJorderTabelView.h"
 #import "JFJOrderTableViewCell.h"
 #import "DCOrderDetailViewController.h"
+#import "DCorderDetailStatueViewController.h"
 
 @interface JFJorderTabelView()<UITableViewDataSource,UITableViewDelegate>
 
@@ -103,6 +104,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([_orderStyle isEqualToString:@"全部"]) {
+        DCorderDetailStatueViewController* statueVC =[[DCorderDetailStatueViewController alloc]init];
+        [_controller.navigationController pushViewController:statueVC animated:YES];
+        return;
+    }
     
     DCOrderDetailViewController * vc = [[DCOrderDetailViewController alloc]init];
     [_controller.navigationController pushViewController:vc animated:YES];

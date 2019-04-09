@@ -62,6 +62,8 @@
     
     JFJorderTabelView *order0 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake( 0, 0, SCREEN_WIDTH, lisTheight)];
     order0.orderStyle = @"全部";
+    [order0 updataData:nil tagre:self];
+
     [self.scrollView addSubview:order0];
     
     JFJorderTabelView *label1 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, lisTheight)];
@@ -73,6 +75,7 @@
     
     JFJorderTabelView *label3 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, lisTheight)];
     label3.orderStyle = @"未评论";
+
     [self.scrollView addSubview:label3];
     
     JFJorderTabelView *order1 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, lisTheight)];
