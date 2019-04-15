@@ -59,7 +59,7 @@
     _rootTableView.backgroundColor=PersonBackGroundColor;
     _rootTableView.sectionHeaderHeight = 16 ;
     _rootTableView.sectionFooterHeight = 0;
-    _rootTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _rootTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
     self.view.backgroundColor=PersonBackGroundColor;
     [self.view addSubview:_rootTableView];
@@ -78,16 +78,18 @@
     [super viewWillAppear:animated];
     
     shopCarModel = [DCShopCar sharedDataBase];
-    DCShopCarModel * iten = [[DCShopCarModel alloc]init];
-    
-    iten.name = @"苹果手机iPhonexmac 高配版全网通 4G 质保三年高端手机";
-    iten.image = @"http://gfs14.gomein.net.cn/T177EvBgJb1RCvBVdK-800.png";
-    iten.price = @"668";
-    iten.count = @"2";
-    iten.stock = @"20";
-    iten.info = @"中华神鹰 3代机型 红色";
-    iten.isSelect = YES;
-    [shopCarModel.carList addObject:iten];
+//    DCShopCarModel * iten = [[DCShopCarModel alloc]init];
+//    
+//    iten.name = @"苹果手机iPhonexmac 高配版全网通 4G 质保三年高端手机";
+//    iten.image = @"http://gfs14.gomein.net.cn/T177EvBgJb1RCvBVdK-800.png";
+//    iten.price = @"668.00";
+//    iten.count = @"2";
+//    iten.stock = @"20";
+//    iten.info = @"中华神鹰 3代机型 红色";
+//    iten.isSelect = YES;
+//    iten.identifier = @"123";
+//    iten.nature = @"中华神鹰 3代机型 红色";
+//    [shopCarModel.carList addObject:iten];
     [_rootTableView reloadData];
     //
     
@@ -208,7 +210,8 @@
         
         [shopCarModel.carList removeObjectAtIndex:indexPath.row];
         [_rootTableView reloadData];
-        
+        [self selectSum ];
+
         if (!(shopCarModel.carList.count>0)) {
             [self setUpEmptyCartView];
         }

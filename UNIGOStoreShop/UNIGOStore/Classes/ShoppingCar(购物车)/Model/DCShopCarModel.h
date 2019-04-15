@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 属性 */
 @property (nonatomic, copy ) NSString *nature;
+
+/** 属性id */
+@property (nonatomic, copy ) NSString *natureID;
 /** 商品小标题 */
 @property (nonatomic, copy ) NSString *info;
 

@@ -16,6 +16,7 @@
 #import "DCFillinOrderViewController.h"
 #import "LogInmainViewController.h"
 #import "UNStoreViewController.h"
+#import "DCOrderDetailViewController.h"
 // Models
 
 // Views
@@ -43,6 +44,8 @@
 // Categories
 #import "XWDrawerAnimator.h"
 #import "UIViewController+XWTransition.h"
+#import "DCShopCar.h"
+
 // Others
 
 @interface DCGoodBaseViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,WKNavigationDelegate>
@@ -50,6 +53,8 @@
 @property (strong, nonatomic) UIScrollView *scrollerView;
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (strong, nonatomic) WKWebView *webView;
+
+@property(strong,nonatomic)DCShopCarModel * selectShopCarModel;
 /* 选择地址弹框 */
 @property (strong , nonatomic)AddressPickerView *adPickerView;
 /* 滚回顶部按钮 */
@@ -156,11 +161,23 @@ static NSArray *lastSeleArray_;
     [self setUpSuspendView];
 
     
-    [self acceptanceNote];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self acceptanceNote];
 
+}
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:_dcObj];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHOPITEMSELECTBACK object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:SELECTCARTORBUY object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHAREALTERVIEW object:nil];
+
+}
 
 #pragma mark - initialize
 - (void)setUpInit
@@ -202,8 +219,9 @@ static NSArray *lastSeleArray_;
                 [weakSelf setUpWithAddSuccess];
                 
             }else if ([note.userInfo[@"buttonTag"] isEqualToString:@"3"]){//立即购买（父类）
-                
-                DCFillinOrderViewController *dcFillVc = [DCFillinOrderViewController new];
+                [weakSelf buyNowWithData];
+
+                DCOrderDetailViewController *dcFillVc = [DCOrderDetailViewController new];
                 [weakSelf.navigationController pushViewController:dcFillVc animated:YES];
             }
             
@@ -235,7 +253,8 @@ static NSArray *lastSeleArray_;
             
         }else if ([buttonTag isEqualToString:@"1"]) { //立即购买
             
-            DCFillinOrderViewController *dcFillVc = [DCFillinOrderViewController new];
+            [weakSelf buyNowWithData];
+            DCOrderDetailViewController *dcFillVc = [DCOrderDetailViewController new];
             [weakSelf.navigationController pushViewController:dcFillVc animated:YES];
         }
         
@@ -257,7 +276,7 @@ static NSArray *lastSeleArray_;
     }
     NSLog(@"result=%@",string);
     NSDictionary * dic = [[_goodsInfomation objectForKey:@"goodsSpecResult"] objectForKey:string];
-    return [dic objectForKey:@"spec_name"];
+    return dic ;
 }
 
 -(void)setShufflingArray:(NSArray *)shufflingArray{
@@ -329,7 +348,7 @@ static NSArray *lastSeleArray_;
         if (indexPath.section == 1) {
             DCShowTypeOneCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeOneCellID forIndexPath:indexPath];
 
-            NSString *result = [NSString stringWithFormat:@"%@ %@件",[self priceOfNowSelect],lastNum_];
+            NSString *result = [NSString stringWithFormat:@"%@ %@件",[[self priceOfNowSelect] objectForKey:@"spec_name"],lastNum_];
             
             cell.leftTitleLable.text = (lastSeleArray_.count == 0) ? @"点击" : @"已选";
             cell.contentLabel.text = (lastSeleArray_.count == 0) ? @"请选择该商品属性" : result;
@@ -554,10 +573,53 @@ static NSArray *lastSeleArray_;
 #pragma mark - 加入购物车成功
 - (void)setUpWithAddSuccess
 {
+    DCShopCar*shopCarModel = [DCShopCar sharedDataBase];
+    DCShopCarModel * iten = [[DCShopCarModel alloc]init];
+
+    iten.name = [_goodsInfomation objectForKey:@"name"];
+    iten.image = [_goodsInfomation objectForKey:@"image"];
+    iten.price = [_goodsInfomation objectForKey:@"price"];
+    iten.count = lastNum_;
+    iten.stock = [_goodsInfomation objectForKey:@"stock"];
+    iten.info = [_goodsInfomation objectForKey:@"image"];
+    iten.isSelect = YES;
+    iten.identifier = [_goodsInfomation objectForKey:@"id"];
+    iten.nature = [[self priceOfNowSelect] objectForKey:@"spec_name"];
+    iten.natureID = [[self priceOfNowSelect] objectForKey:@"spec_id"];
+
+    [shopCarModel.carList addObject:iten];
+    
+    _selectShopCarModel = iten ;
     [SVProgressHUD showSuccessWithStatus:@"加入购物车成功~"];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD dismissWithDelay:1.0];
 }
+
+-(void)buyNowWithData{
+    
+    DCShopCar*shopCarModel = [DCShopCar sharedDataBase];
+    
+    if ([shopCarModel.buyList count]>0) {
+        [shopCarModel.buyList removeAllObjects];
+    }
+    DCShopCarModel * iten = [[DCShopCarModel alloc]init];
+    
+    iten.name = [_goodsInfomation objectForKey:@"name"];
+    iten.image = [_goodsInfomation objectForKey:@"image"];
+    iten.price = [_goodsInfomation objectForKey:@"price"];
+    iten.count = lastNum_;
+    iten.stock = [_goodsInfomation objectForKey:@"stock"];
+    iten.info = [_goodsInfomation objectForKey:@"image"];
+    iten.isSelect = YES;
+    iten.identifier = [_goodsInfomation objectForKey:@"id"];
+    iten.nature = [[self priceOfNowSelect] objectForKey:@"spec_name"];
+    iten.natureID = [[self priceOfNowSelect] objectForKey:@"spec_id"];
+    
+    [shopCarModel.buyList addObject:iten];
+    
+
+}
+
 
 #pragma 退出界面
 - (void)selfAlterViewback
@@ -580,6 +642,10 @@ static NSArray *lastSeleArray_;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:_dcObj];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHOPITEMSELECTBACK object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:SELECTCARTORBUY object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHAREALTERVIEW object:nil];
+
 }
 
 @end

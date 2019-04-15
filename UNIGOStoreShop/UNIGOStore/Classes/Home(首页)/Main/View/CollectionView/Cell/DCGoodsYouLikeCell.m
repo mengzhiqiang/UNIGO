@@ -50,7 +50,7 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     _goodsImageView = [[UIImageView alloc] init];
-    _goodsImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _goodsImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_goodsImageView];
     
     _goodsLabel = [[UILabel alloc] init];

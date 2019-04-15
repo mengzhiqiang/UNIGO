@@ -8,6 +8,7 @@
 
 #import "DCorderDetailStatueViewController.h"
 #import "JFJOrderTableViewCell.h"
+#import "PayViewController.h"
 @interface DCorderDetailStatueViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)  UITableView *rootTableView;
@@ -18,8 +19,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *payAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *footOrderView;
+@property (weak, nonatomic) IBOutlet UILabel *goodeSumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *couponLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *payButton;
 
 @end
 
@@ -40,6 +47,9 @@
     self.view.backgroundColor=PersonBackGroundColor;
     
     [self.view addSubview:_rootTableView];
+    
+    [_deleteButton draCirlywithColor:[UIColor grayColor] andRadius:0.5f];
+    [_payButton draCirlywithColor:[UIColor orangeColor] andRadius:0.5f];
     
 }
 
@@ -88,7 +98,7 @@
         
     }
  
-    
+    [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
     return   cell;
 }
 
@@ -104,5 +114,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)payOrder:(UIButton *)sender {
+    PayViewController* payVC = [[PayViewController alloc]init];
+    payVC.SumLabel.text = @"1899.00";
+    [self.navigationController pushViewController:payVC animated:YES];
+    
+}
+- (IBAction)deleteOrder:(UIButton *)sender {
+    
+}
 
 @end

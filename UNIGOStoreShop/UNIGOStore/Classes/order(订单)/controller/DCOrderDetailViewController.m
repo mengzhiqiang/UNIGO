@@ -15,15 +15,22 @@
 #import "DCShopCar.h"
 #import "LCActionSheet.h"
 #import "DCAddressModel.h"
+#import "PayViewController.h"
+
 
 @interface DCOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     DCShopCar * shopCar ;
+    DCReceivingAddressViewController * addressVC ;
 }
 
 @property (strong, nonatomic) IBOutlet UIView *addressView;
 
 @property (strong, nonatomic)  UITableView *rootTableView;
+
+@property (strong, nonatomic)  NSString * addressPrice ;
+@property (strong, nonatomic)  NSString * souponPrice ;
+
 
 @property (strong, nonatomic)  NSString * payStyle ;
 @property (weak, nonatomic) IBOutlet UIView *sumPayView;
@@ -56,18 +63,32 @@
     
     [self.view addSubview:_rootTableView];
     
-    [self updataAddressView];
+    _souponPrice = @"20.00";
+    _addressPrice = @"8.00";
+    
+    
+    self.sumPriceLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self updataAddressView];
+
+}
 -(void)updataAddressView{
     
     NSArray * addList = [DCAddressModel sharedDataBase].addressList ;
-    
     DCAdressItem * selectItem = addList.firstObject;
-    for (DCAdressItem * item in addList) {
-    
-        if (item.is_default) {
-            selectItem = item;
+  
+    if (addressVC.selectAddrss.mobile.length>0) {
+        selectItem = addressVC.selectAddrss ;
+    }else{
+        for (DCAdressItem * item in addList) {
+            if (item.is_default) {
+                selectItem = item;
+            }
         }
     }
     
@@ -123,6 +144,11 @@
         
         DCShopCarModel *model = [shopCar.buyList objectAtIndex:indexPath.row];
         cell.goodsDetailLabel.text = model.name;
+        cell.priceLabel.text = model.price;
+        cell.sleepCountLabel.text = [NSString stringWithFormat:@"X%@",model.count];
+        cell.stateLabel.text = model.nature ;
+        [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:[UIImage imageNamed:@""]];
+        
         return cell;
     }
         else {
@@ -153,19 +179,19 @@
                 {
                     if (indexPath.row==0) {
                         cell.titleNameLabel.text =@"商品金额";
-                        cell.pushNextLabel.text = @"¥688.00" ;
+                        cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]] ;
 
                     }else  if (indexPath.row==1) {
                         cell.titleNameLabel.text =@"优惠折扣";
-                        cell.pushNextLabel.text = @"无" ;
+                        cell.pushNextLabel.text = [NSString stringWithFormat:@"-%@",_souponPrice];
                     }else   if (indexPath.row==2) {
                         cell.titleNameLabel.text =@"运费";
-                        cell.pushNextLabel.text = @"¥10.00" ;
+                        cell.pushNextLabel.text = [NSString stringWithFormat:@"+%@",_addressPrice];
 
                         
                     }else if (indexPath.row==3) {
                         cell.titleNameLabel.text =@"实际支付";
-                        cell.pushNextLabel.text = @"¥698.00" ;
+                        cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
 
                     }
                     
@@ -179,12 +205,12 @@
             return cell;
         }
 
-    }
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     if (section==0) {
-        return 140;
+        return 140+10;
     }
     else if(section == 1){
         return  8.0f;
@@ -203,12 +229,24 @@
 {
     
     if (indexPath.section == 1) {
-        [self selectCouponActionSheetView ];
+//        [self selectCouponActionSheetView ];
+        [UIHelper alertWithTitle:@"无可用优惠券"];
     }
     else if (indexPath.section == 2) {
         [self selectCouponActionSheetView ];
     }
     
+}
+
+/* 计算商品价格*/
+-(CGFloat)shopSumOfPrice{
+    
+    CGFloat sum = 0 ;
+    for (DCShopCarModel *model in shopCar.buyList) {
+        sum = [model.price floatValue] * model.count.intValue+sum;
+    }
+    
+    return sum ;
 }
 
 #pragma mark 选择优惠券
@@ -232,10 +270,18 @@
 
 - (IBAction)sumbitPay:(UIButton *)sender {
     
+    PayViewController * payVC = [[PayViewController alloc]init];
+    payVC.SumLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+    
+    [self.navigationController pushViewController:payVC animated:YES];
+    
 }
 - (IBAction)selectAddress:(UIButton *)sender {
-    DCReceivingAddressViewController * addressVC  = [[DCReceivingAddressViewController alloc]init];
-    addressVC.pushTag = 2 ;
+    
+    if (!addressVC) {
+        addressVC = [[DCReceivingAddressViewController alloc]init];
+        addressVC.pushTag = 2 ;
+    }
     [self.navigationController pushViewController:addressVC animated:YES];
 }
 

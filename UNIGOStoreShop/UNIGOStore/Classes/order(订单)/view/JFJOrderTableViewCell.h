@@ -12,7 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JFJOrderTableViewCell : UITableViewCell
 
+//Cell 0
+@property (weak, nonatomic) IBOutlet UILabel *orderStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderTimeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *oredreImageView;
+@property (weak, nonatomic) IBOutlet UILabel *goodeTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goodsStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goodCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderSumLabel;
+@property (weak, nonatomic) IBOutlet UIButton *DeleteOrderButton;
+@property (weak, nonatomic) IBOutlet UIButton *payButton;
 
+@property (copy, nonatomic) void (^backSelect)(NSString * style);
+
+//CELL 1
 @property (weak, nonatomic) IBOutlet UIView *rootCellView;
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;

@@ -316,6 +316,9 @@
 		9967853922365F5D00142ACB /* icon_verification-code@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967853022365F5D00142ACB /* icon_verification-code@2x.png */; };
 		9967853A22365F5D00142ACB /* icon_password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967853122365F5D00142ACB /* icon_password@2x.png */; };
 		9967853B22365F5D00142ACB /* icon_password@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967853222365F5D00142ACB /* icon_password@3x.png */; };
+		996F9D9F226331DB00B52EAD /* payZhifu.png in Resources */ = {isa = PBXBuildFile; fileRef = 996F9D9D226331DB00B52EAD /* payZhifu.png */; };
+		996F9DA0226331DB00B52EAD /* payWeixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 996F9D9E226331DB00B52EAD /* payWeixin.png */; };
+		996F9DA42264250600B52EAD /* RunCar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 996F9DA32264250600B52EAD /* RunCar.jpg */; };
 		9975A35C223A4D0E004BF485 /* btn_activation_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A35A223A4D0D004BF485 /* btn_activation_normal@3x.png */; };
 		9975A35D223A4D0E004BF485 /* btn_activation_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A35B223A4D0E004BF485 /* btn_activation_normal@2x.png */; };
 		9975A360223A4D1E004BF485 /* btn_activation_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A35E223A4D1E004BF485 /* btn_activation_pressed@2x.png */; };
@@ -381,6 +384,10 @@
 		9975A3DA223A4F6A004BF485 /* 2X0059.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A39F223A4F69004BF485 /* 2X0059.png */; };
 		9975A3DB223A4F6A004BF485 /* 2X003.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A0223A4F69004BF485 /* 2X003.png */; };
 		9975A3DC223A4F6A004BF485 /* 2X001.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A1223A4F69004BF485 /* 2X001.png */; };
+		99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F28225ECBBC000AD7A0 /* PayViewController.m */; };
+		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
+		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
+		99C95F31225ECBC4000AD7A0 /* PayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F2F225ECBC4000AD7A0 /* PayTableViewCell.m */; };
 		99DB644A2237979700E72F05 /* AFManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB64472237979700E72F05 /* AFManageTableViewCell.m */; };
 		99DB644B2237979700E72F05 /* AFManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB64482237979700E72F05 /* AFManageTableViewCell.xib */; };
 		99DB6454223797F100E72F05 /* AmendPWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB6451223797F000E72F05 /* AmendPWViewController.xib */; };
@@ -1078,6 +1085,9 @@
 		9967853022365F5D00142ACB /* icon_verification-code@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_verification-code@2x.png"; sourceTree = "<group>"; };
 		9967853122365F5D00142ACB /* icon_password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_password@2x.png"; sourceTree = "<group>"; };
 		9967853222365F5D00142ACB /* icon_password@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_password@3x.png"; sourceTree = "<group>"; };
+		996F9D9D226331DB00B52EAD /* payZhifu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payZhifu.png; sourceTree = "<group>"; };
+		996F9D9E226331DB00B52EAD /* payWeixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payWeixin.png; sourceTree = "<group>"; };
+		996F9DA32264250600B52EAD /* RunCar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RunCar.jpg; sourceTree = "<group>"; };
 		9975A35A223A4D0D004BF485 /* btn_activation_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_activation_normal@3x.png"; sourceTree = "<group>"; };
 		9975A35B223A4D0E004BF485 /* btn_activation_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_activation_normal@2x.png"; sourceTree = "<group>"; };
 		9975A35E223A4D1E004BF485 /* btn_activation_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_activation_pressed@2x.png"; sourceTree = "<group>"; };
@@ -1143,6 +1153,12 @@
 		9975A39F223A4F69004BF485 /* 2X0059.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X0059.png; sourceTree = "<group>"; };
 		9975A3A0223A4F69004BF485 /* 2X003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X003.png; sourceTree = "<group>"; };
 		9975A3A1223A4F69004BF485 /* 2X001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X001.png; sourceTree = "<group>"; };
+		99C95F28225ECBBC000AD7A0 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
+		99C95F29225ECBBC000AD7A0 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
+		99C95F2A225ECBBC000AD7A0 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayTableViewCell.xib; sourceTree = "<group>"; };
+		99C95F2E225ECBC3000AD7A0 /* PayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTableViewCell.h; sourceTree = "<group>"; };
+		99C95F2F225ECBC4000AD7A0 /* PayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTableViewCell.m; sourceTree = "<group>"; };
 		99DB64472237979700E72F05 /* AFManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFManageTableViewCell.m; sourceTree = "<group>"; };
 		99DB64482237979700E72F05 /* AFManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AFManageTableViewCell.xib; sourceTree = "<group>"; };
 		99DB64492237979700E72F05 /* AFManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFManageTableViewCell.h; sourceTree = "<group>"; };
@@ -2371,6 +2387,7 @@
 		18DCA2E11F1F4187008BF67E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				996F9DA32264250600B52EAD /* RunCar.jpg */,
 				993F4BB6224FA300001260B9 /* iconfont.ttf */,
 				9967852422365EFA00142ACB /* imageSource */,
 				9938852D223563F200444EF4 /* AFAccount */,
@@ -3069,6 +3086,9 @@
 		993F4BB9224FAA76001260B9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				99C95F2A225ECBBC000AD7A0 /* PayViewController.h */,
+				99C95F28225ECBBC000AD7A0 /* PayViewController.m */,
+				99C95F29225ECBBC000AD7A0 /* PayViewController.xib */,
 				993F4BBC224FABB1001260B9 /* DCOrderListViewController.h */,
 				993F4BBD224FABB1001260B9 /* DCOrderListViewController.m */,
 				993F4BC7224FB61D001260B9 /* DCOrderDetailViewController.h */,
@@ -3091,6 +3111,9 @@
 		993F4BBB224FAA76001260B9 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				99C95F2E225ECBC3000AD7A0 /* PayTableViewCell.h */,
+				99C95F2F225ECBC4000AD7A0 /* PayTableViewCell.m */,
+				99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */,
 				993F4BC1224FB432001260B9 /* JFJorderTabelView.h */,
 				993F4BC0224FB432001260B9 /* JFJorderTabelView.m */,
 				993F4BBF224FB432001260B9 /* JFJOrderTableViewCell.h */,
@@ -3103,6 +3126,8 @@
 		9967852422365EFA00142ACB /* imageSource */ = {
 			isa = PBXGroup;
 			children = (
+				996F9D9E226331DB00B52EAD /* payWeixin.png */,
+				996F9D9D226331DB00B52EAD /* payZhifu.png */,
 				9975A366223A4F69004BF485 /* loadingPng */,
 				9967852922365F5D00142ACB /* 登录注册 */,
 				9967852522365F0800142ACB /* main_btn_back_normal@3x.png */,
@@ -3864,6 +3889,7 @@
 				9975A360223A4D1E004BF485 /* btn_activation_pressed@2x.png in Resources */,
 				9C7338D820059B2700D30900 /* navigationbarScanBg.png in Resources */,
 				9975A3D7223A4F6A004BF485 /* 2X006.png in Resources */,
+				996F9DA42264250600B52EAD /* RunCar.jpg in Resources */,
 				9975A3D5223A4F6A004BF485 /* 2X0049.png in Resources */,
 				9975A3D0223A4F6A004BF485 /* 2X0039.png in Resources */,
 				9975A3AC223A4F69004BF485 /* 2X0050.png in Resources */,
@@ -3874,6 +3900,7 @@
 				9975A3C3223A4F69004BF485 /* 2X0018.png in Resources */,
 				9975A3D8223A4F6A004BF485 /* 2X0058.png in Resources */,
 				9967853522365F5D00142ACB /* btn_activation_disbled@3x.png in Resources */,
+				99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */,
 				99094EA3223B393D00C97DBA /* AFdatePickerView.xib in Resources */,
 				9C147D5F1FE14EF900CA3BB4 /* DCCenterBeaShopCell.xib in Resources */,
 				9975A3AF223A4F69004BF485 /* 2X008.png in Resources */,
@@ -3934,6 +3961,7 @@
 				9975A365223A4D2B004BF485 /* Password_btn_hidden@3x.png in Resources */,
 				9975A3D4223A4F6A004BF485 /* 2X007.png in Resources */,
 				9975A3DA223A4F6A004BF485 /* 2X0059.png in Resources */,
+				99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */,
 				9975A3B3223A4F69004BF485 /* 2X009.png in Resources */,
 				9C147D561FE112DB00CA3BB4 /* DCCenterServiceCell.xib in Resources */,
 				18DCA3C21F1F4187008BF67E /* RecommendShop.plist in Resources */,
@@ -3964,6 +3992,7 @@
 				99094E9F223B382900C97DBA /* UNmanagerController.xib in Resources */,
 				9975A3AE223A4F69004BF485 /* 2X0052.png in Resources */,
 				9909501822411EF900C97DBA /* UNStoreViewController.xib in Resources */,
+				996F9DA0226331DB00B52EAD /* payWeixin.png in Resources */,
 				18DCA3C01F1F4187008BF67E /* MyServiceFlow.plist in Resources */,
 				9975A3D1223A4F6A004BF485 /* 2X0011.png in Resources */,
 				9975A3A4223A4F69004BF485 /* 2X0042.png in Resources */,
@@ -4010,6 +4039,7 @@
 				9C7A1E34202AC66E0051DB5D /* DCVerificationView.xib in Resources */,
 				993F4BB5224F698E001260B9 /* DCshopCarViewController.xib in Resources */,
 				9975A3BB223A4F69004BF485 /* 2X0022.png in Resources */,
+				996F9D9F226331DB00B52EAD /* payZhifu.png in Resources */,
 				9975A3B8223A4F69004BF485 /* 2X0023.png in Resources */,
 				9975A35D223A4D0E004BF485 /* btn_activation_normal@2x.png in Resources */,
 				9975A3A3223A4F69004BF485 /* 2X0043.png in Resources */,
@@ -4043,6 +4073,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UNIGOStore/Pods-UNIGOStore-resources.sh",
+				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
@@ -4052,6 +4083,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
@@ -4102,6 +4134,7 @@
 				92B4F8581F8DBBCC003C2E76 /* EGOCache.m in Sources */,
 				9C7A1E2A202AC6570051DB5D /* DCLoginViewController.m in Sources */,
 				92B4F8571F8DBBBE003C2E76 /* RequestTool.m in Sources */,
+				99C95F31225ECBC4000AD7A0 /* PayTableViewCell.m in Sources */,
 				18DCA3911F1F4187008BF67E /* DCGoodsSurplusCell.m in Sources */,
 				99388539223564B100444EF4 /* AFBabiesModel.m in Sources */,
 				18DCA3C91F1F4187008BF67E /* DCRecommendCell.m in Sources */,
@@ -4308,6 +4341,7 @@
 				99094E9E223B382900C97DBA /* UNmanagerController.m in Sources */,
 				9C67DC5D1FE7997900C04F25 /* DCManagementViewController.m in Sources */,
 				9CC5846120452D2B00F38F46 /* YBPopupMenu.m in Sources */,
+				99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */,
 				18DCA3491F1F4187008BF67E /* DCLIRLButton.m in Sources */,
 				9938850822355F3900444EF4 /* AFApi.m in Sources */,
 				9CCC208C202C243600B6CD44 /* DCCheckRegular.m in Sources */,

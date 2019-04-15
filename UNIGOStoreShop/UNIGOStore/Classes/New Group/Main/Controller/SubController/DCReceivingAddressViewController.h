@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DCAdressItem.h"
+
 @interface DCReceivingAddressViewController : UIViewController
 
 @property(nonatomic , assign) int  pushTag ; //1 正常   2地址选择
+
+
+@property(nonatomic , strong) DCAdressItem  * selectAddrss ; //选择配送地址
 
 @end

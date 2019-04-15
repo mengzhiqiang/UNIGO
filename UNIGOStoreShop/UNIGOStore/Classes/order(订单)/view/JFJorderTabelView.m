@@ -8,7 +8,7 @@
 
 #import "JFJorderTabelView.h"
 #import "JFJOrderTableViewCell.h"
-#import "DCOrderDetailViewController.h"
+
 #import "DCorderDetailStatueViewController.h"
 
 @interface JFJorderTabelView()<UITableViewDataSource,UITableViewDelegate>
@@ -27,6 +27,7 @@
         self.backgroundColor = [UIColor HexString:@"f2f2f2"];
         self.delegate =self;
         self.dataSource =self;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -48,7 +49,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 130;
+    return 215;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -59,32 +60,43 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"JFJOrderTableViewCell" owner:self options:nil] objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
     }
     
     cell.stateLabel.text = @"已完成";
-
+    [cell.oredreImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
     cell.backgroundColor=[UIColor clearColor];
+    cell.payButton.hidden = YES;
+
     if ([_orderStyle isEqualToString:@"未支付"]) {
-        cell.stateLabel.text = @"未支付";
+        cell.orderStatusLabel.text = @"未支付";
+        cell.payButton.hidden = NO;
     }
     if ([_orderStyle isEqualToString:@"全部"]) {
         
         if (indexPath.row==0) {
-            cell.stateLabel.text = @"未支付";
+            cell.orderStatusLabel.text = @"未支付";
+            cell.payButton.hidden = NO;
 
         }else if (indexPath.row==1) {
-            cell.stateLabel.text = @"进行中";
+            cell.orderStatusLabel.text = @"已支付";
             
         } else if (indexPath.row==2) {
-            cell.stateLabel.text = @"已完成";
+            cell.orderStatusLabel.text = @"已完成";
             
         }
     }
     if ([_orderStyle isEqualToString:@"退款"]) {
-        cell.stateLabel.text = @"退款中";
+        cell.orderStatusLabel.text = @"退款中";
     }
-    
+    cell.backSelect = ^(NSString * _Nonnull style) {
+        
+        if ([style isEqualToString:@"pay"]) {
+            ///支付
+        }else{
+            //删除
+            [self deleteOrderWithRow:indexPath.row];
+        }
+    };
     
     
     return cell;
@@ -111,14 +123,18 @@
         return;
     }
     
-    DCOrderDetailViewController * vc = [[DCOrderDetailViewController alloc]init];
-    [_controller.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)updataData:(NSDictionary* )diction tagre:(UIViewController*)tagre{
     
     
     _controller = tagre;
+}
+
+-(void)deleteOrderWithRow:(NSInteger)row{
+    
+    NSLog(@"===%ld" , row);
+    
 }
 
 @end

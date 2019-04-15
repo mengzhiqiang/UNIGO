@@ -299,29 +299,29 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     [UIView animateWithDuration:0.5 animations:^{
         self.view.top = ScreenH ;
         
-        if (![weakSelf.cell.chooseAttLabel.text isEqualToString:@"选择类型"]) {//当选择全属性才传递出去
-            
-            dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-                if (weakSelf.seleArray.count == 0) {
-                    NSMutableArray *numArray = [NSMutableArray arrayWithArray:weakSelf.lastSeleArray];
-                    NSDictionary *paDict = @{
-                                             @"Tag" : [NSString stringWithFormat:@"%zd",tag],
-                                             @"Num" : [NSString stringWithFormat:@"%zd",num_],
-                                             @"Array" : numArray
-                                             };
-                    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:paDict];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:SHOPITEMSELECTBACK object:nil userInfo:dict];
-                }else{
-                    NSDictionary *paDict = @{
-                                             @"Tag" : [NSString stringWithFormat:@"%zd",tag],
-                                             @"Num" : [NSString stringWithFormat:@"%zd",num_],
-                                             @"Array" : weakSelf.seleArray
-                                             };
-                    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:paDict];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:SHOPITEMSELECTBACK object:nil userInfo:dict];
-                }
-            });
-        }
+//        if (![weakSelf.cell.chooseAttLabel.text isEqualToString:@"选择类型"]) {//当选择全属性才传递出去
+//
+//            dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+//                if (weakSelf.seleArray.count == 0) {
+//                    NSMutableArray *numArray = [NSMutableArray arrayWithArray:weakSelf.lastSeleArray];
+//                    NSDictionary *paDict = @{
+//                                             @"Tag" : [NSString stringWithFormat:@"%zd",tag],
+//                                             @"Num" : [NSString stringWithFormat:@"%zd",num_],
+//                                             @"Array" : numArray
+//                                             };
+//                    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:paDict];
+//                    [[NSNotificationCenter defaultCenter]postNotificationName:SHOPITEMSELECTBACK object:nil userInfo:dict];
+//                }else{
+//                    NSDictionary *paDict = @{
+//                                             @"Tag" : [NSString stringWithFormat:@"%zd",tag],
+//                                             @"Num" : [NSString stringWithFormat:@"%zd",num_],
+//                                             @"Array" : weakSelf.seleArray
+//                                             };
+//                    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:paDict];
+//                    [[NSNotificationCenter defaultCenter]postNotificationName:SHOPITEMSELECTBACK object:nil userInfo:dict];
+//                }
+//            });
+//        }
     }];
     
     

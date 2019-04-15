@@ -60,7 +60,7 @@
     _shopCar = shopCar;
     
     _goodsTitleLabel.text = shopCar.name ;
-    _goodsdetailLabel.text = shopCar.info;
+    _goodsdetailLabel.text = shopCar.nature;
     _priceLabel.text = shopCar.price;
     _countTF.text = shopCar.count;
     

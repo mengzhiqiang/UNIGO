@@ -137,13 +137,13 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
     
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
     
-    if (_pushTag == 2) {
-        self.navigationItem.rightBarButtonItems = nil;
-
-    }else{
-        self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
-
-    }
+//    if (_pushTag == 2) {
+//        self.navigationItem.rightBarButtonItems = nil;
+//
+//    }else{
+//        self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+//
+//    }
 }
 
 // main_btn_back_normal
@@ -218,6 +218,13 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
 #pragma mark - <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (_pushTag==2) {
+        NSLog(@"====%ld",indexPath.row);
+        self.selectAddrss = [_adItem objectAtIndex:indexPath.row];
+        [self.navigationController popViewControllerAnimated:YES];
+//        [DCAddressModel sharedDataBase]
+    }
     
 }
 

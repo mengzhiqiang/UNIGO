@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.5.9)
   - CDDPagerController (1.1.5)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -29,10 +30,12 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVProgressHUD (2.2.5)
   - TZImagePickerController (3.1.9)
+  - WechatOpenSDK (1.8.4)
   - ZYCornerRadius (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
+  - AlipaySDK-iOS
   - CDDPagerController
   - FMDB
   - IQKeyboardManager
@@ -43,11 +46,13 @@ DEPENDENCIES:
   - SDWebImage (= 3.8.2)
   - SVProgressHUD
   - TZImagePickerController
+  - WechatOpenSDK
   - ZYCornerRadius
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - AlipaySDK-iOS
     - CDDPagerController
     - FMDB
     - IQKeyboardManager
@@ -58,10 +63,12 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - TZImagePickerController
+    - WechatOpenSDK
     - ZYCornerRadius
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AlipaySDK-iOS: 1c5283b30977a24acecc0114662697f7dc78f618
   CDDPagerController: ed05951429a860c56cfdffbeba1a8af5132a28ae
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
@@ -72,8 +79,9 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TZImagePickerController: c3f7c505d23281e21e98df6dbeae372946caa28f
+  WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: ed93151d8d2fcec316ba951cfa85a5e27a692828
+PODFILE CHECKSUM: 7a11cf987e302c358b3a954c17e0bc9d7aef94cf
 
 COCOAPODS: 1.6.1

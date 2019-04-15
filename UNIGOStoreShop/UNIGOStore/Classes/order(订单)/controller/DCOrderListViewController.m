@@ -80,7 +80,6 @@
     
     JFJorderTabelView *order1 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, lisTheight)];
     order1.orderStyle = @"退款";
-    [order1 updataData:nil tagre:self];
     [self.scrollView addSubview:order1];
     
 }

@@ -36,6 +36,7 @@
 #import "DCTopLineFootView.h"    //热点
 #import "DCOverFootView.h"       //结束
 #import "DCScrollAdFootView.h"   //底滚动广告
+#import "GoodsRequestTool.h"
 // Vendors
 #import "DCHomeRefreshGifHeader.h"
 #import <MJExtension.h>
@@ -120,6 +121,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self getGoodListwithID];
     [self getbanner];
     
     [self setUpBase];
@@ -470,7 +472,6 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         [_bannerImagesArray removeAllObjects];
     }
     
-    
     for (int i=0; i<_bannerArray.count; i++) {
         [_bannerImagesArray addObject:[[_bannerArray objectAtIndex:i] objectForKey:@"img"] ];
     }
@@ -480,6 +481,21 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     }
     
     return _bannerImagesArray;
+}
+
+
+#pragma mark - 请求 推荐列表
+-(void)getGoodListwithID{
+    
+    NSDictionary * diction = @{@"cateId":@"5"};
+    [GoodsRequestTool getGoodsCateWithPram:diction success:^(id  _Nonnull responseObject) {
+        self.youLikeItem = [DCRecommendItem mj_objectArrayWithKeyValuesArray:responseObject];
+        [self.collectionView reloadData];
+        
+    } fail:^(NSDictionary * _Nonnull error) {
+        
+    }];
+    
 }
 
 @end
