@@ -9,6 +9,10 @@
 #import "DCorderDetailStatueViewController.h"
 #import "JFJOrderTableViewCell.h"
 #import "PayViewController.h"
+
+#import "MQChatViewManager.h"
+#import "AFMeiQiaCustomEngine.h"
+
 @interface DCorderDetailStatueViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)  UITableView *rootTableView;
@@ -51,6 +55,47 @@
     [_deleteButton draCirlywithColor:[UIColor grayColor] andRadius:0.5f];
     [_payButton draCirlywithColor:[UIColor orangeColor] andRadius:0.5f];
     
+    
+    self.headMessageButton.hidden = NO ;
+    [self.headMessageButton setTitle:@"客服" forState:UIControlStateNormal];
+    
+}
+
+-(void)RightMessageOfTableView{
+
+    [AFMeiQiaCustomEngine didMeiQiaUIViewController:self andContant:@{@"style":@"1"}];
+    
+
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+
+}
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[UINavigationBar appearance] setHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    
+    return UIStatusBarStyleDefault;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
 }
 
 #pragma mark- table view datasource
@@ -101,8 +146,6 @@
     [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
     return   cell;
 }
-
-
 
 
 /*

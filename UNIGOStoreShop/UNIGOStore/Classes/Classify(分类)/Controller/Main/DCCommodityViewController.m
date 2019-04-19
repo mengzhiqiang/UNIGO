@@ -136,14 +136,14 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -15;
     
-    UIButton *button = [[UIButton alloc] init];
-    [button setImage:[UIImage imageNamed:@"mshop_message_gray_icon"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"mshop_message_gray_icon"] forState:UIControlStateHighlighted];
-    button.frame = CGRectMake(0, 0, 44, 44);
-    [button addTarget:self action:@selector(messButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+//    UIButton *button = [[UIButton alloc] init];
+//    [button setImage:[UIImage imageNamed:@"mshop_message_gray_icon"] forState:UIControlStateNormal];
+//    [button setImage:[UIImage imageNamed:@"mshop_message_gray_icon"] forState:UIControlStateHighlighted];
+//    button.frame = CGRectMake(0, 0, 44, 44);
+//    [button addTarget:self action:@selector(messButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+    self.navigationItem.rightBarButtonItems = @[negativeSpacer];
     
     _topSearchView = [[UIView alloc] init];
     _topSearchView.backgroundColor = RGBA(240, 240, 240, 1);

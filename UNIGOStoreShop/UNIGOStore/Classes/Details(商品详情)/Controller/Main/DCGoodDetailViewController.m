@@ -26,6 +26,7 @@
 // Categories
 #import "UIBarButtonItem+DCBarButtonItem.h"
 // Others
+#import "AFMeiQiaCustomEngine.h"
 
 @interface DCGoodDetailViewController ()<UIScrollViewDelegate>
 {
@@ -80,8 +81,42 @@
     [self setUpBottomButton];
     
     [self acceptanceNote];
+//    self.headMessageButton.hidden = NO ;
+//    [self.headMessageButton setTitle:@"客服" forState:UIControlStateNormal];
+    
 }
 
+-(void)RightMessageOfTableView{
+    
+    [AFMeiQiaCustomEngine didMeiQiaUIViewController:self andContant:@{@"style":@"2"}];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+    
+}
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+
+    
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    
+    return UIStatusBarStyleDefault;
+}
 #pragma mark - initialize
 - (void)setUpInit
 {
@@ -272,7 +307,7 @@
 #pragma mark - 导航栏设置
 - (void)setUpNav
 {
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ItemWithImage:[UIImage imageNamed:@"Details_Btn_More_normal"] WithHighlighted:[UIImage imageNamed:@"Details_Btn_More_normal"] Target:self action:@selector(toolItemClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ItemWithImage:[UIImage imageNamed:@"ZXKF_kefu_helpback"] WithHighlighted:[UIImage imageNamed:@"ZXKF_kefu_helpback"] Target:self action:@selector(toolItemClick)];
 }
 
 
@@ -300,8 +335,8 @@
 #pragma mark - 点击工具条
 - (void)toolItemClick
 {
-
-    [self setUpAlterViewControllerWith:[DCToolsViewController new] WithDistance:150 WithDirection:XWDrawerAnimatorDirectionTop WithParallaxEnable:NO WithFlipEnable:NO];
+    [self RightMessageOfTableView];
+//    [self setUpAlterViewControllerWith:[DCToolsViewController new] WithDistance:150 WithDirection:XWDrawerAnimatorDirectionTop WithParallaxEnable:NO WithFlipEnable:NO];
 }
 
 - (void)bottomButtonClick:(UIButton *)button

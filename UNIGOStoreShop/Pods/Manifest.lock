@@ -21,6 +21,12 @@ PODS:
   - FMDB/standard (2.7.5)
   - IQKeyboardManager (6.2.0)
   - Masonry (1.1.0)
+  - Meiqia (3.4.9):
+    - Meiqia/MeiqiaSDK (= 3.4.9)
+    - Meiqia/MQChatViewController (= 3.4.9)
+  - Meiqia/MeiqiaSDK (3.4.9)
+  - Meiqia/MQChatViewController (3.4.9):
+    - Meiqia/MeiqiaSDK
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
   - SDCycleScrollView (1.65):
@@ -40,6 +46,7 @@ DEPENDENCIES:
   - FMDB
   - IQKeyboardManager
   - Masonry
+  - Meiqia (~> 3.4.9)
   - MJExtension
   - MJRefresh
   - SDCycleScrollView
@@ -57,6 +64,7 @@ SPEC REPOS:
     - FMDB
     - IQKeyboardManager
     - Masonry
+    - Meiqia
     - MJExtension
     - MJRefresh
     - SDCycleScrollView
@@ -73,6 +81,7 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  Meiqia: 75776701963217d7bde57a56e65da7b5e1718b3f
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
@@ -82,6 +91,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 7a11cf987e302c358b3a954c17e0bc9d7aef94cf
+PODFILE CHECKSUM: 18ffb8397b9dc4cf175dfaa814ab08ae31b441a4
 
 COCOAPODS: 1.6.1

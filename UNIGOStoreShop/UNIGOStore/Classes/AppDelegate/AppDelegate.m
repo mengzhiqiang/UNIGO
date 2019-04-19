@@ -10,6 +10,9 @@
 #import "JKDBModel.h"
 #import "DCTabBarController.h"
 
+#import "AppDelegate+MeiQia.h"
+#import <MeiQiaSDK/MQManager.h>
+
 #import "JPFPSStatus.h"
 #import "RequestTool.h"
 #import "NetworkUnit.h"
@@ -41,6 +44,7 @@
 #endif
     
     [self setUpFixiOS11]; //适配IOS 11
+    [self MeiQiaApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     
     return YES;
@@ -96,6 +100,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [MQManager openMeiqiaService];  // 进入前台 打开meiqia服务
 }
 
 
@@ -106,6 +111,12 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [MQManager closeMeiqiaService];  //  进入后台  关闭meiqia服务
+
+}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+#pragma mark  集成第四步: 上传设备deviceToken
+    [MQManager registerDeviceToken:deviceToken];
 }
 
 #pragma mark - 当APP接收到内存警告的时候

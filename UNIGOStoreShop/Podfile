@@ -16,7 +16,7 @@ pod 'CDDPagerController'
 
 pod 'WechatOpenSDK'
 pod 'AlipaySDK-iOS'
-
+pod 'Meiqia', '~> 3.4.9'
 target 'UNIGOStore' do
 
 

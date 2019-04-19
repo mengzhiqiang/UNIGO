@@ -307,7 +307,7 @@
 		993F4BCB224FB61D001260B9 /* DCOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */; };
 		994CCE55225A492F0046BD1B /* DCAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 994CCE54225A492F0046BD1B /* DCAddressModel.m */; };
 		9967852722365F0800142ACB /* main_btn_back_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852522365F0800142ACB /* main_btn_back_normal@3x.png */; };
-		9967852822365F0800142ACB /* main_btn_back_normal2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852622365F0800142ACB /* main_btn_back_normal2x.png */; };
+		9967852822365F0800142ACB /* main_btn_back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852622365F0800142ACB /* main_btn_back_normal@2x.png */; };
 		9967853422365F5D00142ACB /* icon_phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852B22365F5D00142ACB /* icon_phone@3x.png */; };
 		9967853522365F5D00142ACB /* btn_activation_disbled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852C22365F5D00142ACB /* btn_activation_disbled@3x.png */; };
 		9967853622365F5D00142ACB /* btn_activation_disbled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852D22365F5D00142ACB /* btn_activation_disbled@2x.png */; };
@@ -384,6 +384,8 @@
 		9975A3DA223A4F6A004BF485 /* 2X0059.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A39F223A4F69004BF485 /* 2X0059.png */; };
 		9975A3DB223A4F6A004BF485 /* 2X003.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A0223A4F69004BF485 /* 2X003.png */; };
 		9975A3DC223A4F6A004BF485 /* 2X001.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A1223A4F69004BF485 /* 2X001.png */; };
+		998B6F10226A17790055421B /* AppDelegate+MeiQia.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */; };
+		998B6F14226A18F80055421B /* AFMeiQiaCustomEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */; };
 		99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F28225ECBBC000AD7A0 /* PayViewController.m */; };
 		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
 		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
@@ -1076,7 +1078,7 @@
 		994CCE53225A492F0046BD1B /* DCAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCAddressModel.h; sourceTree = "<group>"; };
 		994CCE54225A492F0046BD1B /* DCAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCAddressModel.m; sourceTree = "<group>"; };
 		9967852522365F0800142ACB /* main_btn_back_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@3x.png"; sourceTree = "<group>"; };
-		9967852622365F0800142ACB /* main_btn_back_normal2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_btn_back_normal2x.png; sourceTree = "<group>"; };
+		9967852622365F0800142ACB /* main_btn_back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@2x.png"; sourceTree = "<group>"; };
 		9967852B22365F5D00142ACB /* icon_phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_phone@3x.png"; sourceTree = "<group>"; };
 		9967852C22365F5D00142ACB /* btn_activation_disbled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_activation_disbled@3x.png"; sourceTree = "<group>"; };
 		9967852D22365F5D00142ACB /* btn_activation_disbled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_activation_disbled@2x.png"; sourceTree = "<group>"; };
@@ -1153,6 +1155,10 @@
 		9975A39F223A4F69004BF485 /* 2X0059.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X0059.png; sourceTree = "<group>"; };
 		9975A3A0223A4F69004BF485 /* 2X003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X003.png; sourceTree = "<group>"; };
 		9975A3A1223A4F69004BF485 /* 2X001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X001.png; sourceTree = "<group>"; };
+		998B6F0E226A17780055421B /* AppDelegate+MeiQia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+MeiQia.h"; sourceTree = "<group>"; };
+		998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+MeiQia.m"; sourceTree = "<group>"; };
+		998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMeiQiaCustomEngine.m; sourceTree = "<group>"; };
+		998B6F13226A18F80055421B /* AFMeiQiaCustomEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMeiQiaCustomEngine.h; sourceTree = "<group>"; };
 		99C95F28225ECBBC000AD7A0 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		99C95F29225ECBBC000AD7A0 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		99C95F2A225ECBBC000AD7A0 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -2842,6 +2848,7 @@
 		9938842122355A8300444EF4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				998B6F11226A18F80055421B /* MeiQiaEngine */,
 				993884F422355BFD00444EF4 /* Define.h */,
 				9938842C22355A8300444EF4 /* AFActionSheet */,
 				9938848622355A8300444EF4 /* AFAlertView */,
@@ -3023,6 +3030,8 @@
 		993885122235612C00444EF4 /* AppDelegateCategory */ = {
 			isa = PBXGroup;
 			children = (
+				998B6F0E226A17780055421B /* AppDelegate+MeiQia.h */,
+				998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */,
 				993885152235612C00444EF4 /* AppDelegate+APNS.h */,
 				993885192235612C00444EF4 /* AppDelegate+APNS.m */,
 				993885172235612C00444EF4 /* AppDelegate+Notification.h */,
@@ -3131,7 +3140,7 @@
 				9975A366223A4F69004BF485 /* loadingPng */,
 				9967852922365F5D00142ACB /* 登录注册 */,
 				9967852522365F0800142ACB /* main_btn_back_normal@3x.png */,
-				9967852622365F0800142ACB /* main_btn_back_normal2x.png */,
+				9967852622365F0800142ACB /* main_btn_back_normal@2x.png */,
 			);
 			path = imageSource;
 			sourceTree = "<group>";
@@ -3222,6 +3231,15 @@
 				9975A39F223A4F69004BF485 /* 2X0059.png */,
 			);
 			path = loadingPng;
+			sourceTree = "<group>";
+		};
+		998B6F11226A18F80055421B /* MeiQiaEngine */ = {
+			isa = PBXGroup;
+			children = (
+				998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */,
+				998B6F13226A18F80055421B /* AFMeiQiaCustomEngine.h */,
+			);
+			path = MeiQiaEngine;
 			sourceTree = "<group>";
 		};
 		99EDDEDD2247D18800C5B529 /* tools */ = {
@@ -4027,7 +4045,7 @@
 				9975A3A7223A4F69004BF485 /* 2X0054.png in Resources */,
 				99031D5C225B907C00D712FE /* DCorderDetailStatueViewController.xib in Resources */,
 				9C8CC86A2004A25E00515926 /* sqr_line@2x.png in Resources */,
-				9967852822365F0800142ACB /* main_btn_back_normal2x.png in Resources */,
+				9967852822365F0800142ACB /* main_btn_back_normal@2x.png in Resources */,
 				92A761DD1FCD91FC00017DFE /* loading.gif in Resources */,
 				9C7FE1F61FD9331A00D32EEA /* DCBestBeautyShopCell.xib in Resources */,
 				9938853E223565AF00444EF4 /* LCActionSheet.bundle in Resources */,
@@ -4076,6 +4094,7 @@
 				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/Meiqia/Meiqia-SDK-files/MQChatViewController/Assets/MQChatViewAsset.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
@@ -4086,6 +4105,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MQChatViewAsset.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
@@ -4183,6 +4203,7 @@
 				99094EB1223B3CC000C97DBA /* AFUpdateBabyInformation.m in Sources */,
 				993883DE223559B700444EF4 /* LogInmainViewController.m in Sources */,
 				18DCA3881F1F4187008BF67E /* XWFilterAnimator.m in Sources */,
+				998B6F10226A17790055421B /* AppDelegate+MeiQia.m in Sources */,
 				9CC5846220452D2B00F38F46 /* YBPopupMenuPath.m in Sources */,
 				9C147D501FE10C5600CA3BB4 /* DCStateItemFooterView.m in Sources */,
 				18DCA38B1F1F4187008BF67E /* DCHandPickViewController.m in Sources */,
@@ -4312,6 +4333,7 @@
 				9938841E22355A5600444EF4 /* ExtendClass.m in Sources */,
 				9C8CC86D2004A2A900515926 /* DCGMScanViewController.m in Sources */,
 				18DCA30F1F1F4187008BF67E /* DCClassGoodsItem.m in Sources */,
+				998B6F14226A18F80055421B /* AFMeiQiaCustomEngine.m in Sources */,
 				18DCA33D1F1F4187008BF67E /* DCDetailPartCommentCell.m in Sources */,
 				92B37E761FD128360045A4A5 /* DCBeautyShopViewController.m in Sources */,
 				993884D322355A8400444EF4 /* UIImage+ColorImage.m in Sources */,

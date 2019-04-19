@@ -10,26 +10,14 @@
 #import "AppDelegate.h"
 #import "UIViewController+Extension.h"
 
-//#import "LoginOrRegisterViewController.h"
-//#import "HomeTabBarViewController.h"
-//#import "BangdingDeviceViewController.h"
-//#import "UIViewController+Extension.h"
-//#import "SMJWiFiConntectViewController.h"
-//#import "SMJTwoWiFiTypeViewController.h"
-//#import "SteamMainViewController.h"
-//#import "SteamMusicListViewController.h"
-//#import "SteamEditMainViewController.h"
-//#import "RootHomeViewController.h"
-//#import "AFManageCenterController.h"
-//#import "JettHomeViewController.h"
 
 @implementation AppDelegate (Notification)
 
 - (void)setupAppDelegateNotification
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kMobPushLoginVCNotification:) name:kMobPushLoginVCNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kMobPopRootVCNotification:) name:kMobPopRootVCNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kMobPuhsBindVCNotification:) name:kMobPuhsBindVCNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kMobPushLoginVCNotification:) name:kMobPushLoginVCNotification object:nil];
+   
+    
 }
 
 - (void)kMobPopRootVCNotification:(NSNotification *)notification{
@@ -41,19 +29,9 @@
 
 - (void)kMobPushLoginVCNotification:(NSNotification *)notification
 {
-//    UIViewController *viewVC = [UIViewController getCurrentController] ;
-//    if ([viewVC isKindOfClass:[RootHomeViewController class] ] || [viewVC isKindOfClass:[AFManageCenterController class] ] || [viewVC isKindOfClass:[JettHomeViewController class] ] ) {
-//        LoginOrRegisterViewController *loginVC =[[LoginOrRegisterViewController alloc]init];
-//        [viewVC.navigationController pushViewController:loginVC animated:YES];
-//        return ;
-//    }else if([viewVC isKindOfClass:[LoginOrRegisterViewController class]]){
-//        return;
-//    }
-//    [[UIViewController getCurrentController].navigationController popToRootViewControllerAnimated:NO];
 
     return ;
 
-    NSLog(@"=====更改根视图====");
 }
 
 - (void)dealloc
