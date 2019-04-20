@@ -465,7 +465,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
                 [self.navigationController pushViewController:webVC animated:YES];
 
             }else{
-                [UIHelper alertWithTitle:@"数据错误，请重试！"];
+                [UIHelper showUpMessage:@"数据错误，请重试！"];
             }
             
             

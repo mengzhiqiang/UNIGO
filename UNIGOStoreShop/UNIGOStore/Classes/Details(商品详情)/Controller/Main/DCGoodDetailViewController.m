@@ -412,7 +412,8 @@
         [self  addGoodInformation:responseObject];
     } error:^(NSDictionary * _Nonnull error) {
         NSLog(@"==fail=%@",error);
-
+        
+        [UIHelper showUpMessage:@"加载失败，请重试@"];
     }];
 
 }

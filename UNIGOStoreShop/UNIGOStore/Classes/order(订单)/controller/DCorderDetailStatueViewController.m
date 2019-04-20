@@ -79,13 +79,17 @@
     }
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor clearColor]];
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+
     [[UINavigationBar appearance] setHidden:YES];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
 
 }
 

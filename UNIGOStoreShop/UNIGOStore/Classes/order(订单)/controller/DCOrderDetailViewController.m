@@ -49,6 +49,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.headLabel.text = @"订单信息";
     shopCar = [DCShopCar sharedDataBase];
     
     _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
@@ -76,7 +77,25 @@
     
     [self updataAddressView];
 
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor clearColor]];
+//    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+//
+//    [[UINavigationBar appearance] setHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
 }
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+
+
+
+
 -(void)updataAddressView{
     
     NSArray * addList = [DCAddressModel sharedDataBase].addressList ;
@@ -230,7 +249,7 @@
     
     if (indexPath.section == 1) {
 //        [self selectCouponActionSheetView ];
-        [UIHelper alertWithTitle:@"无可用优惠券"];
+        [UIHelper showUpMessage:@"无可用优惠券"];
     }
     else if (indexPath.section == 2) {
         [self selectCouponActionSheetView ];

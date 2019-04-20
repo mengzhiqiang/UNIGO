@@ -363,7 +363,7 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 #pragma mark - 点击搜索
 - (void)searchButtonClick
 {
-    
+    NSLog(@"====");
 }
 
 

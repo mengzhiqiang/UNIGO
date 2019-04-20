@@ -46,7 +46,6 @@ static NSString *const DCUserMgCellID = @"DCUserMgCell";
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
         _tableView.frame = CGRectMake(0, DCTopNavH, ScreenW, ScreenH - DCTopNavH);
         [self.view addSubview:_tableView];
         

@@ -126,15 +126,29 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
         _featureAttr = [NSMutableArray array];
     }
     
-    NSArray * keys_array = [goodsSpecValue allKeys];
-    for (NSString *title in keys_array) {
+    for (NSDictionary*dic in goodsSpecValue) {
         DCFeatureItem * item = [[DCFeatureItem alloc ]init];
-        NSDictionary * d = [goodsSpecValue objectForKey:title];
-        item.title = title;
-        item.listKeys = [d allKeys];
-        item.listValue = [d allValues];
-        [_featureAttr addObject:item];
+        item.title = [dic objectForKey:@"name"];
+        
+        item.listKeys = [NSMutableArray array];
+        item.listValue = [NSMutableArray array];
+
+        for (NSDictionary*d in [dic objectForKey:@"list"]) {
+            [item.listKeys addObject:[d objectForKey:@"spec_name"] ];
+            [item.listValue addObject:[d objectForKey:@"spec_id"] ];
+        }
+          [_featureAttr addObject:item];
     }
+    
+//    NSArray * keys_array = [goodsSpecValue allKeys];
+//    for (NSString *title in keys_array) {
+//        DCFeatureItem * item = [[DCFeatureItem alloc ]init];
+//        NSDictionary * d = [goodsSpecValue objectForKey:title];
+//        item.title = title;
+//        item.listKeys = [d allKeys];
+//        item.listValue = [d allValues];
+//        [_featureAttr addObject:item];
+//    }
     
 //    [self.tableView reloadData];
 

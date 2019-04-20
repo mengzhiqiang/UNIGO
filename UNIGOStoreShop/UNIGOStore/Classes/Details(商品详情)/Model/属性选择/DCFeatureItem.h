@@ -19,8 +19,8 @@
 
 @property (strong , nonatomic)NSString * title;
 
-@property (strong , nonatomic)NSArray *listKeys;
-@property (strong , nonatomic)NSArray *listValue;
+@property (strong , nonatomic)NSMutableArray *listKeys;
+@property (strong , nonatomic)NSMutableArray *listValue;
 
 @property (assign , nonatomic)NSInteger  index;  //选择第几个
 

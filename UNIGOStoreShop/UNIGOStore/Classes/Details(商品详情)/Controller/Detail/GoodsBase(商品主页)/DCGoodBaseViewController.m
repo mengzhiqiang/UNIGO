@@ -60,7 +60,7 @@
 /* 滚回顶部按钮 */
 @property (strong , nonatomic)UIButton *backTopButton;
 /* 通知 */
-@property (weak ,nonatomic) id dcObj;
+@property (strong ,nonatomic) id dcObj;
 
 @end
 
@@ -159,23 +159,24 @@ static NSArray *lastSeleArray_;
     [self setUpGoodsWKWebView];
     
     [self setUpSuspendView];
+    
+    [self acceptanceNote];
 
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self acceptanceNote];
 
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:_dcObj];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHOPITEMSELECTBACK object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:SELECTCARTORBUY object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHAREALTERVIEW object:nil];
+//    [super viewDidDisappear:animated];
+//
+//    [[NSNotificationCenter defaultCenter]removeObserver:_dcObj];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHOPITEMSELECTBACK object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:SELECTCARTORBUY object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:SHAREALTERVIEW object:nil];
 
 }
 
@@ -228,9 +229,15 @@ static NSArray *lastSeleArray_;
         }else {
             
             DCFeatureSelectionViewController *dcNewFeaVc = [DCFeatureSelectionViewController new];
-            dcNewFeaVc.goodImageView = weakSelf.goodImageView;
-            dcNewFeaVc.goodsInfomation = self.goodsInfomation ;
+//            dcNewFeaVc.goodImageView = weakSelf.goodImageView;
+//            dcNewFeaVc.goodsInfomation = self.goodsInfomation ;
 
+            dcNewFeaVc.lastNum = lastNum_;
+            dcNewFeaVc.goodsInfomation =  weakSelf.goodsInfomation ;
+            dcNewFeaVc.goodImageView =  weakSelf.goodImageView;
+            dcNewFeaVc.lastSeleArray = [NSMutableArray arrayWithArray:lastSeleArray_];
+            
+            
             [weakSelf setUpAlterViewControllerWith:dcNewFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];
         }
     }];
@@ -482,7 +489,7 @@ static NSArray *lastSeleArray_;
             [self setUpAlterViewControllerWith:dcFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];
             
         }else {
-            [UIHelper alertWithTitle:@"无可设置属性"];
+            [UIHelper showUpMessage:@"无可设置属性"];
         }
         
       

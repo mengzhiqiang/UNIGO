@@ -263,17 +263,19 @@
     [self.view endEditing:YES];
     
     if (_adressHeadView.rePersonField.text.length == 0) {
-        [UIHelper alertWithTitle:@"用户名不能为空！"]; return;
+        [UIHelper showUpMessage:@"用户名不能为空！"];
+
+    return;
     }else  if (_adressHeadView.rePhoneField.text.length == 0) {
-        [UIHelper alertWithTitle:@"手机号不能为空！"];return;
+        [UIHelper showUpMessage:@"手机号不能为空！"];return;
     } else   if (![DCCheckRegular dc_checkTelNumber:_adressHeadView.rePhoneField.text]) {
         [self.view makeToast:@"手机号码格式错误" duration:0.5 position:CSToastPositionCenter];
         return;
     }
        else if (_adressHeadView.addressLabel.text.length == 0) {
-        [UIHelper alertWithTitle:@"请选择所在区域！"];return;
+        [UIHelper showUpMessage:@"请选择所在区域！"];return;
     }else  if (_adressHeadView.detailTextView.text.length == 0) {
-        [UIHelper alertWithTitle:@"详细地址不能为空！"];return;
+        [UIHelper showUpMessage:@"详细地址不能为空！"];return;
     }
     
     NSArray * array = [_zipCode componentsSeparatedByString:@"-"];
