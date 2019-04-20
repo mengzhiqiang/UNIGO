@@ -109,11 +109,11 @@
 
 
 #pragma mark - Setter Getter Methods
-- (void)setYouLikeItem:(DCRecommendItem *)youLikeItem
+- (void)setYouLikeItem:(DCHomeRecommend *)youLikeItem
 {
     [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:youLikeItem.image]];
-    _priceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[youLikeItem.price floatValue]];
-    _goodsLabel.text = youLikeItem.name;
+    _priceLabel.text = [NSString stringWithFormat:@"%@",youLikeItem.desc ];
+    _goodsLabel.text = youLikeItem.title;
 }
 
 #pragma mark - 点击事件

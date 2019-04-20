@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class DCRecommendItem;
+#import "DCRecommendList.h"
 
 @interface DCGoodsYouLikeCell : UICollectionViewCell
 
 /* 推荐数据 */
-@property (strong , nonatomic)DCRecommendItem *youLikeItem;
+@property (strong , nonatomic)DCHomeRecommend *youLikeItem;
 /* 相同 */
 @property (strong , nonatomic)UIButton *sameButton;
 

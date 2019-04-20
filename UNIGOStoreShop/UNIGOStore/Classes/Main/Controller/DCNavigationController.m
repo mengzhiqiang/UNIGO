@@ -56,6 +56,7 @@
     attributes[NSForegroundColorAttributeName] = naiColor;
     attributes[NSFontAttributeName] = PFR18Font;
     bar.titleTextAttributes = attributes;
+    
 }
 
 #pragma mark - 返回

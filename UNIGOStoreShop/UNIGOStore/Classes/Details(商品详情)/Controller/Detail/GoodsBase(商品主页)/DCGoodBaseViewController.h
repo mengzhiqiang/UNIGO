@@ -22,6 +22,10 @@
 /* 商品图片 */
 @property (strong , nonatomic)NSString *goodImageView;
 
+
+/* 商品详情url */
+@property (strong , nonatomic)NSString *detailUrl;
+
 /* 商品轮播图 */
 @property (copy , nonatomic)NSArray *shufflingArray;
 

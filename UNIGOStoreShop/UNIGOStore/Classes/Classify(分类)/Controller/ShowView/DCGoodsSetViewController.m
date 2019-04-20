@@ -260,6 +260,7 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     
     
     DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
+    dcVc.goodID = _setItem[indexPath.row].identifier ;
     dcVc.goodTitle = _setItem[indexPath.row].name;
     dcVc.goodPrice = _setItem[indexPath.row].price;
     dcVc.goodSubtitle = _setItem[indexPath.row].info;

@@ -13,4 +13,7 @@
 /* 轮播图数组 */
 @property (copy , nonatomic)NSArray *imageGroupArray;
 
+
+@property (copy , nonatomic)void (^backIndex)(NSInteger index);
+
 @end

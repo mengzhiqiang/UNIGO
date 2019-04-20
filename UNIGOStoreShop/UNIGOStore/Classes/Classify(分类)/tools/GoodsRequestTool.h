@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void)getGoodsCateWithPram:(NSDictionary*)pram success:(void(^)(id responseObject))success fail:(void (^)(NSDictionary*error))error;
 
+/*
+ 首页 推荐商品列表
+ */
++(void)getHomeGoodsCateWithsuccess:(void(^)(id responseObject))success
+                              fail:(void (^)(NSDictionary*error))error ;
 @end
 
 NS_ASSUME_NONNULL_END

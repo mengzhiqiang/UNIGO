@@ -90,7 +90,7 @@
     }];
     
     [_goodTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.left.mas_equalTo(_autotrophyImageView.left-20);
+         make.left.mas_equalTo(_autotrophyImageView.left+10);
         [make.top.mas_equalTo(_autotrophyImageView)setOffset:-3];
         [make.right.mas_equalTo(self)setOffset:-DCMargin * 5];
     }];

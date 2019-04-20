@@ -58,6 +58,8 @@ extern NSString * const home_banner ;           // 首页banner
 extern NSString * const goodDetail_get;         //  商品信息
 extern NSString * const goodsList_get ;         //  商品列表
 
+extern NSString * const recommendList_get;         // 首页推荐
+
 
 //NIM Token 刷新网易云信Token
 extern NSString * const URLjettNIMUserToken;

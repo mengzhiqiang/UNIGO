@@ -72,7 +72,7 @@
     
     [self setUpInit];
     
-    [self setUpNav];
+//    [self setUpNav];
     
     [self setUpTopButtonView];
     
@@ -88,7 +88,7 @@
 
 -(void)RightMessageOfTableView{
     
-    [AFMeiQiaCustomEngine didMeiQiaUIViewController:self andContant:@{@"style":@"2"}];
+    [AFMeiQiaCustomEngine didMeiQiaUIViewController:self andContant:@{@"style":@"2",@"title":_goodTitle,@"id":_goodID,@"details":_detailUrl}];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
@@ -108,9 +108,15 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+//    [self setStatusBarBackgroundColor:[UIColor clearColor]];
 
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
+
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -210,12 +216,16 @@
 -(void)setUpChildViewControllers
 {
     WEAKSELF
-    goodBaseVc = [[DCGoodBaseViewController alloc] init];
+    if (!goodBaseVc) {
+        goodBaseVc = [[DCGoodBaseViewController alloc] init];
+    }
+    
     goodBaseVc.goodTitle = _goodTitle;
     goodBaseVc.goodPrice = _goodPrice;
     goodBaseVc.goodSubtitle = _goodSubtitle;
     goodBaseVc.shufflingArray = _shufflingArray;
     goodBaseVc.goodImageView = _goodImageView;
+    goodBaseVc.detailUrl = _detailUrl;
     goodBaseVc.changeTitleBlock = ^(BOOL isChange) {
         if (isChange) {
             weakSelf.title = @"图文详情";
@@ -247,8 +257,8 @@
 #pragma mark - 收藏 购物车
 - (void)setUpLeftTwoButton
 {
-    NSArray *imagesNor = @[@"tabr_07shoucang_up",@"tabr_08gouwuche"];
-    NSArray *imagesSel = @[@"tabr_07shoucang_down",@"tabr_08gouwuche"];
+    NSArray *imagesNor = @[@"ZXKF_kefu_helpback",@"tabr_08gouwuche"];
+    NSArray *imagesSel = @[@"ZXKF_kefu_helpback",@"tabr_08gouwuche"];
     CGFloat buttonW = ScreenW * 0.2;
     CGFloat buttonH = 50;
     CGFloat buttonY = ScreenH - buttonH;
@@ -342,8 +352,10 @@
 - (void)bottomButtonClick:(UIButton *)button
 {
     if (button.tag == 0) {
-        NSLog(@"收藏");
-        button.selected = !button.selected;
+//        NSLog(@"收藏");
+//        button.selected = !button.selected;
+        
+        [self RightMessageOfTableView];
     }else if(button.tag == 1){
         NSLog(@"购物车");
         DCshopCarViewController *shopCarVc = [[DCshopCarViewController alloc] init];
@@ -394,7 +406,7 @@
 
 -(void)getGoodDetail{
     
-    [UNHomeData getGoodDetailWithID:@"" success:^(id  _Nonnull responseObject) {
+    [UNHomeData getGoodDetailWithID:_goodID success:^(id  _Nonnull responseObject) {
         
         NSLog(@"==success%@",responseObject);
         [self  addGoodInformation:responseObject];
@@ -416,6 +428,16 @@
     goodBaseVc.shufflingArray = _shufflingArray;
     goodBaseVc.goodsInfomation = diction;
     
+    
+    _goodTitle = [diction objectForKey:@"name"];
+    _goodSubtitle = [diction objectForKey:@"info"];
+    _goodPrice = [diction objectForKey:@"price"];
+    _goodImageView = [diction objectForKey:@"image"];
+    _goodImageView = [diction objectForKey:@"image"];
+    _detailUrl = [diction objectForKey:@"details"];
+
+    
+    [self setUpChildViewControllers ];
 }
 
 

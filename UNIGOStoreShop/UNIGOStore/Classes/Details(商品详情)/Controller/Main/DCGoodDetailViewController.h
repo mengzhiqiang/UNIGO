@@ -10,6 +10,8 @@
 
 @interface DCGoodDetailViewController : UIViewController
 
+/* 商品id */
+@property (strong , nonatomic)NSString *goodID;
 /* 商品标题 */
 @property (strong , nonatomic)NSString *goodTitle;
 /* 商品价格 */
@@ -22,4 +24,7 @@
 /* 商品轮播图 */
 @property (copy , nonatomic)NSArray *shufflingArray;
 
+
+/* 商品详情url */
+@property (strong , nonatomic)NSString *detailUrl;
 @end

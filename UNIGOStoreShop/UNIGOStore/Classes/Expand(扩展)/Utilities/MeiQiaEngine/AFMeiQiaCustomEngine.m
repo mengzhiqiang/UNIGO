@@ -54,7 +54,8 @@
     if ([[contantDic objectForKey:@"style"] isEqualToString:@"1"]) {
         [chatViewManager setPreSendMessages: @[@"我想咨询的订单号：【17050454968】"]];
     }else  if ([[contantDic objectForKey:@"style"] isEqualToString:@"2"]) {
-        [chatViewManager setPreSendMessages: @[@"我想咨询的商品是：   智能手机64G 超大屏幕 43度 广角拍摄 【 http//www.baidu.com】"]];
+        NSString *title = [NSString stringWithFormat:@"我想咨询的商品是：%@ \n地址：%@",[contantDic objectForKey:@"title"],[contantDic objectForKey:@"details"]];
+        [chatViewManager setPreSendMessages: @[title]];
     }
     
 }

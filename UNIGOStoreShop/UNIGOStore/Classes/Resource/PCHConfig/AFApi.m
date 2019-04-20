@@ -83,6 +83,9 @@ NSString * const goodsList_get = @"goods/goodsList";         //  商品列表
 NSString * const siteInfo_get = @"/site/info";               //  店铺信息
 NSString * const goodDetail_get = @"/goods/details";         //  商品信息
 
+NSString * const recommendList_get = @"recommend/lists";         // 首页推荐
+
+
 
 //NIM Token 刷新网易云信Token
 NSString * const URLjettNIMUserToken = @"/m/user/nim";

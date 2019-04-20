@@ -57,12 +57,12 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
-    _leftItemButton = ({
-        UIButton * button = [UIButton new];
-        [button setImage:[UIImage imageNamed:@"shouye_icon_scan_white"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
+//    _leftItemButton = ({
+//        UIButton * button = [UIButton new];
+//        [button setImage:[UIImage imageNamed:@"shouye_icon_scan_white"] forState:UIControlStateNormal];
+//        [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
+//        button;
+//    });
     
     _rightItemButton = ({
         UIButton * button = [UIButton new];
@@ -79,7 +79,7 @@
     });
     [self addSubview:_rightItemButton];
     [self addSubview:_rightRItemButton];
-    [self addSubview:_leftItemButton];
+//    [self addSubview:_leftItemButton];
     
     CAGradientLayer * layer = [[CAGradientLayer alloc] init];
     layer.frame = self.bounds;
@@ -120,7 +120,7 @@
     _dcObserve = [[NSNotificationCenter defaultCenter]addObserverForName:SHOWTOPTOOLVIEW object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         weakSelf.backgroundColor = [UIColor whiteColor];
         _topSearchView.backgroundColor = RGB(240, 240, 240);
-        [weakSelf.leftItemButton setImage:[UIImage imageNamed:@"shouye_icon_scan_gray"] forState:0];
+//        [weakSelf.leftItemButton setImage:[UIImage imageNamed:@"shouye_icon_scan_gray"] forState:0];
         [weakSelf.rightItemButton setImage:[UIImage imageNamed:@"shouye_icon_sort_gray"] forState:0];
         [weakSelf.rightRItemButton setImage:[UIImage imageNamed:@"icon_gouwuche_title_gray"] forState:0];
     }];
@@ -128,7 +128,7 @@
     _dcObserve = [[NSNotificationCenter defaultCenter]addObserverForName:HIDETOPTOOLVIEW object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         weakSelf.backgroundColor = [UIColor clearColor];
         _topSearchView.backgroundColor = [UIColor whiteColor];
-        [weakSelf.leftItemButton setImage:[UIImage imageNamed:@"shouye_icon_scan_white"] forState:0];
+//        [weakSelf.leftItemButton setImage:[UIImage imageNamed:@"shouye_icon_scan_white"] forState:0];
         [weakSelf.rightItemButton setImage:[UIImage imageNamed:@"shouye_icon_sort_white"] forState:0];
         [weakSelf.rightRItemButton setImage:[UIImage imageNamed:@"icon_gouwuche_title_white"] forState:0];
     }];
@@ -138,29 +138,32 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(20);
-        make.left.equalTo(self.mas_left).offset(0);
-        make.height.equalTo(@44);
-        make.width.equalTo(@44);
-    }];
+//    [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.mas_top).offset(20);
+//        make.left.equalTo(self.mas_left).offset(0);
+//        make.height.equalTo(@44);
+//        make.width.equalTo(@44);
+//    }];
     
     [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_leftItemButton.mas_centerY);
+//        make.centerY.equalTo(_leftItemButton.mas_centerY);
+//        make.right.equalTo(self.mas_right).offset(-0);
+        make.top.equalTo(self.mas_top).offset(20);
         make.right.equalTo(self.mas_right).offset(-0);
         make.height.equalTo(@44);
         make.width.equalTo(@44);
     }];
     
     [_rightRItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_leftItemButton.mas_centerY);
+        make.centerY.equalTo(_rightItemButton.mas_centerY);
         make.right.equalTo(_rightItemButton.mas_left).offset(5);
         make.height.equalTo(@44);
         make.width.equalTo(@44);
     }];
     
     [_topSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.left.mas_equalTo(_leftItemButton.mas_right)setOffset:5];
+//        [make.left.mas_equalTo(_leftItemButton.mas_right)setOffset:5];
+         make.left.equalTo(self.mas_left).offset(0);
         [make.right.mas_equalTo(_rightRItemButton.mas_left)setOffset:5];
         make.height.mas_equalTo(@(32));
         make.centerY.mas_equalTo(_rightRItemButton);

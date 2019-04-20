@@ -386,6 +386,12 @@
 		9975A3DC223A4F6A004BF485 /* 2X001.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A1223A4F69004BF485 /* 2X001.png */; };
 		998B6F10226A17790055421B /* AppDelegate+MeiQia.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */; };
 		998B6F14226A18F80055421B /* AFMeiQiaCustomEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */; };
+		998B6F17226ADF490055421B /* DCRecommendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F16226ADF490055421B /* DCRecommendList.m */; };
+		998B6F1B226B03880055421B /* DCRecommendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F19226B03880055421B /* DCRecommendCollectionViewCell.m */; };
+		998B6F1C226B03880055421B /* DCRecommendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B6F1A226B03880055421B /* DCRecommendCollectionViewCell.xib */; };
+		998B6F1F226B35240055421B /* WKwebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F1D226B35240055421B /* WKwebViewController.m */; };
+		998B6F22226B363F0055421B /* img_step3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998B6F20226B363F0055421B /* img_step3@2x.png */; };
+		998B6F23226B363F0055421B /* img_step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998B6F21226B363F0055421B /* img_step3@3x.png */; };
 		99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F28225ECBBC000AD7A0 /* PayViewController.m */; };
 		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
 		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
@@ -1159,6 +1165,15 @@
 		998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+MeiQia.m"; sourceTree = "<group>"; };
 		998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMeiQiaCustomEngine.m; sourceTree = "<group>"; };
 		998B6F13226A18F80055421B /* AFMeiQiaCustomEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMeiQiaCustomEngine.h; sourceTree = "<group>"; };
+		998B6F15226ADF490055421B /* DCRecommendList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCRecommendList.h; sourceTree = "<group>"; };
+		998B6F16226ADF490055421B /* DCRecommendList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCRecommendList.m; sourceTree = "<group>"; };
+		998B6F18226B03880055421B /* DCRecommendCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCRecommendCollectionViewCell.h; sourceTree = "<group>"; };
+		998B6F19226B03880055421B /* DCRecommendCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCRecommendCollectionViewCell.m; sourceTree = "<group>"; };
+		998B6F1A226B03880055421B /* DCRecommendCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCRecommendCollectionViewCell.xib; sourceTree = "<group>"; };
+		998B6F1D226B35240055421B /* WKwebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKwebViewController.m; sourceTree = "<group>"; };
+		998B6F1E226B35240055421B /* WKwebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKwebViewController.h; sourceTree = "<group>"; };
+		998B6F20226B363F0055421B /* img_step3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_step3@2x.png"; sourceTree = "<group>"; };
+		998B6F21226B363F0055421B /* img_step3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_step3@3x.png"; sourceTree = "<group>"; };
 		99C95F28225ECBBC000AD7A0 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		99C95F29225ECBBC000AD7A0 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		99C95F2A225ECBBC000AD7A0 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -2327,6 +2342,9 @@
 				18DCA2971F1F4186008BF67E /* DCGoodsYouLikeCell.m */,
 				926CED2B1FCEA1AE00002DDF /* DCNewWelfareCell.h */,
 				926CED2C1FCEA1AE00002DDF /* DCNewWelfareCell.m */,
+				998B6F18226B03880055421B /* DCRecommendCollectionViewCell.h */,
+				998B6F19226B03880055421B /* DCRecommendCollectionViewCell.m */,
+				998B6F1A226B03880055421B /* DCRecommendCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2492,6 +2510,8 @@
 		18DCA2FF1F1F4187008BF67E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				998B6F15226ADF490055421B /* DCRecommendList.h */,
+				998B6F16226ADF490055421B /* DCRecommendList.m */,
 				18DCA3001F1F4187008BF67E /* DCRecommendItem.h */,
 				18DCA3011F1F4187008BF67E /* DCRecommendItem.m */,
 				993F4BA7224F1B1B001260B9 /* DCShopCarModel.h */,
@@ -3135,6 +3155,8 @@
 		9967852422365EFA00142ACB /* imageSource */ = {
 			isa = PBXGroup;
 			children = (
+				998B6F20226B363F0055421B /* img_step3@2x.png */,
+				998B6F21226B363F0055421B /* img_step3@3x.png */,
 				996F9D9E226331DB00B52EAD /* payWeixin.png */,
 				996F9D9D226331DB00B52EAD /* payZhifu.png */,
 				9975A366223A4F69004BF485 /* loadingPng */,
@@ -3757,6 +3779,8 @@
 		9CCC208E202C289600B6CD44 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				998B6F1E226B35240055421B /* WKwebViewController.h */,
+				998B6F1D226B35240055421B /* WKwebViewController.m */,
 				9CCC208F202C28C700B6CD44 /* DCSettingViewController.h */,
 				9CCC2090202C28C700B6CD44 /* DCSettingViewController.m */,
 			);
@@ -3909,6 +3933,7 @@
 				9975A3D7223A4F6A004BF485 /* 2X006.png in Resources */,
 				996F9DA42264250600B52EAD /* RunCar.jpg in Resources */,
 				9975A3D5223A4F6A004BF485 /* 2X0049.png in Resources */,
+				998B6F23226B363F0055421B /* img_step3@3x.png in Resources */,
 				9975A3D0223A4F6A004BF485 /* 2X0039.png in Resources */,
 				9975A3AC223A4F69004BF485 /* 2X0050.png in Resources */,
 				9CCC207E202BEBC700B6CD44 /* AddressTableViewCell.xib in Resources */,
@@ -3942,11 +3967,13 @@
 				9975A3B4223A4F69004BF485 /* 2X0034.png in Resources */,
 				92A761DF1FCD921000017DFE /* loading2.gif in Resources */,
 				9C7A1E35202AC66E0051DB5D /* DCAccountPsdView.xib in Resources */,
+				998B6F22226B363F0055421B /* img_step3@2x.png in Resources */,
 				9975A3D2223A4F6A004BF485 /* 2X004.png in Resources */,
 				9C7FE1E91FD9230100D32EEA /* DCStoresRecommendHeaderView.xib in Resources */,
 				9975A3BE223A4F69004BF485 /* 2X0033.png in Resources */,
 				9975A3C8223A4F69004BF485 /* 2X0014.png in Resources */,
 				18DCA3711F1F4187008BF67E /* restrictedshine.tiff in Resources */,
+				998B6F1C226B03880055421B /* DCRecommendCollectionViewCell.xib in Resources */,
 				9C215E8B1FDBDF46002152F1 /* BeautyRecommendShop.plist in Resources */,
 				9967853822365F5D00142ACB /* icon_verification-code@3x.png in Resources */,
 				99DB644B2237979700E72F05 /* AFManageTableViewCell.xib in Resources */,
@@ -4178,6 +4205,7 @@
 				9938841622355A5600444EF4 /* TimeOfcCodeButton.m in Sources */,
 				18DCA33F1F1F4187008BF67E /* DCShareItemCell.m in Sources */,
 				18DCA3771F1F4187008BF67E /* XWCoolAnimator+XWFold.m in Sources */,
+				998B6F1F226B35240055421B /* WKwebViewController.m in Sources */,
 				9C8CC8642004A25E00515926 /* DCFlashButton.m in Sources */,
 				18DCA3931F1F4187008BF67E /* DCOverFootView.m in Sources */,
 				9938841422355A5600444EF4 /* AFToolTipOfHead.m in Sources */,
@@ -4252,6 +4280,7 @@
 				9938851C2235612C00444EF4 /* AppDelegate+Notification.m in Sources */,
 				9C7FE1E81FD9230100D32EEA /* DCStoresRecommendHeaderView.m in Sources */,
 				993884AB22355A8300444EF4 /* RefreshDataManager.m in Sources */,
+				998B6F1B226B03880055421B /* DCRecommendCollectionViewCell.m in Sources */,
 				993884E122355A8400444EF4 /* NSData+zh_JSON.m in Sources */,
 				18DCA38A1F1F4187008BF67E /* XWMagicMoveAnimator.m in Sources */,
 				993884DA22355A8400444EF4 /* AFAlertViewHelper.m in Sources */,
@@ -4458,6 +4487,7 @@
 				18DCA3921F1F4187008BF67E /* DCGoodsYouLikeCell.m in Sources */,
 				18DCA36D1F1F4187008BF67E /* XWInteractiveTransition.m in Sources */,
 				18DCA3441F1F4187008BF67E /* UIImage+DCCircle.m in Sources */,
+				998B6F17226ADF490055421B /* DCRecommendList.m in Sources */,
 				9C7338DD2006022100D30900 /* DCBeautyMsgCell.m in Sources */,
 				993F4BA6224E6307001260B9 /* DCShopCar.m in Sources */,
 				9C58D42B1FEA511200639225 /* DCNewFeatureViewController.m in Sources */,

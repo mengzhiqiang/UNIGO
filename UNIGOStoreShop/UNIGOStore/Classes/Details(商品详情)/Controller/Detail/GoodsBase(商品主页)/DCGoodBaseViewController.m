@@ -262,6 +262,10 @@ static NSArray *lastSeleArray_;
 }
 -(NSDictionary* )priceOfNowSelect{
     
+    if (!((lastSeleArray_.count)>=1)) {
+        return nil;
+    }
+    
     NSArray *result = [lastSeleArray_ sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         NSLog(@"%@~%@",obj1,obj2); //3~4 2~1 3~1 3~2
         return [obj1 compare:obj2]; //升序
@@ -296,9 +300,16 @@ static NSArray *lastSeleArray_;
 }
 
 #pragma mark - 记载图文详情
+
+-(void)setDetailUrl:(NSString *)detailUrl{
+    _detailUrl = detailUrl;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_detailUrl]];
+    [self.webView loadRequest:request];
+    
+}
 - (void)setUpGoodsWKWebView
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:CDDWeiBo]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_detailUrl]];
     [self.webView loadRequest:request];
     
     //下拉返回商品详情View
@@ -336,7 +347,7 @@ static NSArray *lastSeleArray_;
             cell.goodTitleLabel.text = _goodTitle;
             cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",_goodPrice];
             cell.goodSubtitleLabel.text = _goodSubtitle;
-            [DCSpeedy dc_setUpLabel:cell.goodTitleLabel Content:_goodTitle IndentationFortheFirstLineWith:cell.goodPriceLabel.font.pointSize * 2];
+//            [DCSpeedy dc_setUpLabel:cell.goodTitleLabel Content:_goodTitle IndentationFortheFirstLineWith:cell.goodPriceLabel.font.pointSize * 2];
             WEAKSELF
             cell.shareButtonClickBlock = ^{
                 [weakSelf setUpAlterViewControllerWith:[DCShareToViewController new] WithDistance:300 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:NO WithFlipEnable:NO];
@@ -379,9 +390,7 @@ static NSArray *lastSeleArray_;
             DCShowTypeFourCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeFourCellID forIndexPath:indexPath];
             cell.contentLabel.text = [_goodsInfomation objectForKey:@"shop_name"];
            [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString: [_goodsInfomation objectForKey:@"logo"]] placeholderImage:[UIImage imageNamed:@"MG_payVoucher"]];
-            cell.contentLabel.backgroundColor = [UIColor redColor];
-//        cell.contentLabel.left = 00;
-        
+        cell.isHasindicateButton = NO;
             gridcell = cell;
     }else if (indexPath.section == 4){
         DCDetailPartCommentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCDetailPartCommentCellID forIndexPath:indexPath];
@@ -458,19 +467,30 @@ static NSArray *lastSeleArray_;
     }else if (indexPath.section == 2 && indexPath.row == 0) {
         [self chageUserAdress]; //跟换地址
     }else if (indexPath.section == 1){ //属性选择
-        DCFeatureSelectionViewController *dcFeaVc = [DCFeatureSelectionViewController new];
-        dcFeaVc.lastNum = lastNum_;
-        dcFeaVc.goodsInfomation = self.goodsInfomation ;
-        dcFeaVc.goodImageView = _goodImageView;
-        dcFeaVc.lastSeleArray = [NSMutableArray arrayWithArray:lastSeleArray_];
-
-        [self setUpAlterViewControllerWith:dcFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];
         
+        NSArray * diction = [_goodsInfomation objectForKey:@"goodsSpecValue"] ;
+//        NSLog(@"goodsSpecValue=== %@" , [[_goodsInfomation objectForKey:@"goodsSpecValue"] class]);
+//        NSLog(@"goodsSpecValue=== %ld" ,diction.count);
+
+        if (diction.count>=1) {
+            DCFeatureSelectionViewController *dcFeaVc = [DCFeatureSelectionViewController new];
+            dcFeaVc.lastNum = lastNum_;
+            dcFeaVc.goodsInfomation = self.goodsInfomation ;
+            dcFeaVc.goodImageView = _goodImageView;
+            dcFeaVc.lastSeleArray = [NSMutableArray arrayWithArray:lastSeleArray_];
+            
+            [self setUpAlterViewControllerWith:dcFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];
+            
+        }else {
+            [UIHelper alertWithTitle:@"无可设置属性"];
+        }
+        
+      
     }else if(indexPath.section == 3){
         
         NSLog(@"===");
-        UNStoreViewController * stroeVC = [[UNStoreViewController alloc]init];
-        [self.navigationController pushViewController:stroeVC animated:YES];
+//        UNStoreViewController * stroeVC = [[UNStoreViewController alloc]init];
+//        [self.navigationController pushViewController:stroeVC animated:YES];
     }
     
 }
@@ -593,7 +613,9 @@ static NSArray *lastSeleArray_;
     [SVProgressHUD showSuccessWithStatus:@"加入购物车成功~"];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD dismissWithDelay:1.0];
+    
 }
+
 
 -(void)buyNowWithData{
     

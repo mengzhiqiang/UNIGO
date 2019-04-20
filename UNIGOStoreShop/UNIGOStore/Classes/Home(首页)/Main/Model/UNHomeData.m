@@ -43,7 +43,7 @@
 +(void)getGoodDetailWithID:(NSString *)goodID success:(void (^)(id _Nonnull))success error:(void (^)(NSDictionary * _Nonnull))fail{
 
     NSString *path = [API_HOST stringByAppendingString:goodDetail_get];
-    NSDictionary* pram = @{@"id":@"1"};
+    NSDictionary* pram = @{@"id":goodID};
     [HttpEngine requestGetWithURL:path params:pram isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
 
         NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
