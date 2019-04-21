@@ -157,6 +157,10 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
 
 #pragma mark - 获取网络
 - (void)getNetwork
@@ -165,7 +169,6 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         [CDDTopTip showTopTipWithMessage:@"您现在暂无可用网络"];
     }
 }
-
 
 #pragma mark - 设置头部header
 - (void)setUpGIFRrfresh
@@ -437,16 +440,13 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"section  == %ld ===row==%ld",(long)indexPath.section , indexPath.row);
     if (indexPath.section == 0) {//10
         
         DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init];
         goodSetVc.goodPlisName = @"ClasiftyGoods.plist";
         [self.navigationController pushViewController:goodSetVc animated:YES];
-        NSLog(@"点击了10个属性第%zd",indexPath.row);
     }else
         if (indexPath.section >= 1){
-        NSLog(@"点击了推荐的第%zd个商品",indexPath.row);
         
           DCHomeRecommend * recom =  [_homeRecommendList[indexPath.section-1].data objectAtIndex:indexPath.row];
             if ([recom.url hasPrefix:@"goods://"]) {

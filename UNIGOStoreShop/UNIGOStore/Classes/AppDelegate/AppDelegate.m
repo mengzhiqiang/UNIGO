@@ -32,11 +32,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
     [self setUpRootVC]; //跟控制器判断
-    
     [self.window makeKeyAndVisible];
-    
+
 //    [self CDDMallVersionInformationFromPGY]; //蒲公英自动更新
     
 #if defined(DEBUG)||defined(_DEBUG) //仅仅在模拟器上跑测试会显示FPS

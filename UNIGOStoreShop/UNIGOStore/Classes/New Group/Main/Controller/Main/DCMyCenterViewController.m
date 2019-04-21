@@ -130,8 +130,12 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     
      accountInfo =  [AFAccountEngine  getAccount];
     self.headView.useNameLabel.text = accountInfo.client.nickname;
-
     
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+
 }
 
 - (void)viewDidLoad {

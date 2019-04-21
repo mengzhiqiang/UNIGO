@@ -11,6 +11,10 @@
 @interface DCCustionHeadView : UICollectionReusableView
 
 /** 筛选点击回调 */
-@property (nonatomic, copy) dispatch_block_t filtrateClickBlock;
+@property (nonatomic, copy) void (^backIndex) (NSDictionary * diction);
+
+@property (assign , nonatomic)int sort;   //排序 1综合2销量3新品4价格 默认为1综合
+@property (assign , nonatomic)BOOL isSort;  //排序 默认为0升序 1降序
+
 
 @end

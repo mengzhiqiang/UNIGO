@@ -81,7 +81,7 @@
     }else{
         _goodsImageView.image = [UIImage imageNamed:subItem.pic];
     }
-    _goodsTitleLabel.text = subItem.goods_title;
+    _goodsTitleLabel.text = subItem.name;
 }
 
 @end

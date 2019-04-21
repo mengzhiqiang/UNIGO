@@ -21,6 +21,8 @@
 #import "DCGoodsSortCell.h"
 #import "DCBrandSortCell.h"
 #import "DCBrandsSortHeadView.h"
+#import "DCSearchToolView.h"
+
 // Vendors
 #import <MJExtension.h>
 #import "GoodsRequestTool.h"
@@ -29,7 +31,9 @@
 #import "UIBarButtonItem+DCBarButtonItem.h"
 // Others
 @interface DCCommodityViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
+{
+    DCSearchToolView * searchToolView ;
+}
 /* tableView */
 @property (strong , nonatomic)UITableView *tableView;
 /* collectionViw */
@@ -171,7 +175,7 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
     _voiceButton.frame = CGRectMake(_topSearchView.dc_width - 40, 0, 35, _topSearchView.dc_height);
     [_voiceButton addTarget:self action:@selector(voiceButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [_voiceButton setImage:[UIImage imageNamed:@"icon_voice_search"] forState:0];
-    [_topSearchView addSubview:_voiceButton];
+//    [_topSearchView addSubview:_voiceButton];
     
 }
 
@@ -287,7 +291,22 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 #pragma mark - 搜索点击
 - (void)searchButtonClick
 {
-    
+    NSLog(@"===");
+    if (!searchToolView) {
+        searchToolView = [[DCSearchToolView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH)];
+    }
+    [searchToolView.searchBar becomeFirstResponder];
+    searchToolView.hidden = NO;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:searchToolView];
+    WEAKSELF
+    searchToolView.backText = ^(NSString * _Nonnull text) {
+        
+        DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init];
+        goodSetVc.goodPlisName = @"ClasiftyGoods.plist";
+        goodSetVc.searchName = text;
+        [weakSelf.navigationController pushViewController:goodSetVc animated:YES];
+    };
 }
 
 #pragma mark - 语音点击

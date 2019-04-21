@@ -69,7 +69,8 @@
 //    // 一定要禁止系统自带的滑动手势
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     self.view.backgroundColor=[[UIColor grayColor] colorWithHexString:@"f1f5f8"];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
   
 }
 

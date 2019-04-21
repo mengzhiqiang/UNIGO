@@ -16,4 +16,7 @@
 @property (strong , nonatomic)NSString *goodsCateID;  ///商品分类id
 
 
+@property (strong , nonatomic)NSString *searchName;  ///搜索关键字
+
+
 @end

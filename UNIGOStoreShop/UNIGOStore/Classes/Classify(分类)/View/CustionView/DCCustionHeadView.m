@@ -38,7 +38,8 @@
     
     self = [super initWithFrame:frame];
     if (self) {
-        
+        _isSort = NO;
+        _sort = 1 ;
         [self setUpUI];
     }
     return self;
@@ -47,7 +48,7 @@
 - (void)setUpUI
 {
     self.backgroundColor = [UIColor whiteColor];
-    NSArray *titles = @[@"推荐",@"价格",@"销量",@"筛选"];
+    NSArray *titles = @[@"综合",@"销量",@"新品",@"价格"];
     NSArray *noImage = @[@"icon_Arrow2",@"",@"",@"icon_shaixuan"];
     CGFloat btnW = self.dc_width / titles.count;
     CGFloat btnH = self.dc_height;
@@ -73,9 +74,18 @@
 #pragma mark - 按钮点击
 - (void)buttonClick:(DCCustionButton *)button
 {
-    if (button.tag == 3 + AuxiliaryNum) { //筛选
-        !_filtrateClickBlock ? : _filtrateClickBlock();
+    
+    if (button.tag-100+1 == _sort) {
+        _isSort = !_isSort;
     }else{
+        _sort = (int)button.tag-100+1 ;
+        _isSort = NO;
+    }
+    
+    NSDictionary * diction = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",_sort], @"sort", (_isSort?@"2":@"1"), @"sortStatus", nil];
+    
+    !_backIndex ? : _backIndex(diction);
+    
         _selectBottomRedView.hidden = YES;
         [_selectBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -91,7 +101,7 @@
         
         _selectBtn = button;
         _selectBottomRedView = bottomRedView;
-    }
+//    }
 }
 
 

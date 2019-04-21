@@ -43,28 +43,11 @@
     else {
         request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:_webUrl]];
     }
-
     [_webView loadRequest:request];
     self.webView.navigationDelegate = self ;
     // 最后将webView添加到界面3000 *0.03 =90  (10000-3000)*10% =700 3000*20%=600
     [self.view addSubview:_webView];
     [UIHelper addLoadingViewTo:self.view withFrame:0];
-    
-    
-    if (_IS_hiddenNav) {
-        _webView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-0);
-        self.HeadView.hidden = YES;
-        self.headMessageButton.hidden = YES;
-            if (@available(iOS 11.0, *)) {
-                _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-                _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-                _webView.scrollView.scrollIndicatorInsets = _webView.scrollView.contentInset;
-            } else {
-                // Fallback on earlier versions
-            }
-         
-        
-    }
 
 }
 
@@ -119,11 +102,15 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    if (!_IS_homeVC) {
-        self.tabBarController.tabBar.hidden = YES;
-    }else{
-        self.tabBarController.tabBar.hidden = NO;
-    }
+    self.tabBarController.tabBar.hidden = YES;
+    self.view.backgroundColor = [UIColor HexString:@"f2f2f2"];
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,27 +133,11 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
     decisionHandler(WKNavigationActionPolicyAllow);
-    NSString * string =  navigationAction.request.URL.absoluteString;
-    NSLog(@"===decidePolicyForNavigationAction==%@=",string);
-    if ([string hasPrefix:@"tel"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:string]];
-        _isCall = YES ;
-        return ;
-    }
-    
-    if ([navigationAction.request.URL.absoluteString rangeOfString:@"closewindow"].location != NSNotFound) {
-//        [self.navigationController popViewControllerAnimated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
 
-    if ([_webUrl hasPrefix:@"https://mobile.tmall.com"]) {
-        [self pushTaobaoTianmall];
-    }
 }
 /// 2 页面开始加载
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
     NSLog(@"====加载开始！===");
-    //状态栏添加加载图标
     rootView.hidden=YES;
 }
 /// 4 开始获取到网页内容时返回
@@ -200,6 +171,8 @@
     
     if (self.isCall) {
         return ;
+    }else{
+        [self  addNoDataImageView ];
     }
 
     
@@ -214,7 +187,7 @@
         rootView.backgroundColor = [UIColor whiteColor];
         
         bg_imageView=[[UIImageView alloc]init];
-        bg_imageView.frame = CGRectMake((SCREEN_WIDTH-250*RATIO)/2, 48, 250*RATIO, 250*RATIO);
+        bg_imageView.frame = CGRectMake((SCREEN_WIDTH-150*RATIO)/2, 48, 150*RATIO, 150*RATIO);
         bg_imageView.image =[UIImage imageNamed:@"img_step3"];
         [rootView addSubview:bg_imageView];
         
@@ -227,7 +200,7 @@
         [rootView addSubview:noDateLabel];
         
         UIButton *btn =[ UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(25, bg_imageView.bottom+57, SCREEN_WIDTH-50, ((SCREEN_WIDTH-50)/270)*44);
+        btn.frame = CGRectMake(50, bg_imageView.bottom+57, SCREEN_WIDTH-100, ((SCREEN_WIDTH-100)/270)*34);
         [btn setTitle:@"刷新试试" forState:UIControlStateNormal];
         btn.titleLabel.font=[UIFont boldSystemFontOfSize:16];
         [btn addTarget:self action:@selector(reloadAgianURL:) forControlEvents:UIControlEventTouchUpInside];
@@ -265,20 +238,4 @@
     }
 }
 
-#pragma mark 跳转到淘宝或天猫
--(void)pushTaobaoTianmall{
-
-//    NSURL *taobaoUrl = [NSURL URLWithString:[NSString stringWithFormat:@"taobao://item.taobao.com/item.htm?id=%@", @"540712212369"]];
-//    NSURL *tmallUrl = [NSURL URLWithString:[[NSString stringWithFormat:@"tmall://tmallclient/?{\"action\":\"item:id=%@\"}", @"540712212369"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    if ([[UIApplication sharedApplication] canOpenURL:taobaoUrl]) {
-//        //能打开淘宝就打开淘宝
-//        [[UIApplication sharedApplication] openURL:taobaoUrl];
-//        
-//    } else
-//        if ([[UIApplication sharedApplication] canOpenURL:tmallUrl]) {
-//        //能打开天猫就打开天猫
-//        [[UIApplication sharedApplication] openURL:tmallUrl];
-//    }
-    
-}
 @end

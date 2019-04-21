@@ -29,8 +29,13 @@
 
 // Others
 #import "GoodsRequestTool.h"
-
+#import "DCSearchToolView.h"
 @interface DCGoodsSetViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    
+    DCSearchToolView * searchToolView ;
+
+}
 /* scrollerVew */
 @property (strong , nonatomic)UICollectionView *collectionView;
 /* 搜索 */
@@ -53,6 +58,10 @@
 @property (strong , nonatomic)UIButton *backTopButton;
 /* 足迹按钮 */
 @property (strong , nonatomic)UIButton *footprintButton;
+
+
+@property (assign , nonatomic)int sort;   //排序 1综合2销量3新品4价格 默认为1综合
+@property (assign , nonatomic)int sortStatus;  //排序 1升序 2降序 默认为1升序
 
 @end
 
@@ -110,6 +119,25 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 
 }
 
+#pragma mark - 搜索点击
+- (void)searchButtonClick
+{
+    NSLog(@"===");
+    if (!searchToolView) {
+        searchToolView = [[DCSearchToolView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH)];
+    }
+    [searchToolView.searchBar becomeFirstResponder];
+    searchToolView.hidden = NO;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:searchToolView];
+    WEAKSELF
+    searchToolView.backText = ^(NSString * _Nonnull text) {
+        weakSelf.searchName = text;
+        [weakSelf getGoodListwithDiction:nil];
+
+    };
+}
+
 #pragma mark - initialize
 - (void)setUpColl
 {
@@ -124,9 +152,8 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 #pragma mark - 加载数据
 - (void)setUpData
 {
-//    _setItem = [DCRecommendItem mj_objectArrayWithFilename:_goodPlisName];
     
-    [self getGoodListwithID];
+    [self getGoodListwithDiction:nil];
 }
 #pragma mark - 导航栏
 - (void)setUpNav
@@ -225,9 +252,10 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
         
         DCCustionHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCCustionHeadViewID forIndexPath:indexPath];
         WEAKSELF
-        headerView.filtrateClickBlock = ^{//点击了筛选
-            [weakSelf filtrateButtonClick];
+        headerView.backIndex = ^(NSDictionary *diction) {
+            [weakSelf getGoodListwithDiction:diction];
         };
+
         reusableview = headerView;
     }
     return reusableview;
@@ -257,7 +285,6 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了商品第%zd",indexPath.row);
-    
     
     DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
     dcVc.goodID = _setItem[indexPath.row].identifier ;
@@ -360,13 +387,6 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     [DCSildeBarView dc_showSildBarViewController];
 }
 
-#pragma mark - 点击搜索
-- (void)searchButtonClick
-{
-    NSLog(@"====");
-}
-
-
 #pragma mark - 转场动画弹出控制器
 - (void)setUpAlterViewControllerWith:(UIViewController *)vc WithDistance:(CGFloat)distance
 {
@@ -389,9 +409,20 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 
 #pragma mark - 请求网络数据
 
--(void)getGoodListwithID{
+-(void)getGoodListwithDiction:(NSDictionary*)pram{
     
-    NSDictionary * diction = @{@"cateId":@"5"};
+//    NSDictionary * diction = @{@"cateId":@"5"};
+    
+    NSMutableDictionary * diction = [NSMutableDictionary dictionary];
+    
+    [diction addEntriesFromDictionary:pram];
+    if (_goodsCateID) {
+        [diction setObject:_goodsCateID forKey:@"cateId"];
+    }
+    if (_searchName) {
+        [diction setObject:_searchName forKey:@"search"]; 
+    }
+
     [GoodsRequestTool getGoodsCateWithPram:diction success:^(id  _Nonnull responseObject) {
         self.setItem = [DCRecommendItem mj_objectArrayWithKeyValuesArray:responseObject];
         [self.collectionView reloadData];
