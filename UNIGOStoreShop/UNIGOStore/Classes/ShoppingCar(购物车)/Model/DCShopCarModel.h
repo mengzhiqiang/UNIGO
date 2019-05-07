@@ -11,8 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DCShopCarModel : NSObject
+
+/** 购物车ID  */
+@property (nonatomic, copy ,readonly) NSString *identifier;
 /** 商品ID  */
-@property (nonatomic, copy ) NSString *identifier;
+@property (nonatomic, copy ) NSString *goods_id;
 /** 图片URL */
 @property (nonatomic, copy ) NSString *image;
 /** 商品标题 */
@@ -24,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy ) NSString *market_price;
 
 /** 数量 */
-@property (nonatomic, copy ) NSString *count;
+@property (nonatomic, copy ) NSString *cart_num;
 
 /** 是否选中 */
 @property (nonatomic, assign ) BOOL isSelect;
@@ -34,12 +37,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy ) NSString *sales;
 
 /** 属性 */
-@property (nonatomic, copy ) NSString *nature;
+@property (nonatomic, copy ) NSString *spec_name;
 
 /** 属性id */
-@property (nonatomic, copy ) NSString *natureID;
+@property (nonatomic, copy ) NSString *spec_id;
 /** 商品小标题 */
 @property (nonatomic, copy ) NSString *info;
+
+
 
 @end
 

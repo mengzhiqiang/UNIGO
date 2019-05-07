@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
-            timestampString = "577435994.678353"
+            timestampString = "578844896.371752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/DCNewAdressViewController.m"
-            timestampString = "577521654.509343"
+            timestampString = "577791694.533549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "312"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/DCNewAdressViewController.m"
-            timestampString = "577521654.5096689"
+            timestampString = "577791694.5336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UNIGOStore/Classes/New Group/Main/Controller/SubController/DCNewAdressViewController.m"
-            timestampString = "577521654.509716"
+            timestampString = "577791694.533636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "310"
@@ -186,7 +186,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCNewAdressViewController.m"
-                  timestampString = "577521654.804701"
+                  timestampString = "578844896.676903"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "311"
@@ -201,7 +201,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCNewAdressViewController.m"
-                  timestampString = "577521654.806381"
+                  timestampString = "578844896.678614"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "311"
@@ -216,7 +216,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCNewAdressViewController.m"
-                  timestampString = "577521654.80891"
+                  timestampString = "578844896.680285"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "311"
@@ -265,7 +265,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCReceivingAddressViewController.m"
-                  timestampString = "577521654.817744"
+                  timestampString = "578844896.689009"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "290"
@@ -280,7 +280,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCReceivingAddressViewController.m"
-                  timestampString = "577521654.819694"
+                  timestampString = "578844896.6906379"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "290"
@@ -393,7 +393,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCReceivingAddressViewController.m"
-                  timestampString = "577521654.838975"
+                  timestampString = "578844896.708815"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "315"
@@ -408,7 +408,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCReceivingAddressViewController.m"
-                  timestampString = "577521654.840982"
+                  timestampString = "578844896.710377"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "315"
@@ -423,7 +423,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/New%20Group/Main/Controller/SubController/DCReceivingAddressViewController.m"
-                  timestampString = "577521654.843135"
+                  timestampString = "578844896.71213"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "315"
@@ -514,7 +514,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UNIGOStore/Classes/Details(&#x5546;&#x54c1;&#x8be6;&#x60c5;)/Controller/Detail/GoodsBase(&#x5546;&#x54c1;&#x4e3b;&#x9875;)/DCGoodBaseViewController.m"
-            timestampString = "577521654.510141"
+            timestampString = "578844896.372381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "248"
@@ -535,8 +535,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "428"
             endingLineNumber = "428"
-            landmarkName = "DCGoodsSetViewController"
-            landmarkType = "3">
+            landmarkName = "-getGoodListwithDiction:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -558,22 +558,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UNIGOStore/Classes/Classify(&#x5206;&#x7c7b;)/Controller/Main/DCCommodityViewController.m"
-            timestampString = "577521654.5106471"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
-            landmarkName = "-addGooditemArray:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -583,7 +567,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "415"
             endingLineNumber = "415"
-            landmarkName = "-setUpAlterViewControllerWith:WithDistance:"
+            landmarkName = "-getGoodListwithDiction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -599,7 +583,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "425"
             endingLineNumber = "425"
-            landmarkName = "-selfAlterViewback"
+            landmarkName = "-getGoodListwithDiction:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -610,7 +594,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/Classify(%E5%88%86%E7%B1%BB)/Controller/ShowView/DCGoodsSetViewController.m"
-                  timestampString = "577521654.879137"
+                  timestampString = "578844896.741931"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "426"
@@ -625,7 +609,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/Classify(%E5%88%86%E7%B1%BB)/Controller/ShowView/DCGoodsSetViewController.m"
-                  timestampString = "577521654.880815"
+                  timestampString = "578844896.744185"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "426"
@@ -640,7 +624,7 @@
                   moduleName = "UNIGOStore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhiqiangmeng/Desktop/UNIGO/UNIGOStoreShop/UNIGOStore/Classes/Classify(%E5%88%86%E7%B1%BB)/Controller/ShowView/DCGoodsSetViewController.m"
-                  timestampString = "577521654.8824199"
+                  timestampString = "578844896.746183"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "426"
@@ -657,11 +641,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UNIGOStore/Classes/New Group/Main/Controller/Main/DCMyCenterViewController.m"
-            timestampString = "577521654.51097"
+            timestampString = "578917196.141305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-viewDidDisappear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -672,13 +656,205 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UNIGOStore/Classes/Home(&#x9996;&#x9875;)/Main/Controller/DCHandPickViewController.m"
-            timestampString = "577521654.5111409"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "578844896.372564"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "+refreshTokenWihtSuccess:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "578844896.372636"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
+            landmarkName = "+refreshTokenWihtSuccess:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Tools(&#x5de5;&#x5177;)/HttpEngine/HttpEngine.m"
+            timestampString = "578844896.372701"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
+            landmarkName = "+refreshTokenWihtSuccess:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.372772"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
+            landmarkName = "-editeShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.372839"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "-editeShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.372901"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "-editeShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.372959"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "-editeShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.3730201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.373089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "-deleteShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.373143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            landmarkName = "-deleteShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.373196"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "-deleteShopCar:withindex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/ShoppingCar(&#x8d2d;&#x7269;&#x8f66;)/Controller/DCshopCarViewController.m"
+            timestampString = "578844896.373248"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "-buyNow:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UNIGOStore/Classes/Expand(&#x6269;&#x5c55;)/Utilities/NSStringAndData/NSDate+Extension.m"
+            timestampString = "578844896.3732949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "+timeWithTimeIntervalString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

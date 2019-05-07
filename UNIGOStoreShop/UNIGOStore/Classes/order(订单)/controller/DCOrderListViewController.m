@@ -13,6 +13,13 @@
 @interface DCOrderListViewController ()<UIScrollViewDelegate>
 {
     HMSegmentedControl * segmentedControl3 ;
+    
+    JFJorderTabelView *order_all;
+    JFJorderTabelView *order_NoPay;     //未支付
+    JFJorderTabelView *order_stayGoods;  //未发货
+    JFJorderTabelView *order_deliverGoods;  //已发货
+    JFJorderTabelView *order_over;   //已完成
+
 }
 @property(strong,nonatomic) UIScrollView * scrollView ;
 
@@ -24,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的订单";
-    segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部",@"已支付", @"未支付", @"未评论", @"售后"]];
+    segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"未支付",@"待发货", @"已发货", @"已完成"]];
     [segmentedControl3 setFrame:CGRectMake(0, 64, SCREEN_WIDTH, 50)];
     __weak typeof(self) weakSelf = self;
     [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
@@ -60,27 +67,56 @@
     [self.view addSubview:self.scrollView];
     
     
-    JFJorderTabelView *order0 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake( 0, 0, SCREEN_WIDTH, lisTheight)];
-    order0.orderStyle = @"全部";
-    [order0 updataData:nil tagre:self];
+    order_all = [[JFJorderTabelView alloc] initWithFrame:CGRectMake( 0, 0, SCREEN_WIDTH, lisTheight)];
+    order_all.orderStyle = @"全部";
+    [order_all updataData:nil tagre:self];
 
-    [self.scrollView addSubview:order0];
+    [self.scrollView addSubview:order_all];
     
-    JFJorderTabelView *label1 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, lisTheight)];
-    [self.scrollView addSubview:label1];
+    order_NoPay = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*2, 0, SCREEN_WIDTH, lisTheight)];
+    order_NoPay.orderStyle = @"未支付";
+    [self.scrollView addSubview:order_NoPay];
     
-    JFJorderTabelView *label2 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*2, 0, SCREEN_WIDTH, lisTheight)];
-    label2.orderStyle = @"未支付";
-    [self.scrollView addSubview:label2];
+    order_stayGoods = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, lisTheight)];
+    [self.scrollView addSubview:order_stayGoods];
     
-    JFJorderTabelView *label3 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, lisTheight)];
-    label3.orderStyle = @"未评论";
+    order_deliverGoods= [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, lisTheight)];
+    order_deliverGoods.orderStyle = @"已发货";
+    [self.scrollView addSubview:order_deliverGoods];
+    
+    order_over= [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, lisTheight)];
+    order_over.orderStyle = @"已完成";
+    [self.scrollView addSubview:order_over];
+    
+}
 
-    [self.scrollView addSubview:label3];
-    
-    JFJorderTabelView *order1 = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 4, 0, SCREEN_WIDTH, lisTheight)];
-    order1.orderStyle = @"退款";
-    [self.scrollView addSubview:order1];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self GetAllOrder];
+}
+
+#pragma mark 提交订单
+-(void)GetAllOrder{
+    NSString *path = [API_HOST stringByAppendingString:order_lists];
+//    NSMutableDictionary * diction = [NSMutableDictionary dictionary];
+//    [diction setObject:@"1" forKey:@"pay_status"];
+//    [diction setObject:@"0" forKey:@"status"];
+    WEAKSELF
+    [HttpEngine requestPostWithURL:path params:nil isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"=订单==%@",JSONDic );
+        [order_all updataData:JSONDic tagre:self];
+
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"订单=code==%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
     
 }
 

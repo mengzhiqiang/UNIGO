@@ -404,60 +404,57 @@ static int refreshTokening = 0 ;
 + (NSURLSessionDataTask *)refreshTokenWihtSuccess:(HttpSuccessBlock)success
                         failure:(HttpFailureBlock)failure
 {
+    NSLog(@"==刷新token");
+
     if (refreshTokening==1) {  //如果正在刷新token则返回空
         return nil;
     }
-    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kSmartDeviceLoginTokenKey];
-    
-    if (token==nil) {
+//    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kSmartDeviceLoginTokenKey];
+    AFAccount *account = [AFAccountEngine getAccount];
+    if (account.access_token==nil) {
         [UIHelper pushLoinViewContrlller];
-
         return nil;
-
     }
+    NSLog(@"==刷新token==%@",account.access_token);
     NSString *path = [API_HOST stringByAppendingString:user_refreshToken];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    
-    AFAccount * account = [AFAccountEngine getAccount];
-    param[@"token"] =  account.refresh_token;
+//    AFAccount * account = [AFAccountEngine getAccount];
+    param[@"refresh_token"] =  account.refresh_token;
     param[@"appid"] =  login_appID;
-
     AFHTTPSessionManager *manager = [self httpSessionManagerWithIsToken:YES];
     manager.requestSerializer.timeoutInterval = 20.0f;
-    
     refreshTokening = 1 ;
     NSURLSessionDataTask *sessionDataTask = [manager PUT:path parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"];
-        //            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        //            [userDefaults setObject:[JSONDic objectForKey:@"token"] forKey:kSmartDeviceLoginTokenKey];
-        //            [userDefaults synchronize];
         refreshTokening = 0 ;
-
         [HttpRequestToken saveToken:JSONDic[@"access_token"]];
         [AFAccountEngine saveTokens:JSONDic];
         !success ?  : success(JSONDic);
+        NSLog(@"==刷新token==%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         refreshTokening = 0 ;
+        NSLog(@"=error=刷新token==%@",error);
+        
+        [UIHelper pushLoinViewContrlller];
 
         id object = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-                
+        NSLog(@"==刷新object==%@",object);
         NSDictionary *errorDic = [NSData zh_JSONFromData:object];
         NSInteger code=[[errorDic objectForKey:@"status_code"] integerValue];
         NSString *message =[errorDic objectForKey:@"message"];
         if (code == 401 && [message isEqualToString:@"token_expired"] ) {
-            if (token) {
-                [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"SaveTokenForText"];
+            if (account.access_token) {
+                [[NSUserDefaults standardUserDefaults] setObject:account.access_token forKey:@"SaveTokenForText"];
             }else{
                 [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"SaveTokenForText"];
             }
         }else{
             
-            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"token刷新后端返回异常错误code=%ld message=%@ token==%@",(long)code,message,token] forKey:@"SaveTokenForText"];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"token刷新后端返回异常错误code=%ld message=%@ token==%@",(long)code,message,account.access_token] forKey:@"SaveTokenForText"];
         }
         if ([message isEqualToString:@"token_expired"] ||  [message isEqualToString:@"token_invalid"]) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
-            NSLog(@"==刷新token失败==%@===errorDic==%@",token,errorDic);
-            [UIHelper pushLoinViewContrlller];
+            NSLog(@"==刷新token失败==%@===errorDic==%@",account.access_token,errorDic);
         }
            [self handleErrorUserInfo:error.userInfo errorDomain:nil errorString:nil failure:failure];
     }];

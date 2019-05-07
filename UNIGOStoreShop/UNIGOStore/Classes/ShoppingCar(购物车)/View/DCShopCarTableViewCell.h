@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic)  void (^backSelect)(DCShopCarModel*model);
 
+@property (copy, nonatomic)  void (^backShopCount)(DCShopCarModel*model);
+
 @end
 
 NS_ASSUME_NONNULL_END

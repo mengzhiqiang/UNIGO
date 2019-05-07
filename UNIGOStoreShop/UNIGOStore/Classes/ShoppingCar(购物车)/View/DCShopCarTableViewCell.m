@@ -23,7 +23,7 @@
 
 - (IBAction)editCount:(UIButton *)sender {
     
-    int shopCount = [_shopCar.count intValue];
+    int shopCount = [_shopCar.cart_num intValue];
     if (sender.tag==10) {
         
         if (shopCount>1) {
@@ -40,11 +40,14 @@
         }
         
     }
+    if ( [_shopCar.stock intValue]==0) {
+        shopCount = 1 ;
+    }
     
     _countTF.text = [NSString stringWithFormat:@"%d",shopCount];
-    _shopCar.count = _countTF.text;
-    if (_backSelect) {
-        _backSelect(_shopCar);
+    _shopCar.cart_num = _countTF.text;
+    if (_backShopCount) {
+        _backShopCount(_shopCar);
     }
     
 }
@@ -60,10 +63,11 @@
     _shopCar = shopCar;
     
     _goodsTitleLabel.text = shopCar.name ;
-    _goodsdetailLabel.text = shopCar.nature;
-    _priceLabel.text = shopCar.price;
-    _countTF.text = shopCar.count;
+    _goodsdetailLabel.text = shopCar.spec_name;
+    _priceLabel.text = [NSString stringWithFormat:@"¥%@",shopCar.price];
+    _countTF.text = shopCar.cart_num;
     
+    [_shopImageView setImageWithURL:[NSURL URLWithString:shopCar.image] placeholderImage:[UIImage imageNamed:@"bj_baobei"] ];
     if (_shopCar.isSelect) {
        
         [_selectButton setTitle:@"" forState:UIControlStateNormal];
@@ -74,7 +78,6 @@
         [_selectButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];;
 
     }
-    
 }
 
 @end

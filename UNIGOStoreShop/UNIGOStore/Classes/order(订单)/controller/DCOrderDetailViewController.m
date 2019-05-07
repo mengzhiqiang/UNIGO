@@ -21,6 +21,7 @@
 @interface DCOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     DCShopCar * shopCar ;
+    DCAdressItem * selectItem;
     DCReceivingAddressViewController * addressVC ;
 }
 
@@ -99,7 +100,7 @@
 -(void)updataAddressView{
     
     NSArray * addList = [DCAddressModel sharedDataBase].addressList ;
-    DCAdressItem * selectItem = addList.firstObject;
+    selectItem = addList.firstObject;
   
     if (addressVC.selectAddrss.mobile.length>0) {
         selectItem = addressVC.selectAddrss ;
@@ -164,8 +165,8 @@
         DCShopCarModel *model = [shopCar.buyList objectAtIndex:indexPath.row];
         cell.goodsDetailLabel.text = model.name;
         cell.priceLabel.text = model.price;
-        cell.sleepCountLabel.text = [NSString stringWithFormat:@"X%@",model.count];
-        cell.stateLabel.text = model.nature ;
+        cell.sleepCountLabel.text = [NSString stringWithFormat:@"X%@",model.cart_num];
+        cell.stateLabel.text = model.spec_name ;
         [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:[UIImage imageNamed:@""]];
         
         return cell;
@@ -262,8 +263,10 @@
     
     CGFloat sum = 0 ;
     for (DCShopCarModel *model in shopCar.buyList) {
-        sum = [model.price floatValue] * model.count.intValue+sum;
+        
+        sum = [model.price floatValue] * model.cart_num.intValue+sum;
     }
+
     
     return sum ;
 }
@@ -289,10 +292,71 @@
 
 - (IBAction)sumbitPay:(UIButton *)sender {
     
+    [self addOrderOfShop];
+ 
+}
+
+-(void)pushPayVCWithOrder:(NSString*)oder{
     PayViewController * payVC = [[PayViewController alloc]init];
     payVC.SumLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+    payVC.orderID = oder;
     
-    [self.navigationController pushViewController:payVC animated:YES];
+    UIViewController * viewVC = self.navigationController.viewControllers.firstObject;
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [viewVC.navigationController pushViewController:payVC animated:YES];
+    
+}
+
+#pragma mark 提交订单
+-(void)addOrderOfShop{
+    
+    NSString *path = [API_HOST stringByAppendingString:order_add];
+    
+    NSMutableDictionary * diction = [NSMutableDictionary dictionary];
+    NSString * car_id = @"";
+    for (DCShopCarModel * model in shopCar.buyList) {
+        if (model.identifier) {
+            if (car_id.length>0) {
+                car_id = [NSString stringWithFormat:@"%@,%@",car_id,model.identifier];
+            }else{
+                car_id = model.identifier ;
+            }
+        }
+    }
+    
+    if (car_id.length>0) {
+        [diction setObject:car_id forKey:@"cart_id"];
+    }else{
+        DCShopCarModel * model  = shopCar.buyList.firstObject;
+        
+        [diction setObject:model.goods_id forKey:@"goods_id"];
+        [diction setObject:model.spec_id forKey:@"spec_id"];
+        [diction setObject:model.cart_num forKey:@"goods_num"];
+
+    }
+    [diction setObject:selectItem.identifier forKey:@"address_id"];
+
+    
+    WEAKSELF
+    [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"===%@",responseObject );
+        if ([JSONDic objectForKey:@"order"]) {
+            [self pushPayVCWithOrder:[JSONDic objectForKey:@"order"]];
+        }else{
+            [self pushPayVCWithOrder:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"code==%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
     
 }
 - (IBAction)selectAddress:(UIButton *)sender {

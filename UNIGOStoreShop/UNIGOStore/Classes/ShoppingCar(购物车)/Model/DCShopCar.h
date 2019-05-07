@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "DCShopCarModel.h"
+#import "DCShopModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DCShopCar : NSObject
 
-@property(nonatomic,strong) NSMutableArray <DCShopCarModel*> *carList ;
+@property(nonatomic,strong) NSMutableArray <DCShopModel*> *carList ;
 
 @property(nonatomic,strong) NSMutableArray <DCShopCarModel*> *buyList ;
 

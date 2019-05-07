@@ -161,6 +161,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 - (IBAction)payOrder:(UIButton *)sender {
     PayViewController* payVC = [[PayViewController alloc]init];
     payVC.SumLabel.text = @"1899.00";

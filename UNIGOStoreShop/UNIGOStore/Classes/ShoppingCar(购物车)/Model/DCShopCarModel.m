@@ -10,4 +10,11 @@
 
 @implementation DCShopCarModel
 
++(void )load
+{
+    [DCShopCarModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
+        return @{@"identifier" : @"id"};
+    }];
+    
+}
 @end

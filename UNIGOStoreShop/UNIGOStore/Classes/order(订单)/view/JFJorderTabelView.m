@@ -15,6 +15,8 @@
 
 @property(strong ,nonatomic) UIViewController * controller ;
 
+@property(strong ,nonatomic) NSArray * data ;
+
 @end
 
 @implementation JFJorderTabelView
@@ -40,7 +42,7 @@
 #pragma mark- table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return  5;
+    return  (self.data.count?self.data.count:0);
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
@@ -88,6 +90,62 @@
     if ([_orderStyle isEqualToString:@"退款"]) {
         cell.orderStatusLabel.text = @"退款中";
     }
+    
+    if (self.data.count > indexPath.row) {
+        NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
+        cell.orderTimeLabel.text = [NSString stringWithFormat:@"订单时间：%@", [NSDate timeWithTimeIntervalString: [diction objectForKey:@"create_time"]]];
+        cell.goodeTitleLabel.text = [diction objectForKey:@"name"];
+        cell.goodsDetailLabel.text = [diction objectForKey:@"spec_name"];
+        cell.goodCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"total_num"]];;
+        cell.orderSumLabel.text = [NSString stringWithFormat:@"订单总额 ¥%@",[diction objectForKey:@"total_price"]];;
+
+        int status = [[diction objectForKey:@"status"] intValue];
+        
+        
+        switch (status) {
+            case -2:
+                {
+                    cell.orderStatusLabel.text = @"退款成功";
+
+                }
+                break;
+            case -1:
+            {
+                cell.orderStatusLabel.text = @"退款中";
+
+            }
+                break;
+            case 0:
+            {
+                cell.orderStatusLabel.text = @"待发货";
+
+            }
+                break;
+            case 1:
+            {
+                cell.orderStatusLabel.text = @"已发货";
+
+            }
+                break;
+            case 2:
+            {
+                cell.orderStatusLabel.text = @"已收货";
+
+            }
+                break;
+            case 4:
+            {
+                cell.orderStatusLabel.text = @"已完成";
+
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
     cell.backSelect = ^(NSString * _Nonnull style) {
         
         if ([style isEqualToString:@"pay"]) {
@@ -125,10 +183,12 @@
     
 }
 
--(void)updataData:(NSDictionary* )diction tagre:(UIViewController*)tagre{
+-(void)updataData:(NSArray* )array tagre:(UIViewController*)tagre{
     
-    
+    self.data = array ;
     _controller = tagre;
+    
+    [self reloadData];
 }
 
 -(void)deleteOrderWithRow:(NSInteger)row{

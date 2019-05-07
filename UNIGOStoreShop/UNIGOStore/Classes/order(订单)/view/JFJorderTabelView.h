@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong ,nonatomic) NSString * orderStyle ;
 
--(void)updataData:(NSDictionary* )diction tagre:(UIViewController*)tagre;
+-(void)updataData:(NSArray* )array tagre:(UIViewController*)tagre;
 
 @end
 

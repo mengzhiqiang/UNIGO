@@ -47,12 +47,12 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
-    _leftItemButton = ({
-        UIButton * button = [UIButton new];
-        [button setImage:[UIImage imageNamed:@"group_home_scan"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
+//    _leftItemButton = ({
+//        UIButton * button = [UIButton new];
+//        [button setImage:[UIImage imageNamed:@"group_home_scan"] forState:UIControlStateNormal];
+//        [button addTarget:self action:@selector(leftButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
+//        button;
+//    });
     
     _rightItemButton = ({
         UIButton * button = [UIButton new];
@@ -61,7 +61,7 @@
         button;
     });
     [self addSubview:_rightItemButton];
-    [self addSubview:_leftItemButton];
+//    [self addSubview:_leftItemButton];
     
     CAGradientLayer * layer = [[CAGradientLayer alloc] init];
     layer.frame = self.bounds;
@@ -73,15 +73,16 @@
 {
     [super layoutSubviews];
     
-    [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(20);
-        make.left.equalTo(self.mas_left).offset(0);
-        make.height.equalTo(@44);
-        make.width.equalTo(@44);
-    }];
+//    [_leftItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.mas_top).offset(20);
+//        make.left.equalTo(self.mas_left).offset(0);
+//        make.height.equalTo(@44);
+//        make.width.equalTo(@44);
+//    }];
     
     [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_leftItemButton.mas_centerY);
+//        make.centerY.equalTo(_leftItemButton.mas_centerY);
+        make.top.equalTo(self.mas_top).offset(20);
         make.right.equalTo(self.mas_right).offset(-0);
         make.height.equalTo(@44);
         make.width.equalTo(@44);

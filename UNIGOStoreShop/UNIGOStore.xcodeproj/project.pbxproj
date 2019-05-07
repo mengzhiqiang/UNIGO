@@ -306,6 +306,12 @@
 		993F4BCA224FB61D001260B9 /* DCOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 993F4BC8224FB61D001260B9 /* DCOrderDetailViewController.m */; };
 		993F4BCB224FB61D001260B9 /* DCOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */; };
 		994CCE55225A492F0046BD1B /* DCAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 994CCE54225A492F0046BD1B /* DCAddressModel.m */; };
+		9954551122705B6C00D9274C /* DCShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9954551022705B6C00D9274C /* DCShopModel.m */; };
+		9954551822818C3A00D9274C /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9954551222818C3800D9274C /* FeedbackViewController.xib */; };
+		9954551922818C3A00D9274C /* AboutUslistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9954551322818C3900D9274C /* AboutUslistViewController.xib */; };
+		9954551A22818C3A00D9274C /* AboutUslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9954551422818C3900D9274C /* AboutUslistViewController.m */; };
+		9954551B22818C3A00D9274C /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9954551522818C3900D9274C /* FeedbackViewController.m */; };
+		9954551D22818FFF00D9274C /* icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954551C22818FFF00D9274C /* icon60@3x.png */; };
 		9967852722365F0800142ACB /* main_btn_back_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852522365F0800142ACB /* main_btn_back_normal@3x.png */; };
 		9967852822365F0800142ACB /* main_btn_back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852622365F0800142ACB /* main_btn_back_normal@2x.png */; };
 		9967853422365F5D00142ACB /* icon_phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852B22365F5D00142ACB /* icon_phone@3x.png */; };
@@ -1084,6 +1090,15 @@
 		993F4BC9224FB61D001260B9 /* DCOrderDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCOrderDetailViewController.xib; sourceTree = "<group>"; };
 		994CCE53225A492F0046BD1B /* DCAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCAddressModel.h; sourceTree = "<group>"; };
 		994CCE54225A492F0046BD1B /* DCAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCAddressModel.m; sourceTree = "<group>"; };
+		9954550F22705B6C00D9274C /* DCShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCShopModel.h; sourceTree = "<group>"; };
+		9954551022705B6C00D9274C /* DCShopModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCShopModel.m; sourceTree = "<group>"; };
+		9954551222818C3800D9274C /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
+		9954551322818C3900D9274C /* AboutUslistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUslistViewController.xib; sourceTree = "<group>"; };
+		9954551422818C3900D9274C /* AboutUslistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUslistViewController.m; sourceTree = "<group>"; };
+		9954551522818C3900D9274C /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		9954551622818C3900D9274C /* AboutUslistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUslistViewController.h; sourceTree = "<group>"; };
+		9954551722818C3A00D9274C /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		9954551C22818FFF00D9274C /* icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon60@3x.png"; path = "UNIGOStore/Assets.xcassets/AppIcon.appiconset/icon60@3x.png"; sourceTree = SOURCE_ROOT; };
 		9967852522365F0800142ACB /* main_btn_back_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@3x.png"; sourceTree = "<group>"; };
 		9967852622365F0800142ACB /* main_btn_back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@2x.png"; sourceTree = "<group>"; };
 		9967852B22365F5D00142ACB /* icon_phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_phone@3x.png"; sourceTree = "<group>"; };
@@ -2416,6 +2431,7 @@
 		18DCA2E11F1F4187008BF67E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9954551C22818FFF00D9274C /* icon60@3x.png */,
 				996F9DA32264250600B52EAD /* RunCar.jpg */,
 				993F4BB6224FA300001260B9 /* iconfont.ttf */,
 				9967852422365EFA00142ACB /* imageSource */,
@@ -2521,6 +2537,8 @@
 				18DCA3011F1F4187008BF67E /* DCRecommendItem.m */,
 				993F4BA7224F1B1B001260B9 /* DCShopCarModel.h */,
 				993F4BA8224F1B1B001260B9 /* DCShopCarModel.m */,
+				9954550F22705B6C00D9274C /* DCShopModel.h */,
+				9954551022705B6C00D9274C /* DCShopModel.m */,
 				993F4BA4224E6307001260B9 /* DCShopCar.h */,
 				993F4BA5224E6307001260B9 /* DCShopCar.m */,
 			);
@@ -3462,6 +3480,12 @@
 		9C67DC5A1FE7992A00C04F25 /* SubController */ = {
 			isa = PBXGroup;
 			children = (
+				9954551622818C3900D9274C /* AboutUslistViewController.h */,
+				9954551422818C3900D9274C /* AboutUslistViewController.m */,
+				9954551322818C3900D9274C /* AboutUslistViewController.xib */,
+				9954551722818C3A00D9274C /* FeedbackViewController.h */,
+				9954551522818C3900D9274C /* FeedbackViewController.m */,
+				9954551222818C3800D9274C /* FeedbackViewController.xib */,
 				99094E9D223B382900C97DBA /* UNmanagerController.h */,
 				99094E9B223B382800C97DBA /* UNmanagerController.m */,
 				99094E9C223B382900C97DBA /* UNmanagerController.xib */,
@@ -3977,6 +4001,7 @@
 				9C7FE1E91FD9230100D32EEA /* DCStoresRecommendHeaderView.xib in Resources */,
 				9975A3BE223A4F69004BF485 /* 2X0033.png in Resources */,
 				9975A3C8223A4F69004BF485 /* 2X0014.png in Resources */,
+				9954551D22818FFF00D9274C /* icon60@3x.png in Resources */,
 				18DCA3711F1F4187008BF67E /* restrictedshine.tiff in Resources */,
 				998B6F1C226B03880055421B /* DCRecommendCollectionViewCell.xib in Resources */,
 				9C215E8B1FDBDF46002152F1 /* BeautyRecommendShop.plist in Resources */,
@@ -4008,6 +4033,7 @@
 				18DCA3C51F1F4187008BF67E /* HomeHighGoods.plist in Resources */,
 				9CE9CB6D1FE8D9280033322E /* DCNewAdressViewController.xib in Resources */,
 				9975A3B5223A4F69004BF485 /* 2X0020.png in Resources */,
+				9954551922818C3A00D9274C /* AboutUslistViewController.xib in Resources */,
 				9975A365223A4D2B004BF485 /* Password_btn_hidden@3x.png in Resources */,
 				9975A3D4223A4F6A004BF485 /* 2X007.png in Resources */,
 				9975A3DA223A4F6A004BF485 /* 2X0059.png in Resources */,
@@ -4018,6 +4044,7 @@
 				9975A3B9223A4F69004BF485 /* 2X0037.png in Resources */,
 				9975A3CC223A4F69004BF485 /* 2X0013.png in Resources */,
 				9975A3CE223A4F69004BF485 /* 2X0010.png in Resources */,
+				9954551822818C3A00D9274C /* FeedbackViewController.xib in Resources */,
 				18DCA3B91F1F4187008BF67E /* FootprintGoods.plist in Resources */,
 				9975A3CF223A4F69004BF485 /* 2X0038.png in Resources */,
 				18DCA3BD1F1F4187008BF67E /* DeliveryAdress.plist in Resources */,
@@ -4241,7 +4268,9 @@
 				9C147D501FE10C5600CA3BB4 /* DCStateItemFooterView.m in Sources */,
 				18DCA38B1F1F4187008BF67E /* DCHandPickViewController.m in Sources */,
 				18DCA3941F1F4187008BF67E /* DCScrollAdFootView.m in Sources */,
+				9954551122705B6C00D9274C /* DCShopModel.m in Sources */,
 				993884B022355A8300444EF4 /* AFActionSheetController.m in Sources */,
+				9954551A22818C3A00D9274C /* AboutUslistViewController.m in Sources */,
 				92CE3CED1FD69489005F0A11 /* DCMyCenterViewController.m in Sources */,
 				993F4BC5224FB433001260B9 /* JFJOrderTableViewCell.m in Sources */,
 				18DCA38D1F1F4187008BF67E /* DCExceedApplianceCell.m in Sources */,
@@ -4484,6 +4513,7 @@
 				18DCA3331F1F4187008BF67E /* DCDetailShowTypeCell.m in Sources */,
 				9C67DC6D1FE7B84300C04F25 /* DCReceivingAddressViewController.m in Sources */,
 				99031D5B225B907C00D712FE /* DCorderDetailStatueViewController.m in Sources */,
+				9954551B22818C3A00D9274C /* FeedbackViewController.m in Sources */,
 				994CCE55225A492F0046BD1B /* DCAddressModel.m in Sources */,
 				99094EAD223B3C8200C97DBA /* UNNickNameViewController.m in Sources */,
 				9938840E22355A5600444EF4 /* JAScrollView.m in Sources */,

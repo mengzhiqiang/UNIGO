@@ -16,6 +16,7 @@
 #import "DCSettingViewController.h" //设置
 #import "LogInmainViewController.h"
 #import "DCOrderListViewController.h"
+#import "AboutUslistViewController.h"
 // Models
 #import "DCGridItem.h"
 // Views
@@ -166,11 +167,11 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
         [weakSelf.navigationController pushViewController:dcGMvC animated:YES];
     };
     _topToolView.rightItemClickBlock = ^{ //点击设置
-        DCSettingViewController *dcSetVc = [DCSettingViewController new];
+        AboutUslistViewController *dcSetVc = [AboutUslistViewController new];
         [weakSelf.navigationController pushViewController:dcSetVc animated:YES];
     };
     
-//    [self.view addSubview:_topToolView];   暂时取消
+    [self.view addSubview:_topToolView]; //  暂时取消
     
 }
 

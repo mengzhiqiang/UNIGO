@@ -13,7 +13,7 @@
 #import "MQChatFileUtil.h"
 #import "MQAssetUtil.h"
 
-#define MeiQiaAppKey         @"fcf49b59e18a1db6f97ce2a3980e14e3"
+#define MeiQiaAppKey         @"c55a22c577e69fa51e099a603ed3dc23"
 
 @implementation AppDelegate (MeiQia)
 

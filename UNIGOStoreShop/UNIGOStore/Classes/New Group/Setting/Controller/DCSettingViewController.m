@@ -74,10 +74,9 @@ static NSString *const DCUserMgCellID = @"DCUserMgCell";
     [super viewDidLoad];
     
     [self setUpBase];
-    
     [self setUpHeadView];
-    
     [self setUpLoginOff];
+    
 }
 
 #pragma mark - initialize
@@ -90,8 +89,8 @@ static NSString *const DCUserMgCellID = @"DCUserMgCell";
     NSArray *titleArray = @[@"会员俱乐部",@"收货地址",@"实名认证",@"账户安全"];
     NSArray *subTitleArray = @[@"",@"",@"未认证",@"安全认证：中"];
     self.userMgItem = [NSArray arrayWithObjects:titleArray,subTitleArray, nil];
+    
 }
-
 
 #pragma mark - 退出登录
 - (void)setUpLoginOff

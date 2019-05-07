@@ -58,6 +58,15 @@ extern NSString * const home_banner ;           // 首页banner
 extern NSString * const goodDetail_get;         //  商品信息
 extern NSString * const goodsList_get ;         //  商品列表
 
+extern NSString * const goodsCart_list;           //  购物车列表
+extern NSString * const goodsCart_add;            //  添加购物车
+extern NSString * const goodsCart_modify ;        //  编辑购物车
+
+extern NSString * const order_add;             //  提交订单
+extern NSString * const order_lists;           //  订单列表
+extern NSString * const order_details;         //  订单详情
+
+
 extern NSString * const recommendList_get;         // 首页推荐
 
 

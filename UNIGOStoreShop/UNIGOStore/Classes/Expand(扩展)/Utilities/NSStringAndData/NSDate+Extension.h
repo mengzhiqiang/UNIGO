@@ -41,4 +41,11 @@
 +(NSString*)changeTimeOfTimeInterval:(NSString*)timeInterval;
 
 + (NSDictionary *)resetNewUserInfoWithOldObject:(NSDictionary*)oldObject;
+
+
+/*
+ 时间戳转日期格式
+ */
++ (NSString *)timeWithTimeIntervalString:(NSString *)timeString;
+
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -79,7 +79,6 @@
                 <outlet property="lineLabel1" destination="ncc-SQ-weY" id="cvm-Jr-5c4"/>
                 <outlet property="pointLabel" destination="6qB-aQ-Z3v" id="xjm-GM-sup"/>
                 <outlet property="pushNextLabel" destination="rwJ-va-jK2" id="gei-OY-1We"/>
-                <outlet property="pushTagImageView" destination="s76-Jg-ePB" id="ven-xf-kna"/>
                 <outlet property="rootDeviceView" destination="0hp-8r-mLV" id="2SH-cb-sy0"/>
                 <outlet property="titleNameLabel" destination="vV1-Hg-Eop" id="ibj-8K-cdn"/>
             </connections>
@@ -123,8 +122,8 @@
                         <rect key="frame" x="10" y="11" width="24" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_next.png" id="p9d-5J-SiO">
-                        <rect key="frame" x="297" y="15" width="10" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_table_image.png" id="p9d-5J-SiO">
+                        <rect key="frame" x="297" y="17" width="10" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
@@ -145,7 +144,6 @@
     <resources>
         <image name="account_head_Device.png" width="378" height="378"/>
         <image name="account_table_NickName.png" width="90" height="90"/>
-        <image name="btn_next.png" width="10" height="15"/>
         <image name="next_table_image.png" width="60" height="60"/>
     </resources>
 </document>

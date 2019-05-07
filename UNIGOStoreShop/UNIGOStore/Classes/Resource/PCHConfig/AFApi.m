@@ -67,7 +67,7 @@ NSString * const login_appsecret = @"unigo";     //登录secret
 NSString * const register_code     = @"sms/send";                     //发送验证码  POST
 NSString * const user_reg          = @"user/reg";                     //创建帐号 POST
 NSString * const user_login        = @"user/login";                   //登录鉴权 POST
-NSString * const user_refreshToken        = @"user/refresh";              //刷新token
+NSString * const user_refreshToken      = @"user/refresh";              //刷新token
 
 NSString * const user_update       = @"user/updateUserInfo";           //基本信息 修改
 NSString * const user_info         = @"user/getuserinfo";              //获取个人信息
@@ -82,6 +82,16 @@ NSString * const goodsCate_get = @"goodsCate/get";           //  商品分类
 NSString * const goodsList_get = @"goods/goodsList";         //  商品列表
 NSString * const siteInfo_get = @"/site/info";               //  店铺信息
 NSString * const goodDetail_get = @"/goods/details";         //  商品信息
+
+NSString * const goodsCart_list       = @"/goodsCart/lists";          //  购物车列表
+NSString * const goodsCart_add        = @"/goodsCart/add";            //  添加购物车
+NSString * const goodsCart_modify     = @"/goodsCart/modify";         //  编辑购物车
+
+NSString * const order_add         = @"/order/add";             //  提交订单
+NSString * const order_lists       = @"/order/lists";           //  订单列表
+NSString * const order_details     = @"/order/details";         //  订单详情
+
+
 
 NSString * const recommendList_get = @"recommend/lists";         // 首页推荐
 

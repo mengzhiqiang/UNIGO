@@ -26,7 +26,7 @@
     NSTimeInterval time_iat = (NSTimeInterval)[account.refresh_expires_time floatValue];
     NSDate *confromTimesp_iat = [NSDate dateWithTimeIntervalSince1970:time_iat];
     NSLog(@"有效期到 =  %@==",confromTimesp);
-    NSLog(@"签发时间=  %@",confromTimesp_iat);
+    NSLog(@"刷新时间=  %@",confromTimesp_iat);
 
     NSTimeInterval late=[confromTimesp timeIntervalSince1970]*1;
     NSTimeInterval now=[[NSDate date] timeIntervalSince1970]*1;

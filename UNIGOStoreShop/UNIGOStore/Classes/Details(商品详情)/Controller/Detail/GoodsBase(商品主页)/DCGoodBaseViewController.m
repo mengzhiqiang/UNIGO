@@ -217,7 +217,7 @@ static NSArray *lastSeleArray_;
         if (lastSeleArray_.count != 0) {
             if ([note.userInfo[@"buttonTag"] isEqualToString:@"2"]) { //加入购物车（父类）
                 
-                [weakSelf setUpWithAddSuccess];
+                [weakSelf addShopCars];
                 
             }else if ([note.userInfo[@"buttonTag"] isEqualToString:@"3"]){//立即购买（父类）
                 [weakSelf buyNowWithData];
@@ -256,7 +256,7 @@ static NSArray *lastSeleArray_;
         
         if ([buttonTag isEqualToString:@"0"]) { //加入购物车
             
-            [weakSelf setUpWithAddSuccess];
+            [weakSelf addShopCars];
             
         }else if ([buttonTag isEqualToString:@"1"]) { //立即购买
             
@@ -597,26 +597,42 @@ static NSArray *lastSeleArray_;
     }];
 }
 
+#pragma mark 购物车
+-(void)addShopCars{
+    
+    NSString *path = [API_HOST stringByAppendingString:goodsCart_add];
+    
+    NSMutableDictionary * pram = [NSMutableDictionary dictionary];
+    
+    [pram setObject:[_goodsInfomation objectForKey:@"id"] forKey:@"goods_id"];
+    [pram setObject:[[self priceOfNowSelect] objectForKey:@"spec_id"] forKey:@"spec_id"];
+    [pram setObject:lastNum_ forKey:@"cart_num"];
+    [UIHelper addLoadingViewTo:self.view withFrame:0];
+    [HttpEngine requestPostWithURL:path params:pram isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"===%@",responseObject );
+        //        success(JSONDic);
+        [UIHelper hiddenAlertWith:self.view];
+        [self setUpWithAddSuccess];
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [UIHelper hiddenAlertWith:self.view];
+
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"code==%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+        
+    }];
+    
+}
+
 #pragma mark - 加入购物车成功
 - (void)setUpWithAddSuccess
 {
-    DCShopCar*shopCarModel = [DCShopCar sharedDataBase];
-    DCShopCarModel * iten = [[DCShopCarModel alloc]init];
-
-    iten.name = [_goodsInfomation objectForKey:@"name"];
-    iten.image = [_goodsInfomation objectForKey:@"image"];
-    iten.price = [_goodsInfomation objectForKey:@"price"];
-    iten.count = lastNum_;
-    iten.stock = [_goodsInfomation objectForKey:@"stock"];
-    iten.info = [_goodsInfomation objectForKey:@"image"];
-    iten.isSelect = YES;
-    iten.identifier = [_goodsInfomation objectForKey:@"id"];
-    iten.nature = [[self priceOfNowSelect] objectForKey:@"spec_name"];
-    iten.natureID = [[self priceOfNowSelect] objectForKey:@"spec_id"];
-
-    [shopCarModel.carList addObject:iten];
     
-    _selectShopCarModel = iten ;
     [SVProgressHUD showSuccessWithStatus:@"加入购物车成功~"];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD dismissWithDelay:1.0];
@@ -636,13 +652,13 @@ static NSArray *lastSeleArray_;
     iten.name = [_goodsInfomation objectForKey:@"name"];
     iten.image = [_goodsInfomation objectForKey:@"image"];
     iten.price = [_goodsInfomation objectForKey:@"price"];
-    iten.count = lastNum_;
+    iten.cart_num = lastNum_;
     iten.stock = [_goodsInfomation objectForKey:@"stock"];
     iten.info = [_goodsInfomation objectForKey:@"image"];
     iten.isSelect = YES;
-    iten.identifier = [_goodsInfomation objectForKey:@"id"];
-    iten.nature = [[self priceOfNowSelect] objectForKey:@"spec_name"];
-    iten.natureID = [[self priceOfNowSelect] objectForKey:@"spec_id"];
+    iten.goods_id = [_goodsInfomation objectForKey:@"id"];
+    iten.spec_name = [[self priceOfNowSelect] objectForKey:@"spec_name"];
+    iten.spec_id = [[self priceOfNowSelect] objectForKey:@"spec_id"];
     
     [shopCarModel.buyList addObject:iten];
     
