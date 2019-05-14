@@ -13,7 +13,7 @@
 #include <net/if_dl.h>
 
 #import "PayTableViewCell.h"
-
+#import "DCorderDetailStatueViewController.h"
 #import <AlipaySDK/AlipaySDK.h>   ///支付宝
 
 //微信
@@ -24,7 +24,7 @@
 #import "UIHelper.h"
 #import "ExtendClass.h"
 #import "PayViewController.h"
-
+#import "WXApiManager.h"
 //#import "AppDelegate.h"
 
 @interface PayViewController ()<UIAlertViewDelegate,WXApiDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -263,10 +263,10 @@
                                                object:nil];
     
     PayReq *request = [[PayReq alloc] init];
-    request.partnerId = [Dic_data objectForKey:@"mch_id"];
-    request.prepayId= [Dic_data objectForKey:@"prepay_id"];
+    request.partnerId = [NSString stringWithFormat:@"%@",[Dic_data objectForKey:@"partnerid"]];
+    request.prepayId= [Dic_data objectForKey:@"prepayid"];
     request.package =[Dic_data objectForKey:@"package"];
-    request.nonceStr= [Dic_data objectForKey:@"nonce_str"];
+    request.nonceStr= [Dic_data objectForKey:@"noncestr"];
     request.timeStamp= (UInt32)[[Dic_data objectForKey:@"timestamp"] intValue];
     request.sign= [Dic_data objectForKey:@"sign"];
     
@@ -277,7 +277,26 @@
 
     }
     
+    DCorderDetailStatueViewController * statusvc = [DCorderDetailStatueViewController new];
+    statusvc.orderID = self.orderID ;
+    [[WXApiManager sharedManager] setPayControll:self WithStatusVC:statusvc];
+    
 }
+-(void)onResp:(BaseResp*)resp{
+    if ([resp isKindOfClass:[PayResp class]]){
+        PayResp*response=(PayResp*)resp;
+        switch(response.errCode){
+            case WXSuccess:
+                //服务器端查询支付通知或查询API返回的结果再提示成功
+                NSLog(@"支付成功");
+                break;
+            default:
+                NSLog(@"支付失败，retcode=%d",resp.errCode);
+                break;
+        }
+    }
+}
+
 
 #pragma mark  支付宝
 -(void)payOfAliPayReqdata:(NSDictionary *)Dic_data{

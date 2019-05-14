@@ -107,7 +107,7 @@
     [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
-        NSLog(@"=下订单====%@",responseObject );
+        NSLog(@"=订单信息====%@",responseObject );
         [self loadNewUI:JSONDic];
         
         
@@ -115,7 +115,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         NSDictionary *Dic_data = error.userInfo;
-        NSLog(@"code=下订单====%@",Dic_data);
+        NSLog(@"code=订单信息====%@",Dic_data);
         if (![UIHelper TitleMessage:Dic_data]) {
             return;
         }

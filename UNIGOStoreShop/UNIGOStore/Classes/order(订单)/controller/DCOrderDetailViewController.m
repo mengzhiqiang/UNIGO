@@ -342,8 +342,8 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
         NSLog(@"=下订单====%@",responseObject );
-        if ([JSONDic objectForKey:@"id"]) {
-            [self pushPayVCWithOrder:[JSONDic objectForKey:@"id"]];
+        if ([JSONDic objectForKey:@"order_id"]) {
+            [self pushPayVCWithOrder:[JSONDic objectForKey:@"order_id"]];
         }else{
             [self pushPayVCWithOrder:nil];
         }

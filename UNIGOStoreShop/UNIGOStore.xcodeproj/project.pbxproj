@@ -400,6 +400,7 @@
 		998B6F22226B363F0055421B /* img_step3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998B6F20226B363F0055421B /* img_step3@2x.png */; };
 		998B6F23226B363F0055421B /* img_step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998B6F21226B363F0055421B /* img_step3@3x.png */; };
 		998B6F29226C2FD20055421B /* DCSearchToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F28226C2FD20055421B /* DCSearchToolView.m */; };
+		99B21706228B10B00028010D /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B21705228B10B00028010D /* WXApiManager.m */; };
 		99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F28225ECBBC000AD7A0 /* PayViewController.m */; };
 		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
 		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
@@ -1195,6 +1196,8 @@
 		998B6F21226B363F0055421B /* img_step3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_step3@3x.png"; sourceTree = "<group>"; };
 		998B6F27226C2FD20055421B /* DCSearchToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCSearchToolView.h; sourceTree = "<group>"; };
 		998B6F28226C2FD20055421B /* DCSearchToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSearchToolView.m; sourceTree = "<group>"; };
+		99B21704228B10B00028010D /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		99B21705228B10B00028010D /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
 		99C95F28225ECBBC000AD7A0 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		99C95F29225ECBBC000AD7A0 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		99C95F2A225ECBBC000AD7A0 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -3142,6 +3145,8 @@
 		993F4BB9224FAA76001260B9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				99B21704228B10B00028010D /* WXApiManager.h */,
+				99B21705228B10B00028010D /* WXApiManager.m */,
 				99C95F2A225ECBBC000AD7A0 /* PayViewController.h */,
 				99C95F28225ECBBC000AD7A0 /* PayViewController.m */,
 				99C95F29225ECBBC000AD7A0 /* PayViewController.xib */,
@@ -4263,6 +4268,7 @@
 				9C7FE1FA1FD933C700D32EEA /* DCBeautyHotTopicCell.m in Sources */,
 				993885102235602900444EF4 /* GTMBase64New.m in Sources */,
 				9C8CC8672004A25E00515926 /* DCScanTool.m in Sources */,
+				99B21706228B10B00028010D /* WXApiManager.m in Sources */,
 				993884D422355A8400444EF4 /* UINavigationItem+CustomBackButtonItem.m in Sources */,
 				9CE9CB6C1FE8D9280033322E /* DCNewAdressViewController.m in Sources */,
 				18DCA3411F1F4187008BF67E /* DCCollectionHeaderLayout.m in Sources */,

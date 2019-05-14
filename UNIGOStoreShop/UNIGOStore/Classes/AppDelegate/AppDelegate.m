@@ -21,6 +21,7 @@
 #import <SVProgressHUD.h>
 #import "UIImageView+WebCache.h"
 #import <WXApi.h>
+#import "WXApiManager.h"
 #import "DCNewFeatureViewController.h"
 
 @interface AppDelegate ()
@@ -129,6 +130,13 @@
     [[SDWebImageManager sharedManager].imageCache clearMemory]; //立即清除缓存
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    if ([url.scheme hasPrefix:@"wx3ddd4fb04c77a94b"] &&[url.resourceSpecifier hasPrefix:@"//pay/?"]) {
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    }
+    return YES;
+}
 #pragma mark - 蒲公英版本更新检测
 - (void)CDDMallVersionInformationFromPGY
 {

@@ -23,6 +23,9 @@
 }
 @property(strong,nonatomic) UIScrollView * scrollView ;
 
+
+@property(assign,nonatomic) int  orderStatus ;
+
 @end
 
 @implementation DCOrderListViewController
@@ -35,6 +38,8 @@
     [segmentedControl3 setFrame:CGRectMake(0, DCTopNavH, SCREEN_WIDTH, 50)];
     __weak typeof(self) weakSelf = self;
     [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
+        
+        
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
     }];
     segmentedControl3.selectionIndicatorHeight = 4.0f;
@@ -95,7 +100,7 @@
     [self GetAllOrder];
 }
 
-#pragma mark 提交订单
+#pragma mark 订单
 -(void)GetAllOrder{
     NSString *path = [API_HOST stringByAppendingString:order_lists];
 //    NSMutableDictionary * diction = [NSMutableDictionary dictionary];
@@ -117,6 +122,21 @@
             return;
         }
     }];
+    
+}
+
+-(void)loadUIView:(NSArray*)orderArray{
+    
+    
+    for (NSDictionary*diction in orderArray) {
+    
+        int status = [[diction objectForKey:@"status"] intValue];
+        int pay_status = [[diction objectForKey:@"pay_status"] intValue];
+        
+//        if (pay_status) {
+//            <#statements#>
+//        }
+    }
     
 }
 
