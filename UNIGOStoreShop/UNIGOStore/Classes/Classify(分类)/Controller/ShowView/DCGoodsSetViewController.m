@@ -5,6 +5,7 @@
 //  Created by apple on 2017/6/12.
 //  Copyright © 2017年 strong. All rights reserved.
 //
+typedef void(^backSection) (NSDictionary*diction);
 
 #import "DCGoodsSetViewController.h"
 
@@ -116,15 +117,34 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     [self setUpData];
     
 //    [self setUpSuspendView];
+    
+    backSection  backsect = ^(NSDictionary*diction){
+        NSLog(@"diciton==%@",diction);
+    };
+    
+    backsect(nil);
+    
+    [self testblock:^(NSDictionary *diction) {
+        NSLog(@"diciton==%@",diction);
 
+    }];
+    
+    
 }
 
+-(void)testblock:(backSection)backs{
+    
+    backs(@{@"123":@"456"});
+}
 #pragma mark - 搜索点击
 - (void)searchButtonClick
 {
     NSLog(@"===");
     if (!searchToolView) {
         searchToolView = [[DCSearchToolView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH)];
+    }
+    if (self.searchName) {
+        searchToolView.searchBar.text = self.searchName ;
     }
     [searchToolView.searchBar becomeFirstResponder];
     searchToolView.hidden = NO;
@@ -137,6 +157,7 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 
     };
 }
+
 
 #pragma mark - initialize
 - (void)setUpColl

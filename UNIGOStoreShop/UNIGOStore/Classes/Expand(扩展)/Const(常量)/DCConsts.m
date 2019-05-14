@@ -6,8 +6,8 @@
 //  Copyright © 2017年 strong. All rights reserved.
 //
 
-
 #import "DCConsts.h"
+
 
 @implementation DCConsts
 
@@ -20,6 +20,6 @@ CGFloat const DCNaviH = 44;
 /** 底部tab高度 */
 CGFloat const DCBottomTabH = 49;
 /** 顶部Nav高度+指示器 */
-CGFloat const DCTopNavH = 64;
+//CGFloat  DCTopNavH =DCNavHieght+64;
 
 @end

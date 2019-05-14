@@ -53,7 +53,7 @@
     self.title = @"购物车";
     [self setUpBase];
     _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
-    _rootTableView .frame = CGRectMake(0,  64, SCREEN_WIDTH, SCREEN_HEIGHT- 64);
+    _rootTableView .frame = CGRectMake(0,  DCTopNavH, SCREEN_WIDTH, SCREEN_HEIGHT- DCTopNavH - 50-iphoneXTabbarHieght);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.backgroundColor=PersonBackGroundColor;
@@ -96,11 +96,11 @@
     //
     
     if (_isTabBar) {
-        _sumView.bottom = ScreenH;
-        _rootTableView.height = ScreenH-64 -100;
+        _sumView.bottom = ScreenH-iphoneXTabbarHieght;
+        _rootTableView.height = ScreenH-DCTopNavH -100-iphoneXTabbarHieght;
     }else{
-        _sumView.bottom = ScreenH-50;
-        _rootTableView.height = ScreenH-64 -100-50;
+        _sumView.bottom = ScreenH-50-iphoneXTabbarHieght;
+        _rootTableView.height = ScreenH-DCTopNavH -100-50-iphoneXTabbarHieght;
     }
     [self selectSum ];
     

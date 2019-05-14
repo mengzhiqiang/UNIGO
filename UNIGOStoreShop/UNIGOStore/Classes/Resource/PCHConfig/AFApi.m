@@ -90,6 +90,9 @@ NSString * const goodsCart_modify     = @"/goodsCart/modify";         //  编辑
 NSString * const order_add         = @"/order/add";             //  提交订单
 NSString * const order_lists       = @"/order/lists";           //  订单列表
 NSString * const order_details     = @"/order/details";         //  订单详情
+NSString * const order_pay     = @"/order/pay";         //  支付接口
+
+
 
 
 

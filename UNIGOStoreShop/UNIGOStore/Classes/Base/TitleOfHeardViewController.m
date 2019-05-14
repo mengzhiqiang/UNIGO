@@ -202,7 +202,7 @@
     }
     CGFloat  headHight = 64;
     
-    if (iPhoneX) {
+    if (IS_X_) {
         headHight = 88;
     }
     if (isLandscape) {
@@ -217,7 +217,7 @@
     _HeadView.clipsToBounds=NO;
     
     float  LandscapeHight = 24;
-    if (iPhoneX) {
+    if (IS_X_) {
         LandscapeHight = 24+20;
     }
     if (isLandscape) {
@@ -319,7 +319,7 @@
         _headSubLabel.textColor =[UIColor HexString:@"8b8c90"];
         _headSubLabel.font = [UIFont systemFontOfSize:10];
         _headLabel.top = 25;
-        if (iPhoneX) {
+        if (IS_X_) {
             _headLabel.top = 35;
         }
         _headLabel.height = 18;

@@ -25,12 +25,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
-@property (weak, nonatomic) IBOutlet UIView *footOrderView;
+@property (strong, nonatomic) IBOutlet UIView *footOrderView;
 @property (weak, nonatomic) IBOutlet UILabel *goodeSumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *couponLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *payButton;
+
+@property (strong, nonatomic) NSArray * goodsArray;
+@property (strong, nonatomic) NSDictionary * goodsPayDiction;
+
 
 @end
 
@@ -40,12 +44,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.headLabel.text = @"订单详情";
-    _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
-    _rootTableView .frame = CGRectMake(0,  64, SCREEN_WIDTH, SCREEN_HEIGHT- 64);
+    _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, DCTopNavH, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
+    _rootTableView .frame = CGRectMake(0,  DCTopNavH, SCREEN_WIDTH, SCREEN_HEIGHT- DCTopNavH);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _rootTableView.sectionHeaderHeight = 16 ;
+    _rootTableView.sectionHeaderHeight = 0 ;
     _rootTableView.sectionFooterHeight = 0;
     _rootTableView.backgroundColor=PersonBackGroundColor;
     self.view.backgroundColor=PersonBackGroundColor;
@@ -59,6 +63,7 @@
     self.headMessageButton.hidden = NO ;
     [self.headMessageButton setTitle:@"客服" forState:UIControlStateNormal];
     
+    self.HeadView.height = DCTopNavH;
 }
 
 -(void)RightMessageOfTableView{
@@ -89,8 +94,50 @@
     [[UINavigationBar appearance] setHidden:YES];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    [self getOrderDetail];
+}
 
+-(void)getOrderDetail{
+    
+    NSString *path = [API_HOST stringByAppendingString:order_details];
 
+    NSDictionary * diction = [NSDictionary dictionaryWithObjectsAndKeys:self.orderID,@"id", nil];
+    WEAKSELF
+    [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"=下订单====%@",responseObject );
+        [self loadNewUI:JSONDic];
+        
+        
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"code=下订单====%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
+}
+
+-(void)loadNewUI:(NSDictionary*)diction{
+    
+    _goodsPayDiction = diction ;
+    NSDictionary *address = [diction objectForKey:@"address"];
+    _payNameLabel.text = [NSString stringWithFormat:@"%@  %@",[address objectForKey:@"consignee"] ,[address objectForKey:@"mobile"]];
+    _payAddressLabel.text =  [address objectForKey:@"address"];
+//    _payTimeLabel.text = [address objectForKey:@"address"];
+    _goodeSumLabel.text = [diction objectForKey:@"total_price"];
+    
+    int isPay = [[diction objectForKey:@"pay_status"] intValue];
+    if (isPay==1) {
+        _payButton.hidden = YES;
+    }
+    _goodsArray = [[diction objectForKey:@"goods"] copy];
+    
+    [_rootTableView reloadData];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -105,7 +152,7 @@
 #pragma mark- table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
    
-    return  2;
+    return  _goodsArray.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -129,7 +176,7 @@
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 212;
+    return 137;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -147,6 +194,12 @@
         
     }
  
+    NSDictionary* diction =  [_goodsArray objectAtIndex:indexPath.row];
+    
+    cell.goodsDetailLabel.text = [diction objectForKey:@"name"];
+    cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
+    cell.priceLabel.text = [diction objectForKey:@"price"];
+    cell.goodCountLabel.text = [diction objectForKey:@"count"];
     [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
     return   cell;
 }
@@ -164,7 +217,9 @@
 
 - (IBAction)payOrder:(UIButton *)sender {
     PayViewController* payVC = [[PayViewController alloc]init];
-    payVC.SumLabel.text = @"1899.00";
+    payVC.SumLabel.text = _goodeSumLabel.text;
+    payVC.orderID = _orderID;
+
     [self.navigationController pushViewController:payVC animated:YES];
     
 }

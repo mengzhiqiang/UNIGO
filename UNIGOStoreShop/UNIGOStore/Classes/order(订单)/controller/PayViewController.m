@@ -69,7 +69,7 @@
     self.netWorks_dad.delegate=self;
     */
     
-    _SumLabel.text = @"889.00";
+//    _SumLabel.text = @"889.00";
     
 }
 
@@ -121,7 +121,7 @@
     float  height=(isPAD_or_IPONE4 ?-10:0);
 
     self.view.backgroundColor=[UIColor HexString:@"fafafa"];
-    _rootTableView.frame=CGRectMake(0, SCREEN_HEIGHT-125-height-(isPAD_or_IPONE4?70*4: 360*RATIO), SCREEN_WIDTH, (isPAD_or_IPONE4?70*2:90*2*RATIO));
+    _rootTableView.frame=CGRectMake(0, self.HeadView.height+20, SCREEN_WIDTH, SCREEN_HEIGHT-self.HeadView.height-20-95);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.scrollEnabled=NO;
@@ -224,38 +224,31 @@
 
 - (IBAction)Paying:(UIButton *)sender {
     
-    NSMutableDictionary *dic0=[[NSMutableDictionary alloc]initWithObjectsAndKeys:self.orderID,@"orderId",nil];
-    
-    
-//    NSString *appScheme = @"teelabPay";
-//    NSString* orderInfo = [self getOrderInfo:1];
-//    NSString* signedStr = [self doRsa:orderInfo];
+    NSString *path = [API_HOST stringByAppendingString:order_pay];
+    NSMutableDictionary *diction=[[NSMutableDictionary alloc]initWithObjectsAndKeys:self.orderID,@"order_id",(_Select==80?@"1":@"2"),@"pay_type",nil];
 
-//    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-//                             orderInfo, signedStr, @"RSA"];
     
-    NSArray *title_arr=@[@"微信快捷支付",@"银联快捷支付",@"支付宝快捷支付",@"支付宝网页支付"];
-    NSDictionary *dic=[[NSDictionary alloc]initWithObjectsAndKeys:[title_arr objectAtIndex:_Select-80],@"支付方式",  nil];
-    
-    switch (_Select) {
-        case 81:
-            
-            ///银联支付
-            break;
-        case 83:
-            ///支付宝网页
+    [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"=支付====%@",responseObject );
+   
+        if (_Select==80) {
+            [self  payOfWXPayReqdata:JSONDic];
+
+        }else{
+            [self  payOfAliPayReqdata:JSONDic];
+        }
+        
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"code=支付====%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
             return;
-            
-            break;
-        case 82:
-            
-         
-            break;
-            
-        default:
-            
-            break;
-    }
+        }
+    }];
     
     
 }
@@ -270,13 +263,19 @@
                                                object:nil];
     
     PayReq *request = [[PayReq alloc] init];
-    request.partnerId = [Dic_data objectForKey:@"partnerid"];
-    request.prepayId= [Dic_data objectForKey:@"prepayid"];
+    request.partnerId = [Dic_data objectForKey:@"mch_id"];
+    request.prepayId= [Dic_data objectForKey:@"prepay_id"];
     request.package =[Dic_data objectForKey:@"package"];
-    request.nonceStr= [Dic_data objectForKey:@"noncestr"];
+    request.nonceStr= [Dic_data objectForKey:@"nonce_str"];
     request.timeStamp= (UInt32)[[Dic_data objectForKey:@"timestamp"] intValue];
     request.sign= [Dic_data objectForKey:@"sign"];
-    [WXApi sendReq:request];
+    
+    if ([WXApi sendReq:request]) {
+        NSLog(@"支付中");
+    }else{
+        NSLog(@"支付调取失败");
+
+    }
     
 }
 

@@ -53,8 +53,8 @@
     self.headLabel.text = @"订单信息";
     shopCar = [DCShopCar sharedDataBase];
     
-    _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
-    _rootTableView .frame = CGRectMake(0,  64, SCREEN_WIDTH, SCREEN_HEIGHT- 64-60);
+    _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, DCTopNavH, SCREEN_WIDTH, SCREEN_HEIGHT- DCTopNavH) style:UITableViewStyleGrouped];
+    _rootTableView .frame = CGRectMake(0,  DCTopNavH, SCREEN_WIDTH, SCREEN_HEIGHT- DCTopNavH-60);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -341,9 +341,9 @@
     [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
-        NSLog(@"===%@",responseObject );
-        if ([JSONDic objectForKey:@"order"]) {
-            [self pushPayVCWithOrder:[JSONDic objectForKey:@"order"]];
+        NSLog(@"=下订单====%@",responseObject );
+        if ([JSONDic objectForKey:@"id"]) {
+            [self pushPayVCWithOrder:[JSONDic objectForKey:@"id"]];
         }else{
             [self pushPayVCWithOrder:nil];
         }
@@ -352,7 +352,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         NSDictionary *Dic_data = error.userInfo;
-        NSLog(@"code==%@",Dic_data);
+        NSLog(@"code=下订单====%@",Dic_data);
         if (![UIHelper TitleMessage:Dic_data]) {
             return;
         }

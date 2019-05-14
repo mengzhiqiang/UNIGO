@@ -30,7 +30,7 @@
     self.headLabel.text = @"设置";
     self.automaticallyAdjustsScrollViewInsets = NO;   ////scrollview 下移20像素的问题
 
-    _rootTableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    _rootTableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-100);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.separatorStyle=UITableViewCellAccessoryNone;
@@ -147,7 +147,7 @@
                 case 1:
                 {
                     ////跳转AppStore 评论页
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1095903275&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1462755665&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
 
                 }
                     break;

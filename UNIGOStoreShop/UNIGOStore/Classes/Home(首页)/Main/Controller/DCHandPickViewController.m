@@ -104,7 +104,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.frame = CGRectMake(0, 0, ScreenW, ScreenH - DCBottomTabH);
+        _collectionView.frame = CGRectMake(0, 0, ScreenW, ScreenH - DCBottomTabH-iphoneXTabbarHieght);
         _collectionView.showsVerticalScrollIndicator = NO;        //注册
         [_collectionView registerClass:[DCGoodsCountDownCell class] forCellWithReuseIdentifier:DCGoodsCountDownCellID];
         [_collectionView registerClass:[DCGoodsHandheldCell class] forCellWithReuseIdentifier:DCGoodsHandheldCellID];

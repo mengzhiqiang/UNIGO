@@ -39,7 +39,7 @@
     
     self.view.backgroundColor=PersonBackGroundColor;
     _nickNameTF.delegate = self;
-    if (iPhoneX) {
+    if (IS_X_) {
         _rootView.top = 88+16 ;
     }
 }

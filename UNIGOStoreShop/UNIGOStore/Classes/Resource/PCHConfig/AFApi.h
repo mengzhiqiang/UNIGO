@@ -65,6 +65,7 @@ extern NSString * const goodsCart_modify ;        //  编辑购物车
 extern NSString * const order_add;             //  提交订单
 extern NSString * const order_lists;           //  订单列表
 extern NSString * const order_details;         //  订单详情
+extern NSString * const order_pay ;            //  支付接口
 
 
 extern NSString * const recommendList_get;         // 首页推荐

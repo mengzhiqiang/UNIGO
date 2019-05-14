@@ -13,7 +13,7 @@
 
 - (void)checkAppVersion
 {
-    [self checkAppVersionWithAppId:@"1095903275"];
+    [self checkAppVersionWithAppId:@"1462755665"];
     
    AdvertisingView*adView = [[AdvertisingView alloc ]initWithFrame:CGRectZero];
     

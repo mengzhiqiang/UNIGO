@@ -149,6 +149,8 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     [self setUpNavTopView];
     
     [self setUpHeaderCenterView];
+    
+    
 }
 
 #pragma mark - 获取数据
@@ -160,7 +162,7 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 #pragma mark - 导航栏处理
 - (void)setUpNavTopView
 {
-    _topToolView = [[DCCenterTopToolView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 64)];
+    _topToolView = [[DCCenterTopToolView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, DCTopNavH)];
     WEAKSELF
     _topToolView.leftItemClickBlock = ^{ //点击了扫描
         DCGMScanViewController *dcGMvC = [DCGMScanViewController new];

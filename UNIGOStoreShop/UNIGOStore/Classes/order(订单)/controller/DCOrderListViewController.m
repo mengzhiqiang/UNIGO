@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     self.title = @"我的订单";
     segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"未支付",@"待发货", @"已发货", @"已完成"]];
-    [segmentedControl3 setFrame:CGRectMake(0, 64, SCREEN_WIDTH, 50)];
+    [segmentedControl3 setFrame:CGRectMake(0, DCTopNavH, SCREEN_WIDTH, 50)];
     __weak typeof(self) weakSelf = self;
     [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
@@ -56,12 +56,12 @@
     [self.view addSubview:segmentedControl3];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    CGFloat lisTheight = SCREEN_HEIGHT-tabHeight -50;
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, tabHeight+50, SCREEN_WIDTH, lisTheight)];
+    CGFloat lisTheight = SCREEN_HEIGHT-DCTopNavH -50;
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DCTopNavH+50, SCREEN_WIDTH, lisTheight)];
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, 200);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 5, lisTheight);
     self.scrollView.delegate = self;
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, SCREEN_WIDTH, 200) animated:NO];
     [self.view addSubview:self.scrollView];

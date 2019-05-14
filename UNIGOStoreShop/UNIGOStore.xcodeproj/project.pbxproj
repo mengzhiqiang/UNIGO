@@ -311,7 +311,8 @@
 		9954551922818C3A00D9274C /* AboutUslistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9954551322818C3900D9274C /* AboutUslistViewController.xib */; };
 		9954551A22818C3A00D9274C /* AboutUslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9954551422818C3900D9274C /* AboutUslistViewController.m */; };
 		9954551B22818C3A00D9274C /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9954551522818C3900D9274C /* FeedbackViewController.m */; };
-		9954551D22818FFF00D9274C /* icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954551C22818FFF00D9274C /* icon60@3x.png */; };
+		99545520228448E400D9274C /* icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954551F228448E400D9274C /* icon60@3x.png */; };
+		995455222284523800D9274C /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 995455212284523800D9274C /* Cities.json */; };
 		9967852722365F0800142ACB /* main_btn_back_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852522365F0800142ACB /* main_btn_back_normal@3x.png */; };
 		9967852822365F0800142ACB /* main_btn_back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852622365F0800142ACB /* main_btn_back_normal@2x.png */; };
 		9967853422365F5D00142ACB /* icon_phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9967852B22365F5D00142ACB /* icon_phone@3x.png */; };
@@ -1098,7 +1099,9 @@
 		9954551522818C3900D9274C /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		9954551622818C3900D9274C /* AboutUslistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUslistViewController.h; sourceTree = "<group>"; };
 		9954551722818C3A00D9274C /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
-		9954551C22818FFF00D9274C /* icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon60@3x.png"; path = "UNIGOStore/Assets.xcassets/AppIcon.appiconset/icon60@3x.png"; sourceTree = SOURCE_ROOT; };
+		9954551E2283E3AC00D9274C /* UNIGOStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UNIGOStore.entitlements; sourceTree = "<group>"; };
+		9954551F228448E400D9274C /* icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon60@3x.png"; sourceTree = "<group>"; };
+		995455212284523800D9274C /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
 		9967852522365F0800142ACB /* main_btn_back_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@3x.png"; sourceTree = "<group>"; };
 		9967852622365F0800142ACB /* main_btn_back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_back_normal@2x.png"; sourceTree = "<group>"; };
 		9967852B22365F5D00142ACB /* icon_phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_phone@3x.png"; sourceTree = "<group>"; };
@@ -1532,6 +1535,7 @@
 		187E67881E7D793000722607 /* UNIGOStore */ = {
 			isa = PBXGroup;
 			children = (
+				9954551E2283E3AC00D9274C /* UNIGOStore.entitlements */,
 				18DCA13A1F1F4186008BF67E /* Classes */,
 				187E67891E7D793100722607 /* Supporting Files */,
 			);
@@ -2431,7 +2435,7 @@
 		18DCA2E11F1F4187008BF67E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				9954551C22818FFF00D9274C /* icon60@3x.png */,
+				9954551F228448E400D9274C /* icon60@3x.png */,
 				996F9DA32264250600B52EAD /* RunCar.jpg */,
 				993F4BB6224FA300001260B9 /* iconfont.ttf */,
 				9967852422365EFA00142ACB /* imageSource */,
@@ -3768,6 +3772,7 @@
 		9CCC2060202BEBC700B6CD44 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				995455212284523800D9274C /* Cities.json */,
 				9CCC2061202BEBC700B6CD44 /* AddressItem.h */,
 				9CCC2062202BEBC700B6CD44 /* AddressItem.m */,
 			);
@@ -3913,8 +3918,16 @@
 				TargetAttributes = {
 					187E67851E7D793000722607 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8YZS2N6A95;
+						DevelopmentTeam = HJRDHRZRFS;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					187E679E1E7D793100722607 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -3935,6 +3948,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -3955,6 +3969,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				995455222284523800D9274C /* Cities.json in Resources */,
 				9C67DC6A1FE79E5900C04F25 /* DCUserMgHeadView.xib in Resources */,
 				9975A3A6223A4F69004BF485 /* 2X0040.png in Resources */,
 				9975A360223A4D1E004BF485 /* btn_activation_pressed@2x.png in Resources */,
@@ -4001,7 +4016,6 @@
 				9C7FE1E91FD9230100D32EEA /* DCStoresRecommendHeaderView.xib in Resources */,
 				9975A3BE223A4F69004BF485 /* 2X0033.png in Resources */,
 				9975A3C8223A4F69004BF485 /* 2X0014.png in Resources */,
-				9954551D22818FFF00D9274C /* icon60@3x.png in Resources */,
 				18DCA3711F1F4187008BF67E /* restrictedshine.tiff in Resources */,
 				998B6F1C226B03880055421B /* DCRecommendCollectionViewCell.xib in Resources */,
 				9C215E8B1FDBDF46002152F1 /* BeautyRecommendShop.plist in Resources */,
@@ -4046,6 +4060,7 @@
 				9975A3CE223A4F69004BF485 /* 2X0010.png in Resources */,
 				9954551822818C3A00D9274C /* FeedbackViewController.xib in Resources */,
 				18DCA3B91F1F4187008BF67E /* FootprintGoods.plist in Resources */,
+				99545520228448E400D9274C /* icon60@3x.png in Resources */,
 				9975A3CF223A4F69004BF485 /* 2X0038.png in Resources */,
 				18DCA3BD1F1F4187008BF67E /* DeliveryAdress.plist in Resources */,
 				9967852722365F0800142ACB /* main_btn_back_normal@3x.png in Resources */,
@@ -4688,17 +4703,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = UNIGOStore/UNIGOStore.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 8YZS2N6A95;
+				DEVELOPMENT_TEAM = HJRDHRZRFS;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = UNIGOStore/PrefixHeader.pch;
 				INFOPLIST_FILE = UNIGOStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JFJ.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = tiandiyihaoDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = UNIGODevelopment;
 			};
 			name = Debug;
 		};
@@ -4708,17 +4725,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = UNIGOStore/UNIGOStore.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 8YZS2N6A95;
+				DEVELOPMENT_TEAM = HJRDHRZRFS;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = UNIGOStore/PrefixHeader.pch;
 				INFOPLIST_FILE = UNIGOStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JFJ.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = tiandiyihaoDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = UNIGODevelopment;
 			};
 			name = Release;
 		};

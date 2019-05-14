@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DCorderDetailStatueViewController : TitleOfHeardViewController
+@property (strong, nonatomic)  NSString *orderID;           ///订单号
 
 @end
 

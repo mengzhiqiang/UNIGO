@@ -28,7 +28,6 @@
 #define PresentNavBarHeight                        (IsiOS7Later ? (44 + StatusBarHeight) : 44)
 
 
-#define TabBatHeight                        self.tabBarController.tabBar.frame.size.height
 #define NavTopOffset                        (IsiOS7Later ?  StatusBarHeight : 0)
 
 typedef NS_ENUM(NSInteger, UIBorderSideType) {

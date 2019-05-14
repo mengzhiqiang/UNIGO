@@ -36,14 +36,27 @@
 
 #define iPhone6plus        ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242,2208), [[UIScreen mainScreen] currentMode].size) : NO)
 #define iPhoneX         ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+//判断iPhoneX，Xs（iPhoneX，iPhoneXs）
+#define IS_IPHONE_X ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhoneXr
+#define IS_IPHONE_Xr ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
+//判断iPhoneXsMax
+#define IS_IPHONE_Xs_Max ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)&& !isPad : NO)
+
+#define  IS_X_ ((IS_IPHONE_X||IS_IPHONE_Xr||IS_IPHONE_Xs_Max)?YES:NO)
+
+
+#define  DCTopNavH ((IS_X_)?88:64)
 
 #define IsPortrait ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortraitUpsideDown)
 
 ///尺寸比率
 #define  RATIO  (SCREEN_WIDTH/320)
 #define  RATIO_IPHONE6  (SCREEN_WIDTH/375)
-#define SCREEN_top    (iPhoneX?88:64)
-#define iphoneXTop    (iPhoneX?24:0)
+#define SCREEN_top    (IS_X_?88:64)
+#define iphoneXTop    (IS_X_?24:0)
+
+#define iphoneXTabbarHieght    (IS_X_?34:0)
 
 #define  Landscape_RATIO  (SCREEN_HEIGHT/320)
 

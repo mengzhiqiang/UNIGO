@@ -105,12 +105,18 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self getGoodsCate];
     [self setUpNav];
     
     [self setUpTab];
     
     [self setUpData];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self getGoodsCate];
+
 }
 
 #pragma mark - initizlize
@@ -127,10 +133,10 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 #pragma mark - 加载数据
 - (void)setUpData
 {
-    _titleItem = [DCClassGoodsItem mj_objectArrayWithFilename:@"ClassifyTitles.plist"];
-    _mainItem = [DCClassMianItem mj_objectArrayWithFilename:@"ClassiftyGoods01.plist"];
-    //默认选择第一行（注意一定要在加载完数据之后）
-    [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+//    _titleItem = [DCClassGoodsItem mj_objectArrayWithFilename:@"ClassifyTitles.plist"];
+//    _mainItem = [DCClassMianItem mj_objectArrayWithFilename:@"ClassiftyGoods01.plist"];
+//    //默认选择第一行（注意一定要在加载完数据之后）
+//    [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
 }
 
 
@@ -324,6 +330,10 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 
 #pragma mark - 请求分类
 -(void)getGoodsCate{
+    
+    if (_mainItem.count>+1) {
+        return ;
+    }
         [GoodsRequestTool getGoodsCate:^(id  _Nonnull responseObject) {
         [self addGooditemArray:responseObject];
     }];

@@ -19,6 +19,6 @@ UIKIT_EXTERN CGFloat const DCNaviH;
 /** 底部tab高度 */
 UIKIT_EXTERN CGFloat const DCBottomTabH;
 /** 顶部Nav高度+指示器 */
-UIKIT_EXTERN CGFloat const DCTopNavH;
+//UIKIT_EXTERN CGFloat  DCTopNavH;
 
 @end

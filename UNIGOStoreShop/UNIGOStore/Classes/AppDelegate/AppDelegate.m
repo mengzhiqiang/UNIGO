@@ -12,6 +12,7 @@
 
 #import "AppDelegate+MeiQia.h"
 #import <MeiQiaSDK/MQManager.h>
+#import "AppDelegate+Update.h"
 
 #import "JPFPSStatus.h"
 #import "RequestTool.h"
@@ -19,7 +20,7 @@
 #import "DCAppVersionTool.h"
 #import <SVProgressHUD.h>
 #import "UIImageView+WebCache.h"
-
+#import <WXApi.h>
 #import "DCNewFeatureViewController.h"
 
 @interface AppDelegate ()
@@ -41,10 +42,14 @@
     [[JPFPSStatus sharedInstance] open];
 #endif
     
+    [self checkAppVersion];
     [self setUpFixiOS11]; //适配IOS 11
     [self MeiQiaApplication:application didFinishLaunchingWithOptions:launchOptions];
     
+    [WXApi registerApp:@"wx3ddd4fb04c77a94b" enableMTA:YES];
+//    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
     
+
     return YES;
 }
 

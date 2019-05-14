@@ -100,7 +100,8 @@
         cell.orderSumLabel.text = [NSString stringWithFormat:@"订单总额 ¥%@",[diction objectForKey:@"total_price"]];;
 
         int status = [[diction objectForKey:@"status"] intValue];
-        
+        int pay_status = [[diction objectForKey:@"pay_status"] intValue];
+
         
         switch (status) {
             case -2:
@@ -144,7 +145,18 @@
                 break;
         }
         
+        if (pay_status!=1) {
+//            cell.orderStatusLabel.text = @"未支付";
+            cell.orderStatusLabel.text = @"未支付";
+            cell.payButton.hidden = NO;
+            
+        }else{
+            cell.payButton.hidden = YES;
+
+        }
     }
+    
+ 
     
     cell.backSelect = ^(NSString * _Nonnull style) {
         
@@ -174,12 +186,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if ([_orderStyle isEqualToString:@"全部"]) {
+    NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
+
+//    if ([_orderStyle isEqualToString:@"全部"]) {
         DCorderDetailStatueViewController* statueVC =[[DCorderDetailStatueViewController alloc]init];
+        statueVC.orderID = [diction objectForKey:@"id"];
         [_controller.navigationController pushViewController:statueVC animated:YES];
-        return;
-    }
+//        return;
+//    }
     
 }
 
