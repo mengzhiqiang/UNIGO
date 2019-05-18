@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeOutLabel;
 
 @property (strong, nonatomic) IBOutlet UIView *footOrderView;
 @property (weak, nonatomic) IBOutlet UILabel *goodeSumLabel;
@@ -131,10 +132,95 @@
 //    _payTimeLabel.text = [address objectForKey:@"address"];
     _goodeSumLabel.text = [diction objectForKey:@"total_price"];
     
-    int isPay = [[diction objectForKey:@"pay_status"] intValue];
-    if (isPay==1) {
-        _payButton.hidden = YES;
-    }
+    int status = [[diction objectForKey:@"status"] intValue];
+    _payTimeLabel.text = [NSString stringWithFormat:@"订单号：%@", [diction objectForKey:@"order_id"]];
+
+    switch (status) {
+        case -3:
+        {
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"退款失败";
+            
+        }
+            break;
+        case -2:
+        {
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"退款成功";
+            
+        }
+            break;
+        case -1:
+        {
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"退款中";
+        }
+            break;
+        case 0:
+        {
+            _payButton.hidden = NO;
+            _deleteButton.hidden = NO ;
+            _payStatusLabel.text = @"未支付";
+            
+        }
+            break;
+        case 1:
+        {
+            _payButton.hidden = YES;
+            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"待发货";
+            _timeOutLabel.hidden = YES;
+        }
+            break;
+        case 2:
+        {
+            _payButton.hidden = YES;
+            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"待收货";
+            _timeOutLabel.hidden = YES;
+        }
+            break;
+        case 3:
+        {
+            _payButton.hidden = YES;
+            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"已收货";
+            _timeOutLabel.hidden = YES;
+        }
+            break;
+        case 4:
+        {
+            _payButton.hidden = YES;
+            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"待评论";
+            _timeOutLabel.hidden = YES;
+        }
+            break;
+        case 5:
+        {
+            _payButton.hidden = YES;
+            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"已完成";
+            _timeOutLabel.hidden = YES;
+        }
+            break;
+        case 10:
+        {
+            _payButton.hidden = YES;
+            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _deleteButton.hidden = YES ;
+            _payStatusLabel.text = @"已取消";
+            _timeOutLabel.hidden = YES;
+        }
+            break;
+        default:
+            break;
+    }    
     _goodsArray = [[diction objectForKey:@"goods"] copy];
     
     [_rootTableView reloadData];
@@ -225,6 +311,25 @@
 }
 - (IBAction)deleteOrder:(UIButton *)sender {
     
+    NSString *path = [API_HOST stringByAppendingString:order_cancel];
+    
+    NSDictionary * diction = [NSDictionary dictionaryWithObjectsAndKeys:self.orderID,@"id", nil];
+    WEAKSELF
+    [UIHelper addLoadingViewTo:self.view withFrame:0];
+    [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"=取消订单====%@",responseObject );
+        [UIHelper hiddenAlertWith:self.view];
+        
+    } failure:^(NSError *error) {
+        [UIHelper hiddenAlertWith:self.view];
+
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"code=取消订单====%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
 }
 
 @end

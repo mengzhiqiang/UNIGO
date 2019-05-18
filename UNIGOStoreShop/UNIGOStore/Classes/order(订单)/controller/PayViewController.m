@@ -69,7 +69,7 @@
     self.netWorks_dad.delegate=self;
     */
     
-//    _SumLabel.text = @"889.00";
+    _SumLabel.text = self.SumOfPrice;
     
 }
 

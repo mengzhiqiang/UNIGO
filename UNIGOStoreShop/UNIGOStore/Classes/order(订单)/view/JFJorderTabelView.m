@@ -68,28 +68,29 @@
     [cell.oredreImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
     cell.backgroundColor=[UIColor clearColor];
     cell.payButton.hidden = YES;
+    cell.DeleteOrderButton.hidden = YES;
 
-    if ([_orderStyle isEqualToString:@"未支付"]) {
-        cell.orderStatusLabel.text = @"未支付";
-        cell.payButton.hidden = NO;
-    }
-    if ([_orderStyle isEqualToString:@"全部"]) {
-        
-        if (indexPath.row==0) {
-            cell.orderStatusLabel.text = @"未支付";
-            cell.payButton.hidden = NO;
-
-        }else if (indexPath.row==1) {
-            cell.orderStatusLabel.text = @"已支付";
-            
-        } else if (indexPath.row==2) {
-            cell.orderStatusLabel.text = @"已完成";
-            
-        }
-    }
-    if ([_orderStyle isEqualToString:@"退款"]) {
-        cell.orderStatusLabel.text = @"退款中";
-    }
+//    if ([_orderStyle isEqualToString:@"未支付"]) {
+//        cell.orderStatusLabel.text = @"未支付";
+//        cell.payButton.hidden = NO;
+//    }
+//    if ([_orderStyle isEqualToString:@"全部"]) {
+//
+//        if (indexPath.row==0) {
+//            cell.orderStatusLabel.text = @"未支付";
+//            cell.payButton.hidden = NO;
+//
+//        }else if (indexPath.row==1) {
+//            cell.orderStatusLabel.text = @"已支付";
+//
+//        } else if (indexPath.row==2) {
+//            cell.orderStatusLabel.text = @"已完成";
+//
+//        }
+//    }
+//    if ([_orderStyle isEqualToString:@"退款"]) {
+//        cell.orderStatusLabel.text = @"退款中";
+//    }
     
     if (self.data.count > indexPath.row) {
         NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
@@ -102,12 +103,13 @@
         int status = [[diction objectForKey:@"status"] intValue];
         int pay_status = [[diction objectForKey:@"pay_status"] intValue];
 
-        
+        [cell.DeleteOrderButton setTitle:@"已支付" forState:UIControlStateNormal];
+        cell.DeleteOrderButton.enabled = NO;
+
         switch (status) {
             case -2:
                 {
                     cell.orderStatusLabel.text = @"退款成功";
-
                 }
                 break;
             case -1:
@@ -118,42 +120,54 @@
                 break;
             case 0:
             {
-                cell.orderStatusLabel.text = @"待发货";
-
+                cell.orderStatusLabel.text = @"未付款";
+                cell.payButton.hidden = NO;
+                cell.DeleteOrderButton.hidden = NO;
+                [cell.DeleteOrderButton setTitle:@"取消订单" forState:UIControlStateNormal];
+                cell.DeleteOrderButton.enabled = YES;
             }
                 break;
             case 1:
             {
-                cell.orderStatusLabel.text = @"已发货";
+                cell.orderStatusLabel.text = @"待发货";
 
             }
                 break;
             case 2:
             {
-                cell.orderStatusLabel.text = @"已收货";
+                cell.orderStatusLabel.text = @"待收货";
 
             }
                 break;
+            case 3:
+            {
+                cell.orderStatusLabel.text = @"已收货";
+                
+            }
+                break;
             case 4:
+            {
+                cell.orderStatusLabel.text = @"待评论";
+                
+            }
+                break;
+            case 5:
             {
                 cell.orderStatusLabel.text = @"已完成";
 
             }
                 break;
-                
+            case 10:
+            {
+                cell.orderStatusLabel.text = @"已取消";
+                [cell.DeleteOrderButton setTitle:@"订单已取消" forState:UIControlStateNormal];
+                cell.DeleteOrderButton.hidden = NO;
+            }
+                break;
             default:
                 break;
         }
         
-        if (pay_status!=1) {
-//            cell.orderStatusLabel.text = @"未支付";
-            cell.orderStatusLabel.text = @"未支付";
-            cell.payButton.hidden = NO;
-            
-        }else{
-            cell.payButton.hidden = YES;
-
-        }
     }
     
  

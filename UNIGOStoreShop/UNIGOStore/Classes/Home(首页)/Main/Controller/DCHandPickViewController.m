@@ -182,7 +182,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     WEAKSELF
     [DCSpeedy dc_callFeedback]; //触动
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ //手动延迟
-        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf getGoodListwithID];
     });
 }
 
@@ -547,10 +547,12 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 
 #pragma mark - 请求 推荐列表
 -(void)getGoodListwithID{
-    
+    WEAKSELF;
     [GoodsRequestTool getHomeGoodsCateWithsuccess:^(id  _Nonnull responseObject) {
         self.homeRecommendList = [DCRecommendList mj_objectArrayWithKeyValuesArray:responseObject];
         
+        [weakSelf.collectionView.mj_header endRefreshing];
+
         for (int i=0; i<self.homeRecommendList.count; i++) {
             NSArray * ar = [self.homeRecommendList objectAtIndex:i].data;
             NSMutableArray * a = [DCHomeRecommend mj_objectArrayWithKeyValuesArray:ar];
@@ -560,7 +562,8 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         [self.collectionView reloadData];
         
     } fail:^(NSDictionary * _Nonnull error) {
-        
+        [weakSelf.collectionView.mj_header endRefreshing];
+
     }];
     
 }

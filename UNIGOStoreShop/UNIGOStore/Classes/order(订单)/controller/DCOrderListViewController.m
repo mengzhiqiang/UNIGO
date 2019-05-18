@@ -40,6 +40,7 @@
     [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
         
         
+        [weakSelf GetAllOrderWithStatus:index];
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
     }];
     segmentedControl3.selectionIndicatorHeight = 4.0f;
@@ -125,18 +126,63 @@
     
 }
 
--(void)loadUIView:(NSArray*)orderArray{
+-(void)GetAllOrderWithStatus:(NSInteger)status{
+    NSString *path = [API_HOST stringByAppendingString:order_lists];
     
-    
-    for (NSDictionary*diction in orderArray) {
-    
-        int status = [[diction objectForKey:@"status"] intValue];
-        int pay_status = [[diction objectForKey:@"pay_status"] intValue];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    NSMutableDictionary * diction = [NSMutableDictionary dictionary];
+//    [NSNumber numberWithInt:status];
+    [diction setObject:[NSNumber numberWithInteger:status] forKey:@"status"];
+    WEAKSELF
+    [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"=订单==%@",JSONDic );
         
-//        if (pay_status) {
-//            <#statements#>
-//        }
-    }
+        switch (status) {
+            case 1:
+                {
+                    [order_NoPay updataData:JSONDic tagre:self];
+                }
+                break;
+            case 2:
+            {
+                [order_stayGoods updataData:JSONDic tagre:self];
+
+            }
+                break;
+            case 3:
+            {
+                [order_deliverGoods updataData:JSONDic tagre:self];
+
+            }
+                break;
+            case 4:
+            {
+                [order_over updataData:JSONDic tagre:self];
+
+            }
+                break;
+            default:
+                break;
+        }
+        
+        [weakSelf loadUIViewOrder:JSONDic];
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"订单=code==%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
+    
+}
+
+-(void)loadUIViewOrder:(NSArray*)orderArray{
+    
     
 }
 

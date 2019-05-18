@@ -78,7 +78,7 @@
         [[CustomtAlertView sharedView] settingFailWith:title];
         return;
     }else {
-        [SVProgressHUD showErrorWithStatus:title];
+        [SVProgressHUD showInfoWithStatus:title];
 
     }
  }

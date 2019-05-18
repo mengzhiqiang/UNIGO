@@ -298,7 +298,7 @@
 
 -(void)pushPayVCWithOrder:(NSString*)oder{
     PayViewController * payVC = [[PayViewController alloc]init];
-    payVC.SumLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+    payVC.SumOfPrice = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
     payVC.orderID = oder;
     
     UIViewController * viewVC = self.navigationController.viewControllers.firstObject;
@@ -310,8 +310,12 @@
 #pragma mark 提交订单
 -(void)addOrderOfShop{
     
-    NSString *path = [API_HOST stringByAppendingString:order_add];
+    if (!(selectItem.identifier.length>=1)) {
+        [UIHelper alertWithTitle:@"请选择地址"];
+        return ;
+    }
     
+    NSString *path = [API_HOST stringByAppendingString:order_add];
     NSMutableDictionary * diction = [NSMutableDictionary dictionary];
     NSString * car_id = @"";
     for (DCShopCarModel * model in shopCar.buyList) {
