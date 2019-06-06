@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DCOrderListViewController : UIViewController
 
+-(void)GetAllOrder;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -23,7 +23,6 @@
 }
 @property(strong,nonatomic) UIScrollView * scrollView ;
 
-
 @property(assign,nonatomic) int  orderStatus ;
 
 @end
@@ -94,8 +93,13 @@
     order_over.orderStyle = @"已完成";
     [self.scrollView addSubview:order_over];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadUI) name:@"reloadOrderUI" object:nil];
+    
 }
 
+-(void)reloadUI{
+    [self GetAllOrder];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self GetAllOrder];

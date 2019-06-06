@@ -25,7 +25,7 @@
 #import "ExtendClass.h"
 #import "PayViewController.h"
 #import "WXApiManager.h"
-//#import "AppDelegate.h"
+#import "AppDelegate.h"
 
 @interface PayViewController ()<UIAlertViewDelegate,WXApiDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -55,22 +55,15 @@
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     
-    
     if (_platform==10) {
         return;
     }
 
     _Select=80;
-    
     _platform=3;
-    NSMutableDictionary *dic0=[[NSMutableDictionary alloc]initWithObjectsAndKeys:self.orderID,@"orderId",nil];
-/*  网络请求 订单数据
-    [self.netWorks_dad netWorkingpost:[Parameter commonConvertToDict:dic0 pram:@"QueryOrderById"] pram:nil];
-    self.netWorks_dad.delegate=self;
-    */
-    
     _SumLabel.text = self.SumOfPrice;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paymentResult:) name:@"alipayResult" object:nil];
 }
 
 
@@ -80,6 +73,7 @@
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
+    
 }
 
 - (void)viewDidLoad
@@ -88,18 +82,15 @@
     // Do any additional setup after loading the view from its nib.
     self.headLabel.text=@"支付";
     self.headMessageButton.hidden=YES;
-
     [self SetNewframe];
     
     if ([_NewOrder isEqualToString:@"New"]) {
-        
         [self.headLeftButton setTitle:@"取消" forState:UIControlStateNormal];
         self.headLeftButton.titleLabel.font=[UIFont systemFontOfSize:16];
-        
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
         self.navigationController.interactivePopGestureRecognizer.delegate = nil; ///滑动返回调控
     }
-    
+
 }
 
 -(void)backBtnClicked{
@@ -190,11 +181,8 @@
 
     NSArray *content_arr=@[@"拥有微信客户端即可使用",@"拥有支付宝客户端即可使用"];
     
-    
     cell.payImageView.image=[UIImage imageNamed:[image_arr objectAtIndex:indexPath.row]];
-    
     cell.payName.text=  [NSString stringWithFormat:@"%@", [title_arr objectAtIndex:indexPath.row]];
-    
     cell.payContent.text=  [NSString stringWithFormat:@"(%@)", [content_arr objectAtIndex:indexPath.row]];
     
     
@@ -237,7 +225,7 @@
             [self  payOfWXPayReqdata:JSONDic];
 
         }else{
-            [self  payOfAliPayReqdata:JSONDic];
+            [self  payOfAliPayReqdata:(NSString*)JSONDic];
         }
         
     } failure:^(NSError *error) {
@@ -256,6 +244,7 @@
 
 #pragma mark  微信
 -(void)payOfWXPayReqdata:(NSDictionary *)Dic_data{
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(WXPayFinished:)
@@ -299,49 +288,21 @@
 
 
 #pragma mark  支付宝
--(void)payOfAliPayReqdata:(NSDictionary *)Dic_data{
+-(void)payOfAliPayReqdata:(NSString *)Dic_data{
     
-    NSString *appScheme = @"infiniteePay";
-
-    [[AlipaySDK defaultService] payOrder:[Dic_data objectForKey:@"params"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-        
+    NSString *appScheme = @"unigoStorePay";
+    
+    [[AlipaySDK defaultService] payOrder:Dic_data fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         NSLog(@"支付宝支付回调====reslut = %@",resultDic);
-        
-        //                NSString *resultStatus = [NSString toNotNullString:[resultDic objectForKey:@"resultStatus"]];
-        
+
         if ([[resultDic objectForKey:@"resultStatus"] intValue] == 9000) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
-        
-        
         else {
-            
             [UIHelper  alertWithTitle:@"支付失败！"];
         }
-        
     }];
 }
-
-
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-//    //如果极简开发包不可用,会跳转支付宝钱包进行支付,需要将支付宝钱包的支付结果回传给开 发包
-//    
-//    
-//
-//    if ([url.scheme isEqualToString:@"wx7cb421de4b3745a9"]) {
-//        
-//        return [WXApi handleOpenURL:url delegate:self];
-//    }
-//    
-//    
-//    if ([url.host isEqualToString:@"safepay"]) {
-//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
-//                                                  standbyCallback:^(NSDictionary *resultDic) {
-//                                                      NSLog(@"result = %@",resultDic);
-//                                                  }]; }
-//    
-//    return YES;
-//}
 
 # pragma  mark 微信支付完成回调
 
@@ -349,79 +310,20 @@
     //BOOL pop = NO;
     NSString *requestStr = notify.object;
     NSLog(@"--========%@==",notify);
-
     if ([requestStr isEqualToString:@"success"]) {
         NSLog(@"支付成功");
         [UIHelper  alertWithTitle:@"支付成功！"];
-
         [self.navigationController popToRootViewControllerAnimated:YES];
-
     }else{
         [UIHelper  alertWithTitle:@"支付失败！"];
-
         NSLog(@"支付失败");
     }
     
 }
 
 
-//- (void)showAlertMessage:(NSString*)msg
-//{
-//    mAlert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//    [mAlert show];
-//
-
-//}
-
-
 #pragma mark 支付宝快捷支付
-/*
--(NSString*)getOrderInfo:(NSInteger)index
-{
- 
-	 *点击获取prodcut实例并初始化订单信息
- 
-    
-    AlixPayOrder *order = [[AlixPayOrder alloc] init];
-    order.partner = PartnerID;
-    order.seller = SellerID;
-    
-//    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-    
-    order.tradeNO = self.orderID; //订单ID（由商家自行制定）
 
-	order.productName = @"大哥大手机"; //商品标题
-	order.productDescription = @"最新版神器，怀旧版大哥大，帅购啦！...."; //商品描述
-	order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
-	order.notifyURL =  @"http://121.40.69.188/TeeLab/paymentNotify/alipay"; //回调URL
-	
-	return [order description];
-}
-
-- (NSString *)generateTradeNO
-{
-	const int N = 15;
-	
-	NSString *sourceString = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	NSMutableString *result = [[NSMutableString alloc] init] ;
-	srand(time(0));
-	for (int i = 0; i < N; i++)
-	{
-		unsigned index = rand() % [sourceString length];
-		NSString *s = [sourceString substringWithRange:NSMakeRange(index, 1)];
-		[result appendString:s];
-	}
-	return result;
-}
-
--(NSString*)doRsa:(NSString*)orderInfo
-{
-    id<DataSigner> signer;
-    signer = CreateRSADataSigner(PartnerPrivKey);
-    NSString *signedString = [signer signString:orderInfo];
-    return signedString;
-}
- */
 
 -(void)paymentResultDelegate:(NSString *)result
 {
@@ -429,64 +331,42 @@
 }
 //wap回调函数
  
--(void)paymentResult:(NSString *)resultd
+-(void)paymentResult:(NSNotification *)usefication
 {
-    
-    NSLog(@"=====resultd===%@",resultd);
-//    //结果处理
-//    AlixPayResult* result = [[AlixPayResult alloc] initWithString:resultd];
-//
-    NSDictionary *dic=(NSDictionary*)resultd;
+    NSDictionary *dic=(NSDictionary*)usefication.object;
     NSString *res=[dic objectForKey:@"resultStatus"];
+    NSLog(@"resultStatus==dic===%@",dic);
 	if (dic)
     {
-		
 		if ([res intValue] == 9000)
         {
-        NSLog(@"====支付宝支付成功===");
             [self.navigationController popToRootViewControllerAnimated:YES];
+            [UIHelper  alertWithTitle:@"支付成功！"];
             
-//			/// *用公钥验证签名 严格验证请使用result.resultString与result.signString验签
-// 
-//            //交易成功
-//            NSString* key = AlipayPubKey;//签约帐户后获取到的支付宝公钥
-//			id<DataVerifier> verifier;
-//            verifier = CreateRSADataVerifier(key);
-//            
-//			if ([verifier verifyString:result.resultString withSign:result.signString])
-//            {
-//                //验证签名成功，交易结果无篡改
-//                NSLog(@"====支付宝支付成功===");
-//                
-//                
-//                UIAlertView*alert=[[UIAlertView alloc]initWithTitle:@"支付成功" message:nil delegate:self cancelButtonTitle:@"查看订单" otherButtonTitles:@"返回主页", nil];
-//                [alert show];
-////                [self payResultAlert];
-//                
-//			}
+            UIViewController * viewVC = self.navigationController.viewControllers.firstObject;
+            DCorderDetailStatueViewController * statusvc = [DCorderDetailStatueViewController new];
+            statusvc.orderID = self.orderID ;
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [viewVC.navigationController pushViewController:statusvc animated:YES];
         }
-        
         else
-            
         {
             //交易失败
-            NSLog(@"====支付宝支付失败===");
-
+            [UIHelper  alertWithTitle:@"支付失败！"];
         }
     }
     else
     {
         //失败
-        NSLog(@"====支付宝支付失败===");
-
+        [UIHelper  alertWithTitle:@"支付失败！"];
     }
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 #pragma mark 添加订单倒计时
 
 -(void)sumTimeOfIndeent:(NSString*)time{
-    
     
     int remainTime=[time intValue]/1000;
     
@@ -495,8 +375,6 @@
     }else{
     
     }
-    
-    
     
     int min=_SumRemainTime/60;
     int secon=_SumRemainTime%60;
@@ -521,8 +399,6 @@
         [timer1 fire];
 
     }
-    
-    
     
     
 }
@@ -577,11 +453,7 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
 
     }
-    
 
 }
-
-
-
 
 @end

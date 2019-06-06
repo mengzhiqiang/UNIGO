@@ -32,9 +32,19 @@
 				<string>wx3ddd4fb04c77a94b</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Alipay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>unigoStorePay</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>0605</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>Localized resources can be mixed </key>

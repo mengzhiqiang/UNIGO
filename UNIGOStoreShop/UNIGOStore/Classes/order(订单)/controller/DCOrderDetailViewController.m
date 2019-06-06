@@ -16,6 +16,7 @@
 #import "LCActionSheet.h"
 #import "DCAddressModel.h"
 #import "PayViewController.h"
+#import "WXApi.h"
 
 
 @interface DCOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -71,6 +72,10 @@
     
     self.sumPriceLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
 
+//    if (![WXApi isWXAppInstalled]) {
+//        _payButton.hidden = YES;
+//    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

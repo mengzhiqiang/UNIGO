@@ -63,8 +63,11 @@
     
     self.headMessageButton.hidden = NO ;
     [self.headMessageButton setTitle:@"客服" forState:UIControlStateNormal];
-    
     self.HeadView.height = DCTopNavH;
+    
+//    if (![WXApi isWXAppInstalled]) {
+//        _payButton.hidden = YES;
+//    }
 }
 
 -(void)RightMessageOfTableView{
@@ -303,7 +306,7 @@
 
 - (IBAction)payOrder:(UIButton *)sender {
     PayViewController* payVC = [[PayViewController alloc]init];
-    payVC.SumLabel.text = _goodeSumLabel.text;
+    payVC.SumOfPrice = _goodeSumLabel.text;
     payVC.orderID = _orderID;
 
     [self.navigationController pushViewController:payVC animated:YES];

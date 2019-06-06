@@ -23,6 +23,7 @@
 #import <WXApi.h>
 #import "WXApiManager.h"
 #import "DCNewFeatureViewController.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
 
@@ -36,8 +37,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self setUpRootVC]; //跟控制器判断
     [self.window makeKeyAndVisible];
-
-//    [self CDDMallVersionInformationFromPGY]; //蒲公英自动更新
     
 #if defined(DEBUG)||defined(_DEBUG) //仅仅在模拟器上跑测试会显示FPS
     [[JPFPSStatus sharedInstance] open];
@@ -137,63 +136,39 @@
     }
     return YES;
 }
-#pragma mark - 蒲公英版本更新检测
-- (void)CDDMallVersionInformationFromPGY
-{
-    NSDictionary *dict = @{
-                          @"shortcut" : VERSION_Shortcut,  //应用页面地址后缀
-                          @"_api_key" : [NSString stringWithFormat:@"%@",VERSION_API_KEY]
-                          };
-    
-    [RequestTool requestWithType:POST URL:VERSION_HTTPS_SERVER parameter:dict successComplete:^(id responseObject) {
-        
-        if ([[responseObject valueForKey:@"code"] intValue] == 0) {
-            NSLog(@"CDDMall请求成功 appVersion%@,appVersionNo%@",[[responseObject valueForKey:@"data"] valueForKey:@"appVersion"],[[responseObject valueForKey:@"data"] valueForKey:@"appVersionNo"]);
-            
-            NSString *newVersion = [[responseObject valueForKey:@"data"] valueForKey:@"appVersion"];
-            NSString *newBiuld = [[responseObject valueForKey:@"data"] valueForKey:@"appVersionNo"]; //为@""之前未上传过版本
-            NSString *beforeVersion = BIULD_VERSION;
-            NSString *beforeBiuld = BUNDLE_VERSION;
-            
-            if ((![newVersion isEqualToString:beforeVersion] || ![newBiuld isEqualToString:beforeBiuld] ) && ![newBiuld isEqualToString:@""]){
-                
-                NSDictionary *dict = @{
-                                       @"uKey" : VERSION_User_Key,
-                                       @"_api_key" : [NSString stringWithFormat:@"%@",VERSION_API_KEY],
-                                       @"aKey" : [[responseObject valueForKey:@"data"] valueForKey:@"appKey"]
-                                       };
-                
-                [RequestTool requestWithType:POST URL:VERSION_HTTPS_INFO parameter:dict successComplete:^(id responseObject) {
-                    
-                    UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-                    alertWindow.rootViewController = [[UIViewController alloc] init];
-                    alertWindow.windowLevel = UIWindowLevelAlert + 1;
-                    [alertWindow makeKeyAndVisible];
-                    
-                    [DCSpeedy dc_SetUpAlterWithView:alertWindow.rootViewController Message:[NSString stringWithFormat:@"CDDMall有新版本，请前往更新\n更新内容：%@",[[responseObject valueForKey:@"data"] valueForKey:@"appUpdateDescription"]] Sure:^{
-                        
-                        //现在绑定
-                        NSURL *url = [NSURL URLWithString:VERSION_Itms_Services];
-                        [[UIApplication sharedApplication] openURL:url];
-                        
-                    } Cancel:nil];
-                    
-                } failureComplete:^(NSError *error) {
-                    
-                }];
-            }
-        }
 
-    } failureComplete:^(NSError *error) {
-        
-        NSLog(@"蒲公英请求失败~");
-        
-    }];
-}
 #pragma mark - 获取UIApplicationDelegate
 + (AppDelegate *)delegateGet
 {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"alipayResult" object:resultDic];
+
+            
+        }];
+    }
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"alipayResult" object:resultDic];
+        }];
+    }
+    return YES;
 }
 
 @end

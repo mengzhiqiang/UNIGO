@@ -40,12 +40,12 @@
 
 
 @property (nonatomic,assign) SEL result;//这里声明为属性方便在于外部传入。
--(void)paymentResult:(NSString *)result;
+-(void)paymentResult:(NSDictionary *)result;
 
 
 @property (strong, nonatomic)  NSString *NewOrder;           ///刚提交进来的的订单 不能返回上一页面
 @property (strong, nonatomic)  NSString *orderID;           ///订单号
-@property (strong, nonatomic)  NSString *SumOfPrice;           ///订单号
+@property (strong, nonatomic)  NSString *SumOfPrice;           ///
 
 @property (assign, nonatomic)  int    platform;           ///平台
 @property (strong, nonatomic) IBOutlet UILabel *SumLabel;

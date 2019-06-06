@@ -8,8 +8,9 @@
 
 #import "JFJorderTabelView.h"
 #import "JFJOrderTableViewCell.h"
-
+#import "PayViewController.h"
 #import "DCorderDetailStatueViewController.h"
+#import "WXApi.h"
 
 @interface JFJorderTabelView()<UITableViewDataSource,UITableViewDelegate>
 
@@ -63,34 +64,12 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"JFJOrderTableViewCell" owner:self options:nil] objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+    [cell.stateLabel draCirlywithColor:nil andRadius:2.0f];
     cell.stateLabel.text = @"已完成";
     [cell.oredreImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
     cell.backgroundColor=[UIColor clearColor];
     cell.payButton.hidden = YES;
     cell.DeleteOrderButton.hidden = YES;
-
-//    if ([_orderStyle isEqualToString:@"未支付"]) {
-//        cell.orderStatusLabel.text = @"未支付";
-//        cell.payButton.hidden = NO;
-//    }
-//    if ([_orderStyle isEqualToString:@"全部"]) {
-//
-//        if (indexPath.row==0) {
-//            cell.orderStatusLabel.text = @"未支付";
-//            cell.payButton.hidden = NO;
-//
-//        }else if (indexPath.row==1) {
-//            cell.orderStatusLabel.text = @"已支付";
-//
-//        } else if (indexPath.row==2) {
-//            cell.orderStatusLabel.text = @"已完成";
-//
-//        }
-//    }
-//    if ([_orderStyle isEqualToString:@"退款"]) {
-//        cell.orderStatusLabel.text = @"退款中";
-//    }
     
     if (self.data.count > indexPath.row) {
         NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
@@ -170,7 +149,9 @@
         
     }
     
- 
+    if (![WXApi isWXAppInstalled]) {
+        cell.payButton.hidden = YES;
+    }
     
     cell.backSelect = ^(NSString * _Nonnull style) {
         
@@ -219,9 +200,42 @@
     [self reloadData];
 }
 
+-(void)payOrderWith:(NSInteger)row{
+    
+    NSDictionary * diction = [self.data objectAtIndex:row];
+
+    PayViewController* payVC = [[PayViewController alloc]init];
+    payVC.SumOfPrice = [diction objectForKey:@"total_price"];
+    payVC.orderID =  [diction objectForKey:@"id"];
+    [_controller.navigationController pushViewController:payVC animated:YES];
+    
+}
+
 -(void)deleteOrderWithRow:(NSInteger)row{
     
+    NSDictionary * diction = [self.data objectAtIndex:row];
+
     NSLog(@"===%ld" , row);
+    NSString *path = [API_HOST stringByAppendingString:order_cancel];
+        NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+        [dic setObject:[diction objectForKey:@"id"] forKey:@"id"];
+    //    [diction setObject:@"0" forKey:@"status"];
+    WEAKSELF
+    [HttpEngine requestPostWithURL:path params:dic isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSLog(@"=取消订单==%@",responseObject );
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadOrderUI" object:nil];
+
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"取消订单=code==%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
     
 }
 

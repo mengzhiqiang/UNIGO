@@ -108,7 +108,6 @@
 //蒲公英应用页面地址后缀
 #define VERSION_Shortcut @"Mall"
 //蒲公英应用itms-services下载
-#define VERSION_Itms_Services @"itms-services://?action=download-manifest&url=https%3A%2F%2Fwww.pgyer.com%2Fapiv1%2Fapp%2Fplist%3FaId%3Db15ba9b695d00c14e1361c24c1869a17%26_api_key%3De08ad9d9e8fb4dee72c44cb486be09c0"
 //获取当前版本号
 #define BUNDLE_VERSION [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 //获取当前版本的biuld
