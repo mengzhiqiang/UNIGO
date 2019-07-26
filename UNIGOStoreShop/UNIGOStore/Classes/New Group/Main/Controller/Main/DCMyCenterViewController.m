@@ -123,13 +123,7 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    if ([HttpRequestToken getToken].length<1) {
-        LogInmainViewController *dcLoginVc = [LogInmainViewController new];
-        [self presentViewController:dcLoginVc animated:YES completion:nil];
-
-    }
-    
-     accountInfo =  [AFAccountEngine  getAccount];
+    accountInfo =  [AFAccountEngine  getAccount];
     self.headView.useNameLabel.text = accountInfo.client.nickname;
     
 }
@@ -196,6 +190,12 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     
     WEAKSELF
     self.headView.headClickBlock = ^{
+        
+        if ([HttpRequestToken getToken].length<1) {
+            LogInmainViewController *dcLoginVc = [LogInmainViewController new];
+            [weakSelf presentViewController:dcLoginVc animated:YES completion:nil];
+            return ;
+        }
         UNmanagerController *dcMaVc = [UNmanagerController new];
         [weakSelf.navigationController pushViewController:dcMaVc animated:YES];
     };
@@ -215,11 +215,19 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    
     UITableViewCell *cusCell = [UITableViewCell new];
     if (indexPath.section == 0) {
         DCCenterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterItemCellID forIndexPath:indexPath];
         
         cell.backIndex = ^(int index) {
+            
+            if ([HttpRequestToken getToken].length<1) {
+                LogInmainViewController *dcLoginVc = [LogInmainViewController new];
+                [self presentViewController:dcLoginVc animated:YES completion:nil];
+                return ;
+            }
             DCOrderListViewController * orderlist = [[DCOrderListViewController alloc]init];
             [self.navigationController pushViewController:orderlist animated:YES];
         };
@@ -246,6 +254,12 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 #pragma mark - <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([HttpRequestToken getToken].length<1) {
+        LogInmainViewController *dcLoginVc = [LogInmainViewController new];
+        [self presentViewController:dcLoginVc animated:YES completion:nil];
+        return ;
+    }
     NSLog(@"===%ld",(long)indexPath.row);
     DCOrderListViewController * orderVC = [[DCOrderListViewController alloc]init];
     [self.navigationController pushViewController:orderVC animated:YES];

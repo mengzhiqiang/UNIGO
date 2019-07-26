@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ExtendClass.h"
-#import "Define.h"
-
 @interface TitleOfHeardViewController : UIViewController<UINavigationControllerDelegate,UIGestureRecognizerDelegate>{
 
    

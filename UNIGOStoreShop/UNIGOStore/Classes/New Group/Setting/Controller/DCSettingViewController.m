@@ -119,6 +119,8 @@ static NSString *const DCUserMgCellID = @"DCUserMgCell";
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
+            
+            
             [weakSelf.view makeToast:@"退出登录成功" duration:0.5 position:CSToastPositionCenter];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ //先跳出登录界面，在返回RootVC
                 

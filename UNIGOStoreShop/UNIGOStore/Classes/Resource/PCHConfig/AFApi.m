@@ -50,7 +50,7 @@
 //    token = Qb4nJZKo405Y4hHXA7PoYzrWS6RpwJJz;
 //};
 //测试环境
-NSString * const API_HOST = @"http://unigo.itpang.com/api/";
+NSString * const API_HOST = @"http://unigox.cn/api/";
 NSString * const NTE_cerName = @"lediDeveloper";      //云信证书名称
 NSString * const NTES_APP_KEY = @"d9d6e917ea9699ee4fe588d8948b545e";      //云信key
 

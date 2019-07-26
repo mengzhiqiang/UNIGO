@@ -99,10 +99,9 @@
 
     }
     
-    self.headLeftButton.hidden = YES ;
+    self.headLeftButton.hidden = NO ;
     
 }
-
 - (void) textFieldDidChange:(UITextField *) TextField{
     
       if (_UserName.text.length==11 && _PassWord.text.length>=6) {

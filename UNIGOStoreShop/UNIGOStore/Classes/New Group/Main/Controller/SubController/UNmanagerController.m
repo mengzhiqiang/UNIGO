@@ -430,12 +430,14 @@
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceUseInfornKey];
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-//    [[CommonVariable shareCommonVariable]setUserInfoo:nil];
-//    //退出网易云信
-//    [[AFNIMEngine sharedInstance] logoutNIMSDK];
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    [AFAccountEngine quitAccount];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cleadcookieNoticon" object:nil];
+
     [self.navigationController popViewControllerAnimated:YES];
 
 }

@@ -31,7 +31,11 @@
   
 
     chatViewManager.chatViewStyle.navBarTintColor=[UIColor  colorWithHexString:@"000000"];
-    [chatViewManager setClientInfo:@{@"name":Name,@"tel":customId,@"来源":@"ios设备"}]; //终端信息
+    if (Name && customId) {
+        [chatViewManager setClientInfo:@{@"name":Name,@"tel":customId,@"来源":@"ios设备"}]; //终端信息
+    }else{
+        [chatViewManager setClientInfo:@{@"name":@"未登录用户",@"来源":@"ios设备"}]; //终端信息
+    }
     [chatViewManager pushMQChatViewControllerInViewController:viewController];
     [chatViewManager setLoginCustomizedId:customId];
     

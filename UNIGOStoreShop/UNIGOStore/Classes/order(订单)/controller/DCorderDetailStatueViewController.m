@@ -74,7 +74,6 @@
 
     [AFMeiQiaCustomEngine didMeiQiaUIViewController:self andContant:@{@"style":@"1"}];
     
-
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
     [self setStatusBarBackgroundColor:[UIColor whiteColor]];

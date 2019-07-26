@@ -16,6 +16,8 @@
 
 #import "DCshopCarViewController.h"   //购物车
 #import "DCCommodityViewController.h"  //分类
+#import "DCNewWebViewController.h"
+
 // Models
 
 // Views
@@ -102,6 +104,11 @@
                               MallImgKey    : @"tabBar_category_normal",
                               MallSelImgKey : @"tabBar_category_press"},
                             
+                            @{MallClassKey  : @"DCNewWebViewController",
+                              MallTitleKey  : @"BBS",
+                              MallImgKey    : @"tabBar_find_normal",
+                              MallSelImgKey : @"tabBar_find_press"},
+                            
                             @{MallClassKey  : @"DCshopCarViewController",
                               MallTitleKey  : @"购物车",
                               MallImgKey    : @"tabBar_cart_normal",
@@ -145,11 +152,11 @@
     
     if(viewController == [tabBarController.viewControllers objectAtIndex:DCTabBarControllerPerson]){
         
-        if ([HttpRequestToken getToken].length<1) {
-            LogInmainViewController *dcLoginVc = [LogInmainViewController new];
-            [self presentViewController:dcLoginVc animated:YES completion:nil];
-            return NO;
-        }
+//        if ([HttpRequestToken getToken].length<1) {
+//            LogInmainViewController *dcLoginVc = [LogInmainViewController new];
+//            [self presentViewController:dcLoginVc animated:YES completion:nil];
+//            return NO;
+//        }
     }
     return YES;
 }

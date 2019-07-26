@@ -1,15 +1,16 @@
 //
-//  WKwebViewController.m
-//  SmartDevice
+//  DCNewWebViewController.m
+//  UNIGOStore
 //
-//  Created by mengzhiqiang on 17/3/20.
-//  Copyright © 2017年 TeeLab. All rights reserved.
+//  Created by zhiqiang meng on 26/7/2019.
+//  Copyright © 2019 RocketsChen. All rights reserved.
 //
-#import "UIViewController+navigationBar.h"
-#import "WKwebViewController.h"
-#import "CheckNetwordStatus.h"
 
-@interface WKwebViewController ()
+#import "DCNewWebViewController.h"
+#import "CheckNetwordStatus.h"
+#import "AFAccountEngine.h"
+#import "LogInmainViewController.h"
+@interface DCNewWebViewController ()
 {
     
     UIView    *  rootView;
@@ -22,20 +23,21 @@
 
 @end
 
-@implementation WKwebViewController
+@implementation DCNewWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;   ////scrollview 下移20像素的问题
-
+    
     self.headLabel.text = _headTitle;
     _loadCount = 1;
-     _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, self.HeadView.height+1, self.view.frame.size.width, self.view.frame.size.height-self.HeadView.height)];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-self.HeadView.height)];
     _webView.navigationDelegate = self;
     _webView.allowsBackForwardNavigationGestures = YES;
     // 2.创建请求
     NSMutableURLRequest *request;
+    _webUrl = @"http://bbs.unigox.cn/mobile/index.html";
     // 3.加载网页
     if (![CheckNetwordStatus sharedInstance].isNetword) {
         request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:_webUrl] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
@@ -44,26 +46,46 @@
         request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:_webUrl]];
     }
     
+    [request setValue:[self tokenPram] forHTTPHeaderField:@"authentication"];
     [_webView loadRequest:request];
     self.webView.navigationDelegate = self ;
     // 最后将webView添加到界面3000 *0.03 =90  (10000-3000)*10% =700 3000*20%=600
     [self.view addSubview:_webView];
     [UIHelper addLoadingViewTo:self.view withFrame:0];
-
+    
+    self.headLeftButton.hidden = YES;
+    self.HeadView.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cleanCookie) name:@"cleadcookieNoticon" object:nil];
 }
 
+-(NSString*)tokenPram{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kSmartDeviceLoginTokenKey];
+    
+//    if (!token) {
+//        LogInmainViewController *dcLoginVc = [LogInmainViewController new];
+//        [self presentViewController:dcLoginVc animated:YES completion:^{
+//        }];
+//        return  nil;
+//    }
+    
+    UNClient* account = [AFAccountEngine  getAccount].client;
+    NSString * string =[NSString stringWithFormat:@"%@:%@:%d",login_appID ,token,account.identifier];
+    NSString * stringBase = [NSString base64EncodeString:string];
+    return  [NSString stringWithFormat:@"%d %@",account.identifier , stringBase];
+}
 
 /* url 编码 中文 空格 特殊字符 */
 - (NSString *)encodeToPercentEscapeString: (NSString *) input
 {
     NSString* sURl = [input stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`%^{}\"-[]|\\（）<> "].invertedSet];
-//    NSString* sURl = [input stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    //    NSString* sURl = [input stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     return sURl;
     
 }
 
 -(void)addCloseButton{
-
+    
     if (!_colseBtn) {
         _colseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_colseBtn setTitle:@"关闭" forState:UIControlStateNormal];
@@ -73,7 +95,7 @@
         [self.HeadView addSubview:_colseBtn];
         [_colseBtn addTarget:self action:@selector(closeVC) forControlEvents:UIControlEventTouchUpInside];
     }
- 
+    
     _colseBtn.hidden = NO;
 }
 -(void)closeVC{
@@ -82,7 +104,7 @@
 
 -(void)addRightButtonWithTitle:(NSString*)title{
     /////nav 右边按钮
-     _headMessageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _headMessageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_headMessageButton addTarget:self action:@selector(RightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     _headMessageButton.frame=CGRectMake(SCREEN_WIDTH-80, (iPhoneX?24+20:20), 70, 44);
     _headMessageButton.titleLabel.font=[UIFont systemFontOfSize:15];
@@ -92,8 +114,8 @@
     
 }
 -(void)RightBtnClicked:(UIButton*)sender{
-
-
+    
+    
     
 }
 -(void)enableButton{
@@ -103,14 +125,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
     self.view.backgroundColor = [UIColor HexString:@"f2f2f2"];
-
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    
     
 }
 
@@ -121,11 +137,11 @@
 
 /// 接收到服务器跳转请求之后调用 (服务器端redirect)，不一定调用
 //- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
-//    
+//
 //}
 /// 3 在收到服务器的响应头，根据response相关信息，决定是否跳转。decisionHandler必须调用，来决定是否跳转，参数WKNavigationActionPolicyCancel取消跳转，WKNavigationActionPolicyAllow允许跳转
 //- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-//    
+//
 //    decisionHandler(WKNavigationActionPolicyCancel);
 //
 //
@@ -133,8 +149,18 @@
 /// 1 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
-    decisionHandler(WKNavigationActionPolicyAllow);
-
+    NSMutableURLRequest *mutableRequest = [navigationAction.request mutableCopy];
+    NSDictionary *requestHeaders = navigationAction.request.allHTTPHeaderFields;
+    if (requestHeaders[@"authentication"]) {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }else{
+      
+        [mutableRequest setValue:[self tokenPram] forHTTPHeaderField:@"authentication"];
+        [webView loadRequest:mutableRequest];
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+  
+    
 }
 /// 2 页面开始加载
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
@@ -150,7 +176,7 @@
 /// 5 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     NSLog(@"====网页内容时返回！didFinishNavigation==%@=",webView.title);
-
+    
     if (webView.isLoading) {
         return;
     }
@@ -160,14 +186,14 @@
     
     [UIHelper hiddenAlertWith:self.view];
     rootView.hidden=YES;
-//    self.headLabel.text = webView.title;
+    //    self.headLabel.text = webView.title;
     _loadCount++;
     
 }
 
 -(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
     NSLog(@"====加载失败！2==%@=。====%@",error,webView.URL);
-//    NSDictionary * diction = error.userInfo;
+    //    NSDictionary * diction = error.userInfo;
     [UIHelper hiddenAlertWith:self.view];
     
     if (self.isCall) {
@@ -175,7 +201,7 @@
     }else{
         [self  addNoDataImageView ];
     }
-
+    
     
 }
 
@@ -209,7 +235,7 @@
         [btn draCirlywithColor:[UIColor HexString:NormalColor] andRadius:btn.height/2];
         [rootView addSubview:btn];
         
-//        rootView.height = btn.bottom +20;
+        //        rootView.height = btn.bottom +20;
         
     }
     rootView.hidden=NO;
@@ -223,8 +249,8 @@
 }
 /// message: 收到的脚本信息.
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-
-
+    
+    
 }
 
 //重写父类方法
@@ -239,4 +265,39 @@
     }
 }
 
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+
+
+-(void)cleanCookie{
+    
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        [storage deleteCookie:cookie];
+    }
+    //缓存web清除
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
+    
+    if (_webUrl) {//清除所有cookie
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:_webUrl]];
+        for (int i = 0; i < [cookies count]; i++) {
+            NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
+    }
+    
+}
 @end

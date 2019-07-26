@@ -53,8 +53,12 @@
 #import "NetworkUnit.h"
 #import "UNHomeData.h"
 
+#import "DCSearchToolView.h"
 @interface DCHandPickViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+{
+    DCSearchToolView * searchToolView ;
 
+}
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
 /* 10个属性 */
@@ -328,6 +332,21 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
                 [self.navigationController pushViewController:webVC animated:YES];            };
             reusableview = headerView;
           
+          UIButton*  _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            _searchButton.frame = CGRectMake(10, 20, SCREEN_WIDTH - 2 * DCMargin, 30);
+
+            [_searchButton setTitle:@"搜索商品" forState:0];
+            [_searchButton setTitleColor:[UIColor lightGrayColor] forState:0];
+            _searchButton.titleLabel.font = PFR14Font;
+            [_searchButton setImage:[UIImage imageNamed:@"group_home_search_gray"] forState:0];
+            [_searchButton adjustsImageWhenHighlighted];
+            _searchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            _searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, _searchButton.width/2-20, 0, 0);
+            _searchButton.imageEdgeInsets = UIEdgeInsetsMake(0, _searchButton.width/2-30, 0, 0);
+            [_searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
+            [_searchButton draCirlywithColor:[UIColor lightGrayColor] andRadius:15];
+            [headerView addSubview:_searchButton];
+            
 //        }else if (indexPath.section == 2){
 ////            DCCountDownHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCCountDownHeadViewID forIndexPath:indexPath];
 ////            reusableview = headerView;
@@ -568,4 +587,24 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     
 }
 
+#pragma mark - 搜索点击
+- (void)searchButtonClick
+{
+    NSLog(@"===");
+    if (!searchToolView) {
+        searchToolView = [[DCSearchToolView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH)];
+    }
+    [searchToolView.searchBar becomeFirstResponder];
+    searchToolView.hidden = NO;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:searchToolView];
+    WEAKSELF
+    searchToolView.backText = ^(NSString * _Nonnull text) {
+        
+        DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init];
+        goodSetVc.goodPlisName = @"ClasiftyGoods.plist";
+        goodSetVc.searchName = text;
+        [weakSelf.navigationController pushViewController:goodSetVc animated:YES];
+    };
+}
 @end

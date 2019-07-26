@@ -401,6 +401,7 @@
 		998B6F23226B363F0055421B /* img_step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998B6F21226B363F0055421B /* img_step3@3x.png */; };
 		998B6F29226C2FD20055421B /* DCSearchToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F28226C2FD20055421B /* DCSearchToolView.m */; };
 		99B21706228B10B00028010D /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B21705228B10B00028010D /* WXApiManager.m */; };
+		99C19D1522EB235400AA677A /* DCNewWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C19D1422EB235400AA677A /* DCNewWebViewController.m */; };
 		99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F28225ECBBC000AD7A0 /* PayViewController.m */; };
 		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
 		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
@@ -1198,6 +1199,8 @@
 		998B6F28226C2FD20055421B /* DCSearchToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCSearchToolView.m; sourceTree = "<group>"; };
 		99B21704228B10B00028010D /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		99B21705228B10B00028010D /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		99C19D1322EB235400AA677A /* DCNewWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCNewWebViewController.h; sourceTree = "<group>"; };
+		99C19D1422EB235400AA677A /* DCNewWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCNewWebViewController.m; sourceTree = "<group>"; };
 		99C95F28225ECBBC000AD7A0 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		99C95F29225ECBBC000AD7A0 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		99C95F2A225ECBBC000AD7A0 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -3820,6 +3823,8 @@
 			children = (
 				998B6F1E226B35240055421B /* WKwebViewController.h */,
 				998B6F1D226B35240055421B /* WKwebViewController.m */,
+				99C19D1322EB235400AA677A /* DCNewWebViewController.h */,
+				99C19D1422EB235400AA677A /* DCNewWebViewController.m */,
 				9CCC208F202C28C700B6CD44 /* DCSettingViewController.h */,
 				9CCC2090202C28C700B6CD44 /* DCSettingViewController.m */,
 			);
@@ -3927,7 +3932,7 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 0;
@@ -4359,6 +4364,7 @@
 				92B37E711FD1015F0045A4A5 /* DCBaseSetViewController.m in Sources */,
 				9C7A1E33202AC66E0051DB5D /* DCVerificationView.m in Sources */,
 				18DCA31C1F1F4187008BF67E /* DCClassCategoryCell.m in Sources */,
+				99C19D1522EB235400AA677A /* DCNewWebViewController.m in Sources */,
 				9C95E969204004C70084CB37 /* DCCommentsItem.m in Sources */,
 				99EDDEE02247D1CF00C5B529 /* GoodsRequestTool.m in Sources */,
 				9C7A1E2B202AC6570051DB5D /* DCRegisteredViewController.m in Sources */,
@@ -4709,9 +4715,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = UNIGOStore/UNIGOStore.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HJRDHRZRFS;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4721,7 +4726,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = UNIGODevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = UNIGODistribution;
 			};
 			name = Debug;
 		};
@@ -4731,9 +4736,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = UNIGOStore/UNIGOStore.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HJRDHRZRFS;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4743,7 +4747,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = UNIGODevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = UNIGODistribution;
 			};
 			name = Release;
 		};
