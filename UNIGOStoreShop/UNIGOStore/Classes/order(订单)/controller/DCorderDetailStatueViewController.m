@@ -288,7 +288,8 @@
     cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
     cell.priceLabel.text = [diction objectForKey:@"price"];
     cell.goodCountLabel.text = [diction objectForKey:@"count"];
-    [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:nil];
+    [cell.goodsImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
+
     return   cell;
 }
 

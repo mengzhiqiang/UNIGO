@@ -78,7 +78,7 @@
         cell.goodsDetailLabel.text = [diction objectForKey:@"spec_name"];
         cell.goodCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"total_num"]];;
         cell.orderSumLabel.text = [NSString stringWithFormat:@"订单总额 ¥%@",[diction objectForKey:@"total_price"]];;
-
+        [cell.oredreImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
         int status = [[diction objectForKey:@"status"] intValue];
         int pay_status = [[diction objectForKey:@"pay_status"] intValue];
 
@@ -193,7 +193,7 @@
 }
 
 -(void)updataData:(NSArray* )array tagre:(UIViewController*)tagre{
-    
+
     self.data = array ;
     _controller = tagre;
     

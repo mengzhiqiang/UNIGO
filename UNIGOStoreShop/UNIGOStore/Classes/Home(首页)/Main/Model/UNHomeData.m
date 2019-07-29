@@ -15,9 +15,7 @@
            error:(void(^)(NSDictionary *error))fail{
     
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-//        NSString *path = home_banner;
-    NSString *path = [API_HOST stringByAppendingString:home_banner];
-
+         NSString *path = [API_HOST stringByAppendingString:home_All_Data];
         [HttpEngine requestGetWithURL:path params:nil isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;

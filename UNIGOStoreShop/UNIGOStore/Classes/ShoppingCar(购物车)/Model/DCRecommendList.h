@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy ) NSString *image;
 /** 商品标题 */
 @property (nonatomic, copy ) NSString *name;
-
+/** 链接url  */
+@property (nonatomic, copy ) NSString *url;
 @end
 
 @interface DCHomeRecommend : NSObject

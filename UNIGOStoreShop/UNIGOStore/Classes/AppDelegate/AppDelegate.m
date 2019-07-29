@@ -130,7 +130,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
-    if ([url.scheme hasPrefix:@"wx3ddd4fb04c77a94b"] &&[url.resourceSpecifier hasPrefix:@"//pay/?"]) {
+    if ([url.scheme hasPrefix:@"wx3ddd4fb04c77a94b"]) {
         return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     }
     return YES;
@@ -150,8 +150,9 @@
             NSLog(@"result = %@",resultDic);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"alipayResult" object:resultDic];
 
-            
         }];
+    }else   if ([url.scheme hasPrefix:@"wx3ddd4fb04c77a94b"]) {
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     }
     return YES;
 }
@@ -166,6 +167,8 @@
             NSLog(@"result = %@",resultDic);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"alipayResult" object:resultDic];
         }];
+    }else  if ([url.scheme hasPrefix:@"wx3ddd4fb04c77a94b"]) {
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     }
     return YES;
 }

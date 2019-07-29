@@ -56,7 +56,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1 ;
+    return 2 ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -102,12 +102,12 @@
         }
 
     }else{
-//        cell.titleNameLabel.text = @"退出登录";
-//        cell.pushTagImageView.hidden = YES;
-//        cell.titleNameLabel.frame = CGRectMake(0, 0,SCREEN_WIDTH , cell.height);
-//        cell.titleNameLabel.textAlignment = NSTextAlignmentCenter ;
-//        cell.titleNameLabel.textColor = [UIColor redColor];
-//        cell.titleNameLabel.backgroundColor = [UIColor whiteColor];
+        cell.titleNameLabel.text = @"退出登录";
+        cell.pushTagImageView.hidden = YES;
+        cell.titleNameLabel.frame = CGRectMake(0, 0,SCREEN_WIDTH , cell.height);
+        cell.titleNameLabel.textAlignment = NSTextAlignmentCenter ;
+        cell.titleNameLabel.textColor = [UIColor redColor];
+        cell.titleNameLabel.backgroundColor = [UIColor whiteColor];
     }
 
     return cell;
@@ -189,18 +189,17 @@
 /*退出登录*/
 - (void)logout {
     
-    //   [UIHelper alertWithTitle:@"确定要退出登录吗" andMSG:nil delegate:self andTag:102];
-    
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_PASS_WORD];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceLoginTokenKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSmartDeviceUseInfornKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
-//    [[CommonVariable shareCommonVariable]setUserInfoo:nil];
-//    //退出网易云信
-//    [[AFNIMEngine sharedInstance] logoutNIMSDK];
- 
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    [[AFAccountEngine sharedInstance] setCurrentAccount:nil];
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    [AFAccountEngine quitAccount];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cleadcookieNoticon" object:nil];
+    
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

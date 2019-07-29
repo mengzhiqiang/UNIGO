@@ -75,14 +75,14 @@
     order_all = [[JFJorderTabelView alloc] initWithFrame:CGRectMake( 0, 0, SCREEN_WIDTH, lisTheight)];
     order_all.orderStyle = @"全部";
     [order_all updataData:nil tagre:self];
-
     [self.scrollView addSubview:order_all];
     
-    order_NoPay = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*2, 0, SCREEN_WIDTH, lisTheight)];
+    order_NoPay = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, lisTheight)];
     order_NoPay.orderStyle = @"未支付";
     [self.scrollView addSubview:order_NoPay];
     
-    order_stayGoods = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, lisTheight)];
+    order_stayGoods = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*2, 0, SCREEN_WIDTH, lisTheight)];
+    order_stayGoods.orderStyle = @"未支付";
     [self.scrollView addSubview:order_stayGoods];
     
     order_deliverGoods= [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, lisTheight)];
@@ -137,7 +137,9 @@
 
     NSMutableDictionary * diction = [NSMutableDictionary dictionary];
 //    [NSNumber numberWithInt:status];
-    [diction setObject:[NSNumber numberWithInteger:status] forKey:@"status"];
+    if (status!=0) {
+        [diction setObject:[NSNumber numberWithInteger:status-1] forKey:@"status"];
+    }
     WEAKSELF
     [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -145,6 +147,11 @@
         NSLog(@"=订单==%@",JSONDic );
         
         switch (status) {
+            case 0:
+            {
+                [order_all updataData:JSONDic tagre:self];
+            }
+                break;
             case 1:
                 {
                     [order_NoPay updataData:JSONDic tagre:self];
@@ -153,19 +160,16 @@
             case 2:
             {
                 [order_stayGoods updataData:JSONDic tagre:self];
-
             }
                 break;
             case 3:
             {
                 [order_deliverGoods updataData:JSONDic tagre:self];
-
             }
                 break;
             case 4:
             {
                 [order_over updataData:JSONDic tagre:self];
-
             }
                 break;
             default:

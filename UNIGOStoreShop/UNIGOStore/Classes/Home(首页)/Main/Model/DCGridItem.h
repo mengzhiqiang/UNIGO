@@ -11,12 +11,12 @@
 @interface DCGridItem : NSObject
 
 /** 图片  */
-@property (nonatomic, copy ,readonly) NSString *iconImage;
+@property (nonatomic, copy ) NSString *image;
 /** 文字  */
-@property (nonatomic, copy ,readonly) NSString *gridTitle;
+@property (nonatomic, copy ) NSString *name;
 /** tag  */
-@property (nonatomic, copy ,readonly) NSString *gridTag;
+@property (nonatomic, copy ) NSString *url;
 /** tag颜色  */
-@property (nonatomic, copy ,readonly) NSString *gridColor;
+//@property (nonatomic, copy ,readonly) NSString *gridColor;
 
 @end

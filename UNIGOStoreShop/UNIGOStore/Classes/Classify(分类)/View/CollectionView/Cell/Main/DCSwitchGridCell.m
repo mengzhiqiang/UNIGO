@@ -55,12 +55,12 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     _freeSuitImageView = [[UIImageView alloc] init];
-    _freeSuitImageView.image = [UIImage imageNamed:@"taozhuang_tag"];
+//    _freeSuitImageView.image = [UIImage imageNamed:@"taozhuang_tag"];
     [self addSubview:_freeSuitImageView];
     
     _autotrophyImageView = [[UIImageView alloc] init];
     [self addSubview:_autotrophyImageView];
-    _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
+//    _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
     
     _gridImageView = [[UIImageView alloc] init];
     _gridImageView.contentMode = UIViewContentModeScaleToFill;
@@ -75,12 +75,12 @@
     _priceLabel.textColor = [UIColor redColor];
     [self addSubview:_priceLabel];
     
-    _commentNumLabel = [[UILabel alloc] init];
-    NSInteger pNum = arc4random() % 10000;
-    _commentNumLabel.text = [NSString stringWithFormat:@"%zd人已评价",pNum];
-    _commentNumLabel.font = PFR10Font;
-    _commentNumLabel.textColor = [UIColor darkGrayColor];
-    [self addSubview:_commentNumLabel];
+//    _commentNumLabel = [[UILabel alloc] init];
+//    NSInteger pNum = arc4random() % 10000;
+//    _commentNumLabel.text = [NSString stringWithFormat:@"%zd人已评价",pNum];
+//    _commentNumLabel.font = PFR10Font;
+//    _commentNumLabel.textColor = [UIColor darkGrayColor];
+//    [self addSubview:_commentNumLabel];
 }
 
 - (void)layoutSubviews
@@ -99,8 +99,8 @@
     }];
     
     [_gridLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self);
-        make.centerY.mas_equalTo(_autotrophyImageView);
+        [make.left.mas_equalTo(_gridImageView.mas_left)setOffset:0];
+        [make.top.mas_equalTo(_gridImageView.mas_bottom)setOffset:DCMargin];
         [make.right.mas_equalTo(self)setOffset:-DCMargin];
     }];
     
@@ -130,7 +130,7 @@
     _priceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[youSelectItem.price floatValue]];
     _gridLabel.text = youSelectItem.name;
     //首行缩进
-    [DCSpeedy dc_setUpLabel:_gridLabel Content:youSelectItem.name IndentationFortheFirstLineWith:_gridLabel.font.pointSize * 3.5];
+//    [DCSpeedy dc_setUpLabel:_gridLabel Content:youSelectItem.name IndentationFortheFirstLineWith:_gridLabel.font.pointSize * 3.5];
 }
 
 

@@ -67,13 +67,16 @@
     _goodSubtitleLabel.textColor = RGB(233, 35, 46);
     [self addSubview:_goodSubtitleLabel];
     
-    _shareButton = [DCUpDownButton buttonWithType:UIButtonTypeCustom];
-    [_shareButton setTitle:@"分享" forState:0];
-    [_shareButton setImage:[UIImage imageNamed:@"icon_fenxiang2"] forState:0];
-    [_shareButton setTitleColor:[UIColor blackColor] forState:0];
-    _shareButton.titleLabel.font = PFR10Font;
-    [self addSubview:_shareButton];
-    [_shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
+     _goodMarketPriceLabel = [[UILabel alloc] init];
+    [self addSubview:_goodMarketPriceLabel];
+    
+//    _shareButton = [DCUpDownButton buttonWithType:UIButtonTypeCustom];
+//    [_shareButton setTitle:@"分享" forState:0];
+//    [_shareButton setImage:[UIImage imageNamed:@"icon_fenxiang2"] forState:0];
+//    [_shareButton setTitleColor:[UIColor blackColor] forState:0];
+//    _shareButton.titleLabel.font = PFR10Font;
+//    [self addSubview:_shareButton];
+//    [_shareButton addTarget:self action:@selector(shareButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     [DCSpeedy dc_setUpAcrossPartingLineWith:self WithColor:[[UIColor lightGrayColor]colorWithAlphaComponent:0.15]];
     
@@ -92,9 +95,8 @@
     [_goodTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.mas_equalTo(_autotrophyImageView.left+10);
         [make.top.mas_equalTo(_autotrophyImageView)setOffset:-3];
-        [make.right.mas_equalTo(self)setOffset:-DCMargin * 5];
+        [make.right.mas_equalTo(self)setOffset:-1 * 5];
     }];
-
     
     [_goodSubtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_autotrophyImageView);
@@ -107,10 +109,16 @@
         [make.top.mas_equalTo(_goodSubtitleLabel.mas_bottom)setOffset:DCMargin];
     }];
     
-    [_shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.right.mas_equalTo(self)setOffset:-DCMargin];
-        [make.top.mas_equalTo(self)setOffset:DCMargin];
+    [_goodMarketPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [make.left.mas_equalTo(_goodPriceLabel.mas_right)setOffset:10.0];
+        make.centerY.mas_equalTo(_goodPriceLabel.mas_centerY);
+        [make.right.mas_equalTo(self)setOffset:-1 * 5];
     }];
+    
+//    [_shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        [make.right.mas_equalTo(self)setOffset:-DCMargin];
+//        [make.top.mas_equalTo(self)setOffset:DCMargin];
+//    }];
     
     [DCSpeedy dc_setUpLongLineWith:_goodTitleLabel WithColor:[[UIColor lightGrayColor]colorWithAlphaComponent:0.15] WithHightRatio:0.6];
 }

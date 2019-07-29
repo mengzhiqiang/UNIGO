@@ -78,6 +78,8 @@ NSString * const address_get = @"address/get";             // 地址获取
 NSString * const address_del = @"address/del";             // 地址删除
 
 NSString * const home_banner = @"slider/sliderList";         //  首页banner
+NSString * const home_All_Data = @"/index/index";             //  首页所有数据
+
 NSString * const goodsCate_get = @"goodsCate/get";           //  商品分类
 NSString * const goodsList_get = @"goods/goodsList";         //  商品列表
 NSString * const siteInfo_get = @"/site/info";               //  店铺信息

@@ -242,12 +242,12 @@
         if (section==1 ||section==2) {
         return  1;
     }
-    return  5;
+    return  4;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 3;
+    return 2;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -292,7 +292,7 @@
         return cell;
     }
     
-    NSArray  *arr_titile  = @[@"头像",@"昵称",@"生日",@"年龄",@"性别"];
+    NSArray  *arr_titile  = @[@"头像",@"昵称",@"生日",@"性别"];
         cell.titleNameLabel.text=[arr_titile  objectAtIndex:indexPath.row%5];
         switch (indexPath.row) {
                 case 0:
@@ -305,7 +305,7 @@
                 [cell.headImageView draCirlywithColor:[UIColor redColor] andRadius:2.0];
                 cell.headImageView.frame = CGRectMake(SCREEN_WIDTH-65-29, (87.5-60)/2, 65, 65);
                 [cell.headImageView setImageWithURL:[NSURL URLWithString:_userUrl] placeholderImage:(self.headImage?self.headImage:[UIImage imageNamed:@"pho_head_portrait_default"])];
-                [cell.headImageView draCirlywithColor:nil andRadius:cell.headImageView.height/2];
+                [cell.headImageView draCirlywithColor:[UIColor HexString:@"f2f2f2"] andRadius:cell.headImageView.height/2];
             }
                 break;
             case 1:
@@ -320,12 +320,8 @@
 
             }
                 break;
+    
             case 3:
-            {
-                cell.pushTagImageView.hidden = YES;
-            }
-                break;
-            case 4:
             {
                 if ([_userSex isEqualToString:@"1"]) {
                 cell.pushNextLabel.text=@"男孩";
@@ -387,12 +383,8 @@
             [self selectAgeWithdate];
         }
             break;
+
         case 3:
-        {
-            
-        }
-            break;
-        case 4:
         {
             
             [self showAgeWithActionSheetView];

@@ -402,6 +402,7 @@
 		998B6F29226C2FD20055421B /* DCSearchToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F28226C2FD20055421B /* DCSearchToolView.m */; };
 		99B21706228B10B00028010D /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B21705228B10B00028010D /* WXApiManager.m */; };
 		99C19D1522EB235400AA677A /* DCNewWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C19D1422EB235400AA677A /* DCNewWebViewController.m */; };
+		99C19D2A22EF4EE000AA677A /* DCHomeGoodsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C19D2922EF4EDF00AA677A /* DCHomeGoodsItem.m */; };
 		99C95F2B225ECBBC000AD7A0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F28225ECBBC000AD7A0 /* PayViewController.m */; };
 		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
 		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
@@ -1201,6 +1202,8 @@
 		99B21705228B10B00028010D /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
 		99C19D1322EB235400AA677A /* DCNewWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCNewWebViewController.h; sourceTree = "<group>"; };
 		99C19D1422EB235400AA677A /* DCNewWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCNewWebViewController.m; sourceTree = "<group>"; };
+		99C19D2822EF4EDF00AA677A /* DCHomeGoodsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCHomeGoodsItem.h; sourceTree = "<group>"; };
+		99C19D2922EF4EDF00AA677A /* DCHomeGoodsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCHomeGoodsItem.m; sourceTree = "<group>"; };
 		99C95F28225ECBBC000AD7A0 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		99C95F29225ECBBC000AD7A0 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		99C95F2A225ECBBC000AD7A0 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -2324,6 +2327,8 @@
 			children = (
 				18DCA2871F1F4186008BF67E /* DCGridItem.h */,
 				18DCA2881F1F4186008BF67E /* DCGridItem.m */,
+				99C19D2822EF4EDF00AA677A /* DCHomeGoodsItem.h */,
+				99C19D2922EF4EDF00AA677A /* DCHomeGoodsItem.m */,
 				99F8A25322451FA300F808C5 /* UNHomeData.h */,
 				99F8A25422451FA300F808C5 /* UNHomeData.m */,
 			);
@@ -4423,6 +4428,7 @@
 				9938841E22355A5600444EF4 /* ExtendClass.m in Sources */,
 				9C8CC86D2004A2A900515926 /* DCGMScanViewController.m in Sources */,
 				18DCA30F1F1F4187008BF67E /* DCClassGoodsItem.m in Sources */,
+				99C19D2A22EF4EE000AA677A /* DCHomeGoodsItem.m in Sources */,
 				998B6F14226A18F80055421B /* AFMeiQiaCustomEngine.m in Sources */,
 				18DCA33D1F1F4187008BF67E /* DCDetailPartCommentCell.m in Sources */,
 				92B37E761FD128360045A4A5 /* DCBeautyShopViewController.m in Sources */,
@@ -4715,8 +4721,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HJRDHRZRFS;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4724,9 +4730,9 @@
 				INFOPLIST_FILE = UNIGOStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiefujia.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = UNIGODistribution;
+				PROVISIONING_PROFILE_SPECIFIER = testDevelopment;
 			};
 			name = Debug;
 		};
@@ -4736,8 +4742,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou brother-in-law home apartment homestay co. LTD (HJRDHRZRFS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhiqiang meng (DWWVUX77N4)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HJRDHRZRFS;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4745,9 +4751,9 @@
 				INFOPLIST_FILE = UNIGOStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiefujia.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = UNIGODistribution;
+				PROVISIONING_PROFILE_SPECIFIER = testDevelopment;
 			};
 			name = Release;
 		};

@@ -341,7 +341,7 @@ static NSArray *lastSeleArray_;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return (section == 2 ) ? 2 : 1;
+    return (section == 2 ) ? 1 : 1;
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -353,6 +353,15 @@ static NSArray *lastSeleArray_;
             DCDetailGoodReferralCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCDetailGoodReferralCellID forIndexPath:indexPath];
             cell.goodTitleLabel.text = _goodTitle;
             cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",_goodPrice];
+            if (_goodsInfomation[@"market_price"]) {
+                NSString *textStr = [NSString stringWithFormat:@"¥ %@",_goodsInfomation[@"market_price"]];
+                //中划线
+                NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+                NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
+                // 赋值
+                cell.goodMarketPriceLabel.attributedText = attribtStr;
+            }
+
             cell.goodSubtitleLabel.text = _goodSubtitle;
 //            [DCSpeedy dc_setUpLabel:cell.goodTitleLabel Content:_goodTitle IndentationFortheFirstLineWith:cell.goodPriceLabel.font.pointSize * 2];
             WEAKSELF
@@ -373,14 +382,14 @@ static NSArray *lastSeleArray_;
             
             gridcell = cell;
         }else{
-            if (indexPath.row == 0) {
-                DCShowTypeTwoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeTwoCellID forIndexPath:indexPath];
-                cell.contentLabel.text = (![[DCObjManager dc_readUserDataForKey:@"isLogin"] isEqualToString:@"1"]) ? @"预送地址" : userInfo.defaultAddress;//地址
-                gridcell = cell;
-            }else{
+//            if (indexPath.row == 0) {
+//                DCShowTypeTwoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeTwoCellID forIndexPath:indexPath];
+//                cell.contentLabel.text = (![[DCObjManager dc_readUserDataForKey:@"isLogin"] isEqualToString:@"1"]) ? @"预送地址" : userInfo.defaultAddress;//地址
+//                gridcell = cell;
+//            }else{
                 DCShowTypeThreeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeThreeCellID forIndexPath:indexPath];
                 gridcell = cell;
-            }
+//            }
         }
     }else if (indexPath.section == 3){
 //        DCDetailServicetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCDetailServicetCellID forIndexPath:indexPath];

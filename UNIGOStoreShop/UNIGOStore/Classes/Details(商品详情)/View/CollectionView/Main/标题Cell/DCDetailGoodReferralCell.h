@@ -14,6 +14,9 @@
 @property (strong , nonatomic)UILabel *goodTitleLabel;
 /* 商品价格 */
 @property (strong , nonatomic)UILabel *goodPriceLabel;
+
+/* 商品原价 */
+@property (strong , nonatomic)UILabel *goodMarketPriceLabel;
 /* 商品小标题 */
 @property (strong , nonatomic)UILabel *goodSubtitleLabel;
 
@@ -23,5 +26,6 @@
 
 /** 分享按钮点击回调 */
 @property (nonatomic, copy) dispatch_block_t shareButtonClickBlock;
+
 
 @end

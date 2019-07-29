@@ -246,30 +246,35 @@
 -(void)payOfWXPayReqdata:(NSDictionary *)Dic_data{
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(WXPayFinished:)
-                                                 name:@"WXPayFinished"
-                                               object:nil];
-    
-    PayReq *request = [[PayReq alloc] init];
-    request.partnerId = [NSString stringWithFormat:@"%@",[Dic_data objectForKey:@"partnerid"]];
-    request.prepayId= [Dic_data objectForKey:@"prepayid"];
-    request.package =[Dic_data objectForKey:@"package"];
-    request.nonceStr= [Dic_data objectForKey:@"noncestr"];
-    request.timeStamp= (UInt32)[[Dic_data objectForKey:@"timestamp"] intValue];
-    request.sign= [Dic_data objectForKey:@"sign"];
-    
-    if ([WXApi sendReq:request]) {
-        NSLog(@"支付中");
-    }else{
-        NSLog(@"支付调取失败");
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(WXPayFinished:)
+//                                                 name:@"WXPayFinished"
+//                                               object:nil];
+//
+//    PayReq *request = [[PayReq alloc] init];
+//    request.partnerId = [NSString stringWithFormat:@"%@",[Dic_data objectForKey:@"partnerid"]];
+//    request.prepayId= [Dic_data objectForKey:@"prepayid"];
+//    request.package =[Dic_data objectForKey:@"package"];
+//    request.nonceStr= [Dic_data objectForKey:@"noncestr"];
+//    request.timeStamp= (UInt32)[[Dic_data objectForKey:@"timestamp"] intValue];
+//    request.sign= [Dic_data objectForKey:@"sign"];
+//
+//    if ([WXApi sendReq:request]) {
+//        NSLog(@"支付中");
+//    }else{
+//        NSLog(@"支付调取失败");
 
-    }
+//    }
     
-    DCorderDetailStatueViewController * statusvc = [DCorderDetailStatueViewController new];
-    statusvc.orderID = self.orderID ;
-    [[WXApiManager sharedManager] setPayControll:self WithStatusVC:statusvc];
+    [[WXApiManager sharedManager] payOfWXPayReqdata:Dic_data backResult:^(NSString *result) {
+        UIViewController * viewVC = self.navigationController.viewControllers.firstObject;
+        DCorderDetailStatueViewController * statusvc = [DCorderDetailStatueViewController new];
+        statusvc.orderID = self.orderID ;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [viewVC.navigationController pushViewController:statusvc animated:YES];
+    }];
     
+
 }
 -(void)onResp:(BaseResp*)resp{
     if ([resp isKindOfClass:[PayResp class]]){

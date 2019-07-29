@@ -55,6 +55,8 @@ extern NSString * const address_del ;            // 地址删除
 extern NSString * const goodsCate_get;          //  商品获取
 extern NSString * const siteInfo_get ;          //  店铺信息
 extern NSString * const home_banner ;           // 首页banner
+extern NSString * const home_All_Data;             //  首页所有数据
+
 extern NSString * const goodDetail_get;         //  商品信息
 extern NSString * const goodsList_get ;         //  商品列表
 

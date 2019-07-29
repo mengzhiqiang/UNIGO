@@ -109,7 +109,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
 //    [self setStatusBarBackgroundColor:[UIColor clearColor]];
-
     
 }
 
@@ -243,8 +242,8 @@
     DCGoodParticularsViewController *goodParticularsVc = [[DCGoodParticularsViewController alloc] init];
     [self addChildViewController:goodParticularsVc];
     
-    DCGoodCommentViewController *goodCommentVc = [[DCGoodCommentViewController alloc] init];
-    [self addChildViewController:goodCommentVc];
+//    DCGoodCommentViewController *goodCommentVc = [[DCGoodCommentViewController alloc] init];
+//    [self addChildViewController:goodCommentVc];
 }
 
 #pragma mark - 底部按钮(收藏 购物车 加入购物车 立即购买)

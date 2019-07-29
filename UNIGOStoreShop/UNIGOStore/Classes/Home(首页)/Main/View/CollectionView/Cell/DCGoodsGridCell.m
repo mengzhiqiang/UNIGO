@@ -102,19 +102,19 @@
     _gridItem = gridItem;
 
 
-    _gridLabel.text = gridItem.gridTitle;
-    _tagLabel.text = gridItem.gridTag;
-    
-    _tagLabel.hidden = (gridItem.gridTag.length == 0) ? YES : NO;
-    _tagLabel.textColor = [UIColor dc_colorWithHexString:gridItem.gridColor];
-    [DCSpeedy dc_chageControlCircularWith:_tagLabel AndSetCornerRadius:5 SetBorderWidth:1 SetBorderColor:_tagLabel.textColor canMasksToBounds:YES];
+    _gridLabel.text = gridItem.name;
+//    _tagLabel.text = gridItem.name;
+    _tagLabel.hidden = YES;
+//    _tagLabel.hidden = (gridItem.gridTag.length == 0) ? YES : NO;
+//    _tagLabel.textColor = [UIColor dc_colorWithHexString:gridItem.gridColor];
+//    [DCSpeedy dc_chageControlCircularWith:_tagLabel AndSetCornerRadius:5 SetBorderWidth:1 SetBorderColor:_tagLabel.textColor canMasksToBounds:YES];
 
-    if (_gridItem.iconImage.length == 0) return;
-    if ([[_gridItem.iconImage substringToIndex:4] isEqualToString:@"http"]) {
+    if (_gridItem.image.length == 0) return;
+    if ([[_gridItem.image substringToIndex:4] isEqualToString:@"http"]) {
         
-        [_gridImageView sd_setImageWithURL:[NSURL URLWithString:gridItem.iconImage]placeholderImage:[UIImage imageNamed:@"default_49_11"]];
+        [_gridImageView sd_setImageWithURL:[NSURL URLWithString:gridItem.image]placeholderImage:[UIImage imageNamed:@"default_49_11"]];
     }else{
-        _gridImageView.image = [UIImage imageNamed:_gridItem.iconImage];
+        _gridImageView.image = [UIImage imageNamed:_gridItem.image];
     }
 }
 

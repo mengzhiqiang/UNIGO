@@ -42,8 +42,19 @@
     _likeImageView = [[UIImageView alloc] init];
     _likeImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:_likeImageView];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [self addGestureRecognizer:tapGestureRecognizer];
 }
 
+-(void)onTap{
+    if (_backTouch) {
+        _backTouch();
+    }
+}
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -51,7 +62,7 @@
     [_likeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self);
         make.centerY.mas_equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(150, 25));
+        make.size.mas_equalTo(CGSizeMake(self.width, 25));
     }];
 }
 

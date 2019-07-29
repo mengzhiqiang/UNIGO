@@ -132,13 +132,13 @@
 #pragma mark - <UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section==3) {
-        return 4;
+    if (section==2) {
+        return 3;
     }else  if (section==0) {
         return shopCar.buyList.count;
     }
@@ -150,7 +150,7 @@
     
     if (indexPath.section==0) {
         return 70+10;
-    }else  if (indexPath.section==3) {
+    }else  if (indexPath.section==2) {
         return 45;
     }
     return 50 ;
@@ -172,7 +172,7 @@
         cell.priceLabel.text = model.price;
         cell.sleepCountLabel.text = [NSString stringWithFormat:@"X%@",model.cart_num];
         cell.stateLabel.text = model.spec_name ;
-        [cell.goodsImageView setImageWithURL:[NSURL URLWithString:DefaultImage] placeholderImage:[UIImage imageNamed:@""]];
+        [cell.goodsImageView setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@""]];
         
         return cell;
     }
@@ -185,36 +185,39 @@
                     
            }
             cell.titleNameLabel.left = 15;
-            switch (indexPath.section) {
-                case 1:
-                    {
-                        cell.titleNameLabel.text =@"优惠券";
-                        cell.pushNextLabel.text = @"暂无可用优惠券" ;
+            cell.pushTagImageView.hidden = YES;
 
-                    }
-                    break;
-                case 2:
+            switch (indexPath.section) {
+//                case 1:
+//                    {
+////                        cell.titleNameLabel.text =@"优惠券";
+////                        cell.pushNextLabel.text = @"暂无可用优惠券" ;
+//
+//                    }
+//                    break;
+                case 1:
                 {
                     cell.titleNameLabel.text =@"支付方式";
                     cell.pushNextLabel.text = @"在线支付" ;
-
                 }
                     break;
-                case 3:
+                case 2:
                 {
                     if (indexPath.row==0) {
                         cell.titleNameLabel.text =@"商品金额";
                         cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]] ;
 
-                    }else  if (indexPath.row==1) {
-                        cell.titleNameLabel.text =@"优惠折扣";
-                        cell.pushNextLabel.text = [NSString stringWithFormat:@"-%@",_souponPrice];
-                    }else   if (indexPath.row==2) {
+                    }
+//                    else  if (indexPath.row==1) {
+//                        cell.titleNameLabel.text =@"优惠折扣";
+//                        cell.pushNextLabel.text = [NSString stringWithFormat:@"-%@",_souponPrice];
+//                    }
+                    else   if (indexPath.row==1) {
                         cell.titleNameLabel.text =@"运费";
                         cell.pushNextLabel.text = [NSString stringWithFormat:@"+%@",_addressPrice];
 
                         
-                    }else if (indexPath.row==3) {
+                    }else if (indexPath.row==2) {
                         cell.titleNameLabel.text =@"实际支付";
                         cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
 
@@ -280,19 +283,19 @@
 - (void)selectCouponActionSheetView
 {
     
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"到店付款",@"在线支付"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
-        if(buttonIndex == 2) {
-            return ;
-        }
-        if (buttonIndex==0) {
-            _payStyle = @"flowLine";
-        } else  if (buttonIndex==1) {
-            _payStyle = @"online";
-        }
-      
-    }];
-    
-    [sheet showWithColor:[UIColor HexString:@"2c2c2c"]];
+//    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"到店付款",@"在线支付"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
+//        if(buttonIndex == 2) {
+//            return ;
+//        }
+//        if (buttonIndex==0) {
+//            _payStyle = @"flowLine";
+//        } else  if (buttonIndex==1) {
+//            _payStyle = @"online";
+//        }
+//
+//    }];
+//
+//    [sheet showWithColor:[UIColor HexString:@"2c2c2c"]];
 }
 
 - (IBAction)sumbitPay:(UIButton *)sender {

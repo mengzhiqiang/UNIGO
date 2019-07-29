@@ -57,12 +57,12 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     _freeSuitImageView = [[UIImageView alloc] init];
-    _freeSuitImageView.image = [UIImage imageNamed:@"taozhuang_tag"];
+//    _freeSuitImageView.image = [UIImage imageNamed:@"taozhuang_tag"];
     [self addSubview:_freeSuitImageView];
     
     _autotrophyImageView = [[UIImageView alloc] init];
     [self addSubview:_autotrophyImageView];
-    _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
+//    _autotrophyImageView.image = [UIImage imageNamed:@"detail_title_ziying_tag"];
     
     _gridImageView = [[UIImageView alloc] init];
     _gridImageView.contentMode = UIViewContentModeScaleToFill;
@@ -80,12 +80,12 @@
     [self addSubview:_priceLabel];
 
     
-    _commentNumLabel = [[UILabel alloc] init];
-    NSInteger pNum = arc4random() % 10000;
-    _commentNumLabel.text = [NSString stringWithFormat:@"%zd人已评价",pNum];
-    _commentNumLabel.font = PFR10Font;
-    _commentNumLabel.textColor = [UIColor darkGrayColor];
-    [self addSubview:_commentNumLabel];
+//    _commentNumLabel = [[UILabel alloc] init];
+//    NSInteger pNum = arc4random() % 10000;
+//    _commentNumLabel.text = [NSString stringWithFormat:@"%zd人已评价",pNum];
+//    _commentNumLabel.font = PFR10Font;
+//    _commentNumLabel.textColor = [UIColor darkGrayColor];
+//    [self addSubview:_commentNumLabel];
     
     _colonButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_colonButton setImage:[UIImage imageNamed:@"icon_shenglue"] forState:UIControlStateNormal];
@@ -111,8 +111,12 @@
     }];
     
     [_gridLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.left.mas_equalTo(_gridImageView.mas_right)setOffset:DCMargin];
-        [make.top.mas_equalTo(_gridImageView)setOffset:-3];
+        //        make.left.mas_equalTo(self);
+        [make.left.mas_equalTo(self)setOffset:0];
+        
+        //        make.centerY.mas_equalTo(_autotrophyImageView);
+        [make.top.mas_equalTo(_gridImageView.mas_bottom)setOffset:DCMargin];
+        
         [make.right.mas_equalTo(self)setOffset:-DCMargin];
     }];
     

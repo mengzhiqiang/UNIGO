@@ -20,38 +20,50 @@
     return instance;
 }
 
+#pragma mark  调起微信支付
+-(void)payOfWXPayReqdata:(NSDictionary *)Dic_data  backResult:(BackBlockResult)backResult{
+    
+    _backResult = backResult ;
+    
+    PayReq *request = [[PayReq alloc] init];
+    request.partnerId = [NSString stringWithFormat:@"%@",[Dic_data objectForKey:@"partnerid"]];
+    request.prepayId= [Dic_data objectForKey:@"prepayid"];
+    request.package = [Dic_data objectForKey:@"package"];
+    request.nonceStr= [Dic_data objectForKey:@"noncestr"];
+    request.timeStamp= (UInt32)[[Dic_data objectForKey:@"timestamp"] intValue];
+    request.sign= [Dic_data objectForKey:@"sign"];
+    
+    if ([WXApi sendReq:request]) {
+        NSLog(@"支付中");
+    }else{
+        NSLog(@"支付调取失败");
+    }
+    
+}
 #pragma mark - WXApiDelegate
 - (void)onResp:(BaseResp *)resp {
     if([resp isKindOfClass:[PayResp class]]){
         //支付返回结果，实际支付结果需要去微信服务器端查询
-        NSString *strMsg,*strTitle = [NSString stringWithFormat:@"温馨提示"];
-        
         switch (resp.errCode) {
             case WXSuccess:
-                strMsg = @"支付成功！";
                 NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                if (_backResult) {
+                    _backResult(@"success");
+                }
                 break;
                 
             default:
-                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
                 NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                if (_backResult) {
+                    _backResult(@"fail");
+                }
                 break;
         }
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alert show];
         
-        [UIHelper alertWithTitle:@"温馨提示" WithMsg:strMsg delegate:self.payController BtnTitle:@"确定" otherTitle:nil andTag:100 backHander:^{
-            
-            UIViewController * viewVC = self.payController.navigationController.viewControllers.firstObject;
-            [self.payController.navigationController popToRootViewControllerAnimated:NO];
-            [viewVC.navigationController pushViewController:self.payStatusController animated:YES];
-        } otherHander:^{
-            
-        }];
-                
     }else {
     }
 }
+
 
 - (void)onReq:(BaseReq *)req {
 

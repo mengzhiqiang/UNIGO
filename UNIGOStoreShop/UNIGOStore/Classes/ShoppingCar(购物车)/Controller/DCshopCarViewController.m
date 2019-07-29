@@ -107,8 +107,11 @@
     
     if (!(shopCarModel.carList.count>0)) {
         [self setUpEmptyCartView];
+        self.sumView.hidden = YES;
     }else{
         [self.view addSubview:_rootTableView];
+        self.sumView.hidden = NO;
+
     }
 }
 
@@ -303,9 +306,13 @@
             }
 
         }
-        
-//        [shopCarModel.buyList addObject:shopModel];
     }
+    
+    if (shopCarModel.buyList.count<1) {
+        
+        return ;
+    }
+    
     DCOrderDetailViewController * orderVC = [[DCOrderDetailViewController alloc]init];
     [self.navigationController pushViewController:orderVC animated:YES];
     

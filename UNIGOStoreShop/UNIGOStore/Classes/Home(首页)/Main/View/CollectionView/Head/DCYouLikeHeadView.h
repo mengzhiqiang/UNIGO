@@ -15,4 +15,6 @@
 /* 标题图片 */
 @property (strong , nonatomic)UIImageView *likeImageView;
 
+@property (copy , nonatomic)void (^backTouch)(void);
+
 @end

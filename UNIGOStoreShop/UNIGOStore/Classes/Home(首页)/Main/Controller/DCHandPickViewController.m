@@ -20,6 +20,8 @@
 #import "DCGridItem.h"
 #import "DCRecommendItem.h"
 #import "DCRecommendList.h"
+#import "DCHomeGoodsItem.h"
+
 // Views
 #import "DCNavSearchBarView.h"
 #import "DCHomeTopToolView.h"
@@ -76,6 +78,10 @@
 /* banner 数据*/
 @property (strong , nonatomic)NSArray *bannerArray;
 @property (strong , nonatomic)NSMutableArray *bannerImagesArray;
+
+@property (strong , nonatomic)NSArray *tagStyleArray;
+@property (strong , nonatomic)NSArray *tuijianArray;
+@property (strong , nonatomic)NSArray <DCHomeGoodsItem *>*goodesTuijianArray;
 
 
 @end
@@ -137,7 +143,6 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self getGoodListwithID];
     [self getbanner];
     
     [self setUpBase];
@@ -186,7 +191,8 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     WEAKSELF
     [DCSpeedy dc_callFeedback]; //触动
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ //手动延迟
-        [weakSelf getGoodListwithID];
+        [self getbanner];
+
     });
 }
 
@@ -243,13 +249,13 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return  _homeRecommendList.count +1;
+    return  _homeRecommendList.count +2;
     return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0) { //10属性
-        return 0;
+        return 10;
     }
 //    if ( section == 3) { //广告福利  倒计时  掌上专享
 //        return 1;
@@ -262,9 +268,9 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         }
     }
     
-//    if (section == 1) { //推荐
-//        return GoodsHandheldImagesArray.count;
-//    }
+    if (section == 3) { //推荐
+        return _goodesTuijianArray.count;
+    }
 //    if (section == 2) { //猜你喜欢
 //        return _youLikeItem.count;
 //    }
@@ -275,10 +281,9 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *gridcell = nil;
     if (indexPath.section == 0) {//10
-//        DCGoodsGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsGridCellID forIndexPath:indexPath];
-//        cell.gridItem = _gridItem[indexPath.row];
-//        cell.backgroundColor = [UIColor whiteColor];
-//        gridcell = cell;
+        DCGoodsGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsGridCellID forIndexPath:indexPath];
+        cell.gridItem = _gridItem[indexPath.row];
+        gridcell = cell;
         
     }
 //    else if (indexPath.section == 1) {//广告福利
@@ -295,7 +300,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 ////        gridcell = cell;
 //
 //    }
-//    else if (indexPath.section == 1) {//推荐
+//    else if (indexPath.section == 3) {//推荐
 //        DCGoodsHandheldCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsHandheldCellID forIndexPath:indexPath];
 //        NSArray *images = GoodsHandheldImagesArray;
 //        cell.handheldImage = images[indexPath.row];
@@ -357,6 +362,9 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
             
             [headerView.likeImageView setImageWithURL:[NSURL URLWithString:_homeRecommendList[indexPath.section-1].image] placeholderImage:nil];
             reusableview = headerView;
+            headerView.backTouch = ^{
+                [self pushNextVCWithURL:_homeRecommendList[indexPath.section-1].url andName:_homeRecommendList[indexPath.section-1].name];
+            };
         }
 //        else if (indexPath.section == 2){
 //            DCYouLikeHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCYouLikeHeadViewID forIndexPath:indexPath];
@@ -386,9 +394,9 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 //这里我为了直观的看出每组的CGSize设置用if 后续我会用简洁的三元表示
 #pragma mark - item宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {//9宫格组
-//        return CGSizeMake(ScreenW/5 , ScreenW/5 + DCMargin);
-//    }
+    if (indexPath.section == 0) {//9宫格组
+        return CGSizeMake(ScreenW/5 , ScreenW/5 + DCMargin);
+    }
 //    if (indexPath.section == 1) {//广告
 //        return CGSizeMake(ScreenW, 180);
 //    }
@@ -398,9 +406,9 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 //    if (indexPath.section == 3) {//掌上
 //        return CGSizeMake(ScreenW,ScreenW * 0.35 + 120);
 //    }
-//    if (indexPath.section == 1) {//推荐组
-//        return [self layoutAttributesForItemAtIndexPath:indexPath].size;
-//    }
+    if (indexPath.section == 3) {//推荐组
+        return [self layoutAttributesForItemAtIndexPath:indexPath].size;
+    }
     if (indexPath.section >= 1) {//猜你喜欢
         return CGSizeMake((ScreenW - 4)/2, 128);
     }
@@ -409,7 +417,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    if (indexPath.section == 10) {
+    if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             layoutAttributes.size = CGSizeMake(ScreenW, ScreenW * 0.38);
         }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
@@ -426,8 +434,10 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 
     if (section == 0) {
         return CGSizeMake(ScreenW, 230); //图片滚动的宽高
+    }else  if (section == 1) {
+        return CGSizeMake(ScreenW, 100); //图片滚动的宽高
     }
-    if ( section == 1 || section == 2) {//猜你喜欢的宽高
+     else if (  section == 2) {
         return CGSizeMake(ScreenW, 40);  //推荐适合的宽高
     }
     return CGSizeZero;
@@ -457,13 +467,28 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     return (section >= 1) ? 4 : 0;
 }
 
+-(void)pushNextVCWithURL:(NSString*)URL andName:(NSString*)name{
+    
+    if ([URL hasPrefix:@"http"]) {
+        WKwebViewController * webVC = [[WKwebViewController alloc]init];
+        webVC.webUrl = URL ;
+        webVC.headTitle = name ;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }else  if ([URL hasPrefix:@"category://"]){
+        DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init] ;
+        goodSetVc.goodsCateID = [[URL componentsSeparatedByString:@"//"] lastObject];
+        [self.navigationController pushViewController:goodSetVc animated:YES];
+    }else if ([URL hasPrefix:@"goods:"]){
+        DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
+        dcVc.goodID = [[URL componentsSeparatedByString:@"//"] lastObject];
+        [self.navigationController pushViewController:dcVc animated:YES];
+    }
+}
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {//10
-        
-        DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init];
-        goodSetVc.goodPlisName = @"ClasiftyGoods.plist";
-        [self.navigationController pushViewController:goodSetVc animated:YES];
+        DCGridItem* item = _gridItem[indexPath.row];
+        [self pushNextVCWithURL:item.url andName:item.name];
     }else
         if (indexPath.section >= 1){
         
@@ -536,11 +561,62 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     
      __weak typeof(self) myself = self ;
     [UNHomeData getBanner:^(id  _Nonnull responseObject) {
-        myself.bannerArray = (NSArray *)responseObject;
-        [myself.collectionView reloadData];
+        [self loadNewDataOfViewWithArray:(NSArray *)responseObject];
     } error:^(NSDictionary * _Nonnull error) {
         
     }];
+}
+
+-(void)loadNewDataOfViewWithArray:(NSArray*)array{
+    
+    NSLog(@"=array==%@==",array) ;
+    for (NSDictionary*diction in array) {
+        NSArray * a = [diction objectForKey:@"data"];
+        NSString*  type = diction[@"type"] ;
+        if (a && type) {
+            switch ([type intValue]) {
+                case 1:
+                {
+                    self.bannerArray = (NSArray *)a;
+                }
+                    break;
+                case 2:
+                {
+                    self.tagStyleArray = (NSArray *)a;
+                    _gridItem = [DCGridItem mj_objectArrayWithKeyValuesArray:a];
+                }
+                    break;
+                case 3:
+                {
+                    self.tuijianArray = (NSArray *)a;
+                    self.homeRecommendList = [DCRecommendList mj_objectArrayWithKeyValuesArray:a];
+                    
+                    [self.collectionView.mj_header endRefreshing];
+                    
+                    for (int i=0; i<self.homeRecommendList.count; i++) {
+                        NSArray * ar = [self.homeRecommendList objectAtIndex:i].data;
+                        NSMutableArray * arr = [DCHomeRecommend mj_objectArrayWithKeyValuesArray:ar];
+                        [self.homeRecommendList objectAtIndex:i].data = arr;
+                    }
+                    
+                }
+                    break;
+                case 4:
+                {
+//                    self.goodesTuijianArray = (NSArray *)a;
+                    self.goodesTuijianArray = [DCHomeGoodsItem mj_objectArrayWithKeyValuesArray:a];
+
+                }
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+        }
+     
+    [self.collectionView reloadData];
+
 }
 
 -(NSArray *)bannerImages{
@@ -553,7 +629,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     }
     
     for (int i=0; i<_bannerArray.count; i++) {
-        [_bannerImagesArray addObject:[[_bannerArray objectAtIndex:i] objectForKey:@"img"] ];
+        [_bannerImagesArray addObject:[[_bannerArray objectAtIndex:i] objectForKey:@"image"] ];
     }
     
     if (_bannerImagesArray.count<1) {
