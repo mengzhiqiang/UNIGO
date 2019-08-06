@@ -329,12 +329,15 @@
         NSLog(@"===%@",responseObject );
         
         if (JSONDic.count>0) {
+            self.sumView.hidden = NO;
+
             [weakSelf  setShopCarWithData:JSONDic];
         }else{
             [shopCarModel.carList removeAllObjects];
             emptyCartView.hidden = NO;
             [_rootTableView reloadData];
             [self selectSum];
+
         }
     } failure:^(NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

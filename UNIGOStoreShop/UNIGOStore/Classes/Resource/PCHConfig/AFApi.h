@@ -69,9 +69,11 @@ extern NSString * const order_lists;           //  订单列表
 extern NSString * const order_details;         //  订单详情
 extern NSString * const order_pay ;            //  支付接口
 extern NSString * const order_cancel;          //  取消订单
+extern NSString * const order_tips;          //  订单状态数量
 
 
 extern NSString * const recommendList_get;         // 首页推荐
+extern NSString * const searchRecommendList_get;         // 搜索关键字
 
 
 //NIM Token 刷新网易云信Token

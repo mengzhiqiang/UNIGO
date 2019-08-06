@@ -43,6 +43,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressDetailLabel;
 
+
+@property (strong, nonatomic)  UITextField * userMarkTF;
+
 @end
 
 @implementation DCOrderDetailViewController
@@ -70,7 +73,7 @@
     _addressPrice = @"8.00";
     
     
-    self.sumPriceLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+    self.sumPriceLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]] ;
 
 //    if (![WXApi isWXAppInstalled]) {
 //        _payButton.hidden = YES;
@@ -138,7 +141,7 @@
 {
     
     if (section==2) {
-        return 3;
+        return 2;
     }else  if (section==0) {
         return shopCar.buyList.count;
     }
@@ -153,7 +156,7 @@
     }else  if (indexPath.section==2) {
         return 45;
     }
-    return 50 ;
+    return 45 ;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -212,14 +215,16 @@
 //                        cell.titleNameLabel.text =@"优惠折扣";
 //                        cell.pushNextLabel.text = [NSString stringWithFormat:@"-%@",_souponPrice];
 //                    }
-                    else   if (indexPath.row==1) {
-                        cell.titleNameLabel.text =@"运费";
-                        cell.pushNextLabel.text = [NSString stringWithFormat:@"+%@",_addressPrice];
-
-                        
-                    }else if (indexPath.row==2) {
+//                    else   if (indexPath.row==1) {
+//                        cell.titleNameLabel.text =@"运费";
+//                        cell.pushNextLabel.text = [NSString stringWithFormat:@"免运费"];
+//
+//
+//                    }
+                    else if (indexPath.row==1) {
                         cell.titleNameLabel.text =@"实际支付";
-                        cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+                        cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]];
+//                        cell.pushNextLabel.text = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
 
                     }
                     
@@ -241,11 +246,45 @@
         return 140+10;
     }
     else if(section == 1){
-        return  8.0f;
+        return  10.0f;
     }
-    return 1.0f;
+    return 10.0f;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    if (section==2) {
+        return 50;
+    }
+    return 0.01 ;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    if (section ==2) {
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 50)];
+        view.backgroundColor = PersonBackGroundColor;
+        
+        UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, ScreenW, 40)];
+        backView.backgroundColor = [UIColor whiteColor];
+        [view addSubview:backView];
+        
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 80, 40)];
+        label.text = @"订单备注";
+        label.font = [UIFont systemFontOfSize:14];
+        [backView addSubview:label];
+        
+        _userMarkTF = [[UITextField alloc]initWithFrame:CGRectMake(100, 0, ScreenW-130, 40)];
+        _userMarkTF.placeholder = @"选填";
+        _userMarkTF.font = [UIFont systemFontOfSize:14];
+        _userMarkTF.textAlignment = NSTextAlignmentRight;
+        [backView addSubview:_userMarkTF];
+        
+        return view;
+    }
+    
+    return nil ;
+}
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==0) {
         return  _addressView;
@@ -306,7 +345,7 @@
 
 -(void)pushPayVCWithOrder:(NSString*)oder{
     PayViewController * payVC = [[PayViewController alloc]init];
-    payVC.SumOfPrice = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]+_addressPrice.floatValue-_souponPrice.floatValue] ;
+    payVC.SumOfPrice = [NSString stringWithFormat:@"%.2f", [self shopSumOfPrice]] ;
     payVC.orderID = oder;
     
     UIViewController * viewVC = self.navigationController.viewControllers.firstObject;
@@ -347,6 +386,8 @@
 
     }
     [diction setObject:selectItem.identifier forKey:@"address_id"];
+
+    [diction setObject:(_userMarkTF.text.length?_userMarkTF.text:@"") forKey:@"user_remark"];
 
     
     WEAKSELF

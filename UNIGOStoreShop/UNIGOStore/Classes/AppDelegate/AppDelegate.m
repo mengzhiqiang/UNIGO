@@ -24,7 +24,7 @@
 #import "WXApiManager.h"
 #import "DCNewFeatureViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
-
+#import "CheckNetwordStatus.h"
 @interface AppDelegate ()
 
 @end
@@ -34,6 +34,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [CheckNetwordStatus sharedInstance].isNetword = YES;
+    [HttpEngine checkAFNetworkStatus];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self setUpRootVC]; //跟控制器判断
     [self.window makeKeyAndVisible];

@@ -60,7 +60,7 @@
         [button addTarget:self action:@selector(rightButtonItemClick) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
-    [self addSubview:_rightItemButton];
+//    [self addSubview:_rightItemButton];
 //    [self addSubview:_leftItemButton];
     
     CAGradientLayer * layer = [[CAGradientLayer alloc] init];
@@ -80,13 +80,13 @@
 //        make.width.equalTo(@44);
 //    }];
     
-    [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerY.equalTo(_leftItemButton.mas_centerY);
-        make.top.equalTo(self.mas_top).offset(20);
-        make.right.equalTo(self.mas_right).offset(-0);
-        make.height.equalTo(@44);
-        make.width.equalTo(@44);
-    }];
+//    [_rightItemButton mas_makeConstraints:^(MASConstraintMaker *make) {
+////        make.centerY.equalTo(_leftItemButton.mas_centerY);
+//        make.top.equalTo(self.mas_top).offset(20);
+//        make.right.equalTo(self.mas_right).offset(-0);
+//        make.height.equalTo(@44);
+//        make.width.equalTo(@44);
+//    }];
     
 }
 

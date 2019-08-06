@@ -49,7 +49,7 @@
 - (void)setUpUI
 {
     _emptyImageView = [[UIImageView alloc] init];
-    _emptyImageView.image = [UIImage imageNamed:@"bj_baobei"];
+    _emptyImageView.image = [UIImage imageNamed:@"56661565012865.jpg"];
     [self addSubview:_emptyImageView];
     
     _sloganLabel = [[UILabel alloc] init];

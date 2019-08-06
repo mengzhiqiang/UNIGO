@@ -391,6 +391,18 @@
 		9975A3DA223A4F6A004BF485 /* 2X0059.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A39F223A4F69004BF485 /* 2X0059.png */; };
 		9975A3DB223A4F6A004BF485 /* 2X003.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A0223A4F69004BF485 /* 2X003.png */; };
 		9975A3DC223A4F6A004BF485 /* 2X001.png in Resources */ = {isa = PBXBuildFile; fileRef = 9975A3A1223A4F69004BF485 /* 2X001.png */; };
+		9980024222F6B75D009EAECB /* DCAfterSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980024022F6B75D009EAECB /* DCAfterSaleViewController.m */; };
+		9980024322F6B75D009EAECB /* DCAfterSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9980024122F6B75D009EAECB /* DCAfterSaleViewController.xib */; };
+		9980027422F87655009EAECB /* JFInputBubbleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980026122F87654009EAECB /* JFInputBubbleItem.m */; };
+		9980027522F87655009EAECB /* JFBubbleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980026422F87654009EAECB /* JFBubbleItem.m */; };
+		9980027622F87655009EAECB /* JFBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980026A22F87655009EAECB /* JFBubbleView.m */; };
+		9980027722F87655009EAECB /* JFSelectBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980026B22F87655009EAECB /* JFSelectBubbleView.m */; };
+		9980027822F87655009EAECB /* JFEditBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980026C22F87655009EAECB /* JFEditBubbleView.m */; };
+		9980027922F87655009EAECB /* DemoSelectBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980027022F87655009EAECB /* DemoSelectBubbleView.m */; };
+		9980027A22F87655009EAECB /* JFBubbleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980027122F87655009EAECB /* JFBubbleViewController.m */; };
+		9980027B22F87655009EAECB /* DemoEditBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980027222F87655009EAECB /* DemoEditBubbleView.m */; };
+		9980028122F8769E009EAECB /* NSAttributedString+calculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980027D22F8769D009EAECB /* NSAttributedString+calculate.m */; };
+		9980028222F8769E009EAECB /* NSString+calculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980028022F8769D009EAECB /* NSString+calculate.m */; };
 		998B6F10226A17790055421B /* AppDelegate+MeiQia.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */; };
 		998B6F14226A18F80055421B /* AFMeiQiaCustomEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */; };
 		998B6F17226ADF490055421B /* DCRecommendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F16226ADF490055421B /* DCRecommendList.m */; };
@@ -407,6 +419,8 @@
 		99C95F2C225ECBBC000AD7A0 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F29225ECBBC000AD7A0 /* PayViewController.xib */; };
 		99C95F30225ECBC4000AD7A0 /* PayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */; };
 		99C95F31225ECBC4000AD7A0 /* PayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C95F2F225ECBC4000AD7A0 /* PayTableViewCell.m */; };
+		99CD13C222F33518001929E4 /* DCHomeGoodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99CD13C022F33518001929E4 /* DCHomeGoodsCollectionViewCell.m */; };
+		99CD13C322F33518001929E4 /* DCHomeGoodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99CD13C122F33518001929E4 /* DCHomeGoodsCollectionViewCell.xib */; };
 		99DB644A2237979700E72F05 /* AFManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB64472237979700E72F05 /* AFManageTableViewCell.m */; };
 		99DB644B2237979700E72F05 /* AFManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB64482237979700E72F05 /* AFManageTableViewCell.xib */; };
 		99DB6454223797F100E72F05 /* AmendPWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB6451223797F000E72F05 /* AmendPWViewController.xib */; };
@@ -1183,6 +1197,30 @@
 		9975A39F223A4F69004BF485 /* 2X0059.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X0059.png; sourceTree = "<group>"; };
 		9975A3A0223A4F69004BF485 /* 2X003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X003.png; sourceTree = "<group>"; };
 		9975A3A1223A4F69004BF485 /* 2X001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2X001.png; sourceTree = "<group>"; };
+		9980023F22F6B75D009EAECB /* DCAfterSaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCAfterSaleViewController.h; sourceTree = "<group>"; };
+		9980024022F6B75D009EAECB /* DCAfterSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCAfterSaleViewController.m; sourceTree = "<group>"; };
+		9980024122F6B75D009EAECB /* DCAfterSaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCAfterSaleViewController.xib; sourceTree = "<group>"; };
+		9980026122F87654009EAECB /* JFInputBubbleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFInputBubbleItem.m; sourceTree = "<group>"; };
+		9980026222F87654009EAECB /* JFBubbleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBubbleItem.h; sourceTree = "<group>"; };
+		9980026322F87654009EAECB /* JFInputBubbleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFInputBubbleItem.h; sourceTree = "<group>"; };
+		9980026422F87654009EAECB /* JFBubbleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBubbleItem.m; sourceTree = "<group>"; };
+		9980026522F87655009EAECB /* JFBubbleHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBubbleHeader.h; sourceTree = "<group>"; };
+		9980026722F87655009EAECB /* JFBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBubbleView.h; sourceTree = "<group>"; };
+		9980026822F87655009EAECB /* JFEditBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFEditBubbleView.h; sourceTree = "<group>"; };
+		9980026922F87655009EAECB /* JFSelectBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSelectBubbleView.h; sourceTree = "<group>"; };
+		9980026A22F87655009EAECB /* JFBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBubbleView.m; sourceTree = "<group>"; };
+		9980026B22F87655009EAECB /* JFSelectBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSelectBubbleView.m; sourceTree = "<group>"; };
+		9980026C22F87655009EAECB /* JFEditBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFEditBubbleView.m; sourceTree = "<group>"; };
+		9980026E22F87655009EAECB /* JFBubbleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBubbleViewController.h; sourceTree = "<group>"; };
+		9980026F22F87655009EAECB /* DemoEditBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoEditBubbleView.h; sourceTree = "<group>"; };
+		9980027022F87655009EAECB /* DemoSelectBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoSelectBubbleView.m; sourceTree = "<group>"; };
+		9980027122F87655009EAECB /* JFBubbleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBubbleViewController.m; sourceTree = "<group>"; };
+		9980027222F87655009EAECB /* DemoEditBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoEditBubbleView.m; sourceTree = "<group>"; };
+		9980027322F87655009EAECB /* DemoSelectBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoSelectBubbleView.h; sourceTree = "<group>"; };
+		9980027D22F8769D009EAECB /* NSAttributedString+calculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+calculate.m"; sourceTree = "<group>"; };
+		9980027E22F8769D009EAECB /* NSString+calculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+calculate.h"; sourceTree = "<group>"; };
+		9980027F22F8769D009EAECB /* NSAttributedString+calculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+calculate.h"; sourceTree = "<group>"; };
+		9980028022F8769D009EAECB /* NSString+calculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+calculate.m"; sourceTree = "<group>"; };
 		998B6F0E226A17780055421B /* AppDelegate+MeiQia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+MeiQia.h"; sourceTree = "<group>"; };
 		998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+MeiQia.m"; sourceTree = "<group>"; };
 		998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMeiQiaCustomEngine.m; sourceTree = "<group>"; };
@@ -1210,6 +1248,9 @@
 		99C95F2D225ECBC3000AD7A0 /* PayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayTableViewCell.xib; sourceTree = "<group>"; };
 		99C95F2E225ECBC3000AD7A0 /* PayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTableViewCell.h; sourceTree = "<group>"; };
 		99C95F2F225ECBC4000AD7A0 /* PayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTableViewCell.m; sourceTree = "<group>"; };
+		99CD13BF22F33518001929E4 /* DCHomeGoodsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCHomeGoodsCollectionViewCell.h; sourceTree = "<group>"; };
+		99CD13C022F33518001929E4 /* DCHomeGoodsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCHomeGoodsCollectionViewCell.m; sourceTree = "<group>"; };
+		99CD13C122F33518001929E4 /* DCHomeGoodsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DCHomeGoodsCollectionViewCell.xib; sourceTree = "<group>"; };
 		99DB64472237979700E72F05 /* AFManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFManageTableViewCell.m; sourceTree = "<group>"; };
 		99DB64482237979700E72F05 /* AFManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AFManageTableViewCell.xib; sourceTree = "<group>"; };
 		99DB64492237979700E72F05 /* AFManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFManageTableViewCell.h; sourceTree = "<group>"; };
@@ -2380,6 +2421,9 @@
 				998B6F18226B03880055421B /* DCRecommendCollectionViewCell.h */,
 				998B6F19226B03880055421B /* DCRecommendCollectionViewCell.m */,
 				998B6F1A226B03880055421B /* DCRecommendCollectionViewCell.xib */,
+				99CD13BF22F33518001929E4 /* DCHomeGoodsCollectionViewCell.h */,
+				99CD13C022F33518001929E4 /* DCHomeGoodsCollectionViewCell.m */,
+				99CD13C122F33518001929E4 /* DCHomeGoodsCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -3166,6 +3210,9 @@
 				99031D58225B907B00D712FE /* DCorderDetailStatueViewController.h */,
 				99031D59225B907C00D712FE /* DCorderDetailStatueViewController.m */,
 				99031D5A225B907C00D712FE /* DCorderDetailStatueViewController.xib */,
+				9980023F22F6B75D009EAECB /* DCAfterSaleViewController.h */,
+				9980024022F6B75D009EAECB /* DCAfterSaleViewController.m */,
+				9980024122F6B75D009EAECB /* DCAfterSaleViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3293,6 +3340,66 @@
 				9975A39F223A4F69004BF485 /* 2X0059.png */,
 			);
 			path = loadingPng;
+			sourceTree = "<group>";
+		};
+		9980025F22F87654009EAECB /* JFBubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				9980026522F87655009EAECB /* JFBubbleHeader.h */,
+				9980026022F87654009EAECB /* JFBubbleItem */,
+				9980026622F87655009EAECB /* JFBubbleView */,
+				9980027C22F8769D009EAECB /* NSString+calculate */,
+			);
+			path = JFBubbleView;
+			sourceTree = "<group>";
+		};
+		9980026022F87654009EAECB /* JFBubbleItem */ = {
+			isa = PBXGroup;
+			children = (
+				9980026222F87654009EAECB /* JFBubbleItem.h */,
+				9980026422F87654009EAECB /* JFBubbleItem.m */,
+				9980026322F87654009EAECB /* JFInputBubbleItem.h */,
+				9980026122F87654009EAECB /* JFInputBubbleItem.m */,
+			);
+			path = JFBubbleItem;
+			sourceTree = "<group>";
+		};
+		9980026622F87655009EAECB /* JFBubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				9980026722F87655009EAECB /* JFBubbleView.h */,
+				9980026A22F87655009EAECB /* JFBubbleView.m */,
+				9980026D22F87655009EAECB /* JFBubbleViewController */,
+				9980026822F87655009EAECB /* JFEditBubbleView.h */,
+				9980026C22F87655009EAECB /* JFEditBubbleView.m */,
+				9980026922F87655009EAECB /* JFSelectBubbleView.h */,
+				9980026B22F87655009EAECB /* JFSelectBubbleView.m */,
+			);
+			path = JFBubbleView;
+			sourceTree = "<group>";
+		};
+		9980026D22F87655009EAECB /* JFBubbleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9980026E22F87655009EAECB /* JFBubbleViewController.h */,
+				9980026F22F87655009EAECB /* DemoEditBubbleView.h */,
+				9980027022F87655009EAECB /* DemoSelectBubbleView.m */,
+				9980027122F87655009EAECB /* JFBubbleViewController.m */,
+				9980027222F87655009EAECB /* DemoEditBubbleView.m */,
+				9980027322F87655009EAECB /* DemoSelectBubbleView.h */,
+			);
+			path = JFBubbleViewController;
+			sourceTree = "<group>";
+		};
+		9980027C22F8769D009EAECB /* NSString+calculate */ = {
+			isa = PBXGroup;
+			children = (
+				9980027D22F8769D009EAECB /* NSAttributedString+calculate.m */,
+				9980027E22F8769D009EAECB /* NSString+calculate.h */,
+				9980027F22F8769D009EAECB /* NSAttributedString+calculate.h */,
+				9980028022F8769D009EAECB /* NSString+calculate.m */,
+			);
+			path = "NSString+calculate";
 			sourceTree = "<group>";
 		};
 		998B6F11226A18F80055421B /* MeiQiaEngine */ = {
@@ -3470,6 +3577,7 @@
 		9C5F52A51FDF610B0061728E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9980025F22F87654009EAECB /* JFBubbleView */,
 				9C147D411FE0E86E00CA3BB4 /* CustomView */,
 				9C5F52B21FDFB43E0061728E /* tableViewCell */,
 			);
@@ -4015,6 +4123,7 @@
 				9975A3BC223A4F69004BF485 /* 2X0026.png in Resources */,
 				9C7FE1F11FD9302300D32EEA /* DCBeautyShopRecommendCell.xib in Resources */,
 				9975A3CA223A4F69004BF485 /* 2X0016.png in Resources */,
+				99CD13C322F33518001929E4 /* DCHomeGoodsCollectionViewCell.xib in Resources */,
 				9975A3C7223A4F69004BF485 /* 2X0015.png in Resources */,
 				9975A3B2223A4F69004BF485 /* 2X0053.png in Resources */,
 				9975A3C4223A4F69004BF485 /* 2X0024.png in Resources */,
@@ -4038,6 +4147,7 @@
 				99DB644B2237979700E72F05 /* AFManageTableViewCell.xib in Resources */,
 				18DCA36F1F1F4187008BF67E /* line.png in Resources */,
 				9CE9CB651FE899610033322E /* DCUserAdressCell.xib in Resources */,
+				9980024322F6B75D009EAECB /* DCAfterSaleViewController.xib in Resources */,
 				18DCA3B31F1F4187008BF67E /* ClassiftyGoods01.plist in Resources */,
 				9975A3C1223A4F69004BF485 /* 2X0025.png in Resources */,
 				993F4BAE224F6454001260B9 /* DCShopCarSumView.xib in Resources */,
@@ -4234,6 +4344,7 @@
 			files = (
 				92B4F85A1F8DBBED003C2E76 /* Reachability.m in Sources */,
 				9CEB3B7B1FEB559300B636F9 /* DCBeautyMessageViewController.m in Sources */,
+				9980027722F87655009EAECB /* JFSelectBubbleView.m in Sources */,
 				9C2AB0AA2040378700B01353 /* DCComImagesView.m in Sources */,
 				993884D222355A8400444EF4 /* UIViewController+NavnationBar.m in Sources */,
 				9938841022355A5600444EF4 /* NSTimer+Addition.m in Sources */,
@@ -4257,6 +4368,7 @@
 				18DCA3091F1F4187008BF67E /* AppDelegate.m in Sources */,
 				9C147D641FE1526D00CA3BB4 /* DCCenterBackCell.m in Sources */,
 				18DCA3851F1F4187008BF67E /* XWFilterAnimator+XWPageCurl.m in Sources */,
+				9980028222F8769E009EAECB /* NSString+calculate.m in Sources */,
 				9C13F4C920072F6300CCE89F /* GQGesVCTransition.m in Sources */,
 				18DCA30A1F1F4187008BF67E /* DCCommodityViewController.m in Sources */,
 				9938850922355F3900444EF4 /* AFCustomContent.m in Sources */,
@@ -4265,6 +4377,7 @@
 				9938841D22355A5600444EF4 /* WLUnitField.m in Sources */,
 				9C7A1E32202AC66E0051DB5D /* DCAccountPsdView.m in Sources */,
 				9938841622355A5600444EF4 /* TimeOfcCodeButton.m in Sources */,
+				99CD13C222F33518001929E4 /* DCHomeGoodsCollectionViewCell.m in Sources */,
 				18DCA33F1F1F4187008BF67E /* DCShareItemCell.m in Sources */,
 				18DCA3771F1F4187008BF67E /* XWCoolAnimator+XWFold.m in Sources */,
 				998B6F1F226B35240055421B /* WKwebViewController.m in Sources */,
@@ -4282,6 +4395,7 @@
 				993884D422355A8400444EF4 /* UINavigationItem+CustomBackButtonItem.m in Sources */,
 				9CE9CB6C1FE8D9280033322E /* DCNewAdressViewController.m in Sources */,
 				18DCA3411F1F4187008BF67E /* DCCollectionHeaderLayout.m in Sources */,
+				9980027422F87655009EAECB /* JFInputBubbleItem.m in Sources */,
 				18DCA34E1F1F4187008BF67E /* Foundation+Log.m in Sources */,
 				927DD43C1FD51E9500D19889 /* DCMVViewController.m in Sources */,
 				9938840F22355A5600444EF4 /* CycleScrollView.m in Sources */,
@@ -4293,6 +4407,7 @@
 				18DCA3511F1F4187008BF67E /* UIPlaceHolderTextView.m in Sources */,
 				99094EB1223B3CC000C97DBA /* AFUpdateBabyInformation.m in Sources */,
 				993883DE223559B700444EF4 /* LogInmainViewController.m in Sources */,
+				9980028122F8769E009EAECB /* NSAttributedString+calculate.m in Sources */,
 				18DCA3881F1F4187008BF67E /* XWFilterAnimator.m in Sources */,
 				998B6F10226A17790055421B /* AppDelegate+MeiQia.m in Sources */,
 				9CC5846220452D2B00F38F46 /* YBPopupMenuPath.m in Sources */,
@@ -4337,6 +4452,7 @@
 				993F4BA9224F1B1C001260B9 /* DCShopCarModel.m in Sources */,
 				9C95E966203FF2570084CB37 /* DCCometItemCell.m in Sources */,
 				18DCA3141F1F4187008BF67E /* DCListGridCell.m in Sources */,
+				9980027522F87655009EAECB /* JFBubbleItem.m in Sources */,
 				181AEDB01F4BC9A8003DB950 /* DCFooterReusableView.m in Sources */,
 				18DCA31A1F1F4187008BF67E /* DCCustionHeadView.m in Sources */,
 				18DCA3891F1F4187008BF67E /* XWFilterTransitionView.m in Sources */,
@@ -4354,6 +4470,7 @@
 				993885112235602900444EF4 /* NSData+Base64.m in Sources */,
 				9C2D841720413CAE00C27E0E /* DCComPicViewController.m in Sources */,
 				181AED8A1F4BC646003DB950 /* DCGoodParticularsViewController.m in Sources */,
+				9980024222F6B75D009EAECB /* DCAfterSaleViewController.m in Sources */,
 				9938851E2235612C00444EF4 /* AppDelegate+Update.m in Sources */,
 				9C58D4211FEA08D900639225 /* UILabel+DCLabel.m in Sources */,
 				18DCA3981F1F4187008BF67E /* DCYouLikeHeadView.m in Sources */,
@@ -4389,6 +4506,7 @@
 				9938853F223565AF00444EF4 /* LCActionSheet.m in Sources */,
 				18DCA34A1F1F4187008BF67E /* DCUpDownButton.m in Sources */,
 				18DCA31B1F1F4187008BF67E /* DCHoverFlowLayout.m in Sources */,
+				9980027A22F87655009EAECB /* JFBubbleViewController.m in Sources */,
 				993884E522355A8400444EF4 /* NSString+Extension.m in Sources */,
 				993884F822355C8000444EF4 /* TitleOfHeardViewController.m in Sources */,
 				9C7FE1EF1FD92CEA00D32EEA /* DCBeautyShopRecommendCell.m in Sources */,
@@ -4406,6 +4524,7 @@
 				187E678B1E7D793100722607 /* main.m in Sources */,
 				18DCA3191F1F4187008BF67E /* DCColonInsView.m in Sources */,
 				18DCA3801F1F4187008BF67E /* XWFilterAnimator+XWBoxBlur.m in Sources */,
+				9980027B22F87655009EAECB /* DemoEditBubbleView.m in Sources */,
 				18DCA34D1F1F4187008BF67E /* DCSpeedy.m in Sources */,
 				181AED861F4BC646003DB950 /* DCGoodCommentViewController.m in Sources */,
 				92565C071FD7ECE500828060 /* DCNotificationCenterName.m in Sources */,
@@ -4495,6 +4614,8 @@
 				18DCA3841F1F4187008BF67E /* XWFilterAnimator+XWMod.m in Sources */,
 				9938850622355F3900444EF4 /* AFUMClickNames.m in Sources */,
 				18DCA3291F1F4187008BF67E /* DCFeatureList.m in Sources */,
+				9980027822F87655009EAECB /* JFEditBubbleView.m in Sources */,
+				9980027922F87655009EAECB /* DemoSelectBubbleView.m in Sources */,
 				9CCC2087202BEBC700B6CD44 /* CitiesDataTool.m in Sources */,
 				9C8CC8652004A25E00515926 /* DCScanIdentifyAreaView.m in Sources */,
 				9C67DC631FE79DC100C04F25 /* DCUserMgCell.m in Sources */,
@@ -4540,6 +4661,7 @@
 				993884F022355AB500444EF4 /* CheckNetwordStatus.m in Sources */,
 				18DCA3391F1F4187008BF67E /* DCCommentContentCell.m in Sources */,
 				993884AF22355A8300444EF4 /* UIView+ZHRoundCorner.m in Sources */,
+				9980027622F87655009EAECB /* JFBubbleView.m in Sources */,
 				99094EA4223B393D00C97DBA /* AFdatePickerView.m in Sources */,
 				99094ED3223D2DB200C97DBA /* MOFSPickerManager.m in Sources */,
 				9CE9CB751FE8F3630033322E /* DCPlaceholderTextView.m in Sources */,
@@ -4730,9 +4852,9 @@
 				INFOPLIST_FILE = UNIGOStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiefujia.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = testDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = UNIGODevelopment;
 			};
 			name = Debug;
 		};
@@ -4751,9 +4873,9 @@
 				INFOPLIST_FILE = UNIGOStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiefujia.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unigo.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = testDevelopment;
+				PROVISIONING_PROFILE_SPECIFIER = UNIGODevelopment;
 			};
 			name = Release;
 		};

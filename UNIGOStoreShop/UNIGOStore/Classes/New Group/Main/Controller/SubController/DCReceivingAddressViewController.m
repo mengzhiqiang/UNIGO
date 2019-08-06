@@ -144,6 +144,8 @@ static NSString *const DCUserAdressCellID = @"DCUserAdressCell";
 //        self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
 //
 //    }
+    self.view.backgroundColor = [UIColor whiteColor];
+
 }
 
 // main_btn_back_normal

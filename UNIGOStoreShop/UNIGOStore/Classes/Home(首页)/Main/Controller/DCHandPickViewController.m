@@ -32,6 +32,7 @@
 #import "DCExceedApplianceCell.h"//不止
 #import "DCGoodsYouLikeCell.h"   //猜你喜欢商品
 #import "DCGoodsGridCell.h"      //10个选项
+#import "DCHomeGoodsCollectionViewCell.h"
 
 #import "DCRecommendCollectionViewCell.h"
 /* head */
@@ -81,6 +82,8 @@
 
 @property (strong , nonatomic)NSArray *tagStyleArray;
 @property (strong , nonatomic)NSArray *tuijianArray;
+@property (strong , nonatomic)NSArray *middleImageArray;
+
 @property (strong , nonatomic)NSArray <DCHomeGoodsItem *>*goodesTuijianArray;
 
 
@@ -92,6 +95,9 @@ static NSString *const DCGoodsHandheldCellID = @"DCGoodsHandheldCell";
 static NSString *const DCGoodsYouLikeCellID = @"DCGoodsYouLikeCell";
 static NSString *const DCGoodsGridCellID = @"DCGoodsGridCell";
 static NSString *const DCExceedApplianceCellID = @"DCExceedApplianceCell";
+
+static NSString *const DCHomeGoodsCollectionViewCellID = @"DCHomeGoodsCollectionViewCell";
+
 
 static NSString *const DCRecommendCollectionViewCellID = @"DCRecommendCollectionViewCell";
 
@@ -122,10 +128,12 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         [_collectionView registerClass:[DCGoodsGridCell class] forCellWithReuseIdentifier:DCGoodsGridCellID];
         [_collectionView registerClass:[DCExceedApplianceCell class] forCellWithReuseIdentifier:DCExceedApplianceCellID];
         [_collectionView registerClass:[DCNewWelfareCell class] forCellWithReuseIdentifier:DCNewWelfareCellID];
+
         
 //        [_collectionView registerClass:[DCRecommendCollectionViewCell class] forCellWithReuseIdentifier:DCRecommendCollectionViewCellID];
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([DCRecommendCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:DCRecommendCollectionViewCellID];
-        
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([DCHomeGoodsCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:DCHomeGoodsCollectionViewCellID];
+
         [_collectionView registerClass:[DCTopLineFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:DCTopLineFootViewID];
         [_collectionView registerClass:[DCOverFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:DCOverFootViewID];
         [_collectionView registerClass:[DCScrollAdFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:DCScrollAdFootViewID];
@@ -163,7 +171,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 {
     self.collectionView.backgroundColor = DCBGColor;
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -211,7 +219,7 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     [_backTopButton addTarget:self action:@selector(ScrollToTop) forControlEvents:UIControlEventTouchUpInside];
     [_backTopButton setImage:[UIImage imageNamed:@"btn_UpToTop"] forState:UIControlStateNormal];
     _backTopButton.hidden = YES;
-    _backTopButton.frame = CGRectMake(ScreenW - 50, ScreenH - 110, 40, 40);
+    _backTopButton.frame = CGRectMake(ScreenW - 50, ScreenH - 110-iphoneXTop, 40, 40);
 }
 
 #pragma mark - 导航栏处理
@@ -268,9 +276,10 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         }
     }
     
-    if (section == 3) { //推荐
+    if (section == _homeRecommendList.count+1) { //推荐
         return _goodesTuijianArray.count;
     }
+  
 //    if (section == 2) { //猜你喜欢
 //        return _youLikeItem.count;
 //    }
@@ -286,13 +295,18 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         gridcell = cell;
         
     }
-//    else if (indexPath.section == 1) {//广告福利
-//        DCNewWelfareCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCNewWelfareCellID forIndexPath:indexPath];
+    else if (indexPath.section == _homeRecommendList.count+1) {//
+        DCHomeGoodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCHomeGoodsCollectionViewCellID forIndexPath:indexPath];
+       
+        if (_goodesTuijianArray.count >indexPath.row) {
+            [cell  loadNewUI:_goodesTuijianArray[indexPath.row]];
+        }
+
+        gridcell = cell;
+    }
+//    else if (indexPath.section == _homeRecommendList.count+2) {//
+//        DCGoodsCountDownCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsCountDownCellID forIndexPath:indexPath];
 //        gridcell = cell;
-//    }
-//    else if (indexPath.section == 2) {//倒计时
-////        DCGoodsCountDownCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsCountDownCellID forIndexPath:indexPath];
-////        gridcell = cell;
 //    }
 //    else if (indexPath.section == 3) {//掌上专享
 ////        DCExceedApplianceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCExceedApplianceCellID forIndexPath:indexPath];
@@ -329,42 +343,57 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
             headerView.imageGroupArray = [self bannerImages];   ///banner 轮播图
             headerView.backIndex = ^(NSInteger index) {
                 
-              NSDictionary *diction =  [_bannerArray objectAtIndex:index];
-                
-                WKwebViewController * webVC = [[WKwebViewController alloc]init];
-                webVC.webUrl = [diction objectForKey:@"url"];
-                webVC.headTitle = [diction objectForKey:@"name"] ;
-                [self.navigationController pushViewController:webVC animated:YES];            };
+                if (index==100) {
+                    [self searchButtonClick];
+                }else if (index==101){
+                    self.tabBarController.selectedIndex = 1 ;
+                }else{
+                    NSDictionary *diction =  [_bannerArray objectAtIndex:index];
+                    WKwebViewController * webVC = [[WKwebViewController alloc]init];
+                    webVC.webUrl = [diction objectForKey:@"url"];
+                    webVC.headTitle = [diction objectForKey:@"name"] ;
+                    [self.navigationController pushViewController:webVC animated:YES];
+                    
+                }
+              
+            };
             reusableview = headerView;
           
-          UIButton*  _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            _searchButton.frame = CGRectMake(10, 20, SCREEN_WIDTH - 2 * DCMargin, 30);
-
-            [_searchButton setTitle:@"搜索商品" forState:0];
-            [_searchButton setTitleColor:[UIColor lightGrayColor] forState:0];
-            _searchButton.titleLabel.font = PFR14Font;
-            [_searchButton setImage:[UIImage imageNamed:@"group_home_search_gray"] forState:0];
-            [_searchButton adjustsImageWhenHighlighted];
-            _searchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            _searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, _searchButton.width/2-20, 0, 0);
-            _searchButton.imageEdgeInsets = UIEdgeInsetsMake(0, _searchButton.width/2-30, 0, 0);
-            [_searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
-            [_searchButton draCirlywithColor:[UIColor lightGrayColor] andRadius:15];
-            [headerView addSubview:_searchButton];
+    
             
 //        }else if (indexPath.section == 2){
 ////            DCCountDownHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCCountDownHeadViewID forIndexPath:indexPath];
 ////            reusableview = headerView;
         }
-        else if (indexPath.section >= 1){
-            DCYouLikeHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCYouLikeHeadViewID forIndexPath:indexPath];
-//            [headerView.likeImageView sd_setImageWithURL:[NSURL URLWithString:@"http://gfs7.gomein.net.cn/T1WudvBm_T1RCvBVdK.png"]];
-            
-            [headerView.likeImageView setImageWithURL:[NSURL URLWithString:_homeRecommendList[indexPath.section-1].image] placeholderImage:nil];
-            reusableview = headerView;
-            headerView.backTouch = ^{
-                [self pushNextVCWithURL:_homeRecommendList[indexPath.section-1].url andName:_homeRecommendList[indexPath.section-1].name];
-            };
+        else if (indexPath.section >= 1 ){
+
+            if (self.homeRecommendList !=nil) {
+                if (indexPath.section < self.homeRecommendList.count+1) {
+                    DCYouLikeHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCYouLikeHeadViewID forIndexPath:indexPath];
+                    //            [headerView.likeImageView sd_setImageWithURL:[NSURL URLWithString:@"http://gfs7.gomein.net.cn/T1WudvBm_T1RCvBVdK.png"]];
+                    
+                    [headerView.likeImageView setImageWithURL:[NSURL URLWithString:_homeRecommendList[indexPath.section-1].image] placeholderImage:nil];
+                    reusableview = headerView;
+                    headerView.backTouch = ^{
+                        [self pushNextVCWithURL:_homeRecommendList[indexPath.section-1].url andName:_homeRecommendList[indexPath.section-1].name];
+                    };
+                }else{
+                    
+                    DCCountDownHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCCountDownHeadViewID forIndexPath:indexPath];
+                    reusableview = headerView;
+                }
+             
+            }else{
+                DCYouLikeHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCYouLikeHeadViewID forIndexPath:indexPath];
+                //            [headerView.likeImageView sd_setImageWithURL:[NSURL URLWithString:@"http://gfs7.gomein.net.cn/T1WudvBm_T1RCvBVdK.png"]];
+                
+                [headerView.likeImageView setImageWithURL:[NSURL URLWithString:_homeRecommendList[indexPath.section-1].image] placeholderImage:nil];
+                reusableview = headerView;
+                headerView.backTouch = ^{
+                    [self pushNextVCWithURL:_homeRecommendList[indexPath.section-1].url andName:_homeRecommendList[indexPath.section-1].name];
+                };
+            }
+           
         }
 //        else if (indexPath.section == 2){
 //            DCYouLikeHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCYouLikeHeadViewID forIndexPath:indexPath];
@@ -406,11 +435,14 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 //    if (indexPath.section == 3) {//掌上
 //        return CGSizeMake(ScreenW,ScreenW * 0.35 + 120);
 //    }
-    if (indexPath.section == 3) {//推荐组
-        return [self layoutAttributesForItemAtIndexPath:indexPath].size;
-    }
-    if (indexPath.section >= 1) {//猜你喜欢
-        return CGSizeMake((ScreenW - 4)/2, 128);
+//    if (indexPath.section == 3) {//推荐组
+//        return [self layoutAttributesForItemAtIndexPath:indexPath].size;
+//    }
+    if (indexPath.section >= 1 && indexPath.section<_homeRecommendList.count+1) {//猜你喜欢
+        return CGSizeMake((ScreenW - 4)/2, 138);
+    }else if ( indexPath.section==_homeRecommendList.count+1){
+        return CGSizeMake((ScreenW - 4)/2, 230);
+
     }
     return CGSizeZero;
 }
@@ -433,13 +465,17 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 
     if (section == 0) {
-        return CGSizeMake(ScreenW, 230); //图片滚动的宽高
+        return CGSizeMake(ScreenW, 188+SCREEN_top); //图片滚动的宽高
     }else  if (section == 1) {
         return CGSizeMake(ScreenW, 100); //图片滚动的宽高
     }
      else if (  section == 2) {
         return CGSizeMake(ScreenW, 40);  //推荐适合的宽高
-    }
+     }if (section>=1 && section < _tuijianArray.count+1) {
+         return CGSizeMake(ScreenW, 165); //
+     }else if (section == _tuijianArray.count+1){
+         return CGSizeMake(ScreenW, 50);  //
+     }
     return CGSizeZero;
 }
 
@@ -492,6 +528,16 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     }else
         if (indexPath.section >= 1){
         
+            if (indexPath.section == _homeRecommendList.count+1) {
+                
+              DCHomeGoodsItem * item =   self.goodesTuijianArray[indexPath.row];
+
+                DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
+                dcVc.goodID = item.identity;
+                [self.navigationController pushViewController:dcVc animated:YES];
+                return ;
+            }
+            
           DCHomeRecommend * recom =  [_homeRecommendList[indexPath.section-1].data objectAtIndex:indexPath.row];
             if ([recom.url hasPrefix:@"goods://"]) {
                 NSString *str1 = [recom.url substringFromIndex:8];//截取

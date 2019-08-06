@@ -53,7 +53,7 @@
         _scrollerView.frame = self.view.bounds;
         _scrollerView.showsVerticalScrollIndicator = NO;
         _scrollerView.showsHorizontalScrollIndicator = NO;
-        _scrollerView.pagingEnabled = YES;
+//        _scrollerView.pagingEnabled = YES;
         _scrollerView.bounces = NO;
         _scrollerView.delegate = self;
         [self.view addSubview:_scrollerView];
@@ -127,7 +127,7 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     self.scrollerView.backgroundColor = self.view.backgroundColor;
-    self.scrollerView.contentSize = CGSizeMake(self.view.dc_width * self.childViewControllers.count, 0);
+    self.scrollerView.contentSize = CGSizeMake(self.view.dc_width, 0);
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     

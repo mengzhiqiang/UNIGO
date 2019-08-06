@@ -71,6 +71,7 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
+        [_tableView deselectRowAtIndexPath:[NSIndexPath indexPathWithIndex:0] animated:YES];
         [self.view addSubview:_tableView];
         
         [_tableView registerClass:[DCClassCategoryCell class] forCellReuseIdentifier:DCClassCategoryCellID];
@@ -331,7 +332,7 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 #pragma mark - 请求分类
 -(void)getGoodsCate{
     
-    if (_mainItem.count>+1) {
+    if (_mainItem.count>1) {
         return ;
     }
         [GoodsRequestTool getGoodsCate:^(id  _Nonnull responseObject) {
@@ -354,6 +355,11 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 
     [_tableView reloadData];
     [_collectionView reloadData];
+    
+    NSIndexPath *selected = [NSIndexPath indexPathForRow:0 inSection:0];
+    [_tableView selectRowAtIndexPath:selected animated:YES scrollPosition:nil];
+//    [_tableView deselectRowAtIndexPath:selected animated:YES];
+
 }
 
 @end

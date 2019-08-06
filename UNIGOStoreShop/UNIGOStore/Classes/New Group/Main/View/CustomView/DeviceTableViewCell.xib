@@ -84,7 +84,7 @@
             </connections>
             <point key="canvasLocation" x="22.399999999999999" y="65.667166416791616"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ISi-E2-gy1" customClass="DeviceTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeviceTableViewCell" id="ISi-E2-gy1" customClass="DeviceTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ISi-E2-gy1" id="RRH-vl-6gg">
@@ -119,7 +119,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_table_NickName.png" id="fbi-BI-QaW">
-                        <rect key="frame" x="10" y="11" width="24" height="24"/>
+                        <rect key="frame" x="10" y="13" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_table_image.png" id="p9d-5J-SiO">

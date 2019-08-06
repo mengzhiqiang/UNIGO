@@ -32,6 +32,12 @@
     
     _nickNameTF.text = [self.baby_Dic objectForKey:@"name"];
 
+    if (self.isTrusName) {
+        self.headLabel.text = @"真实姓名";
+        _nickNameTF.text = [self.baby_Dic objectForKey:@"truename"];
+        _nickNameTF.placeholder = @"请输入真实姓名";
+    }
+
     self.headMessageButton.hidden = NO;
     [self.headMessageButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.headMessageButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -77,19 +83,28 @@
 }
 - (IBAction)NextButton:(UIButton *)sender {
     
+    NSString * key = @"昵称";
+    if (self.isTrusName) {
+        key = @"真实姓名";
+    }
     if (![_nickNameTF.text isValidBabyAlias]) {
-        [UIHelper showUpMessage:@"昵称不能包含标点或空格！"];
+        [UIHelper showUpMessage:@"不能包含标点或空格！"];
         return;
     }
     
     NSString *strUrl = [_nickNameTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     if ([strUrl length]<1) {
-        [self promtNavHidden:@"昵称不能为空！"];
+        [self promtNavHidden:@"输入不能为空！"];
         return;
     }
     
     if ([NSString CountOFNSString:strUrl]>12) {
-        [self promtNavHidden:@"昵称不能多于12位字符！"];
+        if (self.isTrusName) {
+            [self promtNavHidden:@"真实姓名不能多于12位字符！"];
+        }else{
+            [self promtNavHidden:@"昵称不能多于12位字符！"];
+
+        }
         return;
     }
     [self saveBabyName];
@@ -99,7 +114,11 @@
 -(void)saveBabyName{
     [UIHelper addLoadingViewTo:self.view withFrame:0];
     
-    [AFUpdateBabyInformation requestPatchWithparams:self.baby_Dic key:@"nickname" value:_nickNameTF.text success:^(id responseObject) {
+    NSString * key = @"nickname";
+    if (self.isTrusName) {
+         key = @"truename";
+    }
+    [AFUpdateBabyInformation requestPatchWithparams:self.baby_Dic key:key value:_nickNameTF.text success:^(id responseObject) {
         [UIHelper hiddenAlertWith:self.view];
         _backBabyinforBlock(responseObject);
         [self.navigationController popViewControllerAnimated:YES];

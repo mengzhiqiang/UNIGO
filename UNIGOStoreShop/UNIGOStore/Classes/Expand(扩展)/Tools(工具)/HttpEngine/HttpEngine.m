@@ -385,7 +385,7 @@
 //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];//申明请求数据的类型
     manager.requestSerializer.timeoutInterval = 20.0f;
 //    [manager.requestSerializer setValue:@"application/vnd.robot.v1+json" forHTTPHeaderField:@"Accept"];
-//    [manager.requestSerializer setValue:@"application/json; charset=utf-8;" @"application/json", @"text/html",@"text/json", @"text/javascript",   forHTTPHeaderField:@"Content-Type"];  // 此处设置content-Type生效了，然后就是参数要求是json，怎么设。。
+    [manager.requestSerializer setValue:@"application/json; charset=utf-8;text/html"  forHTTPHeaderField:@"Content-Type"];  // 此处设置content-Type生效了，然后就是参数要求是json，怎么设。。
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", nil];
     
  

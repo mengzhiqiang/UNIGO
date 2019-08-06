@@ -12,7 +12,9 @@
 typedef NS_ENUM(NSInteger,AFViewControllerType)
 {
     AFViewControllerTypeRegister = 1 << 1,
-    AFViewControllerTypeForget = 1 << 2
+    AFViewControllerTypeForget = 1 << 2,
+    AFViewControllerTypeChange = 1 << 3
+
 };
 
 @interface AFRegisterAccountViewController : TitleOfHeardViewController

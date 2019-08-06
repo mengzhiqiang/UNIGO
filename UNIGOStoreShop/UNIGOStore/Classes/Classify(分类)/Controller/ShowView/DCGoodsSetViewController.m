@@ -105,6 +105,10 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     [super viewWillAppear:animated];
     if (self.navigationController.navigationBar.barTintColor == DCBGColor)return;
     self.navigationController.navigationBar.barTintColor = DCBGColor;
+    
+    if (_searchName) {
+        [_searchButton setTitle:_searchName forState:0];
+    }
 }
 
 - (void)viewDidLoad {
@@ -211,6 +215,8 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     [_searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
     _searchButton.frame = CGRectMake(0, 0, _topSearchView.dc_width - 2 * DCMargin, _topSearchView.dc_height);
     [_topSearchView addSubview:_searchButton];
+    
+   
 }
 
 #pragma mark - 悬浮按钮

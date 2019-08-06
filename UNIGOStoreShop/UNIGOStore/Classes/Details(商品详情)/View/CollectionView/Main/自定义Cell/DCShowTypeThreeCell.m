@@ -43,7 +43,7 @@
     self.isHasindicateButton = NO;
     self.leftTitleLable.text = @"运费";
     self.contentLabel.text = @"免运费";
-    self.hintLabel.text = @"支持7天无理由退货";
+//    self.hintLabel.text = @"支持7天无理由退货";
 }
 
 - (void)layoutSubviews
@@ -64,10 +64,10 @@
         [make.top.mas_equalTo(self.leftTitleLable.mas_bottom)setOffset:DCMargin];
     }];
     
-    [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.left.mas_equalTo(self.iconImageView.mas_right)setOffset:DCMargin];
-        make.centerY.mas_equalTo(self.iconImageView);
-    }];
+//    [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        [make.left.mas_equalTo(self.iconImageView.mas_right)setOffset:DCMargin];
+//        make.centerY.mas_equalTo(self.iconImageView);
+//    }];
     
 }
 

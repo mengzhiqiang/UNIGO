@@ -22,4 +22,7 @@
 /* 背景色 */
 @property (nonatomic, assign) BOOL bgColor;
 
+/* 订单数量 */
+@property (nonatomic, copy) NSString *orderCount;
+
 @end

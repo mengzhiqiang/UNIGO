@@ -33,7 +33,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AFPhotoAlbumHelper.h"
 #import "AFUpdateBabyInformation.h"
-
+#import "AFRegisterAccountViewController.h"
 @interface UNmanagerController ()<UIGestureRecognizerDelegate,AFFixIconViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UIImagePickerController     *  imagePicker;
@@ -62,6 +62,7 @@
     _rootTableView.sectionFooterHeight = 0;
     _rootTableView.backgroundColor=PersonBackGroundColor;
     self.view.backgroundColor=PersonBackGroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
 
     _userInfo=[[NSMutableDictionary alloc]init];
     [self.view addSubview:_rootTableView];
@@ -81,7 +82,8 @@
         _userOld       = accountInfo.birthday;
         _userTrueName  = (accountInfo.truename?accountInfo.truename :@"未设置");
         _userPhone     = accountInfo.phone;
-        _userUrl       = (accountInfo.avatar.large?accountInfo.avatar.large:nil);
+        _userUrl       = (accountInfo.headimgurl?accountInfo.headimgurl:nil);
+        _userTrueName     = accountInfo.truename;
 
         NSDictionary * babyDIC = [accountInfo mj_JSONObject];
         _userInfo = [NSMutableDictionary dictionaryWithDictionary:babyDIC] ;
@@ -103,7 +105,6 @@
     [HttpEngine requestPostWithURL:path params:nil isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
-        
         if ([JSONDic  count]<1) {
             return ;
         }
@@ -192,7 +193,7 @@
 
     [_rootTableView reloadData];
 
-    return ;
+//    return ;
     [self UpdateBabyInformationKey:@"headimgurl" value:imagebast];
 //    [self updateBackGroundImage:image];
 }
@@ -204,7 +205,7 @@
     
 //    NSString *pathUrl = [API_HOST stringByAppendingString:[NSString stringWithFormat:@"%@policy?policy=babyAvatar:%d",jett_Sign_policy,(int)accountInfo.identifier]];
     
-    return ;
+//    return ;
     __weak typeof (self) myself = self;
     [UIHelper addLoadingViewTo:self.view withFrame:0];
     [HttpEngine requestGetWithURL:nil headImage:image params:nil isToken:YES imageSuffix:_imageSuffix errorDomain:nil errorString:nil success:^(CGFloat progress) {
@@ -239,7 +240,7 @@
 
 #pragma mark- table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        if (section==1 ||section==2) {
+        if (section==2) {
         return  1;
     }
     return  4;
@@ -271,16 +272,36 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DeviceTableViewCell" owner:self options:nil] objectAtIndex:1];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
     }
     cell.lineLabel1.hidden = NO;
     cell.titleNameLabel.frame = CGRectMake(25, (cell.height-20)/2, 120, 20);
     cell.headImageView.hidden = YES;
 
     if (indexPath.section==1) {
-        cell.titleNameLabel.text = @"地址管理";
+        NSArray  *arr_titile  = @[@"性别",@"生日",@"收货地址",@"修改密码"];
+
+        cell.titleNameLabel.text =[arr_titile  objectAtIndex:indexPath.row];
         cell.pushNextLabel.text  = @"";
-        return cell;
+        if (indexPath.row==0) {
+            if ([_userSex isEqualToString:@"1"]) {
+                cell.pushNextLabel.text=@"男";
+            }else if ([_userSex isEqualToString:@"未设置"]) {
+                cell.pushNextLabel.text=@"未设置";
+            }else{
+                cell.pushNextLabel.text=@"女";
+            }
+//
+            
+        }else if (indexPath.row==1){
+            cell.pushNextLabel.text = (_userOld?_userOld:@"未设置");
+
+        }else if (indexPath.row==3){
+            cell.lineLabel1.hidden = YES;
+        }
+        
+        
+        
+    return  cell;
     }else if (indexPath.section==2){
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.headImageView.hidden=YES;
@@ -292,7 +313,7 @@
         return cell;
     }
     
-    NSArray  *arr_titile  = @[@"头像",@"昵称",@"生日",@"性别"];
+    NSArray  *arr_titile  = @[@"头像",@"真实姓名",@"昵称",@"手机号",@"生日",@"性别"];
         cell.titleNameLabel.text=[arr_titile  objectAtIndex:indexPath.row%5];
         switch (indexPath.row) {
                 case 0:
@@ -304,35 +325,29 @@
                 cell.headImageView.hidden = NO;
                 [cell.headImageView draCirlywithColor:[UIColor redColor] andRadius:2.0];
                 cell.headImageView.frame = CGRectMake(SCREEN_WIDTH-65-29, (87.5-60)/2, 65, 65);
-                [cell.headImageView setImageWithURL:[NSURL URLWithString:_userUrl] placeholderImage:(self.headImage?self.headImage:[UIImage imageNamed:@"pho_head_portrait_default"])];
+                [cell.headImageView setImageWithURL:[NSURL URLWithString:_userUrl] placeholderImage:(self.headImage?self.headImage:[UIImage imageNamed:@"unigo_default_head"])];
                 [cell.headImageView draCirlywithColor:[UIColor HexString:@"f2f2f2"] andRadius:cell.headImageView.height/2];
             }
                 break;
             case 1:
             {
-                cell.pushNextLabel.text=_userNickName;
+                cell.pushNextLabel.text=_userTrueName;
                 
             }
                 break;
             case 2:
             {
-                cell.pushNextLabel.text = (_userOld?_userOld:@"未设置");
+                cell.pushNextLabel.text=_userNickName;
 
             }
                 break;
     
             case 3:
             {
-                if ([_userSex isEqualToString:@"1"]) {
-                cell.pushNextLabel.text=@"男孩";
-                
-            }else if ([_userSex isEqualToString:@"未设置"]) {
-                cell.pushNextLabel.text=@"未设置";
-            }else{
-                cell.pushNextLabel.text=@"女孩";
-            }
+                cell.pushNextLabel.text=_userPhone;
                 cell.lineLabel1.hidden = YES;
- 
+                cell.pushTagImageView.hidden = YES;
+
             }
                 break;
             break;
@@ -350,8 +365,35 @@
     
     if (indexPath.section==1) {
         
-        DCReceivingAddressViewController* adressVC = [[DCReceivingAddressViewController alloc]init];
-        [self.navigationController pushViewController:adressVC animated:YES];
+        switch (indexPath.row) {
+            case 0:
+                {
+                    [self showSexWithActionSheetView];
+                }
+                break;
+            case 1:
+            {
+                [self selectAgeWithdate];
+            }
+                break;
+            case 2:
+            {
+                DCReceivingAddressViewController* adressVC = [[DCReceivingAddressViewController alloc]init];
+                [self.navigationController pushViewController:adressVC animated:YES];
+            }
+                break;
+            case 3:
+            {
+                AFRegisterAccountViewController * changeVC = [[AFRegisterAccountViewController alloc]init];
+                changeVC.viewType = AFViewControllerTypeChange;
+                [self presentViewController:changeVC animated:YES completion:nil];
+                
+            }
+                break;
+            default:
+                break;
+        }
+  
         return;
     }else if (indexPath.section==2) {
         
@@ -369,9 +411,12 @@
         {
             UNNickNameViewController *nickNameVC = [[UNNickNameViewController alloc]init];
             nickNameVC.baby_Dic = self.userInfo;
+            nickNameVC.isTrusName = YES;
             [self.navigationController pushViewController:nickNameVC animated:YES];
             nickNameVC.backBabyinforBlock = ^(NSDictionary *babyDic) {
                 _userNickName = [babyDic objectForKey:@"name"];
+                _userTrueName = [babyDic objectForKey:@"truename"];
+
                 _userInfo = [NSMutableDictionary dictionaryWithDictionary:babyDic] ;
                 [_rootTableView reloadData];
             };
@@ -379,15 +424,24 @@
             break;
         case 2:
         {
+            
+            UNNickNameViewController *nickNameVC = [[UNNickNameViewController alloc]init];
+            nickNameVC.baby_Dic = self.userInfo;
+            [self.navigationController pushViewController:nickNameVC animated:YES];
+            nickNameVC.backBabyinforBlock = ^(NSDictionary *babyDic) {
+                _userNickName = [babyDic objectForKey:@"name"];
+                _userTrueName = [babyDic objectForKey:@"truename"];
+                
+                _userInfo = [NSMutableDictionary dictionaryWithDictionary:babyDic] ;
+                [_rootTableView reloadData];
+            };
   
-            [self selectAgeWithdate];
         }
             break;
 
         case 3:
         {
             
-            [self showAgeWithActionSheetView];
 
         }
             break;
@@ -480,7 +534,7 @@
 }
 
 #pragma mark 设置性别
-- (void)showAgeWithActionSheetView
+- (void)showSexWithActionSheetView
 {
     
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"男孩",@"女孩"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
@@ -500,7 +554,7 @@
 }
 /* dd*/
 -(void)UpdateBabyInformationKey:(NSString*)key value:(NSString*)value{
-    
+  
         //修改接口
         [UIHelper addLoadingViewTo:self.view withFrame:0];
         

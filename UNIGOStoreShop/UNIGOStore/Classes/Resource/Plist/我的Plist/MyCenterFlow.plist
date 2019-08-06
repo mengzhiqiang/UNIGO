@@ -8,7 +8,7 @@
 		<key>bgColor</key>
 		<false/>
 		<key>stateTitle</key>
-		<string>待支付</string>
+		<string>待付款</string>
 		<key>imageContent</key>
 		<string>wdgm_icon_daizhifu</string>
 	</dict>
@@ -18,7 +18,7 @@
 		<key>bgColor</key>
 		<false/>
 		<key>stateTitle</key>
-		<string>待收货</string>
+		<string>待发货</string>
 		<key>imageContent</key>
 		<string>wdgm_icon_daishouhuo</string>
 	</dict>
@@ -28,7 +28,7 @@
 		<key>bgColor</key>
 		<false/>
 		<key>stateTitle</key>
-		<string>待评价</string>
+		<string>已收货</string>
 		<key>imageContent</key>
 		<string>wdgm_icon_daipingjia</string>
 	</dict>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,9 +29,17 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款/售后" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VH7-pf-KuT">
-                        <rect key="frame" x="18.5" y="60.5" width="54" height="17"/>
+                        <rect key="frame" x="18.5" y="71" width="54" height="17"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yys-EN-Lc4">
+                        <rect key="frame" x="60" y="17" width="15" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.81251317379999999" green="0.095192574109999997" blue="0.3115858259" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81j-iO-a4v" userLabel="底部View">
@@ -43,11 +51,11 @@
             <constraints>
                 <constraint firstItem="acC-e9-7q3" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.5" id="265-yK-7vr"/>
                 <constraint firstItem="acC-e9-7q3" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="2UK-xw-nuC"/>
+                <constraint firstItem="81j-iO-a4v" firstAttribute="top" secondItem="VH7-pf-KuT" secondAttribute="bottom" constant="6" id="A76-Ql-Xnd"/>
                 <constraint firstItem="81j-iO-a4v" firstAttribute="top" secondItem="cn4-Yt-QV5" secondAttribute="bottom" id="Cmb-TI-okX"/>
                 <constraint firstItem="VH7-pf-KuT" firstAttribute="centerX" secondItem="acC-e9-7q3" secondAttribute="centerX" id="K9N-Rw-xFu"/>
                 <constraint firstItem="acC-e9-7q3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="NbV-fk-G7t"/>
                 <constraint firstAttribute="bottom" secondItem="81j-iO-a4v" secondAttribute="bottom" id="Pq9-C5-yH3"/>
-                <constraint firstItem="VH7-pf-KuT" firstAttribute="top" secondItem="acC-e9-7q3" secondAttribute="bottom" constant="5" id="XmA-wP-Ndc"/>
                 <constraint firstAttribute="bottom" secondItem="cn4-Yt-QV5" secondAttribute="bottom" constant="10" id="cPb-qm-w75"/>
                 <constraint firstAttribute="trailing" secondItem="cn4-Yt-QV5" secondAttribute="trailing" id="e3S-2J-XEZ"/>
                 <constraint firstItem="81j-iO-a4v" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hCv-uf-IyR"/>
@@ -58,6 +66,7 @@
             </constraints>
             <size key="customSize" width="91" height="104"/>
             <connections>
+                <outlet property="orderCount" destination="yys-EN-Lc4" id="ayk-lM-Vf4"/>
                 <outlet property="stateBgImageView" destination="cn4-Yt-QV5" id="2Eg-VA-O96"/>
                 <outlet property="stateButton" destination="acC-e9-7q3" id="NVe-Z7-JqV"/>
                 <outlet property="stateLabel" destination="VH7-pf-KuT" id="3cL-pe-85Q"/>

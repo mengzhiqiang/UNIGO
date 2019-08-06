@@ -92,10 +92,7 @@
     [_registerButton setBackgroundImage:[UIImage imageNamed:@"btn_activation_disbled"]  forState:UIControlStateNormal];
     [_registerButton setTitleColor:[UIColor HexString:@"8c8B90"] forState:UIControlStateNormal];
     _registerButton.height = 40*RATIO;
-    if (_viewType == AFViewControllerTypeForget) {
-        _serverView.hidden=YES;
-        [_registerButton setTitle:@"登录" forState:UIControlStateNormal];
-    }
+   
     
     _passWordTextFied.delegate = self;
     _codeTextField.delegate    = self;
@@ -161,6 +158,13 @@
     self.headLabel.text = @"注册帐号";
     if (_viewType == AFViewControllerTypeForget) {
         self.headLabel.text = @"找回密码";
+        _serverView.hidden=YES;
+        [_registerButton setTitle:@"登录" forState:UIControlStateNormal];
+    }else if (_viewType == AFViewControllerTypeChange){
+        self.headLabel.text = @"修改密码";
+        _serverView.hidden=YES;
+        [_registerButton setTitle:@"提交" forState:UIControlStateNormal];
+        
     }
     self.headLabel.frame = CGRectMake(0, 81, SCREEN_WIDTH, 30);
     self.headLabel.font = [UIFont systemFontOfSize:25.0f];
@@ -226,7 +230,7 @@
 //        [self promtNavHidden:@"密码可由字母、数字或下划线组成！"];        return;
 //    }
     
-    if (_viewType == AFViewControllerTypeForget) {
+    if (_viewType != AFViewControllerTypeRegister) {
         [self fingPassWordWithIpone]; return;
     }
     

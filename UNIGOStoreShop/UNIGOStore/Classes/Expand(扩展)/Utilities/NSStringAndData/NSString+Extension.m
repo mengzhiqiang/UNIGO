@@ -36,9 +36,14 @@
 // 图片转64base字符串
 + (NSString *)imageToString:(UIImage *)image
 {
-    NSData *imagedata = UIImagePNGRepresentation(image);
-    NSString *image64 = [imagedata base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return image64;
+//    NSData *imagedata = UIImagePNGRepresentation(image);
+//    NSString *image64 = [imagedata base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+//
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
+    NSString *dataStr = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    dataStr = [NSString stringWithFormat:@"data:image/jpg;base64,%@",dataStr];
+    return dataStr;
     
 }
 

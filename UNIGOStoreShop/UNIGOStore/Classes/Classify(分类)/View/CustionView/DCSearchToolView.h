@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JFEditBubbleView.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DCSearchToolView : UIView<UISearchBarDelegate>
+@interface DCSearchToolView : UIView<UISearchBarDelegate,JFEditBubbleViewDelegate>
 
 @property(strong , nonatomic)UISearchBar * searchBar ;
+@property(strong , nonatomic)NSArray * searchList ;
+
+@property(strong , nonatomic)JFEditBubbleView * searchBubbleView ;
 
 @property(nonatomic,copy)void (^backText)(NSString * text) ;
 @end

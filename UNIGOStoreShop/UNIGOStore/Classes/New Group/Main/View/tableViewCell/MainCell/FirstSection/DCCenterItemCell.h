@@ -12,4 +12,6 @@
 
 @property(copy,nonatomic) void (^backIndex)(int index);
 
+@property(copy,nonatomic) NSArray *orderArray ;
+
 @end

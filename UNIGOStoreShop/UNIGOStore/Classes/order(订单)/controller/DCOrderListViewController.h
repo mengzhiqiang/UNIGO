@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DCOrderListViewController : UIViewController
 
+@property(assign,nonatomic) int  selectIndex ;
+
 -(void)GetAllOrder;
 @end
 

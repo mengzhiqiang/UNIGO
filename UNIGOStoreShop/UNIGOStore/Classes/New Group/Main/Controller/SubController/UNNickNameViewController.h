@@ -16,4 +16,6 @@
 
 @property (copy, nonatomic) void (^backBabyinforBlock)(NSDictionary *babyDic);
 
+@property (assign, nonatomic)  BOOL  isTrusName;
+
 @end

@@ -26,16 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    self.headLabel.text = @"设置";
+    self.title = @"设置";
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+//    self.headLabel.text = @"设置";
     self.automaticallyAdjustsScrollViewInsets = NO;   ////scrollview 下移20像素的问题
 
-    _rootTableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-100);
+    _rootTableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-SCREEN_top);
     _rootTableView.delegate=self;
     _rootTableView.dataSource=self;
     _rootTableView.separatorStyle=UITableViewCellAccessoryNone;
     _rootTableView.backgroundColor= PersonBackGroundColor;
     self.view.backgroundColor=PersonBackGroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
 
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
 

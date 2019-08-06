@@ -13,5 +13,6 @@
 
 /* 数据 */
 @property (strong , nonatomic)DCStateItem *stateItem;
+@property (weak, nonatomic) IBOutlet UILabel *orderCount;
 
 @end

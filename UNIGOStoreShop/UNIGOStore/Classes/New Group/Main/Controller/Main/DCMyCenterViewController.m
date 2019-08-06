@@ -17,6 +17,9 @@
 #import "LogInmainViewController.h"
 #import "DCOrderListViewController.h"
 #import "AboutUslistViewController.h"
+#import "DCReceivingAddressViewController.h"
+#import "AFMeiQiaCustomEngine.h"
+
 // Models
 #import "DCGridItem.h"
 // Views
@@ -25,14 +28,16 @@
 #import "DCMyCenterHeaderView.h"
                                //四组Cell
 #import "DCCenterItemCell.h"
+#import "DeviceTableViewCell.h"
 //#import "DCCenterServiceCell.h"
 //#import "DCCenterBeaShopCell.h"
 //#import "DCCenterBackCell.h"
-#import "DeviceTableViewCell.h"
+
 // Vendors
 #import <MJExtension.h>
 #import "HttpRequestToken.h"
 #import "AFAccountEngine.h"
+#import "UIButton+AFNetworking.h"
 // Categories
 
 // Others
@@ -52,12 +57,16 @@
 
 /* 服务数据 */
 @property (strong , nonatomic)NSMutableArray<DCGridItem *> *serviceItem;
+
+@property (strong , nonatomic)NSArray * tipArray;
+
 @end
 
 static NSString *const DCCenterItemCellID = @"DCCenterItemCell";
 static NSString *const DCCenterServiceCellID = @"DCCenterServiceCell";
 static NSString *const DCCenterBeaShopCellID = @"DCCenterBeaShopCell";
 static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
+static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
 
 
 @implementation DCMyCenterViewController
@@ -79,7 +88,8 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 //        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterServiceCell class]) bundle:nil] forCellReuseIdentifier:DCCenterServiceCellID];
 //        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterBeaShopCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBeaShopCellID];
 //        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DCCenterBackCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBackCellID];
-        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DeviceTableViewCell class]) bundle:nil] forCellReuseIdentifier:DCCenterBackCellID];
+//        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DeviceTableViewCell class]) bundle:nil] forCellReuseIdentifier:DeviceTableViewCellID];
+
 
         
     }
@@ -90,7 +100,7 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     if (!_headerBgImageView) {
         _headerBgImageView = [[UIImageView alloc] init];
         NSInteger armNum = [DCSpeedy dc_GetRandomNumber:1 to:9];
-        [_headerBgImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"mine_main_bg_%zd",armNum]]];
+        [_headerBgImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"mine_main_bg_11"]]];
         [_headerBgImageView setBackgroundColor:[UIColor greenColor]];
         [_headerBgImageView setContentMode:UIViewContentModeScaleAspectFill];
         [_headerBgImageView setClipsToBounds:YES];
@@ -125,7 +135,13 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     
     accountInfo =  [AFAccountEngine  getAccount];
     self.headView.useNameLabel.text = accountInfo.client.nickname;
+    [self.headView.myIconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:accountInfo.client.headimgurl] placeholderImage:[UIImage imageNamed:@"unigo_default_head"]];
+    [self.tableView reloadData ];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
     
+    [self getOrderStateNumber ];
+
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -205,7 +221,10 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 #pragma mark - <UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if ([HttpRequestToken getToken].length<1) {
+        return  3;
+    }
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -216,23 +235,74 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    
     UITableViewCell *cusCell = [UITableViewCell new];
     if (indexPath.section == 0) {
         DCCenterItemCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterItemCellID forIndexPath:indexPath];
         
         cell.backIndex = ^(int index) {
-            
             if ([HttpRequestToken getToken].length<1) {
                 LogInmainViewController *dcLoginVc = [LogInmainViewController new];
                 [self presentViewController:dcLoginVc animated:YES completion:nil];
                 return ;
             }
             DCOrderListViewController * orderlist = [[DCOrderListViewController alloc]init];
+            orderlist.selectIndex = index + 1;
             [self.navigationController pushViewController:orderlist animated:YES];
         };
+        cell.orderArray = _tipArray ;
         cusCell = cell;
     }
+    else if (indexPath.section==1){
+
+        DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DeviceTableViewCellID];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"DeviceTableViewCell" owner:self options:nil] objectAtIndex:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        if ([HttpRequestToken getToken].length<1) {
+           
+            cell.titleNameLabel.text = @"我的设置";
+            cell.headImageView.image = [UIImage imageNamed:@"btn_setting"];
+            cusCell = cell;
+        }else{
+            cell.titleNameLabel.text = @"我的收货地址";
+            cell.titleNameLabel.width = 150 ;
+            cell.headImageView.image = [UIImage imageNamed:@"user_icon_yinhangka"];
+        }
+        cusCell = cell;
+
+
+    }else{
+        DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DeviceTableViewCellID];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"DeviceTableViewCell" owner:self options:nil] objectAtIndex:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        if( indexPath.section ==2){
+            
+            if ([HttpRequestToken getToken].length<1) {
+             
+                cell.titleNameLabel.text = @"联系客服";
+                cell.headImageView.image = [UIImage imageNamed:@"xiaoxi"];
+                cusCell = cell;
+
+            }else{
+                cell.titleNameLabel.text = @"我的设置";
+                cell.headImageView.image = [UIImage imageNamed:@"btn_setting"];
+                cusCell = cell;
+            }
+            
+        }else if( indexPath.section == 3){
+            cell.titleNameLabel.text = @"联系客服";
+            cell.headImageView.image = [UIImage imageNamed:@"xiaoxi"];
+            cusCell = cell;
+
+        }
+   
+    }
+  
 //    else
 //        if(indexPath.section == 1){
 //        DCCenterServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:DCCenterServiceCellID forIndexPath:indexPath];
@@ -251,6 +321,49 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     return cusCell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        return 45 ;
+    }
+    return 0.01 ;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (section!=0) {
+        return  nil ;
+    }
+    UIView* view = [[UIView alloc]init];
+//    view.backgroundColor = [UIColor whiteColor];
+    UIView * v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 44)];
+    v.backgroundColor = [UIColor whiteColor];
+    [view addSubview:v];
+    UILabel * label =[[UILabel alloc]initWithFrame:CGRectMake(10, 12, 200, 20)];
+    label.text = @"订单信息";
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = [UIColor HexString:@"333333"];
+    [view addSubview:label];
+    
+    UILabel * label1 =[[UILabel alloc]initWithFrame:CGRectMake(ScreenW-130, 12, 100, 20)];
+    label1.text = @"查看全部订单";
+    label1.textAlignment = NSTextAlignmentRight;
+    label1.font = [UIFont systemFontOfSize:14];
+    label1.textColor = [UIColor HexString:@"333333"];
+    [view addSubview:label1];
+    
+    
+    UIImageView * imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"next_table_image.png"];
+    imageView.frame = CGRectMake(ScreenW-25, 17, 10, 10);
+    [view addSubview:imageView];
+    
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, ScreenW, 45);
+    btn.backgroundColor = [UIColor clearColor];
+    [btn addTarget:self action:@selector(pushOrderVC) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
+    
+    return view ;
+}
 #pragma mark - <UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -261,9 +374,40 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
         return ;
     }
     NSLog(@"===%ld",(long)indexPath.row);
+
+    if (indexPath.section==0) {
+        DCOrderListViewController * orderVC = [[DCOrderListViewController alloc]init];
+        [self.navigationController pushViewController:orderVC animated:YES];
+    }
+    else if (indexPath.section==1) {
+        DCReceivingAddressViewController* adressVC = [[DCReceivingAddressViewController alloc]init];
+        [self.navigationController pushViewController:adressVC animated:YES];
+        
+    }else if (indexPath.section==2){
+        AboutUslistViewController* adressVC = [[AboutUslistViewController alloc]init];
+        [self.navigationController pushViewController:adressVC animated:YES];
+        
+    } else if (indexPath.section==3) {
+        [AFMeiQiaCustomEngine didMeiQiaUIViewController:self andContant:nil];
+        
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+        [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+      
+    }
+    
+}
+-(void)pushOrderVC{
     DCOrderListViewController * orderVC = [[DCOrderListViewController alloc]init];
     [self.navigationController pushViewController:orderVC animated:YES];
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
     
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -272,11 +416,11 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
 //        return 300;
         return 90;
     }else if (indexPath.section == 1){
-        return 215;
+        return 55;
     }else if (indexPath.section == 2){
-        return 280;
+        return 55;
     }else if (indexPath.section == 3){
-        return 200;
+        return 55;
     }
     return 0;
 }
@@ -302,6 +446,23 @@ static NSString *const DCCenterBackCellID = @"DCCenterBackCell";
     }
 }
 
+#pragma 获取订单状态数量
+-(void)getOrderStateNumber{
+    
+    NSString *path = [API_HOST stringByAppendingString:order_tips];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [HttpEngine requestPostWithURL:path params:nil isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        self.tipArray = JSONDic;
+        [_tableView reloadData];
+    } failure:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
 
-
+        
+    }];
+    
+}
 @end

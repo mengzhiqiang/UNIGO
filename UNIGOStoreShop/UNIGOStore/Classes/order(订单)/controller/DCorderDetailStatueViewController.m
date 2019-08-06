@@ -12,7 +12,7 @@
 
 #import "MQChatViewManager.h"
 #import "AFMeiQiaCustomEngine.h"
-
+#import "DCAfterSaleViewController.h"
 @interface DCorderDetailStatueViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)  UITableView *rootTableView;
@@ -142,20 +142,24 @@
         {
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"退款失败";
-            
+            _payButton.hidden = YES;
+
         }
             break;
         case -2:
         {
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"退款成功";
-            
+            _payButton.hidden = YES;
+
         }
             break;
         case -1:
         {
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"退款中";
+            _payButton.hidden = YES;
+
         }
             break;
         case 0:
@@ -163,40 +167,52 @@
             _payButton.hidden = NO;
             _deleteButton.hidden = NO ;
             _payStatusLabel.text = @"未支付";
-            
+            [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
         }
             break;
         case 1:
         {
-            _payButton.hidden = YES;
-            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _payButton.hidden = NO;
+            [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"待发货";
             _timeOutLabel.hidden = YES;
+//            [_deleteButton setTitle:@"商品待发货" forState:UIControlStateNormal];
+//            _deleteButton.width = 100 ;
+//            [_deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            _deleteButton.enabled = NO;
+            
+//            _footOrderView.height = 68 ;
         }
             break;
         case 2:
         {
-            _payButton.hidden = YES;
-            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _payButton.hidden = NO;
+            [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"待收货";
             _timeOutLabel.hidden = YES;
+//            [_deleteButton setTitle:@"配送中" forState:UIControlStateNormal];
+//            [_deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            _deleteButton.enabled = NO;
+//            _footOrderView.height = 68 ;
+
         }
             break;
         case 3:
         {
-            _payButton.hidden = YES;
-            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _payButton.hidden = NO;
+            [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"已收货";
             _timeOutLabel.hidden = YES;
+//            [_payButton setTitle:@"退款" forState:UIControlStateNormal];
         }
             break;
         case 4:
         {
-            _payButton.hidden = YES;
-            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _payButton.hidden = NO;
+            [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"待评论";
             _timeOutLabel.hidden = YES;
@@ -204,11 +220,13 @@
             break;
         case 5:
         {
-            _payButton.hidden = YES;
-            //        [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
+            _payButton.hidden = NO;
+           [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"已完成";
             _timeOutLabel.hidden = YES;
+//            _footOrderView.height = 68 ;
+
         }
             break;
         case 10:
@@ -218,6 +236,8 @@
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"已取消";
             _timeOutLabel.hidden = YES;
+            _footOrderView.height = 68 ;
+
         }
             break;
         default:
@@ -250,7 +270,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-        return 70;
+    return 70;
   
 }
 
@@ -264,11 +284,16 @@
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 137;
+    return 147;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return _footOrderView;
+    
+    UIView * View  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 147)];
+    View.backgroundColor= PersonBackGroundColor ;
+    _footOrderView.top = 10 ;
+    [View addSubview:_footOrderView];
+    return View;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -287,7 +312,7 @@
     cell.goodsDetailLabel.text = [diction objectForKey:@"name"];
     cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
     cell.priceLabel.text = [diction objectForKey:@"price"];
-    cell.goodCountLabel.text = [diction objectForKey:@"count"];
+    cell.sleepCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"num"]];
     [cell.goodsImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
 
     return   cell;
@@ -305,11 +330,24 @@
 */
 
 - (IBAction)payOrder:(UIButton *)sender {
-    PayViewController* payVC = [[PayViewController alloc]init];
-    payVC.SumOfPrice = _goodeSumLabel.text;
-    payVC.orderID = _orderID;
+    
+    int status = [[_goodsPayDiction objectForKey:@"status"] intValue];
 
-    [self.navigationController pushViewController:payVC animated:YES];
+    if (status==0) { ///未支付
+        PayViewController* payVC = [[PayViewController alloc]init];
+        payVC.SumOfPrice = _goodeSumLabel.text;
+        payVC.orderID = _orderID;
+        [self.navigationController pushViewController:payVC animated:YES];
+     
+    }else{
+        DCAfterSaleViewController* payVC = [[DCAfterSaleViewController alloc]init];
+        payVC.goodsPayDiction = _goodsPayDiction;
+        [self.navigationController pushViewController:payVC animated:YES];
+        
+        return ;
+    }
+    
+
     
 }
 - (IBAction)deleteOrder:(UIButton *)sender {

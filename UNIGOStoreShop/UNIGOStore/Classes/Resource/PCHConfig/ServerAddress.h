@@ -12,7 +12,7 @@
 
 #define WEBURL_INSTRUCTIONS @"https://mledi.auduola.com/#!/guide"  //说明书
 #define WEBURL_ABOUT_CHH @"https://www.auduola.com/about.html"  //关于奥飞
-#define WEBURL_USER_SERVER @"https://unigo.itpang.com/privacy.html"  //隐藏条款
+#define WEBURL_USER_SERVER @"https://api.unigox.cn/privacy.html"  //隐藏条款
 #define WEBURL_Agreement @"https://api.unigox.cn/agreement.html"  //用户协议
 
 

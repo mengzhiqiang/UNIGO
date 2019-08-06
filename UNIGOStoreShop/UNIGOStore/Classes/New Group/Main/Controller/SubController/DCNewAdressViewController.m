@@ -107,6 +107,9 @@
     [button addTarget:self action:@selector(saveButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+
 }
 
 

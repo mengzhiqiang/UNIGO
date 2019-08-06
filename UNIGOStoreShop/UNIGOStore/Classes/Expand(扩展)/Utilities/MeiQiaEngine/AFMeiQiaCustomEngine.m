@@ -54,7 +54,9 @@
     [chatViewManager setPlayMode:MQPlayModeMixWithOther];
     [[AppDelegate delegateGet]removeNotificationOfWeiQiaMessage];
     
-
+    if (contantDic==nil) {
+        return ;
+    }
     if ([[contantDic objectForKey:@"style"] isEqualToString:@"1"]) {
         [chatViewManager setPreSendMessages: @[@"我想咨询的订单号：【17050454968】"]];
     }else  if ([[contantDic objectForKey:@"style"] isEqualToString:@"2"]) {

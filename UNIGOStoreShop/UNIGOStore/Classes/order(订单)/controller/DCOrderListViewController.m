@@ -12,7 +12,7 @@
 #import "DCOrderDetailViewController.h"
 @interface DCOrderListViewController ()<UIScrollViewDelegate>
 {
-    HMSegmentedControl * segmentedControl3 ;
+    HMSegmentedControl * segmentedControl ;
     
     JFJorderTabelView *order_all;
     JFJorderTabelView *order_NoPay;     //未支付
@@ -33,36 +33,48 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的订单";
-    segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"未支付",@"待发货", @"已发货", @"已完成"]];
-    [segmentedControl3 setFrame:CGRectMake(0, DCTopNavH, SCREEN_WIDTH, 50)];
-    __weak typeof(self) weakSelf = self;
-    [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
-        
-        
-        [weakSelf GetAllOrderWithStatus:index];
-        [weakSelf.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
-    }];
-    segmentedControl3.selectionIndicatorHeight = 4.0f;
-    segmentedControl3.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1];
+//    segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"未支付",@"待发货", @"已发货", @"已完成"]];
+//    [segmentedControl3 setFrame:CGRectMake(0, DCTopNavH, SCREEN_WIDTH, 50)];
+//    __weak typeof(self) weakSelf = self;
+//    [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
+//
+//
+//        [weakSelf GetAllOrderWithStatus:index];
+//        [weakSelf.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
+//    }];
+//    segmentedControl3.selectionIndicatorHeight = 4.0f;
+//    segmentedControl3.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1];
+//
+//    segmentedControl3.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+//    segmentedControl3.selectionIndicatorColor = [UIColor colorWithRed:0.5 green:0.8 blue:1 alpha:1];
+//
+//    segmentedControl3.selectionIndicatorBoxOpacity = 1.0;
+//    segmentedControl3.selectionStyle = HMSegmentedControlSelectionStyleBox;
+//    segmentedControl3.selectedSegmentIndex = HMSegmentedControlNoSegment;
+//    segmentedControl3.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+//    segmentedControl3.shouldAnimateUserSelection = NO;
+//    segmentedControl3.tag = 2;
+//    [segmentedControl3 setSelectedSegmentIndex:0];
+//    [self.view addSubview:segmentedControl3];
     
-    segmentedControl3.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    segmentedControl3.selectionIndicatorColor = [UIColor colorWithRed:0.5 green:0.8 blue:1 alpha:1];
-    //    segmentedControl3.selectionIndicatorBoxColor = [UIColor grayColor];
-    //    segmentedControl3.verticalDividerColor = [UIColor redColor];
-    //    segmentedControl3.borderColor = [UIColor orangeColor];
+    segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"未支付",@"待发货", @"已收货", @"已完成"]];
+    segmentedControl.frame = CGRectMake(0, SCREEN_top, SCREEN_WIDTH, 40);
+    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    segmentedControl.selectionIndicatorColor = [UIColor redColor];
+    segmentedControl.selectionIndicatorHeight = 2.0;
+    segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor redColor]};
+    segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor HexString:@"333333"], NSFontAttributeName : [UIFont fontWithName:nil size:15.0]};
+    segmentedControl.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:segmentedControl ];
     
-    segmentedControl3.selectionIndicatorBoxOpacity = 1.0;
-    segmentedControl3.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    segmentedControl3.selectedSegmentIndex = HMSegmentedControlNoSegment;
-    segmentedControl3.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    segmentedControl3.shouldAnimateUserSelection = NO;
-    segmentedControl3.tag = 2;
-    [segmentedControl3 setSelectedSegmentIndex:0];
-    [self.view addSubview:segmentedControl3];
+    
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
-    CGFloat lisTheight = SCREEN_HEIGHT-DCTopNavH -50;
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DCTopNavH+50, SCREEN_WIDTH, lisTheight)];
+    CGFloat lisTheight = SCREEN_HEIGHT-DCTopNavH -40;
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DCTopNavH+40, SCREEN_WIDTH, lisTheight)];
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -94,6 +106,21 @@
     [self.scrollView addSubview:order_over];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadUI) name:@"reloadOrderUI" object:nil];
+    
+    
+    if (_selectIndex) {
+        segmentedControl.selectedSegmentIndex = _selectIndex;
+    }
+}
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    //    [self.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * (long)segmentedControl.selectedSegmentIndex, 0, SCREEN_WIDTH, 200) animated:YES];
+    
+    [self GetAllOrderWithStatus:(long)segmentedControl.selectedSegmentIndex];
+//    [self.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
+    
+    [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * (long)segmentedControl.selectedSegmentIndex, 0) animated:YES];
     
 }
 
@@ -136,10 +163,13 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     NSMutableDictionary * diction = [NSMutableDictionary dictionary];
-//    [NSNumber numberWithInt:status];
     if (status!=0) {
+        if (status==3) {
+            status = 4 ;
+        }
         [diction setObject:[NSNumber numberWithInteger:status-1] forKey:@"status"];
     }
+    NSLog(@"==url= %@==diction===%@",path , diction);
     WEAKSELF
     [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

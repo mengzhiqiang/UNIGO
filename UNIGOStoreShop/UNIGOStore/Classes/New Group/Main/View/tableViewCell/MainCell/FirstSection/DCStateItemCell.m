@@ -24,13 +24,13 @@
     
     self.backgroundColor = [UIColor whiteColor];
     
+    [_orderCount draCirlywithColor:nil andRadius:7.5];
 }
 
 #pragma mark - 赋值
 - (void)setStateItem:(DCStateItem *)stateItem
 {
     _stateItem = stateItem;
-    
     self.stateBgImageView.backgroundColor = (stateItem.bgColor) ? RGB(240, 240, 240) : [UIColor whiteColor];
     self.stateBgImageView.backgroundColor = [UIColor whiteColor];
 
@@ -39,8 +39,13 @@
     }else{
         [self.stateButton setTitle:stateItem.imageContent forState:0];
     }
-    
     self.stateLabel.text = stateItem.stateTitle;
+    
+    if (stateItem.orderCount>0) {
+        _orderCount.hidden = NO;
+    }else{
+        _orderCount.hidden = YES;
+    }
 }
 
 

@@ -50,7 +50,7 @@
 //    token = Qb4nJZKo405Y4hHXA7PoYzrWS6RpwJJz;
 //};
 //测试环境
-NSString * const API_HOST = @"http://unigox.cn/api/";
+NSString * const API_HOST = @"https://api.unigox.cn/api/";
 NSString * const NTE_cerName = @"lediDeveloper";      //云信证书名称
 NSString * const NTES_APP_KEY = @"d9d6e917ea9699ee4fe588d8948b545e";      //云信key
 
@@ -94,12 +94,14 @@ NSString * const order_lists       = @"/order/lists";           //  订单列表
 NSString * const order_details     = @"/order/details";         //  订单详情
 NSString * const order_pay     = @"/order/pay";                //  支付接口
 NSString * const order_cancel     = @"/order/cancel";          //  取消订单
+NSString * const order_tips     = @"/order/tips";          //  订单状态数量
 
 
 
 
 
 NSString * const recommendList_get = @"recommend/lists";         // 首页推荐
+NSString * const searchRecommendList_get = @"searchRecommend/lists";         // 首页推荐
 
 
 

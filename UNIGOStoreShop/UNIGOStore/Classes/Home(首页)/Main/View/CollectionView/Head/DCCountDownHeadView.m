@@ -51,17 +51,16 @@
     self.backgroundColor = [UIColor whiteColor];
     _redView = [[UIView alloc] init];
     _redView.backgroundColor = [UIColor redColor];
-    [self addSubview:_redView];
+//    [self addSubview:_redView];
     
     _timeLabel = [[UILabel alloc] init];
-    _timeLabel.text = @"6点场";
+    _timeLabel.text = @"猜你喜欢";
     _timeLabel.font = PFR16Font;
     [self addSubview:_timeLabel];
     
     _countDownLabel = [[UILabel alloc] init];
-    _countDownLabel.textColor = [UIColor redColor];
-    _countDownLabel.text = @"05 : 58 : 33";
-    _countDownLabel.font = PFR14Font;
+    _countDownLabel.backgroundColor = [UIColor HexString:@"f2f2f2"];
+//    _countDownLabel.font = PFR14Font;
     [self addSubview:_countDownLabel];
     
     _quickButton = [DCZuoWenRightButton buttonWithType:UIButtonTypeCustom];
@@ -69,7 +68,7 @@
     [_quickButton setImage:[UIImage imageNamed:@"shouye_icon_jiantou"] forState:UIControlStateNormal];
     [_quickButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [_quickButton setTitle:@"好货秒抢" forState:UIControlStateNormal];
-    [self addSubview:_quickButton];
+//    [self addSubview:_quickButton];
 
 }
 
@@ -79,8 +78,8 @@
     [super layoutSubviews];
     
     _redView.frame = CGRectMake(0, 10, 8, 20);
-    _timeLabel.frame = CGRectMake(20, 0, 60, self.dc_height);
-    _countDownLabel.frame = CGRectMake(CGRectGetMaxX(_timeLabel.frame), 0, 100, self.dc_height);
+    _timeLabel.frame = CGRectMake(20, 0, 100, self.dc_height);
+    _countDownLabel.frame = CGRectMake(0,self.dc_height-3,ScreenW,3);
     _quickButton.frame = CGRectMake(self.dc_width - 70, 0, 70, self.dc_height);
 }
 

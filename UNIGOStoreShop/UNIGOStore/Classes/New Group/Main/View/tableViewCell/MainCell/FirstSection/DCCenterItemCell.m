@@ -84,6 +84,50 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
     _stateItem = [DCStateItem mj_objectArrayWithFilename:@"MyCenterFlow.plist"];
 }
 
+-(void)loadOrderCount:(NSDictionary*)diction{
+    
+    for (int i=0; i<_stateItem.count; i++) {
+        DCStateItem * item = _stateItem[i];
+        
+        switch (i) {
+            case 0:
+                {
+                    if ([diction[@"nopay"] intValue]>0) {
+                        item.orderCount = diction[@"nopay"] ;
+                    }
+                }
+                break;
+            case 1:
+            {
+                if ([diction[@"nopay"] intValue]>0) {
+                    item.orderCount = diction[@"nopay"] ;
+                }
+            }
+                break;
+            case 2:
+            {
+                if ([diction[@"nopay"] intValue]>0) {
+                    item.orderCount = diction[@"nopay"] ;
+                }
+            }
+                break;
+            case 3:
+            {
+                if ([diction[@"nopay"] intValue]>0) {
+                    item.orderCount = diction[@"nopay"] ;
+                }
+            }
+                break;
+            default:
+                break;
+        }
+  
+    }
+    
+    [_collectionView reloadData];
+    
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -97,6 +141,7 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    return 4 ;
     return _stateItem.count;
 }
 
@@ -106,6 +151,56 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
 {
     DCStateItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCStateItemCellID forIndexPath:indexPath];
     cell.stateItem = _stateItem[indexPath.row];//赋值
+    
+//    if (indexPath.row==1) {
+//        cell.orderCount.text = @"3";
+//        cell.orderCount.hidden = NO;
+//    }
+    
+    for (NSDictionary*diction in _orderArray) {
+        
+            switch (indexPath.row) {
+                case 0:
+                {
+                    if ([diction[@"status"] intValue]==0 && [diction[@"count"] intValue]>0) {
+                        cell.orderCount.text = [NSString stringWithFormat:@"%@",diction[@"count"]];
+                        cell.orderCount.hidden = NO;
+                    }
+                    
+                }
+                    break;
+                case 1:
+                {
+                    if ([diction[@"status"] intValue]==1 && [diction[@"count"] intValue]>0) {
+                        cell.orderCount.text = [NSString stringWithFormat:@"%@",diction[@"count"]];
+                        cell.orderCount.hidden = NO;
+                    }
+                }
+                    break;
+                case 2:
+                {
+                    if ([diction[@"status"] intValue]==3 && [diction[@"count"] intValue]>0) {
+                        cell.orderCount.text = [NSString stringWithFormat:@"%@",diction[@"count"]];
+                        cell.orderCount.hidden = NO;
+                    }
+                }
+                    break;
+                case 3:
+                {
+                    if ([diction[@"status"] intValue]==-1 && [diction[@"count"] intValue]>0) {
+                        cell.orderCount.text = [NSString stringWithFormat:@"%@",diction[@"count"]];
+                        cell.orderCount.hidden = NO;
+                    }
+                }
+                    break;
+                default:
+                    break;
+            }
+        
+       
+    }
+    
+  
     
     return cell;
 }
@@ -124,7 +219,7 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
 #pragma mark - <UICollectionViewDelegateFlowLayout>
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ScreenW / 5, 90);
+    return CGSizeMake(ScreenW / 4, 90);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
@@ -140,4 +235,10 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
     }
 }
 
+-(void)setOrderArray:(NSArray *)orderArray{
+    _orderArray = orderArray;
+    if (_orderArray.count>0) {
+        [_collectionView reloadData];
+    }
+}
 @end

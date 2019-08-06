@@ -360,9 +360,21 @@ static NSArray *lastSeleArray_;
                 NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
                 // 赋值
                 cell.goodMarketPriceLabel.attributedText = attribtStr;
+                
+                if ([_goodsInfomation[@"market_price"] floatValue]<=[_goodPrice floatValue]) {
+                    cell.goodMarketPriceLabel.hidden = YES;
+                }else{
+                    cell.goodMarketPriceLabel.hidden = NO;
+
+                }
+            }else{
+                cell.goodMarketPriceLabel.hidden = YES;
             }
 
             cell.goodSubtitleLabel.text = _goodSubtitle;
+            
+        
+            
 //            [DCSpeedy dc_setUpLabel:cell.goodTitleLabel Content:_goodTitle IndentationFortheFirstLineWith:cell.goodPriceLabel.font.pointSize * 2];
             WEAKSELF
             cell.shareButtonClickBlock = ^{
@@ -404,7 +416,7 @@ static NSArray *lastSeleArray_;
 //        }
 //        gridcell = cell;
             DCShowTypeFourCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeFourCellID forIndexPath:indexPath];
-            cell.contentLabel.text = [_goodsInfomation objectForKey:@"shop_name"];
+            cell.contentLabel.text = [NSString stringWithFormat:@"%@  电话：%@",[_goodsInfomation objectForKey:@"shop_name"] ,[_goodsInfomation objectForKey:@"link"]];
            [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString: [_goodsInfomation objectForKey:@"logo"]] placeholderImage:[UIImage imageNamed:@"MG_payVoucher"]];
         cell.isHasindicateButton = NO;
             gridcell = cell;
@@ -454,7 +466,7 @@ static NSArray *lastSeleArray_;
     }else if (indexPath.section == 1){//商品属性选择
         return CGSizeMake(ScreenW, 60);
     }else if (indexPath.section == 2){//商品快递信息
-        return CGSizeMake(ScreenW, 60);
+        return CGSizeMake(ScreenW, 40);
     }else if (indexPath.section == 3){//商品保价
         return CGSizeMake(ScreenW , 60);
     }else if (indexPath.section == 4){//商品评价部分展示
@@ -469,7 +481,7 @@ static NSArray *lastSeleArray_;
 
 #pragma mark - head宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return (section == 0) ?  CGSizeMake(ScreenW, ScreenH * 0.55) : ( section == 5) ? CGSizeMake(ScreenW, 30) : CGSizeZero;
+    return (section == 0) ?  CGSizeMake(ScreenW, ScreenW) : ( section == 5) ? CGSizeMake(ScreenW, 30) : CGSizeZero;
 }
 
 #pragma mark - foot宽高
@@ -481,7 +493,7 @@ static NSArray *lastSeleArray_;
     if (indexPath.section == 0 && indexPath.row == 0) {
         [self scrollToDetailsPage]; //滚动到详情页面
     }else if (indexPath.section == 2 && indexPath.row == 0) {
-        [self chageUserAdress]; //跟换地址
+//        [self chageUserAdress]; //跟换地址
     }else if (indexPath.section == 1){ //属性选择
         
         NSArray * diction = [_goodsInfomation objectForKey:@"goodsSpecValue"] ;
@@ -504,14 +516,12 @@ static NSArray *lastSeleArray_;
       
     }else if(indexPath.section == 3){
         
-        NSLog(@"===");
-//        UNStoreViewController * stroeVC = [[UNStoreViewController alloc]init];
-//        [self.navigationController pushViewController:stroeVC animated:YES];
+        NSString * phone =  [_goodsInfomation objectForKey:@"link"] ;
+        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
     
 }
-
-
 #pragma mark - 视图滚动
 - (void)setUpViewScroller{
     WEAKSELF
@@ -570,9 +580,10 @@ static NSArray *lastSeleArray_;
 #pragma mark - 滚动到详情页面
 - (void)scrollToDetailsPage
 {
-    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        [[NSNotificationCenter defaultCenter]postNotificationName:SCROLLTODETAILSPAGE object:nil];
-    });
+#warning 修改
+//    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+//        [[NSNotificationCenter defaultCenter]postNotificationName:SCROLLTODETAILSPAGE object:nil];
+//    });
 }
 
 #pragma mark - collectionView滚回顶部
