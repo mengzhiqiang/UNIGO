@@ -97,7 +97,7 @@
                                     <color key="textColor" red="0.81251317379999999" green="0.095192574109999997" blue="0.3115858259" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="¥6399.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWm-e5-JPv">
+                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="¥6399.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWm-e5-JPv">
                                     <rect key="frame" x="90" y="10" width="259" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="textColor" red="0.81251317379999999" green="0.095192574109999997" blue="0.3115858259" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

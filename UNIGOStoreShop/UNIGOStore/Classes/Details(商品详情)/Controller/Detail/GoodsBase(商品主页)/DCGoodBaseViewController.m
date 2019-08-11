@@ -336,7 +336,7 @@ static NSArray *lastSeleArray_;
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 4;  /// 5评论  6推荐
+    return 3;  /// 5评论  6推荐
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -383,7 +383,7 @@ static NSArray *lastSeleArray_;
             gridcell = cell;
         }
 
-    }else if (indexPath.section == 1 || indexPath.section == 2 ){
+    }else if (indexPath.section == 1 ){
         if (indexPath.section == 1) {
             DCShowTypeOneCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeOneCellID forIndexPath:indexPath];
 
@@ -399,11 +399,11 @@ static NSArray *lastSeleArray_;
 //                cell.contentLabel.text = (![[DCObjManager dc_readUserDataForKey:@"isLogin"] isEqualToString:@"1"]) ? @"预送地址" : userInfo.defaultAddress;//地址
 //                gridcell = cell;
 //            }else{
-                DCShowTypeThreeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeThreeCellID forIndexPath:indexPath];
-                gridcell = cell;
-//            }
+//                DCShowTypeThreeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeThreeCellID forIndexPath:indexPath];
+//                gridcell = cell;
+////            }
         }
-    }else if (indexPath.section == 3){
+    }else if (indexPath.section == 2){
 //        DCDetailServicetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCDetailServicetCellID forIndexPath:indexPath];
 //        NSArray *btnTitles = @[@"以旧换新",@"可选增值服务"];
 //        NSArray *btnImages = @[@"detail_xiangqingye_yijiuhuanxin",@"ptgd_icon_zengzhifuwu"];
@@ -416,7 +416,10 @@ static NSArray *lastSeleArray_;
 //        }
 //        gridcell = cell;
             DCShowTypeFourCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeFourCellID forIndexPath:indexPath];
-            cell.contentLabel.text = [NSString stringWithFormat:@"%@  电话：%@",[_goodsInfomation objectForKey:@"shop_name"] ,[_goodsInfomation objectForKey:@"link"]];
+        if ([_goodsInfomation objectForKey:@"shop_name"]) {
+            cell.contentLabel.text = [NSString stringWithFormat:@"%@",[_goodsInfomation objectForKey:@"shop_name"]];
+            cell.hintLabel.text = [_goodsInfomation objectForKey:@"link"];
+        }
            [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString: [_goodsInfomation objectForKey:@"logo"]] placeholderImage:[UIImage imageNamed:@"MG_payVoucher"]];
         cell.isHasindicateButton = NO;
             gridcell = cell;
@@ -466,7 +469,7 @@ static NSArray *lastSeleArray_;
     }else if (indexPath.section == 1){//商品属性选择
         return CGSizeMake(ScreenW, 60);
     }else if (indexPath.section == 2){//商品快递信息
-        return CGSizeMake(ScreenW, 40);
+        return CGSizeMake(ScreenW, 60);
     }else if (indexPath.section == 3){//商品保价
         return CGSizeMake(ScreenW , 60);
     }else if (indexPath.section == 4){//商品评价部分展示

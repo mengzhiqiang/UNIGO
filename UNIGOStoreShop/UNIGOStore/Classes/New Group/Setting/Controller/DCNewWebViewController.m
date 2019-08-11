@@ -29,13 +29,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;   ////scrollview 下移20像素的问题
-    
+    NSLog(@"====111！===");
+
     self.headLabel.text = _headTitle;
     _loadCount = 1;
     _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-self.HeadView.height)];
     _webView.navigationDelegate = self;
     _webView.allowsBackForwardNavigationGestures = YES;
     // 2.创建请求
+    NSLog(@"====3333！===");
+
     NSMutableURLRequest *request;
     _webUrl = @"http://bbs.unigox.cn/mobile/index.html";
     // 3.加载网页
@@ -55,7 +58,8 @@
     
     self.headLeftButton.hidden = YES;
     self.HeadView.hidden = YES;
-    
+    NSLog(@"====2222！===");
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cleanCookie) name:@"cleadcookieNoticon" object:nil];
 }
 

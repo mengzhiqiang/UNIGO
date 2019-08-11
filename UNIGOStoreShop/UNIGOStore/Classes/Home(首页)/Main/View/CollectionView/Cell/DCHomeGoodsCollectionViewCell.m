@@ -31,6 +31,10 @@
     // 赋值
     _smartPriceLabel.attributedText = attribtStr;
     
+    if (diction.market_price.floatValue <= diction.price.floatValue) {
+        _smartPriceLabel.hidden = YES;
+    }
+    
     if (image.length == 0) return;
     if ([[image substringToIndex:4] isEqualToString:@"http"]) {
         [_rootImageView sd_setImageWithURL:[NSURL URLWithString:image]placeholderImage:[UIImage imageNamed:@"default_49_11"]];

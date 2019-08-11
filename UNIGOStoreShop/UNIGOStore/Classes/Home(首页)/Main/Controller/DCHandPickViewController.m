@@ -178,7 +178,12 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
+}
 #pragma mark - 获取网络
 - (void)getNetwork
 {
@@ -581,10 +586,10 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
     _topToolView.hidden = (scrollView.contentOffset.y < 0) ? YES : NO;//判断顶部工具View的显示和隐形
     
     if (scrollView.contentOffset.y > DCNaviH) {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [[NSNotificationCenter defaultCenter]postNotificationName:SHOWTOPTOOLVIEW object:nil];
     }else{
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [[NSNotificationCenter defaultCenter]postNotificationName:HIDETOPTOOLVIEW object:nil];
     }
 }

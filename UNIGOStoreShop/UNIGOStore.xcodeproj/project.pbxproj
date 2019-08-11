@@ -403,6 +403,7 @@
 		9980027B22F87655009EAECB /* DemoEditBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980027222F87655009EAECB /* DemoEditBubbleView.m */; };
 		9980028122F8769E009EAECB /* NSAttributedString+calculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980027D22F8769D009EAECB /* NSAttributedString+calculate.m */; };
 		9980028222F8769E009EAECB /* NSString+calculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980028022F8769D009EAECB /* NSString+calculate.m */; };
+		9980029622FA7E94009EAECB /* DCBBWebSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980029522FA7E94009EAECB /* DCBBWebSViewController.m */; };
 		998B6F10226A17790055421B /* AppDelegate+MeiQia.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */; };
 		998B6F14226A18F80055421B /* AFMeiQiaCustomEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */; };
 		998B6F17226ADF490055421B /* DCRecommendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 998B6F16226ADF490055421B /* DCRecommendList.m */; };
@@ -1221,6 +1222,8 @@
 		9980027E22F8769D009EAECB /* NSString+calculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+calculate.h"; sourceTree = "<group>"; };
 		9980027F22F8769D009EAECB /* NSAttributedString+calculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+calculate.h"; sourceTree = "<group>"; };
 		9980028022F8769D009EAECB /* NSString+calculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+calculate.m"; sourceTree = "<group>"; };
+		9980029422FA7E94009EAECB /* DCBBWebSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCBBWebSViewController.h; sourceTree = "<group>"; };
+		9980029522FA7E94009EAECB /* DCBBWebSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCBBWebSViewController.m; sourceTree = "<group>"; };
 		998B6F0E226A17780055421B /* AppDelegate+MeiQia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+MeiQia.h"; sourceTree = "<group>"; };
 		998B6F0F226A17780055421B /* AppDelegate+MeiQia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+MeiQia.m"; sourceTree = "<group>"; };
 		998B6F12226A18F80055421B /* AFMeiQiaCustomEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMeiQiaCustomEngine.m; sourceTree = "<group>"; };
@@ -3938,6 +3941,8 @@
 				998B6F1D226B35240055421B /* WKwebViewController.m */,
 				99C19D1322EB235400AA677A /* DCNewWebViewController.h */,
 				99C19D1422EB235400AA677A /* DCNewWebViewController.m */,
+				9980029422FA7E94009EAECB /* DCBBWebSViewController.h */,
+				9980029522FA7E94009EAECB /* DCBBWebSViewController.m */,
 				9CCC208F202C28C700B6CD44 /* DCSettingViewController.h */,
 				9CCC2090202C28C700B6CD44 /* DCSettingViewController.m */,
 			);
@@ -4388,6 +4393,7 @@
 				18DCA3311F1F4187008BF67E /* DCDetailServicetCell.m in Sources */,
 				9C95E95E203FBE5C0084CB37 /* DCComHeadView.m in Sources */,
 				9938841A22355A5600444EF4 /* CustomAlertView.m in Sources */,
+				9980029622FA7E94009EAECB /* DCBBWebSViewController.m in Sources */,
 				9C7FE1FA1FD933C700D32EEA /* DCBeautyHotTopicCell.m in Sources */,
 				993885102235602900444EF4 /* GTMBase64New.m in Sources */,
 				9C8CC8672004A25E00515926 /* DCScanTool.m in Sources */,

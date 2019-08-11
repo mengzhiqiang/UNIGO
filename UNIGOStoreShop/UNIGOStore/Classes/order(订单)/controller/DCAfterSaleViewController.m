@@ -36,7 +36,7 @@
     [button setTitle:@"提交" forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, 44, 44);
     button.titleLabel.font = [UIFont systemFontOfSize:15];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
@@ -69,13 +69,41 @@
 
 -(void)submit{
    
-    CGFloat sum = [[_goodsPayDiction objectForKey:@"total_price"] floatValue];
-    CGFloat text = [_goodsTextF.text floatValue] ;
-    
-    if (text >sum) {
-        [UIHelper  alertWithTitle:@"退款金额不能大于总额，请修改！"]; return ;
+//    CGFloat sum = [[_goodsPayDiction objectForKey:@"total_price"] floatValue];
+//    CGFloat text = [_goodsTextF.text floatValue] ;
+//
+//    if (text >sum) {
+//        [UIHelper  alertWithTitle:@"退款金额不能大于总额，请修改！"]; return ;
+//    }
+    if (_goodsTextView.text.length<=0) {
+
+        [UIHelper  alertWithTitle:@"请输入退款原因"];
+        return;
     }
-    
+    [self deleteOrder];
 }
 
+- (void)deleteOrder{
+    
+    NSString *path = [API_HOST stringByAppendingString:order_cancel];
+    
+    NSDictionary * diction = [NSDictionary dictionaryWithObjectsAndKeys:[_goodsPayDiction objectForKey:@"id"],@"id",_goodsTextView.text,@"remark", nil];
+    WEAKSELF
+    [UIHelper addLoadingViewTo:self.view withFrame:0];
+    [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
+        NSDictionary *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
+        NSLog(@"=取消订单====%@",responseObject );
+        [UIHelper hiddenAlertWith:self.view];
+        [SVProgressHUD showSuccessWithStatus:@"提交成功！"];
+        [self.navigationController  popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        [UIHelper hiddenAlertWith:self.view];
+        
+        NSDictionary *Dic_data = error.userInfo;
+        NSLog(@"code=取消订单====%@",Dic_data);
+        if (![UIHelper TitleMessage:Dic_data]) {
+            return;
+        }
+    }];
+}
 @end

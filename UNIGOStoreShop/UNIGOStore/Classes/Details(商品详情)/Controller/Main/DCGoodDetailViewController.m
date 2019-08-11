@@ -56,6 +56,7 @@
 //        _scrollerView.pagingEnabled = YES;
         _scrollerView.bounces = NO;
         _scrollerView.delegate = self;
+        _scrollerView.scrollEnabled = NO;
         [self.view addSubview:_scrollerView];
     }
     return _scrollerView;
@@ -256,8 +257,8 @@
 #pragma mark - 收藏 购物车
 - (void)setUpLeftTwoButton
 {
-    NSArray *imagesNor = @[@"ZXKF_kefu_helpback",@"tabr_08gouwuche"];
-    NSArray *imagesSel = @[@"ZXKF_kefu_helpback",@"tabr_08gouwuche"];
+    NSArray *imagesNor = @[@"ZXKF_kefu_helpback",@"detail_car"];
+    NSArray *imagesSel = @[@"ZXKF_kefu_helpback",@"detail_car"];
     CGFloat buttonW = ScreenW * 0.2;
     CGFloat buttonH = 50;
     CGFloat buttonY = ScreenH - buttonH;
@@ -266,15 +267,40 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setImage:[UIImage imageNamed:imagesNor[i]] forState:UIControlStateNormal];
         button.backgroundColor = [UIColor whiteColor];
-        [button setImage:[UIImage imageNamed:imagesSel[i]] forState:UIControlStateSelected];
         button.tag = i;
         [button addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         CGFloat buttonX = (buttonW * i);
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
         
+        if (i>=0) {
+            [button setTitle:@"客服" forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont systemFontOfSize:11];
+            [button setTitleColor:[UIColor HexString:@"666666"] forState:UIControlStateNormal];
+            [self loadButtonLayout:button];
+            if (i==1) {
+                [button setImageEdgeInsets:UIEdgeInsetsMake(7,20, 25, 30)];
+                [button setTitle:@"购物车" forState:UIControlStateNormal];
+            }else{
+
+            }
+        }else{
+            [button setImage:[UIImage imageNamed:imagesSel[i]] forState:UIControlStateSelected];
+        }
+        
         [self.view addSubview:button];
     }
 }
+
+-(void)loadButtonLayout:(UIButton*)sender{
+    [sender layoutIfNeeded];
+    CGRect titleFrame = sender.titleLabel.frame;
+    CGRect imageFrame = sender.imageView.frame;
+    CGFloat space = titleFrame.origin.x - imageFrame.origin.x - imageFrame.size.width;
+    [sender setImageEdgeInsets:UIEdgeInsetsMake(0,20, 15, 20)];
+    [sender setTitleEdgeInsets:UIEdgeInsetsMake(25, -(imageFrame.size.width), 0, 0)];
+}
+
 #pragma mark - 加入购物车 立即购买
 - (void)setUpRightTwoButton
 {

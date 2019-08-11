@@ -82,7 +82,7 @@
     self.scrollView.delegate = self;
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, SCREEN_WIDTH, 200) animated:NO];
     [self.view addSubview:self.scrollView];
-    
+    self.scrollView.scrollEnabled = NO;
     
     order_all = [[JFJorderTabelView alloc] initWithFrame:CGRectMake( 0, 0, SCREEN_WIDTH, lisTheight)];
     order_all.orderStyle = @"全部";
@@ -110,6 +110,9 @@
     
     if (_selectIndex) {
         segmentedControl.selectedSegmentIndex = _selectIndex;
+        [self GetAllOrderWithStatus:_selectIndex];
+        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * _selectIndex, 0) animated:YES];
+
     }
 }
 
@@ -142,7 +145,7 @@
     [HttpEngine requestPostWithURL:path params:nil isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
-        NSLog(@"=订单==%@",JSONDic );
+//        NSLog(@"=订单==%@",JSONDic );
         [order_all updataData:JSONDic tagre:self];
 
     } failure:^(NSError *error) {
@@ -165,7 +168,9 @@
     NSMutableDictionary * diction = [NSMutableDictionary dictionary];
     if (status!=0) {
         if (status==3) {
-            status = 4 ;
+            status = 5 ;
+        }else if(status==4){
+            status = 6 ;
         }
         [diction setObject:[NSNumber numberWithInteger:status-1] forKey:@"status"];
     }
@@ -174,8 +179,7 @@
     [HttpEngine requestPostWithURL:path params:diction isToken:YES errorDomain:nil errorString:nil success:^(id responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSArray *JSONDic = [(NSDictionary *)responseObject objectForKey:@"data"] ;
-        NSLog(@"=订单==%@",JSONDic );
-        
+//        NSLog(@"=订单==%@",JSONDic );
         switch (status) {
             case 0:
             {
@@ -218,6 +222,16 @@
     }];
     
 }
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [segmentedControl setSelectedSegmentIndex:page animated:YES];
+}
+
 
 -(void)loadUIViewOrder:(NSArray*)orderArray{
     

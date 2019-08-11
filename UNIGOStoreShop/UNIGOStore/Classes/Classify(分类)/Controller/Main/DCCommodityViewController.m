@@ -140,7 +140,6 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 //    [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
 }
 
-
 #pragma mark - 设置导航条
 - (void)setUpNav
 {
@@ -175,7 +174,6 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
     [_searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
     _searchButton.frame = CGRectMake(0, 0, _topSearchView.dc_width - 2 * DCMargin, _topSearchView.dc_height);
     [_topSearchView addSubview:_searchButton];
-    
     
     _voiceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _voiceButton.adjustsImageWhenHighlighted = NO;
@@ -244,8 +242,9 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
 //        }
 //    }else{//商品
         DCGoodsSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsSortCellID forIndexPath:indexPath];
-
     cell.subItem = _mainItem[indexPath.row];
+    cell.backgroundColor = [UIColor whiteColor];
+
         gridcell = cell;
 //    }
 
@@ -255,7 +254,6 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
     
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader){
-        
         DCBrandsSortHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCBrandsSortHeadViewID forIndexPath:indexPath];
         headerView.headTitle = _mainItem[indexPath.section];
         reusableview = headerView;
@@ -308,7 +306,6 @@ static NSString *const DCBrandSortCellID = @"DCBrandSortCell";
     [window addSubview:searchToolView];
     WEAKSELF
     searchToolView.backText = ^(NSString * _Nonnull text) {
-        
         DCGoodsSetViewController *goodSetVc = [[DCGoodsSetViewController alloc] init];
         goodSetVc.goodPlisName = @"ClasiftyGoods.plist";
         goodSetVc.searchName = text;

@@ -131,10 +131,13 @@ static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
 {
     [super viewWillAppear:animated];
 
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     accountInfo =  [AFAccountEngine  getAccount];
     self.headView.useNameLabel.text = accountInfo.client.nickname;
+    if ([HttpRequestToken getToken].length<1) {
+        self.headView.useNameLabel.text = @"点击登录";
+    }
     [self.headView.myIconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:accountInfo.client.headimgurl] placeholderImage:[UIImage imageNamed:@"unigo_default_head"]];
     [self.tableView reloadData ];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -246,7 +249,7 @@ static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
                 return ;
             }
             DCOrderListViewController * orderlist = [[DCOrderListViewController alloc]init];
-            orderlist.selectIndex = index + 1;
+            orderlist.selectIndex = index+1 ;
             [self.navigationController pushViewController:orderlist animated:YES];
         };
         cell.orderArray = _tipArray ;
@@ -430,7 +433,7 @@ static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
     
     _topToolView.hidden = (scrollView.contentOffset.y < 0) ? YES : NO;
     
-    _topToolView.backgroundColor = (scrollView.contentOffset.y > 64) ? RGB(0, 0, 0) : [UIColor clearColor];
+//    _topToolView.backgroundColor = (scrollView.contentOffset.y > 64) ? RGB(0, 0, 0) : [UIColor clearColor];
     
     //图片高度
     CGFloat imageHeight = self.headView.dc_height;
@@ -459,9 +462,7 @@ static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
         [_tableView reloadData];
     } failure:^(NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        
-
-        
+                
     }];
     
 }
