@@ -191,13 +191,7 @@
             cell.pushTagImageView.hidden = YES;
 
             switch (indexPath.section) {
-//                case 1:
-//                    {
-////                        cell.titleNameLabel.text =@"优惠券";
-////                        cell.pushNextLabel.text = @"暂无可用优惠券" ;
-//
-//                    }
-//                    break;
+
                 case 1:
                 {
                     cell.titleNameLabel.text =@"支付方式";
@@ -295,13 +289,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 1) {
-//        [self selectCouponActionSheetView ];
-        [UIHelper showUpMessage:@"无可用优惠券"];
-    }
-    else if (indexPath.section == 2) {
-        [self selectCouponActionSheetView ];
-    }
     
 }
 
@@ -318,7 +305,7 @@
     return sum ;
 }
 
-#pragma mark 选择优惠券
+#pragma mark 选择
 - (void)selectCouponActionSheetView
 {
     

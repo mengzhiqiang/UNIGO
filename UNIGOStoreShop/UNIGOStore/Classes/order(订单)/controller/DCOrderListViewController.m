@@ -57,7 +57,7 @@
 //    [segmentedControl3 setSelectedSegmentIndex:0];
 //    [self.view addSubview:segmentedControl3];
     
-    segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"未支付",@"待发货", @"已收货", @"已完成"]];
+    segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"待支付",@"待发货", @"已发货", @"退款"]];
     segmentedControl.frame = CGRectMake(0, SCREEN_top, SCREEN_WIDTH, 40);
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
@@ -68,9 +68,7 @@
     segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor HexString:@"333333"], NSFontAttributeName : [UIFont fontWithName:nil size:15.0]};
     segmentedControl.backgroundColor = [UIColor clearColor];
     [self.view addSubview:segmentedControl ];
-    
-    
-    
+        
     
     self.view.backgroundColor = [UIColor whiteColor];
     CGFloat lisTheight = SCREEN_HEIGHT-DCTopNavH -40;
@@ -94,7 +92,7 @@
     [self.scrollView addSubview:order_NoPay];
     
     order_stayGoods = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*2, 0, SCREEN_WIDTH, lisTheight)];
-    order_stayGoods.orderStyle = @"未支付";
+    order_stayGoods.orderStyle = @"待发货";
     [self.scrollView addSubview:order_stayGoods];
     
     order_deliverGoods= [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 3, 0, SCREEN_WIDTH, lisTheight)];
@@ -170,9 +168,9 @@
         if (status==3) {
             status = 5 ;
         }else if(status==4){
-            status = 6 ;
+            status = -1 ;
         }
-        [diction setObject:[NSNumber numberWithInteger:status-1] forKey:@"status"];
+        [diction setObject:[NSNumber numberWithInteger:(status==-1?0:status)-1] forKey:@"status"];
     }
     NSLog(@"==url= %@==diction===%@",path , diction);
     WEAKSELF
@@ -201,7 +199,7 @@
                 [order_deliverGoods updataData:JSONDic tagre:self];
             }
                 break;
-            case 4:
+            case -1:
             {
                 [order_over updataData:JSONDic tagre:self];
             }

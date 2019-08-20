@@ -211,11 +211,11 @@
 //            //登录云信318686
 //            [[AFNIMEngine sharedInstance] loginNIMSDKWithNIMInfo:responseObject[@"nim"]];
         
-        if ([responseObject objectForKey:@"msg"]) {
-            [self promtNavHidden:[responseObject objectForKey:@"msg"]];
-
-        }else{
-        }
+//        if ([responseObject objectForKey:@"msg"]) {
+//            [self promtNavHidden:[responseObject objectForKey:@"msg"]];
+//
+//        }else{
+//        }
         [self  dismissViewControllerAnimated:YES completion:nil];
 
         NSLog(@"==fail=userInfo==%@",[responseObject objectForKey:@"msg"]);

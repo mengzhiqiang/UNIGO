@@ -55,6 +55,8 @@
     self.goodNameLabel.text = [goodsDicgoodsDic objectForKey:@"name"];
     self.goodeDetailLabel.text = [goodsDicgoodsDic objectForKey:@"spec_name"];
     self.goodsPriceLabel.text = [goodsDicgoodsDic objectForKey:@"price"];
+    self.goodsSumLabel.text = [goodsDicgoodsDic objectForKey:@"price"];
+
     self.goodsCountLabel.text = [NSString stringWithFormat:@"x%@",[goodsDicgoodsDic objectForKey:@"num"]];
     [self.goodsImageView setImageWithURL:[NSURL URLWithString: [goodsDicgoodsDic objectForKey:@"image"]] placeholderImage:nil];
     

@@ -683,9 +683,9 @@ static NSString *const DCScrollAdFootViewID = @"DCScrollAdFootView";
         [_bannerImagesArray addObject:[[_bannerArray objectAtIndex:i] objectForKey:@"image"] ];
     }
     
-    if (_bannerImagesArray.count<1) {
-        return  GoodsHomeSilderImagesArray ;
-    }
+//    if (_bannerImagesArray.count<1) {
+//        return  GoodsHomeSilderImagesArray ;
+//    }
     
     return _bannerImagesArray;
 }

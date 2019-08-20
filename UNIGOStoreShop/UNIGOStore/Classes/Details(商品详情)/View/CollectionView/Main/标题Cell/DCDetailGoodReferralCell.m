@@ -70,6 +70,14 @@
      _goodMarketPriceLabel = [[UILabel alloc] init];
     [self addSubview:_goodMarketPriceLabel];
     
+    
+    _goodSaleCountLabel = [[UILabel alloc] init];
+    _goodSaleCountLabel.font = PFR11Font;
+    _goodSaleCountLabel.numberOfLines = 0;
+//    _goodSaleCountLabel.textColor = RGB(233, 35, 46);
+    [self addSubview:_goodSaleCountLabel];
+
+    
 //    _shareButton = [DCUpDownButton buttonWithType:UIButtonTypeCustom];
 //    [_shareButton setTitle:@"分享" forState:0];
 //    [_shareButton setImage:[UIImage imageNamed:@"icon_fenxiang2"] forState:0];
@@ -113,6 +121,10 @@
         [make.left.mas_equalTo(_goodPriceLabel.mas_right)setOffset:10.0];
         make.centerY.mas_equalTo(_goodPriceLabel.mas_centerY);
         [make.right.mas_equalTo(self)setOffset:-1 * 5];
+    }];
+    [_goodSaleCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [make.right.mas_equalTo(self)setOffset:-8.0];
+        [make.top.mas_equalTo(_goodSubtitleLabel.mas_bottom)setOffset:DCMargin*1.5];
     }];
     
 //    [_shareButton mas_makeConstraints:^(MASConstraintMaker *make) {

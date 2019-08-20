@@ -145,7 +145,7 @@
     formatter.timeZone = [NSTimeZone timeZoneWithName:@"shanghai"];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     // 毫秒值转化为秒
     NSDate* date = [NSDate dateWithTimeIntervalSince1970:[timeString doubleValue]/ 1];

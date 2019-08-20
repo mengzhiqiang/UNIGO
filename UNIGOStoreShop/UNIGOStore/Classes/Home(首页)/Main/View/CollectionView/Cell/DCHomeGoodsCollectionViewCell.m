@@ -37,7 +37,7 @@
     
     if (image.length == 0) return;
     if ([[image substringToIndex:4] isEqualToString:@"http"]) {
-        [_rootImageView sd_setImageWithURL:[NSURL URLWithString:image]placeholderImage:[UIImage imageNamed:@"default_49_11"]];
+        [_rootImageView sd_setImageWithURL:[NSURL URLWithString:image]placeholderImage:[UIImage imageNamed:@"default_image"]];
     }else{
         _rootImageView.image = [UIImage imageNamed:image];
     }

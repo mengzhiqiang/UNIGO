@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *payTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *payNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timerGoodsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *payAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLabel;
@@ -36,6 +37,12 @@
 @property (strong, nonatomic) NSArray * goodsArray;
 @property (strong, nonatomic) NSDictionary * goodsPayDiction;
 
+@property (weak, nonatomic) IBOutlet UILabel *orderIDLabel;
+@property (weak, nonatomic) IBOutlet UILabel *payStyleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderTimeLabael;
+@property (weak, nonatomic) IBOutlet UILabel *payTimesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carNumberLabel;
 
 @end
 
@@ -136,7 +143,8 @@
     
     int status = [[diction objectForKey:@"status"] intValue];
     _payTimeLabel.text = [NSString stringWithFormat:@"订单号：%@", [diction objectForKey:@"order_id"]];
-
+    _timerGoodsLabel.text = @"请核对订单所有信息";
+    _timeOutLabel.text = @"如有问题，请联系客服";
     switch (status) {
         case -3:
         {
@@ -168,6 +176,8 @@
             _deleteButton.hidden = NO ;
             _payStatusLabel.text = @"未支付";
             [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
+            _timerGoodsLabel.text = @"请在30分钟内支付";
+            _timeOutLabel.text = @"超时自动取消订单";
         }
             break;
         case 1:
@@ -236,16 +246,32 @@
             _deleteButton.hidden = YES ;
             _payStatusLabel.text = @"已取消";
             _timeOutLabel.hidden = YES;
-            _footOrderView.height = 68 ;
+            _footOrderView.height = 55 ;
 
         }
             break;
         default:
             break;
-    }    
-    _goodsArray = [[diction objectForKey:@"goods"] copy];
+    }
     
+    
+    _orderIDLabel .text = [diction objectForKey:@"order_id"];
+    _payStyleLabel.text =  [diction objectForKey:@"pay_type"];
+    _orderTimeLabael.text =  [self time:[diction objectForKey:@"create_time"]];
+    _payTimesLabel.text  =  [self time:[diction objectForKey:@"pay_time"]];
+    _carTimeLabel.text   =  [self time:[diction objectForKey:@"express_time"]];
+    _carNumberLabel.text =  ([[diction objectForKey:@"express"] length]?[diction objectForKey:@"express"]:@"暂无")  ;
+    
+    _goodsArray = [[diction objectForKey:@"goods"] copy];
     [_rootTableView reloadData];
+}
+
+-(NSString*)time:(NSString*)time{
+    if ([time integerValue] == 0) {
+        return  @"暂无";
+    }
+   return   [NSDate timeWithTimeIntervalString:time];
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -284,7 +310,7 @@
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 147;
+    return 289;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -310,7 +336,7 @@
     NSDictionary* diction =  [_goodsArray objectAtIndex:indexPath.row];
     
     cell.goodsDetailLabel.text = [diction objectForKey:@"name"];
-    cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
+    cell.stateLabel.text = [diction objectForKey:@"spec_name"];
     cell.priceLabel.text = [diction objectForKey:@"price"];
     cell.sleepCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"num"]];
     [cell.goodsImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
@@ -362,6 +388,7 @@
         NSLog(@"=取消订单====%@",responseObject );
         [UIHelper hiddenAlertWith:self.view];
         
+        [self getOrderDetail ];
     } failure:^(NSError *error) {
         [UIHelper hiddenAlertWith:self.view];
 

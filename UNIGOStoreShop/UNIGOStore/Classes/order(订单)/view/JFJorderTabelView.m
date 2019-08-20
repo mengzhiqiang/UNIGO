@@ -75,7 +75,7 @@
         NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
         cell.orderTimeLabel.text = [NSString stringWithFormat:@"订单时间：%@", [NSDate timeWithTimeIntervalString: [diction objectForKey:@"create_time"]]];
         cell.goodeTitleLabel.text = [diction objectForKey:@"name"];
-        cell.goodsDetailLabel.text = [diction objectForKey:@"spec_name"];
+        cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
         cell.goodCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"total_num"]];;
         cell.orderSumLabel.text = [NSString stringWithFormat:@"订单总额 ¥%@",[diction objectForKey:@"total_price"]];;
         [cell.oredreImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
@@ -102,7 +102,7 @@
                 cell.orderStatusLabel.text = @"未付款";
                 cell.payButton.hidden = NO;
                 cell.DeleteOrderButton.hidden = NO;
-                [cell.DeleteOrderButton setTitle:@"取消订单" forState:UIControlStateNormal];
+                [cell.DeleteOrderButton setTitle:@"去支付" forState:UIControlStateNormal];
                 cell.DeleteOrderButton.enabled = YES;
             }
                 break;
@@ -155,12 +155,13 @@
     
     cell.backSelect = ^(NSString * _Nonnull style) {
         
-        if ([style isEqualToString:@"pay"]) {
+//        if ([style isEqualToString:@"pay"]) {
             ///支付
-        }else{
-            //删除
-            [self deleteOrderWithRow:indexPath.row];
-        }
+            [self payOrderWith:indexPath.row];
+//        }else{
+//            //删除
+//            [self deleteOrderWithRow:indexPath.row];
+//        }
     };
     
     

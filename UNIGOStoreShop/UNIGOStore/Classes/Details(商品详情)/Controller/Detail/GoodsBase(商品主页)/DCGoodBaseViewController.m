@@ -351,29 +351,30 @@ static NSArray *lastSeleArray_;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             DCDetailGoodReferralCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCDetailGoodReferralCellID forIndexPath:indexPath];
-            cell.goodTitleLabel.text = _goodTitle;
-            cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",_goodPrice];
-            if (_goodsInfomation[@"market_price"]) {
-                NSString *textStr = [NSString stringWithFormat:@"¥ %@",_goodsInfomation[@"market_price"]];
-                //中划线
-                NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-                NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
-                // 赋值
-                cell.goodMarketPriceLabel.attributedText = attribtStr;
-                
-                if ([_goodsInfomation[@"market_price"] floatValue]<=[_goodPrice floatValue]) {
-                    cell.goodMarketPriceLabel.hidden = YES;
+            if (_goodsInfomation) {
+                cell.goodTitleLabel.text = _goodTitle;
+                cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",_goodPrice];
+                cell.goodSaleCountLabel.text =  [NSString stringWithFormat:@"销量：%@",_goodsInfomation[@"sales"]];
+                if (_goodsInfomation[@"market_price"]) {
+                    NSString *textStr = [NSString stringWithFormat:@"¥ %@",_goodsInfomation[@"market_price"]];
+                    //中划线
+                    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+                    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
+                    // 赋值
+                    cell.goodMarketPriceLabel.attributedText = attribtStr;
+                    
+                    if ([_goodsInfomation[@"market_price"] floatValue]<=[_goodPrice floatValue]) {
+                        cell.goodMarketPriceLabel.hidden = YES;
+                    }else{
+                        cell.goodMarketPriceLabel.hidden = NO;
+                        
+                    }
                 }else{
-                    cell.goodMarketPriceLabel.hidden = NO;
-
+                    cell.goodMarketPriceLabel.hidden = YES;
                 }
-            }else{
-                cell.goodMarketPriceLabel.hidden = YES;
+                
+                cell.goodSubtitleLabel.text = _goodSubtitle;
             }
-
-            cell.goodSubtitleLabel.text = _goodSubtitle;
-            
-        
             
 //            [DCSpeedy dc_setUpLabel:cell.goodTitleLabel Content:_goodTitle IndentationFortheFirstLineWith:cell.goodPriceLabel.font.pointSize * 2];
             WEAKSELF
@@ -675,6 +676,8 @@ static NSArray *lastSeleArray_;
     iten.name = [_goodsInfomation objectForKey:@"name"];
     iten.image = [_goodsInfomation objectForKey:@"image"];
     iten.price = [_goodsInfomation objectForKey:@"price"];
+    iten.price = [[self priceOfNowSelect] objectForKey:@"price"];
+
     iten.cart_num = lastNum_;
     iten.stock = [_goodsInfomation objectForKey:@"stock"];
     iten.info = [_goodsInfomation objectForKey:@"image"];

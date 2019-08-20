@@ -20,6 +20,8 @@
 /* 商品小标题 */
 @property (strong , nonatomic)UILabel *goodSubtitleLabel;
 
+/* 销量 */
+@property (strong , nonatomic)UILabel *goodSaleCountLabel;
 /* 优惠按钮 */
 @property (strong , nonatomic)UIButton *preferentialButton;
 

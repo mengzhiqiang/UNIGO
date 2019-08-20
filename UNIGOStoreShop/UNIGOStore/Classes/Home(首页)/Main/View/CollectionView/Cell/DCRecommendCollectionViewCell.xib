@@ -32,10 +32,10 @@
                         <color key="textColor" red="0.96992389899999998" green="0.53850374670000001" blue="0.206616307" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="yPU-qi-zgy">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="yPU-qi-zgy">
                         <rect key="frame" x="0.0" y="56" width="186" height="68"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                 </subviews>
             </view>

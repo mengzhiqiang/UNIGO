@@ -30,7 +30,7 @@
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
-    _nickNameTF.text = [self.baby_Dic objectForKey:@"name"];
+    _nickNameTF.text = [self.baby_Dic objectForKey:@"nickname"];
 
     if (self.isTrusName) {
         self.headLabel.text = @"真实姓名";

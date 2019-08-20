@@ -314,7 +314,7 @@
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.tag = i + 2;
         [button setTitle:titles[i] forState:UIControlStateNormal];
-        button.backgroundColor = (i == 0) ? [UIColor redColor] : RGB(249, 125, 10);
+        button.backgroundColor = (i == 0) ?RGB(249, 125, 10)  : [UIColor redColor];
         [button addTarget:self action:@selector(bottomButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         CGFloat buttonX = ScreenW * 0.4 + (buttonW * i);
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);

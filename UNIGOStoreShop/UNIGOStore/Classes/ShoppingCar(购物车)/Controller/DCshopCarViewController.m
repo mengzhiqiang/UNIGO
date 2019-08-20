@@ -8,6 +8,7 @@
 
 #import "DCshopCarViewController.h"
 #import "DCOrderDetailViewController.h"
+#import "DCGoodDetailViewController.h"
 // Models
 #import "DCRecommendItem.h"
 // Views
@@ -38,9 +39,14 @@
 @property (strong, nonatomic) IBOutlet UITableView *rootTableView;
 
 
+@property (assign ,nonatomic) BOOL isSelectAll;
+@property (assign ,nonatomic) NSInteger countAll;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *selectCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sumLabel;
 @property (weak, nonatomic) IBOutlet UIView *sumView;
+@property (weak, nonatomic) IBOutlet UIButton *selectAllButton;
 
 @end
 
@@ -51,6 +57,7 @@
     [super viewDidLoad];
     
     self.title = @"购物车";
+    _isSelectAll = YES ;
     [self setUpBase];
     _rootTableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:UITableViewStyleGrouped];
     _rootTableView .frame = CGRectMake(0,  DCTopNavH, SCREEN_WIDTH, SCREEN_HEIGHT- DCTopNavH - 50-iphoneXTabbarHieght);
@@ -97,10 +104,10 @@
     
     if (_isTabBar) {
         _sumView.bottom = ScreenH-iphoneXTabbarHieght;
-        _rootTableView.height = ScreenH-DCTopNavH -100-iphoneXTabbarHieght;
+        _rootTableView.height = ScreenH-DCTopNavH -50-iphoneXTabbarHieght;
     }else{
         _sumView.bottom = ScreenH-50-iphoneXTabbarHieght;
-        _rootTableView.height = ScreenH-DCTopNavH -100-50-iphoneXTabbarHieght;
+        _rootTableView.height = ScreenH-DCTopNavH -50-50-iphoneXTabbarHieght;
     }
     [self selectSum ];
     
@@ -113,6 +120,7 @@
         self.sumView.hidden = NO;
 
     }
+    
 }
 
 #pragma mark - 初始化空购物车View
@@ -184,7 +192,7 @@
 //        [self editeShopCar:model withindex:indexPath];
 //        [shopModel.data replaceObjectAtIndex:indexPath.row withObject:model];
         [_rootTableView reloadData];
-//        [self selectSum ];
+        [self selectSum ];
     };
     cell.backShopCount = ^(DCShopCarModel * _Nonnull model) {
         
@@ -194,6 +202,15 @@
     return   cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DCShopModel * shopModel =  [shopCarModel.carList objectAtIndex:indexPath.section];
+    DCShopCarModel * iten  = [shopModel.data objectAtIndex:indexPath.row];
+    
+    DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
+    dcVc.goodID = iten.goods_id;
+    [self.navigationController pushViewController:dcVc animated:YES];
+    
+}
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -253,14 +270,23 @@
     
     float  sumPrice = 0 ;
     int  selctCount = 0;
+    BOOL  isGoods = NO;
     for (DCShopModel* shop in shopCarModel.carList) {
         
         for (DCShopCarModel * model in shop.data) {
+            isGoods = YES;
             if (model.isSelect) {
                 sumPrice = (float)[model.price floatValue]*[model.cart_num intValue]+sumPrice;
                 selctCount++;
             }
         }
+    }
+    
+    if (!isGoods) {
+        [self setUpEmptyCartView];
+        self.sumView.hidden = YES;
+//        shopCarModel.carList = nil;
+//        [_rootTableView reloadData];
     }
     _selectCountLabel.text = [NSString stringWithFormat:@"%d",selctCount];
     _sumLabel.text = [NSString stringWithFormat:@"¥：%.2f",sumPrice];
@@ -338,6 +364,8 @@
             [_rootTableView reloadData];
             [self selectSum];
 
+           
+            
         }
     } failure:^(NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -368,8 +396,21 @@
         
         DCShopModel * shopModel =  [shopCarModel.carList objectAtIndex:indepath.section];
         [shopModel.data removeObject:carModel];
+        
+        if (shopModel.data.count<1) {
+            [shopCarModel.carList removeObject:shopModel];
+        }
         [_rootTableView reloadData];
         [self selectSum];
+        _countAll--;
+        
+        if (_isSelectAll) {
+            [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+        }else{
+            [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+        }
+
+        
 //        [weakSelf backAndReloadData:carModel withIndex:indepath];
 
     } failure:^(NSError *error) {
@@ -388,6 +429,8 @@
     [shopModel.data removeObjectAtIndex:indepath.row];
     [_rootTableView reloadData];
     [self selectSum ];
+   
+    
     if (!(shopCarModel.carList.count>0)) {
         [self setUpEmptyCartView];
     }
@@ -450,11 +493,43 @@
         emptyCartView.hidden = YES;
         [_rootTableView reloadData];
         [self selectSum];
+        
+        _countAll = 0 ;
+        for (DCShopModel* shop in shopCarModel.carList) {
+            _countAll = _countAll +shop.data.count;
+        }
+        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+        
     }else{
         
         
     }
     
+}
+- (IBAction)selectAllGood:(UIButton *)sender {
+    
+    _isSelectAll = !_isSelectAll ;
+    if (_isSelectAll) {
+        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+        for (DCShopModel * shopModel in shopCarModel.carList) {
+            shopModel.isSelect = YES;
+            for (DCShopCarModel * carModel in shopModel.data) {
+                carModel.isSelect = shopModel.isSelect;
+            }
+        }
+    }else{
+        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+
+        for (DCShopModel * shopModel in shopCarModel.carList) {
+            shopModel.isSelect = NO;
+            for (DCShopCarModel * carModel in shopModel.data) {
+                carModel.isSelect = shopModel.isSelect;
+            }
+        }
+    }
+    [_rootTableView reloadData];
+    [self selectSum];
+
 }
 
 #pragma mark - 消失
