@@ -52,7 +52,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 215;
+    return 190;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -77,7 +77,7 @@
         cell.goodeTitleLabel.text = [diction objectForKey:@"name"];
         cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
         cell.goodCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"total_num"]];;
-        cell.orderSumLabel.text = [NSString stringWithFormat:@"订单总额 ¥%@",[diction objectForKey:@"total_price"]];;
+        cell.orderSumLabel.text = [NSString stringWithFormat:@"合计：¥%@",[diction objectForKey:@"total_price"]];;
         [cell.oredreImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
         int status = [[diction objectForKey:@"status"] intValue];
         int pay_status = [[diction objectForKey:@"pay_status"] intValue];
@@ -99,7 +99,7 @@
                 break;
             case 0:
             {
-                cell.orderStatusLabel.text = @"未付款";
+                cell.orderStatusLabel.text = @"待付款";
                 cell.payButton.hidden = NO;
                 cell.DeleteOrderButton.hidden = NO;
                 [cell.DeleteOrderButton setTitle:@"去支付" forState:UIControlStateNormal];

@@ -179,7 +179,7 @@ static NSString *const DCStateItemFooterViewID = @"DCStateItemFooterView";
                     break;
                 case 2:
                 {
-                    if ([diction[@"status"] intValue]==3 && [diction[@"count"] intValue]>0) {
+                    if ([diction[@"status"] intValue]==2 && [diction[@"count"] intValue]>0) {
                         cell.orderCount.text = [NSString stringWithFormat:@"%@",diction[@"count"]];
                         cell.orderCount.hidden = NO;
                     }

@@ -174,7 +174,7 @@
         {
             _payButton.hidden = NO;
             _deleteButton.hidden = NO ;
-            _payStatusLabel.text = @"未支付";
+            _payStatusLabel.text = @"待付款";
             [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
             _timerGoodsLabel.text = @"请在30分钟内支付";
             _timeOutLabel.text = @"超时自动取消订单";
@@ -200,7 +200,7 @@
             _payButton.hidden = NO;
             [_payButton  setTitle:@"申请退款" forState:UIControlStateNormal];
             _deleteButton.hidden = YES ;
-            _payStatusLabel.text = @"待收货";
+            _payStatusLabel.text = @"已发货";
             _timeOutLabel.hidden = YES;
 //            [_deleteButton setTitle:@"配送中" forState:UIControlStateNormal];
 //            [_deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

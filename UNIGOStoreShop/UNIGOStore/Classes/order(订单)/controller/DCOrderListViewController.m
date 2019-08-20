@@ -57,7 +57,7 @@
 //    [segmentedControl3 setSelectedSegmentIndex:0];
 //    [self.view addSubview:segmentedControl3];
     
-    segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"待支付",@"待发货", @"已发货", @"退款"]];
+    segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部", @"待付款",@"待发货", @"已发货", @"退款"]];
     segmentedControl.frame = CGRectMake(0, SCREEN_top, SCREEN_WIDTH, 40);
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
@@ -88,7 +88,7 @@
     [self.scrollView addSubview:order_all];
     
     order_NoPay = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, lisTheight)];
-    order_NoPay.orderStyle = @"未支付";
+    order_NoPay.orderStyle = @"待付款";
     [self.scrollView addSubview:order_NoPay];
     
     order_stayGoods = [[JFJorderTabelView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*2, 0, SCREEN_WIDTH, lisTheight)];
@@ -165,9 +165,7 @@
 
     NSMutableDictionary * diction = [NSMutableDictionary dictionary];
     if (status!=0) {
-        if (status==3) {
-            status = 5 ;
-        }else if(status==4){
+        if(status==4){
             status = -1 ;
         }
         [diction setObject:[NSNumber numberWithInteger:(status==-1?0:status)-1] forKey:@"status"];

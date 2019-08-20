@@ -214,20 +214,20 @@ static NSArray *lastSeleArray_;
     //父类加入购物车，立即购买通知
     _dcObj = [[NSNotificationCenter defaultCenter]addObserverForName:SELECTCARTORBUY object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
-        if (lastSeleArray_.count != 0) {
-            if ([note.userInfo[@"buttonTag"] isEqualToString:@"2"]) { //加入购物车（父类）
-                
-                [weakSelf addShopCars];
-                
-            }else if ([note.userInfo[@"buttonTag"] isEqualToString:@"3"]){//立即购买（父类）
-                [weakSelf buyNowWithData];
-
-                DCOrderDetailViewController *dcFillVc = [DCOrderDetailViewController new];
-                [weakSelf.navigationController pushViewController:dcFillVc animated:YES];
-            }
-            
-        }else {
-            
+//        if (lastSeleArray_.count != 0) {
+//            if ([note.userInfo[@"buttonTag"] isEqualToString:@"2"]) { //加入购物车（父类）
+//
+//                [weakSelf addShopCars];
+//
+//            }else if ([note.userInfo[@"buttonTag"] isEqualToString:@"3"]){//立即购买（父类）
+//                [weakSelf buyNowWithData];
+//
+//                DCOrderDetailViewController *dcFillVc = [DCOrderDetailViewController new];
+//                [weakSelf.navigationController pushViewController:dcFillVc animated:YES];
+//            }
+//
+//        }else {
+        
             DCFeatureSelectionViewController *dcNewFeaVc = [DCFeatureSelectionViewController new];
 //            dcNewFeaVc.goodImageView = weakSelf.goodImageView;
 //            dcNewFeaVc.goodsInfomation = self.goodsInfomation ;
@@ -239,7 +239,7 @@ static NSArray *lastSeleArray_;
             
             
             [weakSelf setUpAlterViewControllerWith:dcNewFeaVc WithDistance:ScreenH * 0.8 WithDirection:XWDrawerAnimatorDirectionBottom WithParallaxEnable:YES WithFlipEnable:YES];
-        }
+//        }
     }];
 
     //选择Item通知
@@ -496,8 +496,10 @@ static NSArray *lastSeleArray_;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
         [self scrollToDetailsPage]; //滚动到详情页面
-    }else if (indexPath.section == 2 && indexPath.row == 0) {
-//        [self chageUserAdress]; //跟换地址
+    }else if (indexPath.section == 2 ) {
+        NSString * phone =  [_goodsInfomation objectForKey:@"link"] ;
+        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }else if (indexPath.section == 1){ //属性选择
         
         NSArray * diction = [_goodsInfomation objectForKey:@"goodsSpecValue"] ;

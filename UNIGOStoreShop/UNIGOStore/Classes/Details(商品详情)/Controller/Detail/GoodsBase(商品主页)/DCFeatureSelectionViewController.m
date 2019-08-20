@@ -165,7 +165,21 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     self.collectionView.frame = CGRectMake(0, self.tableView.dc_bottom ,ScreenW , NowScreenH - 200);
 
     
-    if (_lastSeleArray.count == 0) return;
+    if (_lastSeleArray.count == 0){
+        _seleArray = [@[] mutableCopy];
+
+        for (NSInteger i = 0; i < _featureAttr.count; i++) {
+            DCFeatureItem * item  = _featureAttr[i];
+            for (NSInteger j = 0; j < item.listKeys.count; j++) {
+                _featureAttr[i].index =  10;
+                [self.collectionView reloadData];
+            }
+            [_seleArray addObject: [item.listValue objectAtIndex:0]];
+
+        }
+
+      return;
+    }
     for (NSString *str in _lastSeleArray) {//反向遍历（赋值）
         for (NSInteger i = 0; i < _featureAttr.count; i++) {
             DCFeatureItem * item  = _featureAttr[i];
@@ -178,6 +192,10 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
             }
         }
     }
+    
+    
+   
+    
 
 }
 

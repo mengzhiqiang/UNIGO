@@ -28,7 +28,7 @@
 		<key>bgColor</key>
 		<false/>
 		<key>stateTitle</key>
-		<string>已收货</string>
+		<string>已发货</string>
 		<key>imageContent</key>
 		<string>wdgm_icon_daipingjia</string>
 	</dict>
@@ -38,7 +38,7 @@
 		<key>bgColor</key>
 		<false/>
 		<key>stateTitle</key>
-		<string>退款/售后</string>
+		<string>退款</string>
 		<key>imageContent</key>
 		<string>wdgm_icon_tuikuan</string>
 	</dict>
