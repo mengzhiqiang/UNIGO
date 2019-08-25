@@ -51,8 +51,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 190;
+    if (self.data.count > indexPath.row) {
+        NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
+        int pay_status = [[diction objectForKey:@"status"] intValue];
+        if (pay_status==0) {
+            return 190;
+        }
+    }
+    return 160;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -73,7 +79,7 @@
     
     if (self.data.count > indexPath.row) {
         NSDictionary * diction = [self.data objectAtIndex:indexPath.row];
-        cell.orderTimeLabel.text = [NSString stringWithFormat:@"订单时间：%@", [NSDate timeWithTimeIntervalString: [diction objectForKey:@"create_time"]]];
+        cell.orderTimeLabel.text = [NSString stringWithFormat:@"下单时间：%@", [NSDate timeWithTimeIntervalString: [diction objectForKey:@"create_time"]]];
         cell.goodeTitleLabel.text = [diction objectForKey:@"name"];
         cell.goodsStatusLabel.text = [diction objectForKey:@"spec_name"];
         cell.goodCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"total_num"]];;
@@ -84,6 +90,8 @@
 
         [cell.DeleteOrderButton setTitle:@"已支付" forState:UIControlStateNormal];
         cell.DeleteOrderButton.enabled = NO;
+        cell.sumCostLabel.hidden= YES;
+        cell.rootView.height = 155;
 
         switch (status) {
             case -2:
@@ -104,6 +112,8 @@
                 cell.DeleteOrderButton.hidden = NO;
                 [cell.DeleteOrderButton setTitle:@"去支付" forState:UIControlStateNormal];
                 cell.DeleteOrderButton.enabled = YES;
+                cell.sumCostLabel.hidden= NO;
+                cell.rootView.height = 185;
             }
                 break;
             case 1:
@@ -114,7 +124,7 @@
                 break;
             case 2:
             {
-                cell.orderStatusLabel.text = @"待收货";
+                cell.orderStatusLabel.text = @"已发货";
 
             }
                 break;

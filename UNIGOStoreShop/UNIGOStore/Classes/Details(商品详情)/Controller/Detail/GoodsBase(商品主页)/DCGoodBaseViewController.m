@@ -83,7 +83,7 @@ static NSString *DCDetailOverFooterViewID = @"DCDetailOverFooterView";
 
 
 static NSString *lastNum_;
-static NSArray *lastSeleArray_;
+static NSMutableArray *lastSeleArray_;
 
 @implementation DCGoodBaseViewController
 
@@ -142,10 +142,26 @@ static NSArray *lastSeleArray_;
         _webView.scrollView.contentInset = UIEdgeInsetsMake(DCTopNavH, 0, 0, 0);
         _webView.scrollView.scrollIndicatorInsets = _webView.scrollView.contentInset;
         [self.scrollerView addSubview:_webView];
+
+        _webView.navigationDelegate = self;
     }
     return _webView;
 }
-
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    [ webView evaluateJavaScript:@"var script = document.createElement('script');"
+     "script.type = 'text/javascript';"
+     "script.text = \"function ResizeImages() { "
+     "var myimg,oldwidth;"
+     "var maxwidth = 1000.0;" // WKWebView中显示的图片宽度
+     "for(i=0;i <document.images.length;i++){"
+     "myimg = document.images[i];"
+     "oldwidth = myimg.width;"
+     "myimg.width = maxwidth;"
+     "}"
+     "}\";"
+     "document.getElementsByTagName('head')[0].appendChild(script);ResizeImages();" completionHandler:nil];
+}
 
 #pragma mark - LifeCyle
 
@@ -165,9 +181,14 @@ static NSArray *lastSeleArray_;
     
 }
 
+-(void)setGoodsInfomation:(NSDictionary *)goodsInfomation{
+    _goodsInfomation = goodsInfomation;
+    [self setLastSeleArrayNewData:_goodsInfomation];
+
+}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -468,7 +489,7 @@ static NSArray *lastSeleArray_;
     if (indexPath.section == 0) { //商品详情
         return (indexPath.row == 0) ? CGSizeMake(ScreenW, [DCSpeedy dc_calculateTextSizeWithText:_goodTitle WithTextFont:16 WithMaxW:ScreenW - DCMargin * 6].height + [DCSpeedy dc_calculateTextSizeWithText:_goodPrice WithTextFont:20 WithMaxW:ScreenW - DCMargin * 6].height + [DCSpeedy dc_calculateTextSizeWithText:_goodSubtitle WithTextFont:12 WithMaxW:ScreenW - DCMargin * 6].height + DCMargin * 4) : CGSizeMake(ScreenW, 35);
     }else if (indexPath.section == 1){//商品属性选择
-        return CGSizeMake(ScreenW, 60);
+        return CGSizeMake(ScreenW, 45);
     }else if (indexPath.section == 2){//商品快递信息
         return CGSizeMake(ScreenW, 60);
     }else if (indexPath.section == 3){//商品保价
@@ -551,6 +572,22 @@ static NSArray *lastSeleArray_;
     }];
 }
 
+-(void)setLastSeleArrayNewData:(NSDictionary*)dictiaon{
+    
+    NSArray * aa = [dictiaon objectForKey:@"goodsSpecValue"];
+    
+    lastSeleArray_ = [NSMutableArray arrayWithCapacity:20];
+    
+    for (NSDictionary* d in aa) {
+
+        NSArray * arr =[d objectForKey:@"list"];
+        NSDictionary* dic = arr.firstObject;
+        [lastSeleArray_ addObject: dic[@"spec_id"]] ;
+    }
+    lastNum_ = @"1" ;
+    [_collectionView reloadData];
+    
+}
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

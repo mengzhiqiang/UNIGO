@@ -89,7 +89,9 @@
  **************************************************************/
 + (void)showUpMessage:(NSString *)message{
     
-    [[AFToolTipOfHead sharedInstance ]addViewOfHeadWithTitle:message BackColor:nil];
+    [SVProgressHUD showErrorWithStatus:message];
+
+//    [[AFToolTipOfHead sharedInstance ]addViewOfHeadWithTitle:message BackColor:nil];
 }
 /**************************************************************
  ** 功能:     弹出顶部提示    警告提示
@@ -100,8 +102,11 @@
     
     if (!color) {
         color = BackGreenGColor_Nav ;
+        [SVProgressHUD showErrorWithStatus:message];
+    }else{
+        [SVProgressHUD showSuccessWithStatus:message];
     }
-    [[AFToolTipOfHead sharedInstance ]addViewOfHeadWithTitle:message BackColor:color];
+//    [[AFToolTipOfHead sharedInstance ]addViewOfHeadWithTitle:message BackColor:color];
 }
 
 /**************************************************************

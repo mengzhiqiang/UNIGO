@@ -92,7 +92,7 @@
 
     NSString *device = [deviceId stringByReplacingOccurrencesOfString:@"-" withString:@""]; //替换字符
     
-    NSMutableDictionary*dic_register=[[NSMutableDictionary alloc]initWithObjectsAndKeys:_ipone,@"phone",device,@"uuid", nil];
+    NSMutableDictionary*dic_register=[[NSMutableDictionary alloc]initWithObjectsAndKeys:_ipone,@"phone",device,@"uuid",(_codeStyle?_codeStyle:@"1") ,@"type",nil];
     
     NSString *pram = register_code;
     

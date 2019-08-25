@@ -22,6 +22,7 @@ typedef void(^backSection) (NSDictionary*diction);
 #import "DCColonInsView.h"
 #import "DCSildeBarView.h"
 #import "DCHoverFlowLayout.h"
+#import "DCHomeGoodsCollectionViewCell.h"
 // Vendors
 #import <MJExtension.h>
 #import "XWDrawerAnimator.h"
@@ -29,6 +30,7 @@ typedef void(^backSection) (NSDictionary*diction);
 // Categories
 
 // Others
+#import "DCHomeGoodsItem.h"
 #import "GoodsRequestTool.h"
 #import "DCSearchToolView.h"
 @interface DCGoodsSetViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -70,7 +72,7 @@ static CGFloat _lastContentOffset;
 
 static NSString *const DCCustionHeadViewID = @"DCCustionHeadView";
 static NSString *const DCSwitchGridCellID = @"DCSwitchGridCell";
-static NSString *const DCListGridCellID = @"DCListGridCell";
+static NSString *const DCListGridCellID = @"DCHomeGoodsCollectionViewCellID";
 
 @implementation DCGoodsSetViewController
 
@@ -93,7 +95,9 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
         
         [_collectionView registerClass:[DCCustionHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCCustionHeadViewID]; //头部View
         [_collectionView registerClass:[DCSwitchGridCell class] forCellWithReuseIdentifier:DCSwitchGridCellID];//cell
-        [_collectionView registerClass:[DCListGridCell class] forCellWithReuseIdentifier:DCListGridCellID];//cell
+//        [_collectionView registerClass:[DCHomeGoodsCollectionViewCell class] forCellWithReuseIdentifier:DCListGridCellID];//cell
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([DCHomeGoodsCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:DCListGridCellID];
+
         [self.view addSubview:_collectionView];
     }
     return _collectionView;
@@ -243,31 +247,32 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
 
 #pragma mark - <UICollectionViewDelegate>
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    DCListGridCell *cell = nil;
-    cell = (_isSwitchGrid) ? [collectionView dequeueReusableCellWithReuseIdentifier:DCListGridCellID forIndexPath:indexPath] : [collectionView dequeueReusableCellWithReuseIdentifier:DCSwitchGridCellID forIndexPath:indexPath];
-    cell.youSelectItem = _setItem[indexPath.row];
-    
-    WEAKSELF
-    if (_isSwitchGrid) { //列表Cell
-        __weak typeof(cell)weakCell = cell;
-        cell.colonClickBlock = ^{ // 冒号点击
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            [strongSelf setUpColonInsView:weakCell];
-            [strongSelf.colonView setUpUI]; // 初始化
-            strongSelf.colonView.collectionBlock = ^{
-                NSLog(@"点击了收藏%zd",indexPath.row);
-            };
-            strongSelf.colonView.addShopCarBlock = ^{
-                NSLog(@"点击了加入购物车%zd",indexPath.row);
-            };
-            strongSelf.colonView.sameBrandBlock = ^{
-                NSLog(@"点击了同品牌%zd",indexPath.row);
-            };
-            strongSelf.colonView.samePriceBlock = ^{
-                NSLog(@"点击了同价格%zd",indexPath.row);
-            };
-        };
+    DCHomeGoodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCListGridCellID forIndexPath:indexPath];
+
+    if (_setItem.count >indexPath.row) {
+        [cell  loadNewUI:_setItem[indexPath.row]];
     }
+    WEAKSELF
+//    if (_isSwitchGrid) { //列表Cell
+//        __weak typeof(cell)weakCell = cell;
+//        cell.colonClickBlock = ^{ // 冒号点击
+//            __strong typeof(weakSelf)strongSelf = weakSelf;
+//            [strongSelf setUpColonInsView:weakCell];
+//            [strongSelf.colonView setUpUI]; // 初始化
+//            strongSelf.colonView.collectionBlock = ^{
+//                NSLog(@"点击了收藏%zd",indexPath.row);
+//            };
+//            strongSelf.colonView.addShopCarBlock = ^{
+//                NSLog(@"点击了加入购物车%zd",indexPath.row);
+//            };
+//            strongSelf.colonView.sameBrandBlock = ^{
+//                NSLog(@"点击了同品牌%zd",indexPath.row);
+//            };
+//            strongSelf.colonView.samePriceBlock = ^{
+//                NSLog(@"点击了同价格%zd",indexPath.row);
+//            };
+//        };
+//    }
     
     return cell;
 }
@@ -314,12 +319,14 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     NSLog(@"点击了商品第%zd",indexPath.row);
     
     DCGoodDetailViewController *dcVc = [[DCGoodDetailViewController alloc] init];
-    dcVc.goodID = _setItem[indexPath.row].identifier ;
-    dcVc.goodTitle = _setItem[indexPath.row].name;
-    dcVc.goodPrice = _setItem[indexPath.row].price;
-    dcVc.goodSubtitle = _setItem[indexPath.row].info;
-    dcVc.shufflingArray = _setItem[indexPath.row].images;
-    dcVc.goodImageView = _setItem[indexPath.row].image;
+    DCHomeGoodsItem * item =  _setItem[indexPath.row];
+
+    dcVc.goodID = item.identity ;
+//    dcVc.goodTitle = _setItem[indexPath.row].name;
+//    dcVc.goodPrice = _setItem[indexPath.row].price;
+////    dcVc.goodSubtitle = _setItem[indexPath.row].info;
+//    dcVc.shufflingArray = _setItem[indexPath.row].images;
+//    dcVc.goodImageView = _setItem[indexPath.row].image;
     
     [self.navigationController pushViewController:dcVc animated:YES];
     
@@ -451,7 +458,7 @@ static NSString *const DCListGridCellID = @"DCListGridCell";
     }
 
     [GoodsRequestTool getGoodsCateWithPram:diction success:^(id  _Nonnull responseObject) {
-        self.setItem = [DCRecommendItem mj_objectArrayWithKeyValuesArray:responseObject];
+        self.setItem = [DCHomeGoodsItem mj_objectArrayWithKeyValuesArray:responseObject];
         [self.collectionView reloadData];
         
     } fail:^(NSDictionary * _Nonnull error) {

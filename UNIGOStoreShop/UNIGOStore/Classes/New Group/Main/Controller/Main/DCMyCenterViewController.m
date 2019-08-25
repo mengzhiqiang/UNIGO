@@ -269,7 +269,7 @@ static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
             cell.headImageView.image = [UIImage imageNamed:@"btn_setting"];
             cusCell = cell;
         }else{
-            cell.titleNameLabel.text = @"我的收货地址";
+            cell.titleNameLabel.text = @"收货地址管理";
             cell.titleNameLabel.width = 150 ;
             cell.headImageView.image = [UIImage imageNamed:@"user_icon_yinhangka"];
         }

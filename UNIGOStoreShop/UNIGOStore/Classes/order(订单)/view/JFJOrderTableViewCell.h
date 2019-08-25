@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *payButton;
 
 @property (copy, nonatomic) void (^backSelect)(NSString * style);
+@property (weak, nonatomic) IBOutlet UIView *sumCostLabel;
+@property (weak, nonatomic) IBOutlet UIView *rootView;
 
 //CELL 1
 @property (weak, nonatomic) IBOutlet UIView *rootCellView;

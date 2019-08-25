@@ -14,6 +14,7 @@ pod 'IQKeyboardManager'
 pod 'AFNetworking'
 pod 'CDDPagerController'
 
+
 pod 'WechatOpenSDK'
 pod 'AlipaySDK-iOS'
 pod 'Meiqia', '~> 3.4.9'

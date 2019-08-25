@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class DCRecommendItem;
+@class DCHomeGoodsItem;
 
 @interface DCListGridCell : UICollectionViewCell
 
 /* 推荐数据 */
-@property (strong , nonatomic)DCRecommendItem *youSelectItem;
+@property (strong , nonatomic)DCHomeGoodsItem *youSelectItem;
 
 /** 冒号点击回调 */
 @property (nonatomic, copy) dispatch_block_t colonClickBlock;

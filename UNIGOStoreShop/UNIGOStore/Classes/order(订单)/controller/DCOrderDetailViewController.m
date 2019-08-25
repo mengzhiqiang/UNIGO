@@ -301,7 +301,6 @@
         sum = [model.price floatValue] * model.cart_num.intValue+sum;
     }
 
-    
     return sum ;
 }
 

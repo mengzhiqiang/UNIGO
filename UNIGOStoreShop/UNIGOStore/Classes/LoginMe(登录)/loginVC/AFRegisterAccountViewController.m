@@ -287,7 +287,7 @@
 -(void)fingPassWordWithIpone{
     
     
-    NSMutableDictionary*dic_register=[[NSMutableDictionary alloc]initWithObjectsAndKeys:_phoneTextField.text,@"mobile",_codeTextField.text,@"code",_passWordTextFied.text,@"password", nil];
+    NSMutableDictionary*dic_register=[[NSMutableDictionary alloc]initWithObjectsAndKeys:_phoneTextField.text,@"phone",_codeTextField.text,@"code",_passWordTextFied.text,@"password", nil];
     
     [UIHelper addLoadingViewTo:self.view withFrame:0];
     _registerButton.enabled=NO;
@@ -373,7 +373,7 @@
     }
     
     NSString *pathUrl = [API_HOST stringByAppendingString:register_code];
-    NSDictionary*dic=[[NSDictionary alloc]initWithObjectsAndKeys:_phoneTextField.text,@"mobile",_codeTextField.text,@"code", nil];
+    NSDictionary*dic=[[NSDictionary alloc]initWithObjectsAndKeys:_phoneTextField.text,@"phone",_codeTextField.text,@"code", nil];
     NSLog(@"==%@",dic);
     [HttpEngine requestPostWithURL:pathUrl params:dic isToken:NO errorDomain:nil errorString:nil success:^(id responseObject) {
         
@@ -401,8 +401,10 @@
 //    return;
     
     [self hideKeyBoard];
-    _codeButton.codeStyle=[NSString stringWithFormat:@"10"];
+    _codeButton.codeStyle=[NSString stringWithFormat:@"1"];
     if (_viewType == AFViewControllerTypeForget) {
+        _codeButton.codeStyle=[NSString stringWithFormat:@"2"];
+    } else if (_viewType == AFViewControllerTypeChange){
         _codeButton.codeStyle=[NSString stringWithFormat:@"2"];
     }
     

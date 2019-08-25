@@ -287,7 +287,7 @@
         }else{
             [button setImage:[UIImage imageNamed:imagesSel[i]] forState:UIControlStateSelected];
         }
-        
+        button.imageView.contentMode =  UIViewContentModeScaleAspectFit;
         [self.view addSubview:button];
     }
 }

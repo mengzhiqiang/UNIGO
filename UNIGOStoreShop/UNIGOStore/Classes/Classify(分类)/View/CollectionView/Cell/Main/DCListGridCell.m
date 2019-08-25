@@ -12,6 +12,7 @@
 
 // Models
 #import "DCRecommendItem.h"
+#import "DCHomeGoodsItem.h"
 // Views
 
 // Vendors
@@ -80,12 +81,12 @@
     [self addSubview:_priceLabel];
 
     
-//    _commentNumLabel = [[UILabel alloc] init];
-//    NSInteger pNum = arc4random() % 10000;
-//    _commentNumLabel.text = [NSString stringWithFormat:@"%zd人已评价",pNum];
-//    _commentNumLabel.font = PFR10Font;
-//    _commentNumLabel.textColor = [UIColor darkGrayColor];
-//    [self addSubview:_commentNumLabel];
+    _commentNumLabel = [[UILabel alloc] init];
+    NSInteger pNum = arc4random() % 10000;
+    _commentNumLabel.text = [NSString stringWithFormat:@"%zd人已评价",pNum];
+    _commentNumLabel.font = PFR10Font;
+    _commentNumLabel.textColor = [UIColor darkGrayColor];
+    [self addSubview:_commentNumLabel];
     
     _colonButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_colonButton setImage:[UIImage imageNamed:@"icon_shenglue"] forState:UIControlStateNormal];
@@ -144,7 +145,7 @@
 }
 
 #pragma mark - Setter Getter Methods
-- (void)setYouSelectItem:(DCRecommendItem *)youSelectItem
+- (void)setYouSelectItem:(DCHomeGoodsItem *)youSelectItem
 {
     _youSelectItem = youSelectItem;
     [_gridImageView sd_setImageWithURL:[NSURL URLWithString:youSelectItem.image]];

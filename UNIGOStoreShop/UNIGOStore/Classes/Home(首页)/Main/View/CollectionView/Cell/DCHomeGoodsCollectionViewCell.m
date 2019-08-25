@@ -20,7 +20,7 @@
     
     NSString * image = diction.image;
 
-    _priceLabel.text = diction.price;
+    _priceLabel.text = [NSString stringWithFormat:@"¥ %@",diction.price] ;
     _goodsTitleLabel.text = diction.name;
     _smartPriceLabel.text = diction.market_price;
 
