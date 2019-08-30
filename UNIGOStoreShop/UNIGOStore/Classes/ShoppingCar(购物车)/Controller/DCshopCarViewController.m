@@ -188,6 +188,9 @@
         
         if (!model.isSelect) {
             shopModel.isSelect = NO;
+            _isSelectAll = NO;
+            [_selectAllButton setTitle:[NSString  stringWithFormat:@" 全选"] forState:UIControlStateNormal];
+            [_selectAllButton setImage:[UIImage imageNamed:@"ic_unselect"] forState:UIControlStateNormal];
         }
 //        [self editeShopCar:model withindex:indexPath];
 //        [shopModel.data replaceObjectAtIndex:indexPath.row withObject:model];
@@ -219,14 +222,17 @@
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 30)];
     view.backgroundColor = [UIColor HexString:@"f2f2f2"];
     UIButton * shopSelectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shopSelectBtn.frame = CGRectMake(5, 0, 30, 30);
-    [shopSelectBtn setTitle:@"" forState:UIControlStateNormal];
-    
+    shopSelectBtn.frame = CGRectMake(5, 7, 16, 16);
+//    [shopSelectBtn setTitle:@"" forState:UIControlStateNormal];
+    [shopSelectBtn setImage:[UIImage imageNamed:@"ic_unselect"] forState:UIControlStateNormal];
+
     if (shopModel.isSelect) {
-        [shopSelectBtn setTitle:@"" forState:UIControlStateNormal];
-        [shopSelectBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        [shopSelectBtn setTitle:@"" forState:UIControlStateNormal];
+        [shopSelectBtn setImage:[UIImage imageNamed:@"ic_select"] forState:UIControlStateNormal];
+
+//        [shopSelectBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }else{
-        [shopSelectBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [shopSelectBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     }
     
     shopSelectBtn.titleLabel.font = [UIFont fontWithName:@"iconfont" size:16];
@@ -250,12 +256,15 @@
     shopModel.isSelect = ! shopModel.isSelect;
 
     if (shopModel.isSelect) {
-        [sender setTitle:@"" forState:UIControlStateNormal];
-        [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        
+//        [sender setTitle:@"" forState:UIControlStateNormal];
+//        [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"ic_select"] forState:UIControlStateNormal];
+
     }else{
-        [sender setTitle:@"" forState:UIControlStateNormal];
-        [sender setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [sender setTitle:@"" forState:UIControlStateNormal];
+//        [sender setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"ic_unselect"] forState:UIControlStateNormal];
+
     }
     
     for (DCShopCarModel * carModel in shopModel.data) {
@@ -405,9 +414,13 @@
         _countAll--;
         
         if (_isSelectAll) {
-            [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+            [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选"] forState:UIControlStateNormal];
+            [_selectAllButton setImage:[UIImage imageNamed:@"ic_select"] forState:UIControlStateNormal];
+
         }else{
-            [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+            [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选"] forState:UIControlStateNormal];
+            [_selectAllButton setImage:[UIImage imageNamed:@"ic_unselect"] forState:UIControlStateNormal];
+
         }
 
         
@@ -498,8 +511,9 @@
         for (DCShopModel* shop in shopCarModel.carList) {
             _countAll = _countAll +shop.data.count;
         }
-        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
-        
+        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选"] forState:UIControlStateNormal];
+        [_selectAllButton setImage:[UIImage imageNamed:@"ic_select"] forState:UIControlStateNormal];
+
     }else{
         
         
@@ -510,7 +524,9 @@
     
     _isSelectAll = !_isSelectAll ;
     if (_isSelectAll) {
-        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
+        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选"] forState:UIControlStateNormal];
+        [_selectAllButton setImage:[UIImage imageNamed:@"ic_select"] forState:UIControlStateNormal];
+
         for (DCShopModel * shopModel in shopCarModel.carList) {
             shopModel.isSelect = YES;
             for (DCShopCarModel * carModel in shopModel.data) {
@@ -518,8 +534,8 @@
             }
         }
     }else{
-        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选(%ld)",(long)_countAll] forState:UIControlStateNormal];
-
+        [_selectAllButton setTitle:[NSString  stringWithFormat:@"  全选"] forState:UIControlStateNormal];
+        [_selectAllButton setImage:[UIImage imageNamed:@"ic_unselect"] forState:UIControlStateNormal];
         for (DCShopModel * shopModel in shopCarModel.carList) {
             shopModel.isSelect = NO;
             for (DCShopCarModel * carModel in shopModel.data) {

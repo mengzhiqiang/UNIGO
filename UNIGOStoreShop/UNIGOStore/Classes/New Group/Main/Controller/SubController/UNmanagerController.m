@@ -326,6 +326,7 @@
                 [cell.headImageView draCirlywithColor:[UIColor redColor] andRadius:2.0];
                 cell.headImageView.frame = CGRectMake(SCREEN_WIDTH-65-29, (87.5-60)/2, 65, 65);
                 [cell.headImageView setImageWithURL:[NSURL URLWithString:_userUrl] placeholderImage:(self.headImage?self.headImage:[UIImage imageNamed:@"unigo_default_head"])];
+
                 [cell.headImageView draCirlywithColor:[UIColor HexString:@"f2f2f2"] andRadius:cell.headImageView.height/2];
             }
                 break;
@@ -537,7 +538,7 @@
 - (void)showSexWithActionSheetView
 {
     
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"男孩",@"女孩"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[@"男",@"女"] redButtonIndex:0 clicked:^(NSInteger buttonIndex) {
         if(buttonIndex == 2) {
             return ;
         }
@@ -563,7 +564,7 @@
             NSLog(@"更新接口==responseObject==%@=",responseObject);
             [UIHelper hiddenAlertWith:self.view];
             [_rootTableView reloadData];
-            
+            [self loadNewDate ];
         } failure:^(NSError *error) {
             [UIHelper hiddenAlertWith:self.view];
             

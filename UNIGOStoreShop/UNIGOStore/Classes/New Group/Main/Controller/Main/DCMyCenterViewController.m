@@ -138,7 +138,7 @@ static NSString *const DeviceTableViewCellID = @"DeviceTableViewCell";
     if ([HttpRequestToken getToken].length<1) {
         self.headView.useNameLabel.text = @"点击登录";
     }
-    [self.headView.myIconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:accountInfo.client.headimgurl] placeholderImage:[UIImage imageNamed:@"unigo_default_head"]];
+    [self.headView.myIconButton setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:accountInfo.client.headimgurl] ];
     [self.tableView reloadData ];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     [self setStatusBarBackgroundColor:[UIColor clearColor]];

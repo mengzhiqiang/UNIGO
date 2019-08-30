@@ -229,8 +229,11 @@
     goodBaseVc.changeTitleBlock = ^(BOOL isChange) {
         if (isChange) {
             weakSelf.title = @"图文详情";
+            [weakSelf.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+
             weakSelf.navigationItem.titleView = nil;
-            weakSelf.scrollerView.contentSize = CGSizeMake(weakSelf.view.dc_width, 0);
+            weakSelf.scrollerView.contentSize = CGSizeMake(weakSelf.view.dc_width-20, 0);
+
         }else{
             weakSelf.title = nil;
             [weakSelf.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];

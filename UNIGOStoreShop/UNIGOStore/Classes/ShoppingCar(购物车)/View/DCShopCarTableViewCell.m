@@ -70,12 +70,15 @@
     [_shopImageView setImageWithURL:[NSURL URLWithString:shopCar.image] placeholderImage:[UIImage imageNamed:@"bj_baobei"] ];
     if (_shopCar.isSelect) {
        
-        [_selectButton setTitle:@"" forState:UIControlStateNormal];
-        [_selectButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];;
+        [_selectButton setImage:[UIImage imageNamed:@"ic_select"] forState:UIControlStateNormal];
+//        [_selectButton setTitle:@"" forState:UIControlStateNormal];
+//        [_selectButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];;
 
     }else{
-        [_selectButton setTitle:@"" forState:UIControlStateNormal];
-        [_selectButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];;
+        [_selectButton setImage:[UIImage imageNamed:@"ic_unselect"] forState:UIControlStateNormal];
+
+//        [_selectButton setTitle:@"" forState:UIControlStateNormal];
+//        [_selectButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];;
 
     }
 }

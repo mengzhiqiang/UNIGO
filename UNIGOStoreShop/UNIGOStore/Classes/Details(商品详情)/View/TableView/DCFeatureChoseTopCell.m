@@ -63,6 +63,11 @@
     _chooseAttLabel.font = PFR14Font;
     [self addSubview:_chooseAttLabel];
     
+    _stockLabel = [UILabel new];
+    _stockLabel.numberOfLines = 1;
+    _stockLabel.font = PFR12Font;
+    [self addSubview:_stockLabel];
+    
 }
 
 - (void)layoutSubviews
@@ -79,6 +84,11 @@
         [make.left.mas_equalTo(self)setOffset:DCMargin];
         [make.top.mas_equalTo(self)setOffset:DCMargin];
         make.size.mas_equalTo(CGSizeMake(80, 80));
+    }];
+    
+    [_stockLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [make.left.mas_equalTo(self)setOffset:DCMargin*2];
+        [make.top.mas_equalTo(_goodImageView.mas_bottom)setOffset:0];
     }];
     
     [_goodPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {

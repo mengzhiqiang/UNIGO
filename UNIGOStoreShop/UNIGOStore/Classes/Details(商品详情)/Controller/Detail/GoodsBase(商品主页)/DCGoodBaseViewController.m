@@ -62,6 +62,9 @@
 /* 通知 */
 @property (strong ,nonatomic) id dcObj;
 
+@property (assign ,nonatomic) CGFloat  oldPoint;
+@property (assign ,nonatomic) CGFloat  NewPoint;
+
 @end
 
 //header
@@ -174,7 +177,7 @@ static NSMutableArray *lastSeleArray_;
     
     [self setUpGoodsWKWebView];
     
-    [self setUpSuspendView];
+//    [self setUpSuspendView];
     
     [self acceptanceNote];
 
@@ -188,7 +191,8 @@ static NSMutableArray *lastSeleArray_;
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -352,7 +356,7 @@ static NSMutableArray *lastSeleArray_;
     [topHitView addSubview:topHitButton];
     topHitButton.frame = topHitView.bounds;
     
-    [self.webView.scrollView addSubview:topHitView];
+//    [self.webView.scrollView addSubview:topHitView];
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -362,6 +366,11 @@ static NSMutableArray *lastSeleArray_;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
+    if (section ==1) {
+        if (_goodsInfomation[@"active_note"]) {
+            return 2;
+        }
+    }
     return (section == 2 ) ? 1 : 1;
 }
 
@@ -409,11 +418,18 @@ static NSMutableArray *lastSeleArray_;
         if (indexPath.section == 1) {
             DCShowTypeOneCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCShowTypeOneCellID forIndexPath:indexPath];
 
-            NSString *result = [NSString stringWithFormat:@"%@ %@件",[[self priceOfNowSelect] objectForKey:@"spec_name"],lastNum_];
-            
-            cell.leftTitleLable.text = (lastSeleArray_.count == 0) ? @"点击" : @"已选";
-            cell.contentLabel.text = (lastSeleArray_.count == 0) ? @"请选择该商品属性" : result;
-            
+            if (indexPath.row==0) {
+                NSString *result = [NSString stringWithFormat:@"%@ %@件",[[self priceOfNowSelect] objectForKey:@"spec_name"],lastNum_];
+                cell.leftTitleLable.text = (lastSeleArray_.count == 0) ? @"点击" : @"已选";
+                cell.contentLabel.text = (lastSeleArray_.count == 0) ? @"请选择该商品属性" : result;
+                cell.isHasindicateButton = YES;
+
+            }else{
+                cell.leftTitleLable.text = @"活动";
+                cell.contentLabel.text = _goodsInfomation[@"active_note"];
+                cell.isHasindicateButton = NO;
+            }
+           
             gridcell = cell;
         }else{
 //            if (indexPath.row == 0) {
@@ -522,7 +538,9 @@ static NSMutableArray *lastSeleArray_;
         NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",phone];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }else if (indexPath.section == 1){ //属性选择
-        
+        if (indexPath.row==1) {
+            return ;
+        }
         NSArray * diction = [_goodsInfomation objectForKey:@"goodsSpecValue"] ;
 //        NSLog(@"goodsSpecValue=== %@" , [[_goodsInfomation objectForKey:@"goodsSpecValue"] class]);
 //        NSLog(@"goodsSpecValue=== %ld" ,diction.count);
@@ -561,15 +579,17 @@ static NSMutableArray *lastSeleArray_;
         }];
     }];
     
-    self.webView.scrollView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        [UIView animateWithDuration:0.8 animations:^{
-            !weakSelf.changeTitleBlock ? : weakSelf.changeTitleBlock(NO);
-            weakSelf.scrollerView.contentOffset = CGPointMake(0, 0);
-        } completion:^(BOOL finished) {
-            [weakSelf.webView.scrollView.mj_header endRefreshing];
-        }];
-        
-    }];
+//    self.webView.scrollView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+//        [UIView animateWithDuration:0.8 animations:^{
+//            !weakSelf.changeTitleBlock ? : weakSelf.changeTitleBlock(NO);
+//            weakSelf.scrollerView.contentOffset = CGPointMake(0, 0);
+//            self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//        } completion:^(BOOL finished) {
+//            [weakSelf.webView.scrollView.mj_header endRefreshing];
+//        }];
+//    }];
+    self.webView.scrollView.delegate =self ;
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 -(void)setLastSeleArrayNewData:(NSDictionary*)dictiaon{
@@ -591,9 +611,37 @@ static NSMutableArray *lastSeleArray_;
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if (scrollView == self.webView.scrollView) {
+//        self.oldPoint = self.NewPoint;
+        NSLog(@"===%f",scrollView.contentOffset.y);
+        if (self.NewPoint>scrollView.contentOffset.y) {
+            self.NewPoint = scrollView.contentOffset.y;
+        }
+        if (scrollView.contentOffset.y>0) {
+            self.NewPoint = scrollView.contentOffset.y;
+        }
+    }
+   
     //判断回到顶部按钮是否隐藏
     _backTopButton.hidden = (scrollView.contentOffset.y > ScreenH) ? NO : YES;
 }
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    if (scrollView == self.webView.scrollView) {
+ 
+        if (_NewPoint<-100) {
+            [UIView animateWithDuration:0.8 animations:^{
+                !self.changeTitleBlock ? : self.changeTitleBlock(NO);
+                self.scrollerView.contentOffset = CGPointMake(0, 0);
+                //                self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            } completion:^(BOOL finished) {
+            }];
+        }
+    }
+}
+
+
+
 
 #pragma mark - 点击事件
 #pragma mark - 更换地址

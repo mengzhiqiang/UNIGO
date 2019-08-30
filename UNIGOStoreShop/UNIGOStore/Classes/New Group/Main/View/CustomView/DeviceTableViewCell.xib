@@ -138,7 +138,7 @@
                 <outlet property="pushTagImageView" destination="p9d-5J-SiO" id="szg-j5-xEh"/>
                 <outlet property="titleNameLabel" destination="vV1-Hg-Eop" id="ScO-5A-7Xu"/>
             </connections>
-            <point key="canvasLocation" x="392" y="323.83808095952025"/>
+            <point key="canvasLocation" x="392" y="323.38830584707648"/>
         </tableViewCell>
     </objects>
     <resources>

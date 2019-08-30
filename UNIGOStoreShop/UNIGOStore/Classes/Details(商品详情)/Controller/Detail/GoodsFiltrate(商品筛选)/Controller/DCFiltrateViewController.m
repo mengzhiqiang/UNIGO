@@ -163,7 +163,6 @@ static NSString * const DCFooterReusableViewID = @"DCFooterReusableView";
         headerView.sectionClick = ^{
             
             weakSelf.filtrateItem[indexPath.section].isOpen = !weakSelf.filtrateItem[indexPath.section].isOpen; //打开取反
-            
             [collectionView reloadData]; //刷新
         };
         
@@ -181,7 +180,6 @@ static NSString * const DCFooterReusableViewID = @"DCFooterReusableView";
         
         headerView.selectHeadLabel.text = (selectName.length == 0) ? @"全部" : selectName;
         headerView.selectHeadLabel.textColor = ([headerView.selectHeadLabel.text isEqualToString:@"全部"]) ?  [UIColor darkGrayColor] : [UIColor redColor];
-        
         
         headerView.headFiltrate = _filtrateItem[indexPath.section];
         

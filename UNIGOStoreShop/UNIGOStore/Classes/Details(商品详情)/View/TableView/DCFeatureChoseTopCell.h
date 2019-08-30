@@ -20,5 +20,8 @@
 /* 选择属性 */
 @property (strong , nonatomic)UILabel *chooseAttLabel;
 
+/* 库存 */
+@property (strong , nonatomic)UILabel *stockLabel;
+
 
 @end

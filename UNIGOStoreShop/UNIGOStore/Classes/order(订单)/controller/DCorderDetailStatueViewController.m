@@ -9,10 +9,12 @@
 #import "DCorderDetailStatueViewController.h"
 #import "JFJOrderTableViewCell.h"
 #import "PayViewController.h"
-
+#import "DeviceTableViewCell.h"
 #import "MQChatViewManager.h"
 #import "AFMeiQiaCustomEngine.h"
 #import "DCAfterSaleViewController.h"
+
+
 @interface DCorderDetailStatueViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)  UITableView *rootTableView;
@@ -61,7 +63,6 @@
     _rootTableView.sectionFooterHeight = 0;
     _rootTableView.backgroundColor=PersonBackGroundColor;
     self.view.backgroundColor=PersonBackGroundColor;
-    
     [self.view addSubview:_rootTableView];
     
     [_deleteButton draCirlywithColor:[UIColor grayColor] andRadius:0.5f];
@@ -285,32 +286,47 @@
 
 #pragma mark- table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-   
+    if (_goodsPayDiction[@"active_note"]) {
+        return _goodsArray.count+1;
+    }
     return  _goodsArray.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
+   
     return 1;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.row==_goodsArray.count) {
+        return 44;
+    }
     return 70;
   
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 241;
+    if (section==0) {
+        return 241;
+    }
+    return 0.01;
     
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-    return _headOrderView;
+    if (section==0) {
+        return _headOrderView;
+    }
+    return nil;
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 289;
+    if (section==0) {
+        return 289;
+    }
+    return 0.01;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -323,25 +339,47 @@
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *CellIdentifier = @"JFJOrderTableViewCell";
-    
-    JFJOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"JFJOrderTableViewCell" owner:self options:nil] objectAtIndex:1];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+    if (indexPath.row==_goodsArray.count) {
+        DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceTableViewCellID"];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"DeviceTableViewCell" owner:self options:nil] objectAtIndex:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.lineLabel1.hidden = NO;
+        cell.titleNameLabel.frame = CGRectMake(15, (cell.height-20)/2, 50, 20);
+        cell.headImageView.hidden = YES;
+        cell.pushTagImageView.hidden = YES;
+        cell.pushNextLabel.autoresizesSubviews = NO;
+        cell.pushNextLabel.frame = CGRectMake(70, 7, ScreenW-80, 30);
+        cell.pushNextLabel.textAlignment = NSTextAlignmentLeft;
+        cell.titleNameLabel.text = @"活动";
+        cell.pushNextLabel.text = _goodsPayDiction[@"active_note"];
+        cell.lineLabel1.top = 0 ;
+        return cell ;
     }
- 
-    NSDictionary* diction =  [_goodsArray objectAtIndex:indexPath.row];
     
-    cell.goodsDetailLabel.text = [diction objectForKey:@"name"];
-    cell.stateLabel.text = [diction objectForKey:@"spec_name"];
-    cell.priceLabel.text = [diction objectForKey:@"price"];
-    cell.sleepCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"num"]];
-    [cell.goodsImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
-
-    return   cell;
+    else {
+        static NSString *CellIdentifier = @"JFJOrderTableViewCell";
+        JFJOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"JFJOrderTableViewCell" owner:self options:nil] objectAtIndex:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        
+        NSDictionary* diction =  [_goodsArray objectAtIndex:indexPath.row];
+        
+        cell.goodsDetailLabel.text = [diction objectForKey:@"name"];
+        cell.stateLabel.text = [diction objectForKey:@"spec_name"];
+        cell.priceLabel.text = [diction objectForKey:@"price"];
+        cell.sleepCountLabel.text = [NSString stringWithFormat:@"x%@",[diction objectForKey:@"num"]];
+        [cell.goodsImageView setImageWithURL:[NSURL URLWithString: [diction objectForKey:@"image"]] placeholderImage:nil];
+        
+        return   cell;
+    }
+    
+  
 }
 
 

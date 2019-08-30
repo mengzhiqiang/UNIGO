@@ -173,7 +173,7 @@
         DCShopCarModel *model = [shopCar.buyList objectAtIndex:indexPath.row];
         cell.goodsDetailLabel.text = model.name;
         cell.priceLabel.text = model.price;
-        cell.sleepCountLabel.text = [NSString stringWithFormat:@"X%@",model.cart_num];
+        cell.sleepCountLabel.text = [NSString stringWithFormat:@"x%@",model.cart_num];
         cell.stateLabel.text = model.spec_name ;
         [cell.goodsImageView setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@""]];
         

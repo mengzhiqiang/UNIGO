@@ -160,7 +160,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     self.collectionView.backgroundColor = self.view.backgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    _featureAttr = [DCFeatureItem mj_objectArrayWithFilename:@"ShopItem.plist"]; //数据
-    self.tableView.frame = CGRectMake(0, 0, ScreenW, 100);
+    self.tableView.frame = CGRectMake(0, 0, ScreenW, 110);
     self.tableView.rowHeight = 100;
     self.collectionView.frame = CGRectMake(0, self.tableView.dc_bottom ,ScreenW , NowScreenH - 200);
 
@@ -278,6 +278,7 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
     _cell = cell;
     
     cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",[_goodsInfomation objectForKey:@"price"]];
+    [cell.goodImageView sd_setImageWithURL:[NSURL URLWithString:_goodImageView]];
 
     if (_seleArray.count != _featureAttr.count && _lastSeleArray.count != _featureAttr.count) {
         cell.chooseAttLabel.textColor = [UIColor redColor];
@@ -288,10 +289,10 @@ static NSString *const DCFeatureChoseTopCellID = @"DCFeatureChoseTopCell";
 //        NSString *attString = (_seleArray.count == _featureAttr.count) ? [_seleArray componentsJoinedByString:@"，"] : [_lastSeleArray componentsJoinedByString:@"，"];
         cell.chooseAttLabel.text = [NSString stringWithFormat:@"已选属性：%@",[dic objectForKey:@"spec_name"]];
         cell.goodPriceLabel.text = [NSString stringWithFormat:@"¥ %@",[dic objectForKey:@"price"]];
+        cell.stockLabel.text = [NSString stringWithFormat:@"库存: %@件",[dic objectForKey:@"stock"]];
 
     }
     
-    [cell.goodImageView sd_setImageWithURL:[NSURL URLWithString:_goodImageView]];
     WEAKSELF
     cell.crossButtonClickBlock = ^{
         [weakSelf dismissFeatureViewControllerWithTag:100];
